@@ -6,16 +6,16 @@ from .models import AboutTheProject, TeamMember, ProjectInst
 class TeamMemberListFilter(django_filters.FilterSet):
     class Meta:
         model = TeamMember
-        fields = "__all__"
+        fields = ["id", "name", "website", "role"]
 
 
 class AboutTheProjectListFilter(django_filters.FilterSet):
     class Meta:
         model = AboutTheProject
-        fields = "__all__"
+        fields = ["id", "author"]
 
 
 class ProjectInstListFilter(django_filters.FilterSet):
     class Meta:
         model = ProjectInst
-        fields = "__all__"
+        fields = ["id", "name", "website"]

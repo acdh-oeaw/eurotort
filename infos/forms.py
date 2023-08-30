@@ -52,8 +52,8 @@ class TeamMemberFilterFormHelper(FormHelper):
         self.form_tag = False
         self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
-            Fieldset(
-                "Basic search options", "id", "name", css_id="basic_search_fields"
+            BS5Accordion(
+                AccordionGroup("Basic", "id", "name"),
             ),
             BS5Accordion(
                 AccordionGroup("More", "website", "role", css_id="more"),
@@ -85,13 +85,9 @@ class AboutTheProjectFilterFormHelper(FormHelper):
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
         self.form_tag = False
-        self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
-            Fieldset(
-                "Basic search options",
-                "id",
-                "description",
-                css_id="basic_search_fields",
+            BS5Accordion(
+                AccordionGroup("Basic", "id", css_id="basic"),
             ),
             BS5Accordion(
                 AccordionGroup("Authors", "author", css_id="more"),
