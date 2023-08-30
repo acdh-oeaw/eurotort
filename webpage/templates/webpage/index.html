@@ -1,0 +1,13 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load stats_extras %}
+{% load webpage_extras %}
+{% block content %}
+
+
+    <h1 class="text-center">{% projects_metadata 'title' %}</h1>
+    <h2 class="text-center">{% lorem 10 w %}</h2>
+    <p class="text-center">{% lorem 4 %}</p>
+
+
+{% endblock %}
