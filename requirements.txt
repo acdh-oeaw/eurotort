@@ -7,3 +7,4 @@ requests>=2.25
 psycopg2-binary
 pandas
 jinja2
+tqdm
