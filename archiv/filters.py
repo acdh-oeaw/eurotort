@@ -2,7 +2,7 @@
 import django_filters
 from dal import autocomplete
 
-from . models import (
+from .models import (
     Country,
     Court,
     CourtDecission,
@@ -14,291 +14,289 @@ from . models import (
 
 class CountryListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Country._meta.get_field('legacy_id').help_text,
-        label=Country._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=Country._meta.get_field("legacy_id").help_text,
+        label=Country._meta.get_field("legacy_id").verbose_name,
     )
     name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Country._meta.get_field('name').help_text,
-        label=Country._meta.get_field('name').verbose_name
+        lookup_expr="icontains",
+        help_text=Country._meta.get_field("name").help_text,
+        label=Country._meta.get_field("name").verbose_name,
     )
 
     class Meta:
         model = Country
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'name',
-            ]
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "name",
+        ]
 
 
 class CourtListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Court._meta.get_field('legacy_id').help_text,
-        label=Court._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=Court._meta.get_field("legacy_id").help_text,
+        label=Court._meta.get_field("legacy_id").verbose_name,
     )
     name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Court._meta.get_field('name').help_text,
-        label=Court._meta.get_field('name').verbose_name
+        lookup_expr="icontains",
+        help_text=Court._meta.get_field("name").help_text,
+        label=Court._meta.get_field("name").verbose_name,
     )
     abbreviation = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Court._meta.get_field('abbreviation').help_text,
-        label=Court._meta.get_field('abbreviation').verbose_name
+        lookup_expr="icontains",
+        help_text=Court._meta.get_field("abbreviation").help_text,
+        label=Court._meta.get_field("abbreviation").verbose_name,
     )
     country = django_filters.ModelMultipleChoiceFilter(
         queryset=Country.objects.all(),
-        help_text=Court._meta.get_field('country').help_text,
-        label=Court._meta.get_field('country').verbose_name,
+        help_text=Court._meta.get_field("country").help_text,
+        label=Court._meta.get_field("country").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:country-autocomplete",
-        )
+        ),
     )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
-        help_text=Court._meta.get_field('partial_legal_system').help_text,
-        label=Court._meta.get_field('partial_legal_system').verbose_name,
+        help_text=Court._meta.get_field("partial_legal_system").help_text,
+        label=Court._meta.get_field("partial_legal_system").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:partiallegalsystem-autocomplete",
-        )
+        ),
     )
 
     class Meta:
         model = Court
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'name',
-            'abbreviation',
-            'is_high_court',
-            'country',
-            'partial_legal_system',
-            ]
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "name",
+            "abbreviation",
+            "is_high_court",
+            "country",
+            "partial_legal_system",
+        ]
 
 
 class CourtDecissionListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('legacy_id').help_text,
-        label=CourtDecission._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("legacy_id").help_text,
+        label=CourtDecission._meta.get_field("legacy_id").verbose_name,
     )
     country = django_filters.ModelMultipleChoiceFilter(
         queryset=Country.objects.all(),
-        help_text=CourtDecission._meta.get_field('country').help_text,
-        label=CourtDecission._meta.get_field('country').verbose_name,
+        help_text=CourtDecission._meta.get_field("country").help_text,
+        label=CourtDecission._meta.get_field("country").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:country-autocomplete",
-        )
+        ),
     )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
-        help_text=CourtDecission._meta.get_field('partial_legal_system').help_text,
-        label=CourtDecission._meta.get_field('partial_legal_system').verbose_name,
+        help_text=CourtDecission._meta.get_field("partial_legal_system").help_text,
+        label=CourtDecission._meta.get_field("partial_legal_system").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:partiallegalsystem-autocomplete",
-        )
+        ),
     )
     court = django_filters.ModelMultipleChoiceFilter(
         queryset=Court.objects.all(),
-        help_text=CourtDecission._meta.get_field('court').help_text,
-        label=CourtDecission._meta.get_field('court').verbose_name,
+        help_text=CourtDecission._meta.get_field("court").help_text,
+        label=CourtDecission._meta.get_field("court").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:court-autocomplete",
-        )
+        ),
     )
     file_number = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('file_number').help_text,
-        label=CourtDecission._meta.get_field('file_number').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("file_number").help_text,
+        label=CourtDecission._meta.get_field("file_number").verbose_name,
     )
     party = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('party').help_text,
-        label=CourtDecission._meta.get_field('party').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("party").help_text,
+        label=CourtDecission._meta.get_field("party").verbose_name,
     )
     location = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('location').help_text,
-        label=CourtDecission._meta.get_field('location').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("location").help_text,
+        label=CourtDecission._meta.get_field("location").verbose_name,
     )
     yearbook = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('yearbook').help_text,
-        label=CourtDecission._meta.get_field('yearbook').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("yearbook").help_text,
+        label=CourtDecission._meta.get_field("yearbook").verbose_name,
     )
     short_description = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('short_description').help_text,
-        label=CourtDecission._meta.get_field('short_description').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("short_description").help_text,
+        label=CourtDecission._meta.get_field("short_description").verbose_name,
     )
     situation = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('situation').help_text,
-        label=CourtDecission._meta.get_field('situation').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("situation").help_text,
+        label=CourtDecission._meta.get_field("situation").verbose_name,
     )
     motto = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('motto').help_text,
-        label=CourtDecission._meta.get_field('motto').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("motto").help_text,
+        label=CourtDecission._meta.get_field("motto").verbose_name,
     )
     commentary = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('commentary').help_text,
-        label=CourtDecission._meta.get_field('commentary').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("commentary").help_text,
+        label=CourtDecission._meta.get_field("commentary").verbose_name,
     )
     additional_information = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=CourtDecission._meta.get_field('additional_information').help_text,
-        label=CourtDecission._meta.get_field('additional_information').verbose_name
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("additional_information").help_text,
+        label=CourtDecission._meta.get_field("additional_information").verbose_name,
     )
     keyword = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
-        help_text=CourtDecission._meta.get_field('keyword').help_text,
-        label=CourtDecission._meta.get_field('keyword').verbose_name,
+        help_text=CourtDecission._meta.get_field("keyword").help_text,
+        label=CourtDecission._meta.get_field("keyword").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
-        )
+        ),
     )
     author = django_filters.ModelMultipleChoiceFilter(
         queryset=Person.objects.all(),
-        help_text=CourtDecission._meta.get_field('author').help_text,
-        label=CourtDecission._meta.get_field('author').verbose_name,
+        help_text=CourtDecission._meta.get_field("author").help_text,
+        label=CourtDecission._meta.get_field("author").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:person-autocomplete",
-        )
+        ),
     )
 
     class Meta:
         model = CourtDecission
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'country',
-            'partial_legal_system',
-            'court',
-            'decission_date',
-            'file_number',
-            'party',
-            'location',
-            'yearbook',
-            'short_description',
-            'situation',
-            'motto',
-            'commentary',
-            'additional_information',
-            'keyword',
-            'author',
-            ]
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "country",
+            "partial_legal_system",
+            "court",
+            "decission_date",
+            "file_number",
+            "party",
+            "location",
+            "yearbook",
+            "short_description",
+            "situation",
+            "motto",
+            "commentary",
+            "additional_information",
+            "keyword",
+            "author",
+        ]
 
 
 class KeyWordListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=KeyWord._meta.get_field('legacy_id').help_text,
-        label=KeyWord._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=KeyWord._meta.get_field("legacy_id").help_text,
+        label=KeyWord._meta.get_field("legacy_id").verbose_name,
     )
     name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=KeyWord._meta.get_field('name').help_text,
-        label=KeyWord._meta.get_field('name').verbose_name
+        lookup_expr="icontains",
+        help_text=KeyWord._meta.get_field("name").help_text,
+        label=KeyWord._meta.get_field("name").verbose_name,
     )
     part_of = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
-        help_text=KeyWord._meta.get_field('part_of').help_text,
-        label=KeyWord._meta.get_field('part_of').verbose_name,
+        help_text=KeyWord._meta.get_field("part_of").help_text,
+        label=KeyWord._meta.get_field("part_of").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
-        )
+        ),
     )
 
     class Meta:
         model = KeyWord
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'name',
-            'part_of',
-            ]
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "name",
+            "part_of",
+        ]
 
 
 class PartialLegalSystemListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=PartialLegalSystem._meta.get_field('legacy_id').help_text,
-        label=PartialLegalSystem._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=PartialLegalSystem._meta.get_field("legacy_id").help_text,
+        label=PartialLegalSystem._meta.get_field("legacy_id").verbose_name,
     )
     country = django_filters.ModelMultipleChoiceFilter(
         queryset=Country.objects.all(),
-        help_text=PartialLegalSystem._meta.get_field('country').help_text,
-        label=PartialLegalSystem._meta.get_field('country').verbose_name,
+        help_text=PartialLegalSystem._meta.get_field("country").help_text,
+        label=PartialLegalSystem._meta.get_field("country").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:country-autocomplete",
-        )
+        ),
     )
     name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=PartialLegalSystem._meta.get_field('name').help_text,
-        label=PartialLegalSystem._meta.get_field('name').verbose_name
+        lookup_expr="icontains",
+        help_text=PartialLegalSystem._meta.get_field("name").help_text,
+        label=PartialLegalSystem._meta.get_field("name").verbose_name,
     )
 
     class Meta:
         model = PartialLegalSystem
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'country',
-            'name',
-            ]
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "country",
+            "name",
+        ]
 
 
 class PersonListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Person._meta.get_field('legacy_id').help_text,
-        label=Person._meta.get_field('legacy_id').verbose_name
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("legacy_id").help_text,
+        label=Person._meta.get_field("legacy_id").verbose_name,
     )
     last_name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Person._meta.get_field('last_name').help_text,
-        label=Person._meta.get_field('last_name').verbose_name
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("last_name").help_text,
+        label=Person._meta.get_field("last_name").verbose_name,
     )
     first_name = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Person._meta.get_field('first_name').help_text,
-        label=Person._meta.get_field('first_name').verbose_name
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("first_name").help_text,
+        label=Person._meta.get_field("first_name").verbose_name,
     )
     cv = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Person._meta.get_field('cv').help_text,
-        label=Person._meta.get_field('cv').verbose_name
+        lookup_expr="icontains",
+        help_text=Person._meta.get_field("cv").help_text,
+        label=Person._meta.get_field("cv").verbose_name,
     )
     nationality = django_filters.ModelMultipleChoiceFilter(
         queryset=Country.objects.all(),
-        help_text=Person._meta.get_field('nationality').help_text,
-        label=Person._meta.get_field('nationality').verbose_name,
+        help_text=Person._meta.get_field("nationality").help_text,
+        label=Person._meta.get_field("nationality").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:country-autocomplete",
-        )
+        ),
     )
 
     class Meta:
         model = Person
         fields = [
-            'id',
-            'legacy_id',
-            'legacy_pk',
-            'last_name',
-            'first_name',
-            'cv',
-            'nationality',
-            ]
-
-
+            "id",
+            "legacy_id",
+            "legacy_pk",
+            "last_name",
+            "first_name",
+            "cv",
+            "nationality",
+        ]

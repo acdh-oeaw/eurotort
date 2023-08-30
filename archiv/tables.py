@@ -2,7 +2,7 @@
 import django_tables2 as tables
 
 from browsing.browsing_utils import MergeColumn
-from . models import (
+from .models import (
     Country,
     Court,
     CourtDecission,
@@ -13,69 +13,62 @@ from . models import (
 
 
 class CountryTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Country
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class CourtTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Court
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class CourtDecissionTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.ManyToManyColumn()
     author = tables.columns.ManyToManyColumn()
 
     class Meta:
         model = CourtDecission
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class KeyWordTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = KeyWord
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class PartialLegalSystemTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = PartialLegalSystem
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class PersonTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Person
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
-

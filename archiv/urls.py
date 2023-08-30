@@ -2,150 +2,90 @@
 from django.urls import path
 from . import views
 
-app_name = 'archiv'
+app_name = "archiv"
 urlpatterns = [
-    path(
-        "country/",
-        views.CountryListView.as_view(),
-        name='country_browse'
-    ),
+    path("country/", views.CountryListView.as_view(), name="country_browse"),
     path(
         "country/detail/<int:pk>",
         views.CountryDetailView.as_view(),
-        name='country_detail'
+        name="country_detail",
     ),
+    path("country/create/", views.CountryCreate.as_view(), name="country_create"),
+    path("country/edit/<int:pk>", views.CountryUpdate.as_view(), name="country_edit"),
     path(
-        "country/create/",
-        views.CountryCreate.as_view(),
-        name='country_create'
+        "country/delete/<int:pk>", views.CountryDelete.as_view(), name="country_delete"
     ),
-    path(
-        "country/edit/<int:pk>",
-        views.CountryUpdate.as_view(),
-        name='country_edit'
-    ),
-    path(
-        "country/delete/<int:pk>",
-        views.CountryDelete.as_view(),
-        name='country_delete'),
-    path(
-        "court/",
-        views.CourtListView.as_view(),
-        name='court_browse'
-    ),
-    path(
-        "court/detail/<int:pk>",
-        views.CourtDetailView.as_view(),
-        name='court_detail'
-    ),
-    path(
-        "court/create/",
-        views.CourtCreate.as_view(),
-        name='court_create'
-    ),
-    path(
-        "court/edit/<int:pk>",
-        views.CourtUpdate.as_view(),
-        name='court_edit'
-    ),
-    path(
-        "court/delete/<int:pk>",
-        views.CourtDelete.as_view(),
-        name='court_delete'),
+    path("court/", views.CourtListView.as_view(), name="court_browse"),
+    path("court/detail/<int:pk>", views.CourtDetailView.as_view(), name="court_detail"),
+    path("court/create/", views.CourtCreate.as_view(), name="court_create"),
+    path("court/edit/<int:pk>", views.CourtUpdate.as_view(), name="court_edit"),
+    path("court/delete/<int:pk>", views.CourtDelete.as_view(), name="court_delete"),
     path(
         "courtdecission/",
         views.CourtDecissionListView.as_view(),
-        name='courtdecission_browse'
+        name="courtdecission_browse",
     ),
     path(
         "courtdecission/detail/<int:pk>",
         views.CourtDecissionDetailView.as_view(),
-        name='courtdecission_detail'
+        name="courtdecission_detail",
     ),
     path(
         "courtdecission/create/",
         views.CourtDecissionCreate.as_view(),
-        name='courtdecission_create'
+        name="courtdecission_create",
     ),
     path(
         "courtdecission/edit/<int:pk>",
         views.CourtDecissionUpdate.as_view(),
-        name='courtdecission_edit'
+        name="courtdecission_edit",
     ),
     path(
         "courtdecission/delete/<int:pk>",
         views.CourtDecissionDelete.as_view(),
-        name='courtdecission_delete'),
-    path(
-        "keyword/",
-        views.KeyWordListView.as_view(),
-        name='keyword_browse'
+        name="courtdecission_delete",
     ),
+    path("keyword/", views.KeyWordListView.as_view(), name="keyword_browse"),
     path(
         "keyword/detail/<int:pk>",
         views.KeyWordDetailView.as_view(),
-        name='keyword_detail'
+        name="keyword_detail",
     ),
+    path("keyword/create/", views.KeyWordCreate.as_view(), name="keyword_create"),
+    path("keyword/edit/<int:pk>", views.KeyWordUpdate.as_view(), name="keyword_edit"),
     path(
-        "keyword/create/",
-        views.KeyWordCreate.as_view(),
-        name='keyword_create'
+        "keyword/delete/<int:pk>", views.KeyWordDelete.as_view(), name="keyword_delete"
     ),
-    path(
-        "keyword/edit/<int:pk>",
-        views.KeyWordUpdate.as_view(),
-        name='keyword_edit'
-    ),
-    path(
-        "keyword/delete/<int:pk>",
-        views.KeyWordDelete.as_view(),
-        name='keyword_delete'),
     path(
         "partiallegalsystem/",
         views.PartialLegalSystemListView.as_view(),
-        name='partiallegalsystem_browse'
+        name="partiallegalsystem_browse",
     ),
     path(
         "partiallegalsystem/detail/<int:pk>",
         views.PartialLegalSystemDetailView.as_view(),
-        name='partiallegalsystem_detail'
+        name="partiallegalsystem_detail",
     ),
     path(
         "partiallegalsystem/create/",
         views.PartialLegalSystemCreate.as_view(),
-        name='partiallegalsystem_create'
+        name="partiallegalsystem_create",
     ),
     path(
         "partiallegalsystem/edit/<int:pk>",
         views.PartialLegalSystemUpdate.as_view(),
-        name='partiallegalsystem_edit'
+        name="partiallegalsystem_edit",
     ),
     path(
         "partiallegalsystem/delete/<int:pk>",
         views.PartialLegalSystemDelete.as_view(),
-        name='partiallegalsystem_delete'),
-    path(
-        "person/",
-        views.PersonListView.as_view(),
-        name='person_browse'
+        name="partiallegalsystem_delete",
     ),
+    path("person/", views.PersonListView.as_view(), name="person_browse"),
     path(
-        "person/detail/<int:pk>",
-        views.PersonDetailView.as_view(),
-        name='person_detail'
+        "person/detail/<int:pk>", views.PersonDetailView.as_view(), name="person_detail"
     ),
-    path(
-        "person/create/",
-        views.PersonCreate.as_view(),
-        name='person_create'
-    ),
-    path(
-        "person/edit/<int:pk>",
-        views.PersonUpdate.as_view(),
-        name='person_edit'
-    ),
-    path(
-        "person/delete/<int:pk>",
-        views.PersonDelete.as_view(),
-        name='person_delete'),
+    path("person/create/", views.PersonCreate.as_view(), name="person_create"),
+    path("person/edit/<int:pk>", views.PersonUpdate.as_view(), name="person_edit"),
+    path("person/delete/<int:pk>", views.PersonDelete.as_view(), name="person_delete"),
 ]

@@ -41,4 +41,3 @@ def get_help_text(instance, field_name):
         return "{}".format(label)
     else:
         return "No helptext for '{}' provided".format(field_name)
-

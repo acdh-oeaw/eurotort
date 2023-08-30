@@ -15,13 +15,12 @@ models.Field.set_extra = set_extra
 
 
 class Country(models.Model):
-    """ Country """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Country"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -40,20 +39,15 @@ class Country(models.Model):
         arche_prop="hasTitle",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "Country"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -65,57 +59,49 @@ class Country(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:country_browse')
-    
+        return reverse("archiv:country_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_staat.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:country_create')
+        return reverse("archiv:country_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:country_detail', kwargs={'pk': self.id})
+        return reverse("archiv:country_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:country_delete', kwargs={'pk': self.id})
+        return reverse("archiv:country_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:country_edit', kwargs={'pk': self.id})
+        return reverse("archiv:country_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:country_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:country_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:country_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:country_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Court(models.Model):
-    """ Court """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Court"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -145,7 +131,8 @@ class Court(models.Model):
     )
     is_high_court = models.BooleanField(
         default=False,
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="High Court",
         help_text="High Court",
     ).set_extra(
@@ -154,7 +141,7 @@ class Court(models.Model):
     )
     country = models.ForeignKey(
         "Country",
-        related_name='rvn_court_country_country',
+        related_name="rvn_court_country_country",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -166,7 +153,7 @@ class Court(models.Model):
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
-        related_name='rvn_court_partial_legal_system_partiallegalsystem',
+        related_name="rvn_court_partial_legal_system_partiallegalsystem",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -177,20 +164,15 @@ class Court(models.Model):
         data_lookup="Gericht_Teilrechtsordnung",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "Court"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -202,57 +184,49 @@ class Court(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:court_browse')
-    
+        return reverse("archiv:court_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_gericht.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:court_create')
+        return reverse("archiv:court_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:court_detail', kwargs={'pk': self.id})
+        return reverse("archiv:court_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:court_delete', kwargs={'pk': self.id})
+        return reverse("archiv:court_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:court_edit', kwargs={'pk': self.id})
+        return reverse("archiv:court_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:court_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:court_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:court_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:court_detail", kwargs={"pk": prev.id})
         return False
 
 
 class CourtDecission(models.Model):
-    """ CourtDecission """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """CourtDecission"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -262,7 +236,7 @@ class CourtDecission(models.Model):
     )
     country = models.ForeignKey(
         "Country",
-        related_name='rvn_courtdecission_country_country',
+        related_name="rvn_courtdecission_country_country",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -274,7 +248,7 @@ class CourtDecission(models.Model):
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
-        related_name='rvn_courtdecission_partial_legal_system_partiallegalsystem',
+        related_name="rvn_courtdecission_partial_legal_system_partiallegalsystem",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -286,7 +260,7 @@ class CourtDecission(models.Model):
     )
     court = models.ForeignKey(
         "Court",
-        related_name='rvn_courtdecission_court_court',
+        related_name="rvn_courtdecission_court_court",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -297,7 +271,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Gericht",
     )
     decission_date = models.DateField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Date",
         help_text="Date",
     ).set_extra(
@@ -324,7 +299,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Parteien",
     )
     location = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Decission Location",
         help_text="Decission Location",
     ).set_extra(
@@ -332,7 +308,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Fundstelle",
     )
     yearbook = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Yearbook",
         help_text="Yearbook",
     ).set_extra(
@@ -340,7 +317,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Yearbook",
     )
     short_description = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Short Description",
         help_text="Short Description",
     ).set_extra(
@@ -349,7 +327,8 @@ class CourtDecission(models.Model):
         arche_prop="hasDescription",
     )
     situation = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Sachverhalt",
         help_text="Sachverhalt",
     ).set_extra(
@@ -357,7 +336,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Sachverhalt",
     )
     motto = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Leitsatz",
         help_text="Sachverhalt",
     ).set_extra(
@@ -365,7 +345,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Leitsatz",
     )
     commentary = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Kommentar",
         help_text="Kommentar",
     ).set_extra(
@@ -373,7 +354,8 @@ class CourtDecission(models.Model):
         data_lookup="Entscheidung_Kommentar",
     )
     additional_information = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Zusatzinfo",
         help_text="Zusatzinfo",
     ).set_extra(
@@ -382,7 +364,7 @@ class CourtDecission(models.Model):
     )
     keyword = models.ManyToManyField(
         "KeyWord",
-        related_name='rvn_courtdecission_keyword_keyword',
+        related_name="rvn_courtdecission_keyword_keyword",
         blank=True,
         verbose_name="Keywords",
         help_text="Keywords",
@@ -392,7 +374,7 @@ class CourtDecission(models.Model):
     )
     author = models.ManyToManyField(
         "Person",
-        related_name='rvn_courtdecission_author_person',
+        related_name="rvn_courtdecission_author_person",
         blank=True,
         verbose_name="AutorIn",
         help_text="AutorIn",
@@ -401,20 +383,15 @@ class CourtDecission(models.Model):
         arche_prop="hasSubject",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'legacy_pk',
+            "legacy_pk",
         ]
         verbose_name = "CourtDecission"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -426,57 +403,49 @@ class CourtDecission(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:courtdecission_browse')
-    
+        return reverse("archiv:courtdecission_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_entscheidungen.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:courtdecission_create')
+        return reverse("archiv:courtdecission_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:courtdecission_detail', kwargs={'pk': self.id})
+        return reverse("archiv:courtdecission_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:courtdecission_delete', kwargs={'pk': self.id})
+        return reverse("archiv:courtdecission_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:courtdecission_edit', kwargs={'pk': self.id})
+        return reverse("archiv:courtdecission_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:courtdecission_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:courtdecission_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:courtdecission_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:courtdecission_detail", kwargs={"pk": prev.id})
         return False
 
 
 class KeyWord(models.Model):
-    """ KeyWord """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """KeyWord"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -496,7 +465,7 @@ class KeyWord(models.Model):
     )
     part_of = models.ForeignKey(
         "KeyWord",
-        related_name='rvn_keyword_part_of_keyword',
+        related_name="rvn_keyword_part_of_keyword",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -507,20 +476,15 @@ class KeyWord(models.Model):
         data_lookup="Stichwort_Parent",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "KeyWord"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -532,57 +496,49 @@ class KeyWord(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:keyword_browse')
-    
+        return reverse("archiv:keyword_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_stichworte.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:keyword_create')
+        return reverse("archiv:keyword_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:keyword_detail', kwargs={'pk': self.id})
+        return reverse("archiv:keyword_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:keyword_delete', kwargs={'pk': self.id})
+        return reverse("archiv:keyword_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:keyword_edit', kwargs={'pk': self.id})
+        return reverse("archiv:keyword_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:keyword_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:keyword_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:keyword_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:keyword_detail", kwargs={"pk": prev.id})
         return False
 
 
 class PartialLegalSystem(models.Model):
-    """ PartialLegalSystem """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """PartialLegalSystem"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -592,7 +548,7 @@ class PartialLegalSystem(models.Model):
     )
     country = models.ForeignKey(
         "Country",
-        related_name='rvn_partiallegalsystem_country_country',
+        related_name="rvn_partiallegalsystem_country_country",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -612,20 +568,15 @@ class PartialLegalSystem(models.Model):
         data_lookup="Teilrecht_Bezeichnung",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'legacy_pk',
+            "legacy_pk",
         ]
         verbose_name = "PartialLegalSystem"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -637,57 +588,49 @@ class PartialLegalSystem(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:partiallegalsystem_browse')
-    
+        return reverse("archiv:partiallegalsystem_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_teilrechtsordnung.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:partiallegalsystem_create')
+        return reverse("archiv:partiallegalsystem_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:partiallegalsystem_detail', kwargs={'pk': self.id})
+        return reverse("archiv:partiallegalsystem_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:partiallegalsystem_delete', kwargs={'pk': self.id})
+        return reverse("archiv:partiallegalsystem_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:partiallegalsystem_edit', kwargs={'pk': self.id})
+        return reverse("archiv:partiallegalsystem_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:partiallegalsystem_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:partiallegalsystem_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:partiallegalsystem_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:partiallegalsystem_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Person(models.Model):
-    """ Person """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Person"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -716,7 +659,8 @@ class Person(models.Model):
         arche_prop="hasFirstName",
     )
     cv = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Vurriculum Vitae",
         help_text="Vurriculum Vitae",
     ).set_extra(
@@ -726,7 +670,7 @@ class Person(models.Model):
     )
     nationality = models.ForeignKey(
         "Country",
-        related_name='rvn_person_nationality_country',
+        related_name="rvn_person_nationality_country",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -737,20 +681,15 @@ class Person(models.Model):
         data_lookup="Autor_Staat",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
         ordering = [
-            'last_name',
+            "last_name",
         ]
         verbose_name = "Person"
-    
+
     def __str__(self):
         if self.last_name:
             return "{}".format(self.last_name)
@@ -762,46 +701,37 @@ class Person(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:person_browse')
-    
+        return reverse("archiv:person_browse")
+
     @classmethod
     def get_source_table(self):
         return "tb_autor.csv"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:person_create')
+        return reverse("archiv:person_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:person_detail', kwargs={'pk': self.id})
+        return reverse("archiv:person_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:person_delete', kwargs={'pk': self.id})
+        return reverse("archiv:person_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:person_edit', kwargs={'pk': self.id})
+        return reverse("archiv:person_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:person_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:person_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:person_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:person_detail", kwargs={"pk": prev.id})
         return False
-
-

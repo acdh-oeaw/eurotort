@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
-from . filters import (
+from .filters import (
     CountryListFilter,
     CourtListFilter,
     CourtDecissionListFilter,
@@ -11,7 +11,7 @@ from . filters import (
     PartialLegalSystemListFilter,
     PersonListFilter,
 )
-from . forms import (
+from .forms import (
     CountryForm,
     CountryFilterFormHelper,
     CourtForm,
@@ -25,7 +25,7 @@ from . forms import (
     PersonForm,
     PersonFilterFormHelper,
 )
-from . tables import (
+from .tables import (
     CountryTable,
     CourtTable,
     CourtDecissionTable,
@@ -33,7 +33,7 @@ from . tables import (
     PartialLegalSystemTable,
     PersonTable,
 )
-from . models import (
+from .models import (
     Country,
     Court,
     CourtDecission,
@@ -42,30 +42,31 @@ from . models import (
     Person,
 )
 from browsing.browsing_utils import (
-    GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
+    GenericListView,
+    BaseCreateView,
+    BaseUpdateView,
+    BaseDetailView,
 )
 
 
 class CountryListView(GenericListView):
-
     model = Country
     filter_class = CountryListFilter
     formhelper_class = CountryFilterFormHelper
     table_class = CountryTable
     init_columns = [
-        'id', 'name',
+        "id",
+        "name",
     ]
     enable_merge = True
 
 
 class CountryDetailView(BaseDetailView):
-
     model = Country
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class CountryCreate(BaseCreateView):
-
     model = Country
     form_class = CountryForm
 
@@ -75,7 +76,6 @@ class CountryCreate(BaseCreateView):
 
 
 class CountryUpdate(BaseUpdateView):
-
     model = Country
     form_class = CountryForm
 
@@ -86,8 +86,8 @@ class CountryUpdate(BaseUpdateView):
 
 class CountryDelete(DeleteView):
     model = Country
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:country_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:country_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -95,25 +95,23 @@ class CountryDelete(DeleteView):
 
 
 class CourtListView(GenericListView):
-
     model = Court
     filter_class = CourtListFilter
     formhelper_class = CourtFilterFormHelper
     table_class = CourtTable
     init_columns = [
-        'id', 'name',
+        "id",
+        "name",
     ]
     enable_merge = True
 
 
 class CourtDetailView(BaseDetailView):
-
     model = Court
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class CourtCreate(BaseCreateView):
-
     model = Court
     form_class = CourtForm
 
@@ -123,7 +121,6 @@ class CourtCreate(BaseCreateView):
 
 
 class CourtUpdate(BaseUpdateView):
-
     model = Court
     form_class = CourtForm
 
@@ -134,8 +131,8 @@ class CourtUpdate(BaseUpdateView):
 
 class CourtDelete(DeleteView):
     model = Court
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:court_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:court_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -143,25 +140,23 @@ class CourtDelete(DeleteView):
 
 
 class CourtDecissionListView(GenericListView):
-
     model = CourtDecission
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
     init_columns = [
-        'id', 'legacy_pk',
+        "id",
+        "legacy_pk",
     ]
     enable_merge = True
 
 
 class CourtDecissionDetailView(BaseDetailView):
-
     model = CourtDecission
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class CourtDecissionCreate(BaseCreateView):
-
     model = CourtDecission
     form_class = CourtDecissionForm
 
@@ -171,7 +166,6 @@ class CourtDecissionCreate(BaseCreateView):
 
 
 class CourtDecissionUpdate(BaseUpdateView):
-
     model = CourtDecission
     form_class = CourtDecissionForm
 
@@ -182,8 +176,8 @@ class CourtDecissionUpdate(BaseUpdateView):
 
 class CourtDecissionDelete(DeleteView):
     model = CourtDecission
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:courtdecission_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:courtdecission_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -191,25 +185,23 @@ class CourtDecissionDelete(DeleteView):
 
 
 class KeyWordListView(GenericListView):
-
     model = KeyWord
     filter_class = KeyWordListFilter
     formhelper_class = KeyWordFilterFormHelper
     table_class = KeyWordTable
     init_columns = [
-        'id', 'name',
+        "id",
+        "name",
     ]
     enable_merge = True
 
 
 class KeyWordDetailView(BaseDetailView):
-
     model = KeyWord
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class KeyWordCreate(BaseCreateView):
-
     model = KeyWord
     form_class = KeyWordForm
 
@@ -219,7 +211,6 @@ class KeyWordCreate(BaseCreateView):
 
 
 class KeyWordUpdate(BaseUpdateView):
-
     model = KeyWord
     form_class = KeyWordForm
 
@@ -230,8 +221,8 @@ class KeyWordUpdate(BaseUpdateView):
 
 class KeyWordDelete(DeleteView):
     model = KeyWord
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:keyword_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:keyword_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -239,25 +230,23 @@ class KeyWordDelete(DeleteView):
 
 
 class PartialLegalSystemListView(GenericListView):
-
     model = PartialLegalSystem
     filter_class = PartialLegalSystemListFilter
     formhelper_class = PartialLegalSystemFilterFormHelper
     table_class = PartialLegalSystemTable
     init_columns = [
-        'id', 'legacy_pk',
+        "id",
+        "legacy_pk",
     ]
     enable_merge = True
 
 
 class PartialLegalSystemDetailView(BaseDetailView):
-
     model = PartialLegalSystem
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class PartialLegalSystemCreate(BaseCreateView):
-
     model = PartialLegalSystem
     form_class = PartialLegalSystemForm
 
@@ -267,7 +256,6 @@ class PartialLegalSystemCreate(BaseCreateView):
 
 
 class PartialLegalSystemUpdate(BaseUpdateView):
-
     model = PartialLegalSystem
     form_class = PartialLegalSystemForm
 
@@ -278,8 +266,8 @@ class PartialLegalSystemUpdate(BaseUpdateView):
 
 class PartialLegalSystemDelete(DeleteView):
     model = PartialLegalSystem
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:partiallegalsystem_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:partiallegalsystem_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -287,25 +275,23 @@ class PartialLegalSystemDelete(DeleteView):
 
 
 class PersonListView(GenericListView):
-
     model = Person
     filter_class = PersonListFilter
     formhelper_class = PersonFilterFormHelper
     table_class = PersonTable
     init_columns = [
-        'id', 'last_name',
+        "id",
+        "last_name",
     ]
     enable_merge = True
 
 
 class PersonDetailView(BaseDetailView):
-
     model = Person
-    template_name = 'browsing/generic_detail.html'
+    template_name = "browsing/generic_detail.html"
 
 
 class PersonCreate(BaseCreateView):
-
     model = Person
     form_class = PersonForm
 
@@ -315,7 +301,6 @@ class PersonCreate(BaseCreateView):
 
 
 class PersonUpdate(BaseUpdateView):
-
     model = Person
     form_class = PersonForm
 
@@ -326,11 +311,9 @@ class PersonUpdate(BaseUpdateView):
 
 class PersonDelete(DeleteView):
     model = Person
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:person_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:person_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(PersonDelete, self).dispatch(*args, **kwargs)
-
-

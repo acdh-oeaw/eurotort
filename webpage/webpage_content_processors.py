@@ -1,5 +1,6 @@
 from django.conf import settings
 
+
 def my_app_name(request):
     return {"PROJECT_NAME": settings.PROJECT_NAME}
 

@@ -102,9 +102,7 @@ if os.environ.get("POSTGRES_DB"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get(
-                "POSTGRES_DB", "eurotort"
-            ),
+            "NAME": os.environ.get("POSTGRES_DB", "eurotort"),
             "USER": os.environ.get("POSTGRES_USER", "postgres"),
             "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
             "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
@@ -166,4 +164,3 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SHEET_ID = "1B_KjrACzkiPQ3qJ603l5eJCow4OQEffZPUnnT4DFGoc"
-
