@@ -1,0 +1,288 @@
+id,part_of__name,name,count
+71,,Recovery of costs and legal fees,0
+3,,Family law,0
+22,,Commercial law,0
+27,,Criminal law,0
+144,,Sources of harm,0
+132,,Defences,0
+251,,Primary and Consequential Damage,0
+66,,Burden of proof,0
+16,,Legal history,0
+247,,Value,0
+29,,Constitutional law,0
+8,,European law,0
+17,,Comparative law,0
+69,,Joinder of plaintiffs,0
+5,,Obligations,0
+99,,Causation,0
+106,,Joint and/or several liability,0
+253,,Digest Keywords,0
+62,,Civil procedure,0
+31,,Administrative law,0
+14,,Insolvency,0
+18,,Conflict of laws,0
+60,,Unjust enrichment,0
+46,,Insurance,0
+186,,Protected interests,0
+108,,Wrongfulness,0
+34,,Functions of tort law,0
+40,,Economic analysis,0
+41,,Flexible system,0
+72,,Damage,0
+4,,Property law,0
+25,,Social security law,0
+123,,Liability for others,0
+61,,Impairment suffered for the benefit of the public,0
+33,,Tax law,0
+121,,Strict liability,0
+7,,Law of persons,0
+107,,Contribution between tortfeasors,0
+70,,Class actions,0
+1,,General part of civil law,0
+42,,Contract law,0
+6,,Succession,0
+59,,Negotiorum gestio,0
+53,,Interrelation with other compensation systems,0
+114,,Fault,0
+279,,Reliance,0
+65,,Standard of proof,0
+90,,Compensation,0
+24,,Labour law,0
+26,,Evidence,0
+15,,Public international law,0
+32,Administrative law,Administrative procedure,36
+235,Administrative law,Administrative law,105
+68,Burden of proof,Fault,30
+67,Burden of proof,Causation,83
+219,Burden of proof,Burden of proof,147
+277,Causation,Hypothetical cause,2
+104,Causation,Cumulative causation,16
+105,Causation,Successive causation,19
+100,Causation,Loss of a chance,20
+275,Causation,Proof of causation,28
+245,Causation,Novus actus interveniens,29
+243,Causation,Concurrent fault,41
+103,Causation,Alternative causation,50
+102,Causation,Multiple causes,55
+101,Causation,Adequacy of causation and related concepts,179
+218,Causation,Conditio sine qua non,180
+211,Causation,Omission,363
+278,Civil procedure,Litigant in person,2
+64,Civil procedure,Declaratory relief,14
+63,Civil procedure,Injunctive relief,66
+220,Civil procedure,Civil procedure,113
+23,Commercial law,CISG,0
+241,Commercial law,Commercial law,44
+232,Comparative law,Comparative law,5
+283,Compensation,Restraining order,1
+96,Compensation,Adjustment by benefits received/collateral benefit rule,21
+91,Compensation,Compensation in kind,22
+94,Compensation,Rent and periodical payments,26
+97,Compensation,Thresholds and caps,32
+93,Compensation,Lump sum compensation,45
+98,Compensation,Ad hoc mitigation or reduction,55
+92,Compensation,Compensation in money,136
+95,Compensation,Quantification of damages,532
+21,Conflict of laws,Hague Traffic Convention,0
+20,Conflict of laws,Rome II-Regulation,8
+19,Conflict of laws,Lex loci delicti commissi,11
+237,Conflict of laws,conflict of laws,43
+223,Constitutional law,Constitutional law,151
+30,Constitutional law,Basic rights (incl. human rights),172
+43,Contract law,Contract for the benefit of a third party,20
+44,Contract law,Culpa in contrahendo,25
+45,Contract law,Positive violation of contractual duty,79
+224,Contract law,Contract law,171
+209,Contribution between tortfeasors,Contribution between tortfeasors,96
+28,Criminal law,Criminal procedure,38
+231,Criminal law,criminal law,85
+284,Damage,Loss of sexual life,1
+86,Damage,Non-compensatory loss,5
+281,Damage,Loss of housekeeping capacity,5
+287,Damage,Environmental damage,9
+89,Damage,Duty to mitigate damage,23
+84,Damage,Reliance on a declaration,23
+83,Damage,Non-performance of a contractual duty,33
+87,Damage,Punitive damages and related concepts,34
+76,Damage,Loss of use of an object,34
+250,Damage,Loss of Working Capacity,44
+74,Damage,Loss of maintenance,49
+78,Damage,Wrongful birth/life/conception,65
+88,Damage,Loss of a chance,88
+85,Damage,Third-party loss,93
+79,Damage,Pure economic loss,159
+244,Damage,Psychiatric harm,165
+77,Damage,Disablement,208
+75,Damage,Loss of income,218
+82,Damage,Bereavement and emotional harm,220
+213,Damage,Loss of life,223
+81,Damage,Pain and suffering,291
+73,Damage,Pecuniary loss,412
+80,Damage,Non-pecuniary loss,773
+285,Defences,Judicial immunity,2
+135,Defences,Self-help,12
+282,Defences,Illegality,14
+141,Defences,Necessity,14
+134,Defences,Self-defence,37
+140,Defences,Grounds for justification,44
+133,Defences,Act of God and force majeure,51
+143,Defences,Public policy,52
+139,Defences,Exclusion of liability,59
+136,Defences,Assumption of risk,71
+137,Defences,Consent,74
+142,Defences,Prescription,159
+138,Defences,Contributory negligence and related concepts,407
+267,Digest Keywords,Additional Categories Apart from Pecuniary and Non-Pecuniary Loss,3
+258,Digest Keywords,Alteration of a Good or Diminution of its Value,12
+266,Digest Keywords,‘Grey Area’ between Pecuniary and Non-Pecuniary Damage,12
+270,Digest Keywords,Wrongful Life,13
+268,Digest Keywords,Wrongful Conception,16
+264,Digest Keywords,Frustration,17
+262,Digest Keywords,Value of Affection,18
+255,Digest Keywords,Loss of Illicit Profits,21
+272,Digest Keywords,Collective Damage,22
+265,Digest Keywords,Loss of Use,23
+269,Digest Keywords,Wrongful Birth,23
+273,Digest Keywords,Mere Exposure to a Danger,24
+271,Digest Keywords,Environmental Damage,24
+263,Digest Keywords,Loss of Enjoyment,24
+256,Digest Keywords,Damage without any Material Alteration,25
+261,Digest Keywords,Non-Pecuniary Damage without Harm,30
+257,Digest Keywords,Reliance and Expectation Loss,30
+260,Digest Keywords,Non-Pecuniary Consequential Damage,31
+274,Digest Keywords,Loss of a Chance as Damage,35
+254,Digest Keywords,Positive Damage and Loss of Profit,42
+259,Digest Keywords,Non-Pecuniary Damage in General,151
+10,European law,Constitution & fundamental rights,20
+12,European law,European courts,24
+9,European law,Primary law,32
+13,European law,Harmonisation of laws,54
+11,European law,Secondary law,102
+233,Evidence,Evidence,43
+238,Family law,Family Law,23
+119,Fault,Malice,17
+115,Fault,Presumption of fault,86
+116,Fault,Capacity,127
+120,Fault,Criminal conduct,130
+118,Fault,Intent,146
+227,Fault,Fault,643
+117,Fault,Negligence,1134
+36,Functions of tort law,Prevention,1
+39,Functions of tort law,Acknowledgment of loss,1
+37,Functions of tort law,Satisfaction,4
+38,Functions of tort law,Punishment and retaliation,5
+35,Functions of tort law,Compensation,18
+242,General part of civil law,General part of civil law,1
+240,Insolvency,Insolvency,56
+52,Insurance,Insurance schemes replacing tort liability,11
+48,Insurance,Action directe,45
+51,Insurance,Compulsory insurance,91
+49,Insurance,Recourse,127
+50,Insurance,Liability insurance,146
+47,Insurance,Insurance law,201
+56,Interrelation with other compensation systems,Private insurance,0
+58,Interrelation with other compensation systems,Property law remedies,2
+57,Interrelation with other compensation systems,Compulsory insurance,5
+54,Interrelation with other compensation systems,Social security,6
+222,Interrelation with other compensation systems,Interrelation with other compensation systems,9
+55,Interrelation with other compensation systems,Compensation funds,25
+208,Joint and/or several liability,Joint and/or several liability,244
+215,Labour law,Labour law,115
+128,Liability for others,Disabled persons,26
+129,Liability for others,Legal entities,40
+126,Liability for others,Vicarious liability for non-employees,79
+131,Liability for others,Liability for public officers,90
+127,Liability for others,Minors,153
+125,Liability for others,Vicarious liability for employees,168
+124,Liability for others,Vicarious liability,177
+130,Liability for others,State liability,592
+210,Negotiorum gestio,Negotiorum gestio,4
+230,Obligations,obligations,32
+252,Primary and Consequential Damage,Primary and Consequential Damage,53
+234,Property law,Property law,163
+276,Protected interests,Cultural heritage,2
+194,Protected interests,Private notes,3
+202,Protected interests,Data,12
+197,Protected interests,Sexual privacy,13
+188,Protected interests,Intellectual property,26
+198,Protected interests,Consumer interests,34
+195,Protected interests,Image and photographs,38
+192,Protected interests,Name,48
+189,Protected interests,Liberty,49
+193,Protected interests,Objects and goods,63
+203,Protected interests,Environment,63
+204,Protected interests,Family,63
+196,Protected interests,Privacy,103
+191,Protected interests,Life,104
+190,Protected interests,Earning capacity,111
+201,Protected interests,Claims and contracts,118
+187,Protected interests,Assets,135
+200,Protected interests,Businesses,142
+205,Protected interests,General personality right,147
+199,Protected interests,Bodily integrity,179
+206,Protected interests,Honour and reputation,186
+207,Protected interests,Human rights,268
+216,Public international law,Public international law,19
+225,Recovery of costs and legal fees,Recovery of costs and legal fees,39
+280,Reliance,Reliance,22
+214,Social security law,Social security law,42
+177,Sources of harm,Genetic engineering,2
+165,Sources of harm,Nuclear power,3
+152,Sources of harm,Research,3
+286,Sources of harm,War,4
+175,Sources of harm,Computers,5
+183,Sources of harm,Natural catastrophes,8
+164,Sources of harm,Natural resources,12
+157,Sources of harm,Aircraft,16
+171,Sources of harm,Waste,16
+155,Sources of harm,Unfair competition,18
+161,Sources of harm,Energy and natural resources,20
+217,Sources of harm,Auditors,24
+168,Sources of harm,Air and exhaust fumes,31
+176,Sources of harm,Explosives,33
+166,Sources of harm,Asbestos,34
+160,Sources of harm,Ships,35
+179,Sources of harm,Internet,42
+167,Sources of harm,Pipes and mains,44
+145,Sources of harm,Abuse of legal procedure,45
+159,Sources of harm,Railways,47
+182,Sources of harm,Infections,48
+162,Sources of harm,Electricity,53
+181,Sources of harm,Pharmaceuticals and medical products,71
+172,Sources of harm,Water and sewage,79
+163,Sources of harm,Fire ,86
+173,Sources of harm,Animals,91
+151,Sources of harm,Legal malpractice,98
+147,Sources of harm,Employees,105
+180,Sources of harm,Products,109
+184,Sources of harm,Nuisance/trespass,115
+169,Sources of harm,Roads and highways,124
+178,Sources of harm,Immovable property,164
+146,Sources of harm,Acts of public officers,165
+185,Sources of harm,Media reports,165
+170,Sources of harm,Structures,171
+154,Sources of harm,Statements,183
+174,Sources of harm,Business premises and factories,186
+153,Sources of harm,Services,192
+149,Sources of harm,Experts,206
+148,Sources of harm,Criminal conduct,402
+150,Sources of harm,Medical malpractice,426
+158,Sources of harm,Motor vehicles,478
+156,Sources of harm,Traffic accidents,685
+239,Standard of proof,Standard of proof,28
+122,Strict liability,Keeper,87
+221,Strict liability,Strict liability,272
+236,Succession,Succession,30
+246,Tax law,Tax law,37
+229,Unjust enrichment,unjust enrichment,19
+249,Value,Subjective Value,23
+248,Value,Objective Value,40
+112,Wrongfulness,Unconscionability,8
+228,Wrongfulness,Boni mores,29
+113,Wrongfulness,Protective purpose of the norm,41
+110,Wrongfulness,Absolute rights,54
+212,Wrongfulness,Contratual or quasi-contractual duties,111
+111,Wrongfulness,Protective laws,146
+226,Wrongfulness,Wrongfulness,310
+109,Wrongfulness,Duty of care,574
+2,,,0

@@ -35,3 +35,4 @@ node_modules
 secret.env
 *.ipynb
 /data
+hansi.html

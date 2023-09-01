@@ -5,7 +5,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_NAME = "eurotort"
-
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 ACDH_IMPRINT_URL = (
     "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID="
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "browsing",
     "infos",
     "archiv",
+    "django_extensions",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

@@ -14,12 +14,12 @@ class ProjectInstFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
-        self.helper.form_tag = False
+        self.form_tag = False
         self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
-            Fieldset(
-                "Basic search options", "name", css_id="basic_search_fields"
-            ),
+            BS5Accordion(
+                AccordionGroup("Basic", "id", "name", css_id="basic_search_fields")
+                ),
             BS5Accordion(
                 AccordionGroup("More", "website", css_id="more"),
             ),
