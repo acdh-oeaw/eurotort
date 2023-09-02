@@ -4,7 +4,7 @@ import os
 
 from django.core.management.base import BaseCommand
 from django.db.models import Count
-from archiv.models import KeyWord
+from archiv.models import KeyWord, CourtDecission
 
 
 class Command(BaseCommand):
@@ -13,6 +13,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         report_dir = os.path.join(settings.MEDIA_ROOT, "reports")
         os.makedirs(report_dir, exist_ok=True)
+
+        print("reporting usage of keywords")
         keyword_stats = os.path.join(report_dir, "keyword-stats.html")
         data = list(
             KeyWord.objects.annotate(
@@ -31,4 +33,20 @@ class Command(BaseCommand):
         )
         df.to_html(keyword_stats, index=False)
         df.to_csv(keyword_stats.replace(".html", ".csv"), index=False)
-        return keyword_stats
+
+        print("reporting of keyword-decission relation")
+        keyword_stats = os.path.join(report_dir, "keyword-cases.html")
+        data = (
+            CourtDecission.objects.annotate(Count("keyword"))
+            .values("id", "keyword__count")
+            .distinct()
+        )
+        df = pd.DataFrame(list(data))
+        new_data = df.groupby("keyword__count").size()
+        ndf = (
+            pd.DataFrame(new_data)
+            .reset_index()
+            .rename(columns={0: "court_decissions", "keyword__count": "keywords"})
+        )
+        ndf.to_html(keyword_stats, index=False)
+        ndf.to_csv(keyword_stats.replace(".html", ".csv"), index=False)
