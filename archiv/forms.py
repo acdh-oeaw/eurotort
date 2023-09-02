@@ -12,7 +12,40 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook,
 )
+
+
+class YearBookFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(YearBookFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
+        self.form_tag = False
+        self.layout = Layout(
+            BS5Accordion(
+                AccordionGroup("Basic Search", "title", css_id="more"),
+                AccordionGroup("admin", "id", css_id="admin_search"),
+            )
+        )
+
+
+class YearBookForm(forms.ModelForm):
+    class Meta:
+        model = YearBook
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(YearBookForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
 
 
 class CountryFilterFormHelper(FormHelper):
@@ -25,7 +58,7 @@ class CountryFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search", "id", "legacy_pk", "name", css_id="more"
+                    "Basic Search", "id", "legacy_pk", "name", css_id="more"
                 ),
                 AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
@@ -59,7 +92,7 @@ class CourtFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search",
+                    "Basic Search",
                     "id",
                     "legacy_pk",
                     "name",
@@ -101,7 +134,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search",
+                    "Basic Search",
                     "id",
                     "legacy_pk",
                     "country",
@@ -153,7 +186,7 @@ class KeyWordFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search",
+                    "Basic Search",
                     "id",
                     "legacy_pk",
                     "name",
@@ -192,7 +225,7 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search",
+                    "Basic Search",
                     "id",
                     "legacy_pk",
                     "country",
@@ -231,7 +264,7 @@ class PersonFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Advanced search",
+                    "Basic Search",
                     "id",
                     "legacy_pk",
                     "last_name",

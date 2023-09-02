@@ -9,7 +9,23 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook,
 )
+
+
+class YearBookListFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=YearBook._meta.get_field("title").help_text,
+        label=YearBook._meta.get_field("title").verbose_name,
+    )
+
+    class Meta:
+        model = YearBook
+        fields = [
+            "id",
+            "title",
+        ]
 
 
 class CountryListFilter(django_filters.FilterSet):

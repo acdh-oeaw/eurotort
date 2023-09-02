@@ -20,6 +20,19 @@ urlpatterns = [
     path("court/create/", views.CourtCreate.as_view(), name="court_create"),
     path("court/edit/<int:pk>", views.CourtUpdate.as_view(), name="court_edit"),
     path("court/delete/<int:pk>", views.CourtDelete.as_view(), name="court_delete"),
+    path("yearbook/", views.YearBookListView.as_view(), name="yearbook_browse"),
+    path(
+        "yearbook/detail/<int:pk>",
+        views.YearBookDetailView.as_view(),
+        name="yearbook_detail",
+    ),
+    path("yearbook/create/", views.YearBookCreate.as_view(), name="yearbook_create"),
+    path(
+        "yearbook/edit/<int:pk>", views.YearBookUpdate.as_view(), name="yearbook_edit"
+    ),
+    path(
+        "yearbook/delete/<int:pk>", views.YearBookDelete.as_view(), name="yearbook_delete"
+    ),
     path(
         "courtdecission/",
         views.CourtDecissionListView.as_view(),

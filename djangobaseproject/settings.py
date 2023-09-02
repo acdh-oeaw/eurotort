@@ -61,7 +61,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SPAGHETTI_SAUCE = {
     "apps": [
-        "infos",
+        "archiv",
     ],
     "show_fields": False,
     "exclude": {"auth": ["user"]},

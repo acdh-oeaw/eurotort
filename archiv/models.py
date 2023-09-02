@@ -14,6 +14,68 @@ def set_extra(self, **kwargs):
 models.Field.set_extra = set_extra
 
 
+class YearBook(models.Model):
+    """Yearbook"""
+
+    title = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Title",
+        help_text="Title",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasTitle",
+    )
+
+    class Meta:
+        ordering = [
+            "title",
+        ]
+        verbose_name = "Yearbook"
+
+    def __str__(self):
+        if self.title:
+            return f"{self.title}"
+        else:
+            return f"{self.id}, no title provided"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse("archiv:yearbook_browse")
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "title"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse("archiv:yearbook_create")
+
+    def get_absolute_url(self):
+        return reverse("archiv:yearbook_detail", kwargs={"pk": self.id})
+
+    def get_delete_url(self):
+        return reverse("archiv:yearbook_delete", kwargs={"pk": self.id})
+
+    def get_edit_url(self):
+        return reverse("archiv:yearbook_edit", kwargs={"pk": self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return reverse("archiv:yearbook_detail", kwargs={"pk": next.id})
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return reverse("archiv:yearbook_detail", kwargs={"pk": prev.id})
+        return False
+
+
 class Country(models.Model):
     """Country"""
 
@@ -315,6 +377,22 @@ class CourtDecission(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Yearbook",
+    )
+    year_book_title = models.ForeignKey(
+        "YearBook",
+        related_name="related_court_decission",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Year Book",
+        help_text="Published in Year Book",
+    )
+    year_book_issue = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+        verbose_name="Year Book Issue/Page",
+        help_text="Issue/Page",
     )
     short_description = models.TextField(
         blank=True,
