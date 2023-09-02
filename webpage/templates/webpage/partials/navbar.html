@@ -28,14 +28,31 @@
                             <li><a class="dropdown-item" href="{% url 'webpage:data_model' %}">Data Model</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Browse</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Browse
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'archiv:courtdecission_browse' %}">Court Decissions</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:country_browse' %}">Countries</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:court_browse' %}">Courts</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:keyword_browse' %}">Keywords</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:partiallegalsystem_browse' %}">Legal Systems</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:person_browse' %}">Persons</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <!-- <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
                 {% if user.is_authenticated %}
                 <a href="{% url 'webpage:user_logout' %}"><i class="bi bi-person-check"></i></a>
                 {% else %}

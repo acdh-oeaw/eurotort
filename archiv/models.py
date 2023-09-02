@@ -661,8 +661,8 @@ class Person(models.Model):
     cv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Vurriculum Vitae",
-        help_text="Vurriculum Vitae",
+        verbose_name="Curriculum Vitae",
+        help_text="Curriculum Vitae",
     ).set_extra(
         is_public=True,
         data_lookup="Autor_CV",
