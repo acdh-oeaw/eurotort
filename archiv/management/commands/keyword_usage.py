@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Create KeyWord Usage Statistic"
 
     def handle(self, *args, **kwargs):
-        report_dir = os.path.join(settings.BASE_DIR, "reports")
+        report_dir = os.path.join(settings.MEDIA_ROOT, "reports")
         os.makedirs(report_dir, exist_ok=True)
         keyword_stats = os.path.join(report_dir, "keyword-stats.html")
         data = list(
