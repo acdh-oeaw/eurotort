@@ -10,6 +10,7 @@ from .filters import (
     KeyWordListFilter,
     PartialLegalSystemListFilter,
     PersonListFilter,
+    YearBookListFilter,
 )
 from .forms import (
     CountryForm,
@@ -24,6 +25,8 @@ from .forms import (
     PartialLegalSystemFilterFormHelper,
     PersonForm,
     PersonFilterFormHelper,
+    YearBookFilterFormHelper,
+    YearBookForm,
 )
 from .tables import (
     CountryTable,
@@ -32,6 +35,7 @@ from .tables import (
     KeyWordTable,
     PartialLegalSystemTable,
     PersonTable,
+    YearBookTable,
 )
 from .models import (
     Country,
@@ -40,6 +44,7 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook,
 )
 from browsing.browsing_utils import (
     GenericListView,
@@ -317,3 +322,48 @@ class PersonDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(PersonDelete, self).dispatch(*args, **kwargs)
+
+
+class YearBookListView(GenericListView):
+    model = YearBook
+    filter_class = YearBookListFilter
+    formhelper_class = YearBookFilterFormHelper
+    table_class = YearBookTable
+    init_columns = [
+        "id",
+        "title",
+    ]
+    enable_merge = True
+
+
+class YearBookDetailView(BaseDetailView):
+    model = YearBook
+    template_name = "browsing/generic_detail.html"
+
+
+class YearBookCreate(BaseCreateView):
+    model = YearBook
+    form_class = YearBookForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(YearBookCreate, self).dispatch(*args, **kwargs)
+
+
+class YearBookUpdate(BaseUpdateView):
+    model = YearBook
+    form_class = YearBookForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(YearBookUpdate, self).dispatch(*args, **kwargs)
+
+
+class YearBookDelete(DeleteView):
+    model = YearBook
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:yearbook_browse")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(YearBookDelete, self).dispatch(*args, **kwargs)

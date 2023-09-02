@@ -8,7 +8,17 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook,
 )
+
+
+class YearBookAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = YearBook.objects.all()
+
+        if self.q:
+            qs = qs.filter(title__icontains=self.q)
+        return qs
 
 
 class CountryAC(autocomplete.Select2QuerySetView):

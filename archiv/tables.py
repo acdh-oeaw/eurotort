@@ -9,7 +9,18 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook
 )
+
+
+class YearBookTable(tables.Table):
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+
+    class Meta:
+        model = YearBook
+        sequence = ("id",)
+        attrs = {"class": "table table-responsive table-hover"}
 
 
 class CountryTable(tables.Table):

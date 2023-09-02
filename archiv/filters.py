@@ -9,7 +9,23 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
+    YearBook,
 )
+
+
+class YearBookListFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=YearBook._meta.get_field("title").help_text,
+        label=YearBook._meta.get_field("title").verbose_name,
+    )
+
+    class Meta:
+        model = YearBook
+        fields = [
+            "id",
+            "title",
+        ]
 
 
 class CountryListFilter(django_filters.FilterSet):
@@ -95,6 +111,14 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:country-autocomplete",
         ),
     )
+    year_book_title = django_filters.ModelMultipleChoiceFilter(
+        queryset=YearBook.objects.all(),
+        help_text=CourtDecission._meta.get_field("year_book_title").help_text,
+        label=CourtDecission._meta.get_field("year_book_title").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:yearbook-autocomplete",
+        ),
+    )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
         help_text=CourtDecission._meta.get_field("partial_legal_system").help_text,
@@ -125,11 +149,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         lookup_expr="icontains",
         help_text=CourtDecission._meta.get_field("location").help_text,
         label=CourtDecission._meta.get_field("location").verbose_name,
-    )
-    yearbook = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=CourtDecission._meta.get_field("yearbook").help_text,
-        label=CourtDecission._meta.get_field("yearbook").verbose_name,
     )
     short_description = django_filters.CharFilter(
         lookup_expr="icontains",
@@ -186,7 +205,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "file_number",
             "party",
             "location",
-            "yearbook",
             "short_description",
             "situation",
             "motto",
@@ -194,6 +212,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "additional_information",
             "keyword",
             "author",
+            "year_book_title",
         ]
 
 
