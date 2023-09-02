@@ -158,7 +158,7 @@ class CourtDecissionListView(GenericListView):
 
 class CourtDecissionDetailView(BaseDetailView):
     model = CourtDecission
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/courtdecission_detail.html"
 
 
 class CourtDecissionCreate(BaseCreateView):
