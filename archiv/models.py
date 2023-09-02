@@ -18,7 +18,7 @@ class YearBook(models.Model):
     """Yearbook"""
 
     title = models.CharField(
-        max_length=250,
+        max_length=500,
         blank=True,
         verbose_name="Title",
         help_text="Title",
@@ -368,15 +368,6 @@ class CourtDecission(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Fundstelle",
-    )
-    yearbook = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Yearbook",
-        help_text="Yearbook",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Yearbook",
     )
     year_book_title = models.ForeignKey(
         "YearBook",

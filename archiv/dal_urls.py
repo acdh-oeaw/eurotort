@@ -28,4 +28,7 @@ urlpatterns = [
     path(
         "person-autocomplete", dal_views.PersonAC.as_view(), name="person-autocomplete"
     ),
+    path(
+        "yearbook-autocomplete", dal_views.YearBookAC.as_view(), name="yearbook-autocomplete"
+    ),
 ]

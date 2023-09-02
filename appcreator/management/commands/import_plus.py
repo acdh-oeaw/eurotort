@@ -1,9 +1,10 @@
 import pandas as pd
+import json
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 from tqdm import tqdm
 
-from archiv.models import CourtDecission, KeyWord, Person
+from archiv.models import CourtDecission, KeyWord, Person, YearBook
 
 
 class Command(BaseCommand):
@@ -30,3 +31,20 @@ class Command(BaseCommand):
                 continue
             kw = KeyWord.objects.filter(legacy_pk=row["ENST_Stichwort"])
             court.keyword.add(*kw)
+
+        print(f"now adding Yearbooks")
+        qs = CourtDecission.objects.all()
+        for x in tqdm(qs, total=qs.count()):
+            data = json.loads(x.orig_data_csv)["entscheidung_yearbook"]
+            if isinstance(data, str):
+                if ")" in data:
+                    items = data.split(") ")
+                    page = items[-1]
+                    title = f'{" ".join(items[:-1])})'
+                    yearbook, _ = YearBook.objects.get_or_create(title=title)
+                    x.year_book_title = yearbook
+                    x.year_book_issue = page[:249]
+                    try:
+                        x.save()
+                    except:
+                        print(x.id, yearbook, page)
