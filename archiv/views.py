@@ -151,14 +151,15 @@ class CourtDecissionListView(GenericListView):
     table_class = CourtDecissionTable
     init_columns = [
         "id",
-        "legacy_pk",
+        "file_number",
+        "party"
     ]
     enable_merge = True
 
 
 class CourtDecissionDetailView(BaseDetailView):
     model = CourtDecission
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/courtdecission_detail.html"
 
 
 class CourtDecissionCreate(BaseCreateView):

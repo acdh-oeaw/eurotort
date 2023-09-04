@@ -462,10 +462,12 @@ class CourtDecission(models.Model):
         verbose_name = "CourtDecission"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.file_number and self.party:
+            return f"{self.file_number},»{self.party}«"
+        elif self.file_number:
+            return f"{self.file_number}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -760,10 +762,10 @@ class Person(models.Model):
         verbose_name = "Person"
 
     def __str__(self):
-        if self.last_name:
-            return "{}".format(self.last_name)
+        if self.last_name and self.first_name:
+            return f"{self.last_name}, {self.first_name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{ſelf.last_name}"
 
     def field_dict(self):
         return model_to_dict(self)

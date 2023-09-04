@@ -1,0 +1,116 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+<!-- <div class="container"> -->
+    
+<div class="card courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-2">
+                {% if object.get_prev %}
+                <p class="text-start">
+                    <a href="{{ object.get_prev }}">
+                        <i class="bi bi-chevron-left" title="previous entry"></i>
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h1 class="text-center" data-toc-text="Case Nr. {{ object.id }}">
+                    <small><a href="{{ object.get_listview_url }}"><i class="bi bi-list"
+                                title="back to list view"></i></a></small>
+                    {{ object }}
+                    {% if user.is_authenticated %}
+                    <small>
+                        <a href="{{ object.get_edit_url }}">
+                            <i class="bi bi-pencil-square" title="edit entry"></i>
+                        </a>
+                    </small>
+                    {% endif %}
+                </h1>
+            </div>
+            <div class="col-md-2">
+                <p class="text-end">
+                    {% if object.get_next %}
+                    <a href="{{ object.get_next }}">
+                        <i class="bi bi-chevron-right" title="next entry"></i>
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+            </div>
+            <div class="col-md-10">
+                <table class="table">
+                    <h2>Reference Case Nr. {{ object.id }}</h2>
+                    <tbody>
+                        <tr>
+                            <th>Court</th>
+                            <td>{{ object.court }} <a href="{{ object.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></td>
+                        <tr>
+                            <th>Date of Decission</th>
+                            <td>{{ object.decission_date }}</td>
+                        </tr>
+                        <tr>
+                            <th>Case Number</th>
+                            <td>{{ object.file_number }}</td>
+                        </tr>
+                        {% if object.party %}
+                        <tr>
+                            <th>Case name</th>
+                            <td>{{ object.party }}</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                <dl>
+                    <dt>Country</dt>
+                    <dd class="ms-5">{{ object.country}} <a href="{{ object.country.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                    <dt>Eurotort number</dt>
+                    <dd class="ms-5">{{ object.id }}</dd>
+                    <dt>Publication link</dt>
+                    <dd class="ms-5"><a href="{{ object.year_book_title.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>{{ object.year_book_title}} {{ object.year_book_issue }}</dd>
+                    <dt>Keywords</dt>
+                    {% for x in object.keyword.all %}
+                    <dd class="ms-5"><span class="badge rounded-pill text-bg-primary ">{{ x }}</span> <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                    {% endfor %}
+                </dl>
+                <h2>The Case</h2>
+                <h3>Brief Description</h3>
+                <p>{{ object.short_description|safe }}</p>
+                <h3>Additional information </h3>
+                <p>{{ object.situation|safe }}</p>
+                <h3>Motto</h3>
+                <p>{{ object.motto|safe }}</p>
+                <h3>Commentary</h3>
+                <p>{{ object.commentary|safe }}</p>
+                <h3>Additional Information</h3>
+                <p>{{ object.additional_information|safe }}</p>
+                <hr>
+                <h2>Authors</h2>
+                {% for x in object.author.all %}
+                <p>{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    {% if user.is_authenticated %}
+    <div class="card-footer">
+        <div class="float-end">
+            <a href="{{ object.get_delete_url }}">
+                <i class="bi bi-trash3" title="delete entry"></i>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
