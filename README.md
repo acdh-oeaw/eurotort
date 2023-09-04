@@ -31,7 +31,7 @@ At the ACDH-CH we use a centralized database-server. So instead of spawning a da
 
 To run the image you should provide an `.env` file to pass in needed environment variables; see example below:
 
-* `docker run -it -p 8020:8020 --rm --env-file env.default --name eurotort eurotort:latest`
+* `docker run -it -p 8020:8020 --rm --env-file docker.env--name eurotort eurotort:latest`
 
 -----
 
