@@ -151,7 +151,8 @@ class CourtDecissionListView(GenericListView):
     table_class = CourtDecissionTable
     init_columns = [
         "id",
-        "legacy_pk",
+        "file_number",
+        "party"
     ]
     enable_merge = True
 
