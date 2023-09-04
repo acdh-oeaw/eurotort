@@ -1,6 +1,7 @@
 [![flake8 Lint](https://github.com/acdh-oeaw/eurotort/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/eurotort/actions/workflows/lint.yml)
 [![Test](https://github.com/acdh-oeaw/eurotort/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/eurotort/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/acdh-oeaw/eurotort/graph/badge.svg?token=OBVVMXQIX7)](https://codecov.io/gh/acdh-oeaw/eurotort)
+[![Build and publish Docker image](https://github.com/acdh-oeaw/eurotort/actions/workflows/build.yml/badge.svg)](https://github.com/acdh-oeaw/eurotort/actions/workflows/build.yml)
 
 # Eurotort - Database on European Tort Law
 
