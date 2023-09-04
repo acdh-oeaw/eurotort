@@ -1,0 +1,336 @@
+"Gericht_Id","Gericht_Bezeichnung","Gericht_Kurzbezeichnung","Gericht_Hoechstgericht","Gericht_Staat","Gericht_Teilrechtsordnung"
+1,Oberster Gerichtshof (Supreme Court),OGH,1,1,1
+2,Oberlandesgericht Wien (Court of Appeal Vienna),OLG Wien,0,1,1
+3,Verfassungsgerichtshof (Constitutional Court),VfGH,0,1,1
+4,Bundesgerichtshof (Supreme Court),BGH,1,9,8
+5,Oberlandesgericht (Court of Appeal),OLG,0,9,8
+6,Landesgericht ,LG,0,9,8
+7,Bundesverfassungsgericht (Federal Constitutional Court),BVerfG,0,9,8
+8,Cour d'Arbitrage (Court of Arbitration),Cour d'Arbitrage,0,2,2
+9,Cour de Cassation/Hof van Cassatie (Supreme Court),Cass.,1,2,2
+10,Anvers Cour d'Appel (Antwerp Court of Appeal),Antwerp Court of Appeal,0,2,2
+11,Bruxelles Cour d'Appel (Brussels Court of Appeal),Brussels Court of Appeal,0,2,2
+12,Bruxelles Tribunal de Première Instance,Brussels Court of First Instance,0,2,2
+13,Højesteretsdom (Supreme Court),H.D.,1,4,4
+14,"Vestre Landsret (Court of Appeal, West)",V. L. ,0,4,4
+15,European Court of Human Rights ,ECtHR,1,27,26
+16,United Kingdom House of Lords,UKHL,1,27,26
+17,England and Wales Court of Appeal,EWCA,0,27,26
+18,High Court,HC,1,27,26
+19,Riigikohus,Riigikohus,1,5,5
+20,Korkein oikeus (Supreme Court),KKO,1,7,6
+21,Tribunal de Grande Instance (District Court),TGI,0,8,7
+22,Athens Court of Appeal,Athens Court of Appeal,0,10,9
+23,Areios Pagos (Supreme Court),AP,1,10,9
+24,Nafplio Court of Appeal ,CA Nafplio,0,10,9
+25,Thessaloniki Court of Appeal,CA Thessaloniki,0,10,9
+26,Athens Court of First Instance,C 1st Athens,0,10,9
+27,"Piraeus Court of First Instance
+",C 1st Piraeus,0,10,9
+28,Larissa Court of Appeal,Larissa Court of Appeal,0,10,9
+29,Thessaloniki Court of First Instance ,C 1st Thessaloniki,0,10,9
+31,High Court,HC,1,13,10
+32,European Court of Human Rights,ECtHR,1,13,10
+33,Supreme Court ,SC,1,13,10
+34,High Court of Ireland,HC,0,13,10
+35,Corte di Cassazione (Supreme Court),Cass.,1,14,12
+36,Giudice di Pace di Roma (Basic Court),Giud. Pace,0,14,12
+37,"Consiglio di Stato (Supreme Court for Unlawful Acts of the
+State)",Cons. St.,1,14,12
+38,Corte di apello die Roma (Court of Appeal of Rome),App. Roma,0,14,12
+39,Tribunale di Milano (Basic Court),Trib. Milan,0,14,12
+40,Tribunale di Roma (Basic Court),Trib. Roma,0,14,12
+41,"Corte suprema di cassazione, sezioni unite",Cass. SS. UU,1,14,12
+42,"Consiglio di Giustizia Amministrativa per la Regione Siciliana
+",Administrative Supreme Court of Sicilia,1,14,12
+43,Corte costituzionale ,C. Cost.,1,14,12
+44,Riga Regional Court,Riga Regional Court,0,15,13
+45,Cēsu district Court,District Court,0,15,13
+46,Augstākā tiesa (Supreme Court),AT,1,15,13
+47,Aukščiausiasis Teismas (Supreme Court),LAT,1,16,14
+48,Høyesterett (Supreme Court),HR,1,18,16
+49,Sad Najwyzszy (Supreme Court),SN,1,19,17
+50,Trybunal Konstytucyjny (The Constitutional Tribunal),TK,0,19,17
+51,Sad Apelacyjny Katowicach (Court of Appeal Katowice),SA Katowice,0,19,17
+52,Sad Apelacyjny Warszawa (Court of Appeal Warsaw),SA Warsaw,0,19,17
+53,Sad Apelacyjny Bialystok (Court of Appeal Bialystok),SA Bialystok,0,19,17
+54,Sad Okregowy Rzeszów (Regional Court Rzeszów),SO Rzeszów,0,19,17
+55,Sad Okregowy Wroclaw (Regional Court Wroclaw),SO Wroclaw,0,19,17
+56,Sad Okregowy Gdansk (Regional Court Gdansk) ,SO Gdansk,0,19,17
+57,Sad Okregowy Kraków (Regional Court Krakow),SO Krakow,0,19,17
+58,Sad Apelacyjny Wroclaw (Court of Appeal Wroclaw),SA Wroclaw,0,19,17
+59,Sad Okregowy Bydgoszcz (Regional Court Bydgoszcz),SO Bydgoszcz,0,19,17
+60,Sąd Apelacyjny (Court of Appeals),SA,0,19,17
+61,Supremo Tribunal de Justiça (Supreme Court),STJ,1,20,18
+62,Relação de Coimbra,RCb,0,20,18
+63,Relação do Porto (Court of Appeal Porto),RPt,0,20,18
+64,Supremo Tribunal Administrativo (Supreme Administrative Court),STA,1,20,18
+65,Tribunal Constitucional (Constitutional Court),TC,1,20,18
+66,Relação de Lisboa (Court of Appeal Lisbon),RLb,0,20,18
+67,Najvyšši súd (Supreme Court),NS SR,1,22,20
+68,Vrhovno sodišče (Supreme Court),VS RS,1,23,21
+69,Ustavno sodišče (Constitutional Court)  ,UstS,0,23,21
+70,Tribunal Constitutional (Constitutional Court),TC,0,24,22
+71,Tribunal Supremo (Supreme Court) ,TS,1,24,22
+73,Högsta Domstolen (Supreme Court),HD,1,25,23
+74,"Brottsoffermyndigheten (Crime Victim Compensation
+and Support Authority)",B,0,25,23
+75,Bundesgericht (Supreme Court),BGer,1,26,24
+76,"Handelsgericht des Kantons Zürich (Commercial Court of the
+Canton Zurich),",HG,0,26,24
+77,European Court of Justice ,ECJ,1,6,31
+78,Oberlandesgericht Hamm (Court of Appeal Hamm),OLG Hamm,0,9,8
+79,Landgericht München (District Court Munich),LG München,0,9,8
+80,Landgericht Essen (District Court Essen),LG Essen,0,9,8
+81,Oberlandesgericht München (Court of Appeal Munich),OLG München,0,9,8
+82,"Østre Landsret (Court of Appeal, East)",Ø. L.,0,4,4
+83,Bírósági Határozatok (Supreme Court),BH,1,11,11
+84,Cour de Cassation (Supreme Court),C. Cass.,1,8,7
+85,Cour d’appel de Rouen (Court of Appeal Rouen),CA Rouen,0,8,7
+86,Cour d'appel de Versailles (Court of Appeal Versailles),CA Versailles,0,8,7
+87,Aix-en-Provence Cour d’appel (Court of Appeal Aix-en-Provence),CA Aix-en-Provence,0,8,7
+88,Conseil d’Etat (Highest administrative Court),Cd'Etat,0,8,7
+89,Cour d'appel de Lyon (Court of Appeal Lyon),CA Lyon,0,8,7
+90,Constitutional Court (Ústavný súd) ,UstS,0,22,20
+91,Nejvyšší soud (Supreme Court),NS ČR,1,3,3
+92,"European Court on Human Rights
+",ECtHR,1,9,8
+93,"Oberlandesgericht Celle (Higher Regional Court, Celle)",OLG Celle,0,9,8
+94,Oberlandesgericht Braunschweig (Higher Regional Court Braunschweig),OLG Braunschweig,0,9,8
+95,Piraeus Court of Appeal,CA Piraeus,0,10,9
+96,Fővárosi Ítélőtábla (Budapest Court of Appeal),CA Budapest,0,11,11
+98,Sad Apelacyjny Poznań (Court of Appeal Poznań),SA Poznań,0,19,17
+99,"Sad Okregowy Lublin (Regional Court, Lublin)",SO Lublin,0,19,17
+100,Relação Oporto (Court of Appeal Oporto),ROp,0,20,18
+101,European Court of Human Rights,ECtHR,1,24,22
+102,Eidgenössisches Versicherungsgericht (Swiss Federal Court for Social Insurance),EVG,0,26,24
+103,Ústavní soud (Constitutional Court),ÚS,0,3,3
+104,Vrchní soud v Praze (The High Court of Prague),VS,0,3,3
+105,Oberlandesgericht Neustadt (Court of Appeal Neustadt),OLG Neustadt,0,9,8
+106,Oberlandesgericht Karlsruhe (Court of Appeal Karlsruhe),OLG Karlsruhe,0,9,8
+107,Tribunal Fédéral Suisse (Swiss Federal Court),TF,0,26,24
+108,Liège Cour d'Appel (Liège Court of Appeal),Liège Court of Appeal,0,2,2
+109,Mons Cour d'Appel (Mons Court of Appeal),Mons Court of Appeal,0,2,2
+110,Tribunale di Foggia (Basic Court),Trib. Foggia,1,14,12
+111,Inner House,IH,0,27,27
+112,Outer House,OH,0,27,27
+113,Court of first instance,Court 1st ,0,18,16
+114,Tartu Ringkonnakohus (Tartu Circuit Court),Tartu RK,0,5,5
+115,Tallinn Ringkonnakohus (Tallinn Circuit Court),Tallinn RK,0,5,5
+116,Sąd Apelacyjny in Łódź (Court of Appeal Łódź),SA Łódź,0,19,17
+117,Sheriff Court,Sh Ct,0,27,27
+118,Corte dei Conti Umbria (Audit Court Umbria),C. Conti Umbria,0,14,12
+119,Tribunale di Messina,Trib. di Messina,0,14,12
+121,High Court of Cassation and Justice,High Court of Cass. and J.,0,21,19
+122,Judgment of the Presov District Court,Judgment of Presov D.C.,0,22,20
+123,Court of Appeal,CA,1,28,56
+124,Supreme Court of Cassation,SCC,1,29,57
+125,Burgas Court of Appeal,BCA,0,29,57
+126,Varna Court of Appeal,VCA,0,29,57
+127,Lisbon Court of Appeal,LCA,0,20,18
+128,Pécs High Court of Justice,Pécs HC,0,11,11
+129,Supreme Court ,SKC,1,15,13
+130,Supreme Court,Supreme Court,1,16,14
+131,Hoge Raad,HR,1,17,15
+132,Rechtbank-Hertogenbosch,Rechtbank-Hertogenbosch,0,17,15
+133,Gerechtshof,Gerechtshof,0,17,15
+134,European Court of Human Rights ,ECtHR,0,23,21
+135,Sofia Court of Appeal,SCA,0,29,57
+136,Sofia District Court,SDC,0,29,57
+137,Supreme Court,UKSC,1,27,26
+138,Cour d'Appel,CA Paris,0,8,7
+139,Tribunal Terni,T. Terni,0,14,12
+140,Court of Appeal The Hague,CA Hague,0,17,15
+141,"Sheriffdom of Lothian & Borders, at
+Edinburgh",Sh. Edinburgh,0,27,27
+142,Supreme Administrative Court,SAC,0,29,57
+143,Landgericht Nürnberg-Fürth,OLG Nürnberg-Fürth,0,9,8
+144,Corte d’Appello di Milano,CA Milano,0,14,12
+145,Hof Arnhem,Arnhem CA,0,17,15
+146,Supreme Court of Justice,SCJ,0,20,18
+147,Obergericht des Kantons Bern,OKB,0,26,24
+148,Obergericht des Kantons Zürich,OKZ,0,26,24
+149,Schweizerisches Bundesgericht,SB,0,26,24
+150,Supreme Court,SC,1,31,59
+151,Court of Appeal Ghent,Court of Appeal Ghent,0,2,2
+152,Eidsivating lagmannsrett,Court of Appeal,0,18,16
+153,Municipal Court of Prague,MSP,0,3,3
+154,Bourgas District Court,BDC,0,29,57
+155,Pretura di Grosseto,Pretura di Grosseto,0,14,12
+156,Sø- og Handelsretten (Maritime and Commercial Court),SH,0,4,4
+157,Senate of the Supreme Court,SKK,0,15,13
+158,Reichsgericht,Reichsgericht,0,9,8
+159,Burgerlijke Rechtbank,CFI Brussels,0,2,2
+160,Corte di Appello di Roma,Court of Appeal of Rome,1,14,12
+161,Okresní soud Brno (Brno Regional Court),Brno Regional Court,0,22,20
+162,Veliko Tarnovo District Court,VTDC,0,29,57
+163,Tribunal Superior de Justicia Catalonia,Superior Court of Catalonia,0,24,22
+164,Landgericht Berlin,LG Berlin,0,9,8
+165,Burgerlijke Rechtbank Kortrijk,Tribunal of First Instance Kortrijk,0,2,2
+166,Court of Exchequer,Exchequer ,0,27,26
+167,Amtsgericht (Local Court) Frankfurt,Amtsgericht Frankfurt,0,9,8
+168,Audiencia Provincial Pontevedra ,APP,0,24,22
+169,Saa˛d Apelacyjny (Court of Appeal) Rzeszow,SA Rzeszow,0,19,17
+170,Oberlandesgericht (Regional Supreme Court) Cologne,OLG Cologne,0,9,8
+171,Eirinodikeio Halandriou (Halandri Justice of the Peace),EH,0,10,9
+172,Justice de paix (Cantonal Court) Saint-Gilles,JP Saint-Gilles,0,2,2
+173,Pretura di Salerno (District Court of Salerno),Pretura Salerno,0,14,12
+174,"Sentencia de la Audiencia Provincial Guipúzcoa (Judgment of the
+Provincial Court of Guipúzcoa)",AP Guipúzcoa ,0,24,22
+175,Ankenævnet for Forsikring (Insurance Board of Appeals),AF,0,4,4
+176,Tribunal de Grande Instance (Court of First Instance) Bordeaux,CFI Bordeaux,0,8,7
+177,Tribunal de police (Cantonal Criminal Court) Neufchâteau,TP Neufchâteau,0,2,2
+178,Tribunal de police (Cantonal Criminal Court) Huy,TP Huy,0,2,2
+179,Giudice di Pace di Massa (Justice of the Peace of Massa),JP Massa,0,14,12
+180,Obvodní soud pro Prahu 1 (District Court of Prague 1),OP,0,3,3
+181,Tribunal de Grande Instance Paris (Court of First Instance),CFI Paris,0,8,7
+182,Politierechtbank (Cantonal Criminal Court) Brussels,Politierechtbank Brussels,0,2,2
+183,Tribunal de police (Cantonal Criminal Court) Brussels,TP Brussels,0,2,2
+184,Tribunale di Bologna (District Court of Bologna),Tribunale di Bologna,0,14,12
+185, Audiencia Provincial Cantabria ,AP Cantabria,0,24,22
+186,Curte de Apel (Appeal Court of) Galati,CA Galati,0,21,19
+187,"Monomeles Protodikeio Athinon (Athens Single Member Court of
+First Instance)",MPA,0,10,9
+188,Audiencia Provincial Murcia,AP Murcia,0,24,22
+189,Cour d’Appel (Court of Appeal) Rennes,CA Rennes,0,8,7
+190,Tribunal de première instance (Tribunal of First Instance) Namur,TFI Namur,0,2,2
+191,Arbeidshof (Labour Court) Antwerp,Arbeidshof Antwerp,0,2,2
+192,Krajsky´ soud v Brneˇ (Regional Court of Brno),KS Brno,0,3,3
+193,Patientforsikringen (Patient Insurance Board),Patientforsikringen ,0,4,4
+194,Verwaltungsgericht (Administrative Court) Munich,Verwaltungsgericht  Munich,0,9,8
+195,"Monomeles Protodikeio Nafpliou (Nafplio Single Member Court of
+First Instance)",MP Nafpliou,0,10,9
+196,Protodikeio Ioanninon (Ioannina Court of First Instance),Protodikeio Ioanninon,0,10,9
+197,Rechtbank (Court) of Rotterdam,Rechtbank Rotterdam,0,17,15
+198,Rechtbank (Court) Amsterdam,Rechtbank Amsterdam,0,17,15
+199,"Curtea Suprema˘ de Justit¸ie (Supreme Court of Justice) Administrative
+Section",Supreme Court of Justice,0,21,19
+200,Rechtbank (Court) Middelburg,Rechtbank Middelburg,0,17,15
+201,"Tribunal Superior de Justicia de Galicia (Judgment of the
+Superior Court of Galicia)",Tribunal Superior Galicia,0,24,22
+202,"Sentencia de la Audiencia Provincial de Madrid (Judgment of the
+Provincial Court of Madrid)",AP Madrid,0,24,22
+203,Rechtbank Utrecht ,Rechtbank Utrecht ,0,17,15
+204,Cour constitutionnelle,Cour constitutionnelle,0,2,2
+205,Tribunal des conflits,TC,0,8,7
+206,Court of First Instance Larissa,C 1st Larissa,0,10,9
+207,Tribunale Amministrativo Regionale,TAR Lazio,0,14,12
+208,Handelsgericht des Kantons Zürich,CC Zurich,0,26,24
+209,Plovdiv Court of Appeal,PCA,0,29,57
+210,Ustavni sud Republike Hrvatske,UsRH,1,32,60
+211,Vrhovni sud Republike Hrvatske,VsRH,1,32,60
+212,Županijski sud u Zagrebu,ZsZ,0,32,60
+213,Županijski sud u Bjelovaru,ZsB,0,32,60
+214,Thessaloniki Magistrate's Court,Thessaloniki MC,0,10,9
+215,Court of Appeal,CA,0,16,14
+216,Rechtbank Gravenhage,Rechtbank Gravenhage,0,17,15
+217,Regional Court Nitra,RC Nitra,0,22,20
+218,Juzgado de Primera Instancia,JPI,0,24,22
+219,Audiencia Nacional,AN,0,24,22
+220,Audiencia Provincial A Coruña,AP A Coruña,0,24,22
+221,European Court of Human Rights,ECtHR,1,26,24
+222,European Court of Human Rights,ECtHR,1,6,32
+223,European Court of Human Rights,ECtHR,1,33,61
+224,Supreme Court,SC,1,33,61
+225,Peshtera District Court,PDC,0,29,57
+226,Sofia City Court,S City Ct.,0,29,57
+227,Županijski sud u Varaždinu,ZsV,0,32,60
+228,Constitutional Court,CC,1,11,11
+229,College voor de Rechten van de Mens,CRM,0,17,15
+230,Sofia Regional Court,SRC,0,29,57
+231,Blagoevgrad District Court,BlagDC,0,29,57
+232,Haskovo District Court,HDC,0,29,57
+233,Landgericht Cologne,LG Cologne,0,9,8
+234,Landgericht Duisburg,LG Duisburg,0,9,8
+235,Irish Court of Appeal,IECA,0,13,10
+236,Supreme Administrative Court of Lithuania,SACL,1,16,14
+237,Constitutional Court,CC,1,28,56
+238,Hague District Court,Rechtbank d Haag,0,17,15
+239,District Court Gelderland,Rechtbank Gelderland,0,17,15
+240,Council of State,Conseil d'Etat,1,2,2
+241,Veliko Turnovo Court of Appeal,VTCA,0,29,57
+242,Županijski suda u Splitu (County Court in Split),ZsS,0,32,60
+243,Županijski suda u Dubrovniku (County Court in Dubrovnik),ZsD,0,32,60
+244,Judicial Committee of the Privy Council,UKPC,0,27,26
+245,Court of Appeal of the North Aegean,CA North Aegean,0,10,9
+246,Court of the Second Instance in Prešov,"2nd I Prešov",0,22,20
+247,Tribunal cantonal du Canton du Valais,TC,0,26,24
+248,Efeteio Kritis (Crete Court of Appeal),CCA,0,10,9
+249,Polymeles Protodikeio Larissas (Larissa Multi-Member Court of First Instance),PPL,0,10,9
+250,Efeteio Kerkyras (Corfu Court of Appeal),Corfu CA,0,10,9
+251,Eirinodikeio Polykastrou (Polykastro Magistrate's Court),Polykastro MC,0,10,9
+252,Efeteio Patras (Patras Court of Appeal) ,CA Patras,0,10,9
+253,Ghent Court of Appeal ,Ghent Court of Appeal ,0,2,2
+254,Juge de police Dinant,Juge de Police Dinant,0,2,2
+255,Tribunal de Première Instance,Tribunal de Première Instance,0,2,2
+256,Juge de Police Liège,Juge de Police Liège,0,2,2
+257,Tribunale di Aosta,Trib. of Aosta,0,14,12
+258,Tribunale Genova,Trib. Genova,0,14,12
+259,Judgment of Provincial Court of Biscay,Provincial Court of Biscay,0,24,22
+260,Provisional Court of Cantabria,Provisional Court of Cantabria,0,24,22
+261,Provisional Court of A Corunna,Provisional Court of A Corunna,0,24,22
+262,Provincial Court of Guipuzcoa,Provincial Court of Guipuzcoa,0,24,22
+263,Tribunal de Relacao de Évora,Évora Court of Appeal,0,20,18
+264,Tribunal da Relacao de Coimbra,Coimbra Court of Appeal,0,20,18
+265,Tribunal da Relacao de Porto,Porto Court of Appeal,0,20,18
+266,Court of Appeal ,Court of Appeal (Civil Division),0,27,26
+267,Privy Concil,Privy Council,0,27,26
+268,Court of Appeal (Queen's Bench Division),Court of Appeal (Queen's Bench Division),0,27,26
+269,High Court (Queen's Bench Division),High Court (Queen's Bench Division),0,27,26
+270,Court of Appeal (Civil Division),Court of Appeal (Civil Division),0,27,26
+271,Court of Session (Inner House),Court of Session (Inner House),0,27,27
+272,Court of Session (Inner House),"",0,27,27
+273,Court of Session,CS,0,27,27
+274,Court of Session (Outer House),CoS,0,27,27
+275,Exchequer Division,Exch. D. ,0,13,10
+276,Circuit Court,CC,0,13,10
+277,Højesteret,"",1,4,4
+278,Højesteret,Supreme Court,1,4,4
+279,Harju Maakohus,Harju County Court,0,5,5
+280,Tartu Maakohus,Tartu County Court,0,5,5
+281,Pärnu Maakohus,Pärnu County Court,0,5,5
+282,Augstakas tiesas Senats,Senate of the Supreme Court,0,15,13
+283,Augstakas tiesas Civillietu tiesu palata,The Chamber of Civil Cases of the Supreme Court,0,15,13
+284,Kurzemes apgabaltiesa,Kurzemes Regional Court,0,15,13
+285,Rigas apgabaltiesa,The Riga Regional Court,0,15,13
+286,Zemgales apgabaltiesa,Zemgas Regional Court,0,15,13
+287,Vidzemes apgabaltiesa,Vidzeme Regional Court,0,15,13
+288,Rigas pilsetas Ziemelu rajona tiesa,Northern District Court of Riga,0,15,13
+289,Vrchni soud v Praze,VS Praze,0,22,20
+290,Mestsky soud v Praze,MS Praze,0,22,20
+291,Okresni soud Trencin,Trencin Regional Court,0,22,20
+292,Sodba Visjega sodisca v Celju,HC Celje,0,23,21
+293,Judecatoria Craiova,JC,0,21,19
+294,Tribunalul Timis,Trib. Timis,0,21,19
+295,Tribunalul Gorj,Trib. Gorj,0,21,19
+296,Tribunalul Vrancea,Trib. Vranceau,0,21,19
+297,Tribunalul Arad,Trib. Arad,0,21,19
+298,Tribunalul Neamt,Trib. Neamt,0,21,19
+299,Sofia City Court,Sofia CC,0,29,57
+300,Sofia Court of Appeal,Sofia CA,0,29,57
+301,Plovdiv Court of Appeal,Plovdiv CA,0,29,57
+302,Ruse District Court,Ruse DC,0,29,57
+303,Zupanijskog suda u Zadru,County Court in Zadar,0,32,60
+304,Zupanijskog suda u Slavonskom Brodu,County Court in Slavonski Brod,0,32,60
+305,Županijskog suda u Splitu,County Court in Split,0,32,60
+306,Presuda Županiskog suda u Rijeci,County Court in Rijeka,0,32,60
+307,Presuda Županijskog suda u Osijeku,County Court in Osijek,0,32,60
+308,Justice of Peace of Chania,JP Chania,0,10,9
+309,European Court of Human Rights,ECtHR,0,20,18
+310,Athens Justice of Peace,JP Athens,0,10,9
+311,Chania Court of Appeal,CA Chania,0,10,9
+312,Tribunal de Grande Instance (Court of First Instance) Liege,CFI Liege,0,2,2
+313,Tribunal de Grande Instance (Court of First Instance) Marche-en-Famenne,CFI Marche-en-Famenne,0,2,2
+314,Police Judge Bruges,Pol Bruges,0,2,2
+315,Court of Appeal in Krakow,CA Krakow,0,19,17
+316,Vrchni soud v Praze (High Court in Prague),HC Prague,0,22,20
+317,Court of First Instance,CFI,0,6,63
+318,Corte di Appello di Genova (Court of Appeal of Genoa),CA Genoa,0,14,12
+319,Stavanger byrett (Stavanger District Court),Stavanger DC,0,18,16
+320,Eidsivating Lagmannsrett (Eidsivating Appeal Court),Eidsivating AC,0,18,16
+321,Šiaulių apygardos teismas (Šiauliai District Court),Šiauliai DC,0,16,14
+322,Nejvyšší soud České republiky (Supreme Court of the Czech Republic),NS ČR,0,22,20
+323,Curtea de Apel București (Court of Appeal of Bucharest),CA Bucharest,0,21,19
+324,Županijskog suda u Varaždinu,County Court in Varaždin,0,32,60
+325,Županijskog suda u Sisaku,County Court in Sisak,0,32,60
+326,Administrative Court of First Instance,Administrative Court of First Instance,0,10,9
