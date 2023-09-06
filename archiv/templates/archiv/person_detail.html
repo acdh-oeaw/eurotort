@@ -102,9 +102,12 @@
  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
 <script>
     var table = new Tabulator("#courtdecissiontable", {
-        layout:"fitColumns",
+        columns: [
+            { title: "ID", formatter: "html" },
+        ],
+        layout: "fitColumns",
     });
-    table.on("tableBuilding", function(){
+    table.on("tableBuilding", function () {
         $("#courtdecissiontable").css("display", "block")
     });
 </script>
