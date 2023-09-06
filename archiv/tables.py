@@ -46,8 +46,8 @@ class CourtTable(tables.Table):
 class CourtDecissionTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
-    keyword = tables.columns.ManyToManyColumn()
-    author = tables.columns.ManyToManyColumn()
+    keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
+    author = tables.columns.ManyToManyColumn(verbose_name="Authors")
 
     class Meta:
         model = CourtDecission
