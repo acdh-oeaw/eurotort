@@ -4,7 +4,7 @@
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
-    
+
 <div class="card courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
     <div class="card-header">
         <div class="row">
@@ -29,6 +29,7 @@
                         </a>
                     </small>
                     {% endif %}
+
                 </h1>
             </div>
             <div class="col-md-2">
@@ -47,13 +48,23 @@
             <div class="col-md-2">
                 <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10" id="contentToPrint">
                 <table class="table">
-                    <h2>Reference Case Nr. {{ object.id }}</h2>
+                    <h2 class="text-center">Reference Case Nr. {{ object.id }}</h2>
+                    <div class="d-flex justify-content-center" >
+                        <i class="bi bi-filetype-pdf"  onclick="Convert_HTML_To_PDF();"
+                            title="print as pdf" id="pdfbutton"></i>
+                    </div>
+                    <div  class="d-flex justify-content-center" >
+                        <div class="spinner-border" role="status" id="pdfspinner" style="display: none;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
                     <tbody>
                         <tr>
                             <th>Court</th>
-                            <td>{{ object.court }} <a href="{{ object.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></td>
+                            <td>{{ object.court }} <a href="{{ object.court.get_absolute_url }}"><i
+                                        class="bi bi-link-45deg"></i></a></td>
                         <tr>
                             <th>Date of Decission</th>
                             <td>{{ object.decission_date }}</td>
@@ -72,14 +83,18 @@
                 </table>
                 <dl>
                     <dt>Country</dt>
-                    <dd class="ms-5">{{ object.country}} <a href="{{ object.country.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                    <dd class="ms-5">{{ object.country}} <a href="{{ object.country.get_absolute_url }}"><i
+                                class="bi bi-link-45deg"></i></a></dd>
                     <dt>Eurotort number</dt>
                     <dd class="ms-5">{{ object.id }}</dd>
                     <dt>Publication link</dt>
-                    <dd class="ms-5"><a href="{{ object.year_book_title.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>{{ object.year_book_title}} {{ object.year_book_issue }}</dd>
+                    <dd class="ms-5"><a href="{{ object.year_book_title.get_absolute_url }}"><i
+                                class="bi bi-link-45deg"></i></a>{{ object.year_book_title}} {{ object.year_book_issue
+                        }}</dd>
                     <dt>Keywords</dt>
                     {% for x in object.keyword.all %}
-                    <dd class="ms-5"><span class="badge rounded-pill text-bg-primary ">{{ x }}</span> <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                    <dd class="ms-5"><span class="badge rounded-pill text-bg-primary ">{{ x }}</span> <a
+                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
                     {% endfor %}
                 </dl>
                 <h2>The Case</h2>
@@ -100,7 +115,6 @@
                 {% endfor %}
             </div>
         </div>
-
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">
@@ -114,3 +128,38 @@
 </div>
 
 {% endblock %}
+{% block scripts2 %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+
+    // Convert HTML content to PDF
+    window.jsPDF = window.jspdf.jsPDF;
+    function Convert_HTML_To_PDF() {
+        $("#pdfspinner").css("display", "block")
+        $("#pdfbutton").css("display", "none")
+        var doc = new jsPDF();
+
+        // Source HTMLElement or a string containing HTML.
+        var elementHTML = document.querySelector("#contentToPrint");
+
+        doc.html(elementHTML, {
+            callback: function (doc) {
+                doc.save('eurotort-doc-{{ object.id}}.pdf');
+                $("#pdfspinner").css("display", "none")
+                $("#pdfbutton").css("display", "block")
+            },
+            fontSize: 6,
+            autoSize: true,
+            margin: [10, 10, 10, 10],
+            autoPaging: 'text',
+            x: 0,
+            y: 0,
+            width: 190, //target width in the PDF document
+            windowWidth: 675 //window width in CSS pixels
+        });
+    }
+</script>
+
+{% endblock scripts2 %}
