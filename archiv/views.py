@@ -294,7 +294,7 @@ class PersonListView(GenericListView):
 
 class PersonDetailView(BaseDetailView):
     model = Person
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/person_detail.html"
 
 
 class PersonCreate(BaseCreateView):

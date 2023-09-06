@@ -1,0 +1,111 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+<!-- <div class="container"> -->
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-2">
+                {% if object.get_prev %}
+                <p class="text-start">
+                    <a href="{{ object.get_prev }}">
+                        <i class="bi bi-chevron-left" title="previous entry"></i>
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h1 class="text-center">
+                    <small><a href="{{ object.get_listview_url }}"><i class="bi bi-list"
+                                title="back to list view"></i></a></small>
+                    {{ object }}
+                    {% if user.is_authenticated %}
+                    <small>
+                        <a href="{{ object.get_edit_url }}">
+                            <i class="bi bi-pencil-square" title="edit entry"></i>
+                        </a>
+                    </small>
+                    {% endif %}
+
+                </h1>
+            </div>
+            <div class="col-md-2">
+                <p class="text-end">
+                    {% if object.get_next %}
+                    <a href="{{ object.get_next }}">
+                        <i class="bi bi-chevron-right" title="next entry"></i>
+                    </a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card-body container">
+        {% if object.cv %}
+        <h2>CV</h2>
+        <p class="ps-5">{{ object.cv }}</p>
+        {% endif %}
+        <h2>Nationality</h2>
+        <p class="ps-5">{{ object.nationality }}</p>
+        <h2>Edited Court Decissions</h2>
+        <div class="ps-5">
+            <table class="table table-sm" id="courtdecissiontable" style="display: none;">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Case Nr.</th>
+                    <th scope="col">Court</th>
+                    <th scope="col">Keywords</th>
+                    <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in object.rvn_courtdecission_author_person.all %}
+                    <tr>
+                        <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.id }}</a></td>
+                        <td>{{ x.file_number }}</td>
+                        <td>{{ x.court }}</td>
+                        <td>
+                            {% for y in x.keyword.all %}
+                            {{ y }}
+                            {% endfor %}
+                        </td>
+                        <td>{{ x.decission_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+               
+               
+    </div>
+    {% if user.is_authenticated %}
+    <div class="card-footer">
+        <div class="float-end">
+            <a href="{{ object.get_delete_url }}">
+                <i class="bi bi-trash3" title="delete entry"></i>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% block scripts2 %}
+<link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
+
+ <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">
+ <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+<script>
+    var table = new Tabulator("#courtdecissiontable", {
+        layout:"fitColumns",
+    });
+    table.on("tableBuilding", function(){
+        $("#courtdecissiontable").css("display", "block")
+    });
+</script>
+{% endblock scripts2 %}
