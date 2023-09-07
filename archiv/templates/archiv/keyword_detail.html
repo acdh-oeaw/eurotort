@@ -49,7 +49,7 @@
         <p class="ps-5">{{ object.part_of }}</p>
         {% endif %}
         {% with courtdecissions=object.rvn_courtdecission_keyword_keyword %}
-        <h2>{{ courtdecissions.count }}Tagged Court Decissions</h2>
+        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
             {% include "archiv/partials/courtdecission_table.html" %}
         {% endwith %}
 
