@@ -649,10 +649,10 @@ class PartialLegalSystem(models.Model):
         verbose_name = "PartialLegalSystem"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.name and self.country:
+            return f"{self.name} ({self.country})"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
