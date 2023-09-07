@@ -204,7 +204,7 @@ class KeyWordListView(GenericListView):
 
 class KeyWordDetailView(BaseDetailView):
     model = KeyWord
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/keyword_detail.html"
 
 
 class KeyWordCreate(BaseCreateView):
