@@ -68,7 +68,7 @@ class CountryListView(GenericListView):
 
 class CountryDetailView(BaseDetailView):
     model = Country
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/country_detail.html"
 
 
 class CountryCreate(BaseCreateView):
