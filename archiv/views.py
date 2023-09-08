@@ -113,7 +113,7 @@ class CourtListView(GenericListView):
 
 class CourtDetailView(BaseDetailView):
     model = Court
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/court_detail.html"
 
 
 class CourtCreate(BaseCreateView):

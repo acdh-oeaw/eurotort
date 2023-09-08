@@ -237,9 +237,9 @@ class Court(models.Model):
 
     def __str__(self):
         if self.name:
-            return "{}".format(self.name)
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
