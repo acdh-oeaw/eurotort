@@ -249,7 +249,7 @@ class PartialLegalSystemListView(GenericListView):
 
 class PartialLegalSystemDetailView(BaseDetailView):
     model = PartialLegalSystem
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/legalsystem_detail.html"
 
 
 class PartialLegalSystemCreate(BaseCreateView):
