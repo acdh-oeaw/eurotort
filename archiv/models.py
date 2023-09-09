@@ -471,12 +471,11 @@ class CourtDecission(models.Model):
         ]
         verbose_name = "CourtDecission"
         indexes = (GinIndex(fields=["vector_column"]),)
-    
+
     def save(self, *args, **kwargs):
         super(CourtDecission, self).save(*args, **kwargs)
         self.full_text = self.join_search_fields()
         super(CourtDecission, self).save(*args, **kwargs)
-
 
     def __str__(self):
         if self.file_number and self.party:

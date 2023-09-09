@@ -136,6 +136,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                 AccordionGroup(
                     "Basic Search",
                     "id",
+                    "ft_search",
                     "legacy_pk",
                     "country",
                     "partial_legal_system",
