@@ -149,9 +149,16 @@ class CourtDecissionListView(GenericListView):
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
-    init_columns = ["id", "file_number", "party"]
+    init_columns = ["id", "file_number", "party", "kwic"]
     exclude_columns = ["full_text", "vector_column"]
     enable_merge = True
+
+    def get_queryset(self, **kwargs):
+        qs = super(CourtDecissionListView, self).get_queryset()
+        self.filter = self.filter_class(self.request.GET, queryset=qs)
+        self.filter.form.helper = self.formhelper_class()
+
+        return self.filter.qs.distinct()
 
 
 class CourtDecissionDetailView(BaseDetailView):

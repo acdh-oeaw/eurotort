@@ -65,6 +65,9 @@ class CourtDecissionTable(tables.Table):
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
     author = tables.columns.ManyToManyColumn(verbose_name="Authors")
+    kwic = tables.columns.TemplateColumn(
+        template_code="{{ record.kwic|safe }}", verbose_name="Keyword in Context"
+    )
 
     class Meta:
         model = CourtDecission
