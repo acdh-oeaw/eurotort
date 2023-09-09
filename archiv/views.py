@@ -339,7 +339,7 @@ class YearBookListView(GenericListView):
 
 class YearBookDetailView(BaseDetailView):
     model = YearBook
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/yearbook_detail.html"
 
 
 class YearBookCreate(BaseCreateView):
