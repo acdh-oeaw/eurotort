@@ -44,33 +44,14 @@
         </div>
     </div>
     <div class="card-body container">
-        {% if object.part_of %}
-        <h2>Part of</h2>
-        <p class="ps-5">
-            {{ object.part_of }}
-            <a href="{{ object.part_of.get_absolute_url }}">
-                <i class="bi bi bi-link-45deg"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% if object.rvn_keyword_part_of_keyword %}
-        <h2>has Children</h2>
-        <p class="ps-5">
-            <ul>
-                {% for x in object.rvn_keyword_part_of_keyword.all %}
-                <span class="badge rounded-pill text-bg-primary ">{{ x }}</span>
-                <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                {% endfor %}
-            </ul>
-        </p>
-        {% endif %}
-        {% with courtdecissions=object.rvn_courtdecission_keyword_keyword %}
-        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
-            {% include "archiv/partials/courtdecission_table.html" %}
+
+        {% with courtdecissions=object.related_court_decission %}
+        <h2>{{ courtdecissions.count }} quoted Court Decissions</h2>
+        {% include "archiv/partials/courtdecission_table.html" %}
         {% endwith %}
 
-               
-               
+
+
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">

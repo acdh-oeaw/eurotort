@@ -44,33 +44,38 @@
         </div>
     </div>
     <div class="card-body container">
-        {% if object.part_of %}
-        <h2>Part of</h2>
-        <p class="ps-5">
-            {{ object.part_of }}
-            <a href="{{ object.part_of.get_absolute_url }}">
+
+        <h2>Highcourt</h2>
+        {% if object.is_high_court %}
+        <p class="ps-5 text-success">
+            <i class="bi bi-check-square h2" title="Yes, {{ object }} is a high court"></i>
+        </p>
+        {% else %}
+        <p class="ps-5 text-danger">
+            <i class="bi bi-x-square h2" title="No, {{ object }} is no high court"></i>
+        </p>
+        {% endif %}
+        </p>
+        <h2>Country</h2>
+        <p class="ps-5">{{ object.country }}
+            <a href="{{ object.country.get_absolute_url }}">
                 <i class="bi bi bi-link-45deg"></i>
             </a>
         </p>
-        {% endif %}
-        {% if object.rvn_keyword_part_of_keyword %}
-        <h2>has Children</h2>
+        <h2>Legal System</h2>
         <p class="ps-5">
-            <ul>
-                {% for x in object.rvn_keyword_part_of_keyword.all %}
-                <span class="badge rounded-pill text-bg-primary ">{{ x }}</span>
-                <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                {% endfor %}
-            </ul>
+            {{ object.partial_legal_system.name }}
+            <a href="{{ object.partial_legal_system.get_absolute_url }}">
+                <i class="bi bi bi-link-45deg"></i>
+            </a>
         </p>
-        {% endif %}
-        {% with courtdecissions=object.rvn_courtdecission_keyword_keyword %}
-        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
-            {% include "archiv/partials/courtdecission_table.html" %}
+        {% with courtdecissions=object.rvn_courtdecission_court_court %}
+        <h2>{{ courtdecissions.count }} issued Court Decissions</h2>
+        {% include "archiv/partials/courtdecission_table.html" %}
         {% endwith %}
 
-               
-               
+
+
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">

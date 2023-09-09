@@ -44,33 +44,37 @@
         </div>
     </div>
     <div class="card-body container">
-        {% if object.part_of %}
-        <h2>Part of</h2>
+        <h2>Courts</h2>
         <p class="ps-5">
-            {{ object.part_of }}
-            <a href="{{ object.part_of.get_absolute_url }}">
-                <i class="bi bi bi-link-45deg"></i>
-            </a>
+        <ul>
+            {% for x in object.rvn_court_country_country.all %}
+            <li>
+                {{ x }}
+                <a href="{{ x.get_absolute_url }}">
+                    <i class="bi bi bi-link-45deg"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
         </p>
-        {% endif %}
-        {% if object.rvn_keyword_part_of_keyword %}
-        <h2>has Children</h2>
-        <p class="ps-5">
-            <ul>
-                {% for x in object.rvn_keyword_part_of_keyword.all %}
-                <span class="badge rounded-pill text-bg-primary ">{{ x }}</span>
-                <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                {% endfor %}
-            </ul>
-        </p>
-        {% endif %}
-        {% with courtdecissions=object.rvn_courtdecission_keyword_keyword %}
-        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
-            {% include "archiv/partials/courtdecission_table.html" %}
-        {% endwith %}
 
-               
-               
+        <h2>Legal Systems</h2>
+        <p class="ps-5">
+        <ul>
+            {% for x in object.rvn_partiallegalsystem_country_country.all %}
+            <li>
+                {{ x }}
+                <a href="{{ x.get_absolute_url }}">
+                    <i class="bi bi bi-link-45deg"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        </p>
+        {% with courtdecissions=object.rvn_courtdecission_country_country %}
+        <h2>{{ courtdecissions.count }} related Court Decissions</h2>
+        {% include "archiv/partials/courtdecission_table.html" %}
+        {% endwith %}
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">

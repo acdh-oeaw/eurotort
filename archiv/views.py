@@ -68,7 +68,7 @@ class CountryListView(GenericListView):
 
 class CountryDetailView(BaseDetailView):
     model = Country
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/country_detail.html"
 
 
 class CountryCreate(BaseCreateView):
@@ -113,7 +113,7 @@ class CourtListView(GenericListView):
 
 class CourtDetailView(BaseDetailView):
     model = Court
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/court_detail.html"
 
 
 class CourtCreate(BaseCreateView):
@@ -249,7 +249,7 @@ class PartialLegalSystemListView(GenericListView):
 
 class PartialLegalSystemDetailView(BaseDetailView):
     model = PartialLegalSystem
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/legalsystem_detail.html"
 
 
 class PartialLegalSystemCreate(BaseCreateView):
@@ -339,7 +339,7 @@ class YearBookListView(GenericListView):
 
 class YearBookDetailView(BaseDetailView):
     model = YearBook
-    template_name = "browsing/generic_detail.html"
+    template_name = "archiv/yearbook_detail.html"
 
 
 class YearBookCreate(BaseCreateView):
