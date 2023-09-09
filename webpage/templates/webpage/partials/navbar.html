@@ -51,10 +51,10 @@
                         </ul>
                     </li>
                 </ul>
-                <!-- <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" method="get" action="{% url 'archiv:courtdecission_browse' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" {% if query_string %} value="{{ query_string }}" {% endif %} required name="ft_search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> -->
+                </form>
                 {% if user.is_authenticated %}
                 <a href="{% url 'webpage:user_logout' %}"><i class="bi bi-person-check"></i></a>
                 {% else %}

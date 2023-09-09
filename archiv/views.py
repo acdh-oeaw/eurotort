@@ -150,6 +150,7 @@ class CourtDecissionListView(GenericListView):
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
     init_columns = ["id", "file_number", "party"]
+    exclude_columns = ["full_text", "vector_column"]
     enable_merge = True
 
 

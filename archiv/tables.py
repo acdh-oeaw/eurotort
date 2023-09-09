@@ -13,6 +13,23 @@ from .models import (
 )
 
 
+class ResultsTable(tables.Table):
+    id = tables.LinkColumn(verbose_name="ID")
+    full_text = tables.columns.TemplateColumn(
+        template_code="{{ record.full_text|safe }}"
+    )
+
+    class Meta:
+        model = CourtDecission
+        fields = (
+            "id",
+            "date_written",
+            "full_text",
+        )
+        sequence = ("id",)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
 class YearBookTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
