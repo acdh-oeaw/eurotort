@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunSQL(
-            sql='''
+            sql="""
               CREATE TRIGGER vector_column_trigger
               BEFORE INSERT OR UPDATE OF full_text, vector_column
               ON archiv_courtdecission
@@ -20,11 +20,10 @@ class Migration(migrations.Migration):
               );
 
               UPDATE archiv_courtdecission SET vector_column = NULL;
-            ''',
-
-            reverse_sql = '''
+            """,
+            reverse_sql="""
               DROP TRIGGER IF EXISTS vector_column_trigger
               ON archiv_courtdecission;
-            '''
+            """,
         ),
     ]
