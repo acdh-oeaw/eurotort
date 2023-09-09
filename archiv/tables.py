@@ -68,6 +68,9 @@ class CourtDecissionTable(tables.Table):
     kwic = tables.columns.TemplateColumn(
         template_code="{{ record.kwic|safe }}", verbose_name="Keyword in Context"
     )
+    rank = tables.columns.TemplateColumn(
+        template_code="{{ record.rank|safe }}", verbose_name="Search Rank"
+    )
 
     class Meta:
         model = CourtDecission
