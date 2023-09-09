@@ -163,7 +163,9 @@ class CourtDecissionFilterFormHelper(FormHelper):
 class CourtDecissionForm(forms.ModelForm):
     class Meta:
         model = CourtDecission
-        fields = "__all__"
+        exclude = [
+            "vector_column",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(CourtDecissionForm, self).__init__(*args, **kwargs)
