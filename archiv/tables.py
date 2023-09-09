@@ -9,7 +9,7 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
-    YearBook
+    YearBook,
 )
 
 

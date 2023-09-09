@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "infos",
     "archiv",
     "django_extensions",
+    "fixture_magic",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

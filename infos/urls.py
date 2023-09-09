@@ -44,7 +44,9 @@ urlpatterns = [
         views.TeamMemberDelete.as_view(),
         name="teammember_delete",
     ),
-    path("projectinst/", views.ProjectInstListView.as_view(), name="projectinst_browse"),
+    path(
+        "projectinst/", views.ProjectInstListView.as_view(), name="projectinst_browse"
+    ),
     path(
         "projectinst/detail/<int:pk>",
         views.ProjectInstDetailView.as_view(),

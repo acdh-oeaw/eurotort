@@ -1,0 +1,391 @@
+[
+{
+    "model": "archiv.keyword",
+    "pk": 186,
+    "fields": {
+        "legacy_id": "188.0",
+        "legacy_pk": 188,
+        "name": "Protected interests",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 188, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Protected interests\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 72,
+    "fields": {
+        "legacy_id": "74.0",
+        "legacy_pk": 74,
+        "name": "Damage",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 74, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Damage\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 108,
+    "fields": {
+        "legacy_id": "110.0",
+        "legacy_pk": 110,
+        "name": "Wrongfulness",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 110, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Wrongfulness\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 123,
+    "fields": {
+        "legacy_id": "125.0",
+        "legacy_pk": 125,
+        "name": "Liability for others",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 125, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Liability for others\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 42,
+    "fields": {
+        "legacy_id": "44.0",
+        "legacy_pk": 44,
+        "name": "Contract law",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 44, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Contract law\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 144,
+    "fields": {
+        "legacy_id": "146.0",
+        "legacy_pk": 146,
+        "name": "Sources of harm",
+        "part_of": null,
+        "orig_data_csv": "{\"stichwort_id\": 146, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Sources of harm\"}"
+    }
+},
+{
+    "model": "archiv.person",
+    "pk": 2,
+    "fields": {
+        "legacy_id": "2.0",
+        "legacy_pk": 2,
+        "last_name": "Durant",
+        "first_name": "Isabelle C.",
+        "cv": "Isabelle Claire Durant studied law at the Université catholique de Louvain (UCL), where she was a teaching and research assistant from 1991 until 2004. She got her PhD degree in law in 2003 at this university and is currently professor at the Department of Private Law. She teaches law of obligations, contract and real property law and publishes mainly in the areas of contract and tort law. She also contributes to several research projects for the Austrian Academy of Sciences’ Research Unit for European Tort Law and for the European Centre of Tort and Insurance Law in Vienna where she was on leave for work from October 2004 to March 2005. In addition, she was attorney at the Brussels Bar from 1991 until 2004. ",
+        "nationality": 2,
+        "orig_data_csv": "{\"autor_id\": 2, \"autor_vorname\": \"Isabelle C.\", \"autor_nachname\": \"Durant\", \"autor_cv\": \"Isabelle Claire Durant studied law at the Universit\\u00e9 catholique de Louvain (UCL), where she was a teaching and research assistant from 1991 until 2004. She got her PhD degree in law in 2003 at this university and is currently professor at the Department of Private Law. She teaches law of obligations, contract and real property law and publishes mainly in the areas of contract and tort law. She also contributes to several research projects for the Austrian Academy of Sciences\\u2019 Research Unit for European Tort Law and for the European Centre of Tort and Insurance Law in Vienna where she was on leave for work from October 2004 to March 2005. In addition, she was attorney at the Brussels Bar from 1991 until 2004. \", \"autor_staat\": 2, \"autor_web\": \"http://ucl.ac.be\", \"autor_email\": \"isabelle.durant@obli.ucl.ac.be\", \"autor_bild\": \"nopic.jpg\", \"autor_cms\": \"http://www.cms.ectil.org/Personen/Isabelle-C-Durant.aspx\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 154,
+    "fields": {
+        "legacy_id": "156.0",
+        "legacy_pk": 156,
+        "name": "Statements",
+        "part_of": 144,
+        "orig_data_csv": "{\"stichwort_id\": 156, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Statements\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 80,
+    "fields": {
+        "legacy_id": "82.0",
+        "legacy_pk": 82,
+        "name": "Non-pecuniary loss",
+        "part_of": 72,
+        "orig_data_csv": "{\"stichwort_id\": 82, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Non-pecuniary loss\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 185,
+    "fields": {
+        "legacy_id": "187.0",
+        "legacy_pk": 187,
+        "name": "Media reports",
+        "part_of": 144,
+        "orig_data_csv": "{\"stichwort_id\": 187, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Media reports\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 206,
+    "fields": {
+        "legacy_id": "208.0",
+        "legacy_pk": 208,
+        "name": "Honour and reputation",
+        "part_of": 186,
+        "orig_data_csv": "{\"stichwort_id\": 208, \"stichwort_parent\": 188, \"stichwort_bezeichnung\": \"Honour and reputation\"}"
+    }
+},
+{
+    "model": "archiv.yearbook",
+    "pk": 296,
+    "fields": {
+        "title": "I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006)"
+    }
+},
+{
+    "model": "archiv.court",
+    "pk": 11,
+    "fields": {
+        "legacy_id": "11.0",
+        "legacy_pk": 11,
+        "name": "Bruxelles Cour d'Appel (Brussels Court of Appeal)",
+        "abbreviation": "Brussels Court of Appeal",
+        "is_high_court": false,
+        "country": 2,
+        "partial_legal_system": 3,
+        "orig_data_csv": "{\"gericht_id\": 11, \"gericht_bezeichnung\": \"Bruxelles Cour d'Appel (Brussels Court of Appeal)\", \"gericht_kurzbezeichnung\": \"Brussels Court of Appeal\", \"gericht_hoechstgericht\": 0, \"gericht_staat\": 2, \"gericht_teilrechtsordnung\": 2}"
+    }
+},
+{
+    "model": "archiv.partiallegalsystem",
+    "pk": 3,
+    "fields": {
+        "legacy_id": "2.0",
+        "legacy_pk": 2,
+        "country": 2,
+        "name": "Belgium",
+        "orig_data_csv": "{\"teilrecht_id\": 2, \"teilrecht_staat\": 2, \"teilrecht_bezeichnung\": \"Belgium\"}"
+    }
+},
+{
+    "model": "archiv.country",
+    "pk": 2,
+    "fields": {
+        "legacy_id": "2.0",
+        "legacy_pk": 2,
+        "name": "Belgium",
+        "orig_data_csv": "{\"staat_id\": 2, \"staat_bezeichnung\": \"Belgium\"}"
+    }
+},
+{
+    "model": "archiv.person",
+    "pk": 1,
+    "fields": {
+        "legacy_id": "1.0",
+        "legacy_pk": 1,
+        "last_name": "Steininger",
+        "first_name": "Barbara C. ",
+        "cv": "Barbara Steininger was born in Feldkirch (Austria) in 1977 and was brought up bilingually (German/ Dutch). She studied law in Vienna and Leiden and graduated in 1999. Between 1998 and 2000 she worked as a student assistant at the Institute of Roman Law, University of Vienna. Between 1999 and 2003 Barbara Steininger worked at the European Centre of Tort and Insurance Law in Vienna. Since 2002 she has been a staff member of the Research Unit for European Tort Law of the Austrian Academy of Sciences. In 2002 Barbara Steininger conducted research at the Maastricht European Institute for Transnational Legal Research (METRO) in Maastricht and at the Institut Suisse de Droit Comparé in Lausanne. From June to December 2004 she was on leave for work at the University of Geneva. In 2005 she finished her doctoral thesis under the supervision of Prof. Helmut Koziol (“Verschärfung der Verschuldenshaftung”) and completed a nine month full-time court internship at various courts in Vienna. ",
+        "nationality": 1,
+        "orig_data_csv": "{\"autor_id\": 1, \"autor_vorname\": \"Barbara C. \", \"autor_nachname\": \"Steininger\", \"autor_cv\": \"Barbara Steininger was born in Feldkirch (Austria) in 1977 and was brought up bilingually (German/ Dutch). She studied law in Vienna and Leiden and graduated in 1999. Between 1998 and 2000 she worked as a student assistant at the Institute of Roman Law, University of Vienna. Between 1999 and 2003 Barbara Steininger worked at the European Centre of Tort and Insurance Law in Vienna. Since 2002 she has been a staff member of the Research Unit for European Tort Law of the Austrian Academy of Sciences. In 2002 Barbara Steininger conducted research at the Maastricht European Institute for Transnational Legal Research (METRO) in Maastricht and at the Institut Suisse de Droit Compar\\u00e9 in Lausanne. From June to December 2004 she was on leave for work at the University of Geneva. In 2005 she finished her doctoral thesis under the supervision of Prof. Helmut Koziol (\\u201cVersch\\u00e4rfung der Verschuldenshaftung\\u201d) and completed a nine month full-time court internship at various courts in Vienna. \", \"autor_staat\": 1, \"autor_web\": \"http://www.etl.oeaw.ac.at\", \"autor_email\": \"barbara.steininger@oeaw.ac.at\", \"autor_bild\": \"nopic.jpg\", \"autor_cms\": \"http://www.cms.ectil.org/Personen/Barbara-C-Steininger.aspx\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 130,
+    "fields": {
+        "legacy_id": "132.0",
+        "legacy_pk": 132,
+        "name": "State liability",
+        "part_of": 123,
+        "orig_data_csv": "{\"stichwort_id\": 132, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"State liability\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 153,
+    "fields": {
+        "legacy_id": "155.0",
+        "legacy_pk": 155,
+        "name": "Services",
+        "part_of": 144,
+        "orig_data_csv": "{\"stichwort_id\": 155, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Services\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 79,
+    "fields": {
+        "legacy_id": "81.0",
+        "legacy_pk": 81,
+        "name": "Pure economic loss",
+        "part_of": 72,
+        "orig_data_csv": "{\"stichwort_id\": 81, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Pure economic loss\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 113,
+    "fields": {
+        "legacy_id": "115.0",
+        "legacy_pk": 115,
+        "name": "Protective purpose of the norm",
+        "part_of": 108,
+        "orig_data_csv": "{\"stichwort_id\": 115, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective purpose of the norm\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 111,
+    "fields": {
+        "legacy_id": "113.0",
+        "legacy_pk": 113,
+        "name": "Protective laws",
+        "part_of": 108,
+        "orig_data_csv": "{\"stichwort_id\": 113, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective laws\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 131,
+    "fields": {
+        "legacy_id": "133.0",
+        "legacy_pk": 133,
+        "name": "Liability for public officers",
+        "part_of": 123,
+        "orig_data_csv": "{\"stichwort_id\": 133, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"Liability for public officers\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 149,
+    "fields": {
+        "legacy_id": "151.0",
+        "legacy_pk": 151,
+        "name": "Experts",
+        "part_of": 144,
+        "orig_data_csv": "{\"stichwort_id\": 151, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Experts\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 43,
+    "fields": {
+        "legacy_id": "45.0",
+        "legacy_pk": 45,
+        "name": "Contract for the benefit of a third party",
+        "part_of": 42,
+        "orig_data_csv": "{\"stichwort_id\": 45, \"stichwort_parent\": 44, \"stichwort_bezeichnung\": \"Contract for the benefit of a third party\"}"
+    }
+},
+{
+    "model": "archiv.keyword",
+    "pk": 146,
+    "fields": {
+        "legacy_id": "148.0",
+        "legacy_pk": 148,
+        "name": "Acts of public officers",
+        "part_of": 144,
+        "orig_data_csv": "{\"stichwort_id\": 148, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Acts of public officers\"}"
+    }
+},
+{
+    "model": "archiv.yearbook",
+    "pk": 288,
+    "fields": {
+        "title": "B.C. Steininger, Austria, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2001 (2002)"
+    }
+},
+{
+    "model": "archiv.court",
+    "pk": 1,
+    "fields": {
+        "legacy_id": "1.0",
+        "legacy_pk": 1,
+        "name": "Oberster Gerichtshof (Supreme Court)",
+        "abbreviation": "OGH",
+        "is_high_court": true,
+        "country": 1,
+        "partial_legal_system": 1,
+        "orig_data_csv": "{\"gericht_id\": 1, \"gericht_bezeichnung\": \"Oberster Gerichtshof (Supreme Court)\", \"gericht_kurzbezeichnung\": \"OGH\", \"gericht_hoechstgericht\": 1, \"gericht_staat\": 1, \"gericht_teilrechtsordnung\": 1}"
+    }
+},
+{
+    "model": "archiv.partiallegalsystem",
+    "pk": 1,
+    "fields": {
+        "legacy_id": "1.0",
+        "legacy_pk": 1,
+        "country": 1,
+        "name": "Austria",
+        "orig_data_csv": "{\"teilrecht_id\": 1, \"teilrecht_staat\": 1, \"teilrecht_bezeichnung\": \"Austria\"}"
+    }
+},
+{
+    "model": "archiv.country",
+    "pk": 1,
+    "fields": {
+        "legacy_id": "1.0",
+        "legacy_pk": 1,
+        "name": "Austria",
+        "orig_data_csv": "{\"staat_id\": 1, \"staat_bezeichnung\": \"Austria\"}"
+    }
+},
+{
+    "model": "archiv.courtdecission",
+    "pk": 100,
+    "fields": {
+        "legacy_id": "119.0",
+        "legacy_pk": 119,
+        "country": 2,
+        "partial_legal_system": 3,
+        "court": 11,
+        "decission_date": "2005-06-28",
+        "file_number": "R.G./A.R. 2000/3035",
+        "party": "",
+        "location": "JLMB, 2005, 1576, cmt. M. Uyttendaele and cmt. J. Wildemeersch; JT 2005, cmt. M.-Fr. Rigaux; RGDC/TBBR 2005, 596, cmt. H. Vuye; Chroniques de droit public/Publiekrechtelijke Kronieken (CDPK) 2005, 655, cmt. K. Muylle",
+        "year_book_title": 296,
+        "year_book_issue": "178",
+        "short_description": "Freedom of the Members of the Parliament and Liability of the State ",
+        "situation": "On 24 June 1998, the non-profit-making organization Eglise universelle du Royaume de Dieu/Universele Kerk van het Rijk God (below “the Church”) and three natural persons (its president, its secretary and its treasurer) sued the Belgian State through the Chambre des représentants/Kamer van volksvertegenwoordigers, one of two Belgian federal legislative assemblies, represented by its president, before the court of first instance of Brussels with the aim of obtaining damages. They considered they had suffered damage caused by a faulty conduct of the parliamentary commission responsible for an investigation into sects. More precisely, they criticized the use of some words and sentences in the final written report established by the commission and (partially) voted by the legislative assembly. In the first instance, judges considered that the judicial suit was inadmissible. Therefore, the claimants appealed to the court of appeal. ",
+        "motto": "Before the court of appeal, the claimants were successful. According to the court of appeal, the Belgian State breached the precautionary duty in writing the report. Indeed, one can read in it that the Church is apparently a criminal organization, the sole aim of which is its enrichment, that its activities are assimilated to swindling, that sexual scandals have happened within the organization, etc. Noting that the report was established by a parliamentary commission that holds powers similar to the powers of an examining magistrate, that the authors of the report alleged they had adopted an objective point of view and that the report was intended to be widely read by the public, the court of appeal considered that the parliamentary commission showed great negligence and great tactlessness and that this attitude constituted a tortious fault of the State: the State, embodied by the parliamentary commission, did not take into consideration the usual caution in writing public reports. Having considered that the State committed a fault, the court of appeal was of the opinion that the best way to compensate the damage resulting from the fault was to have its judgment partially published in newspapers. Indeed, according to the court of appeal, the report exposes the Church to public contempt. The certain and non-pecuniary damage caused by the fault was described by the court of appeal as being an attack against the social image of an association. ",
+        "commentary": "The decision of the court of appeal was profusely commented upon in several newspapers as well as in legal journals. Some authors approved the decision founded on art. 1382 of the Civil Code; others disapproved of it. Briefly, it can be said that the authors who disapproved of the decision essentially based their criticism on art. 58 of the Constitution, exactly as the defendant (i.e. the Belgian State) did before the court of appeal. According to this art. 58, none of the natural persons forming the legislative assemblies may be sued on the occasion of opinions delivered or votes formulated in their functions. This art. 58 aims to insure each member of the Parliament a total freedom of speech and expression in the exercise of his/her function. This freedom, said an older public prosecutor, protects the national representation against the government, against the judicial power, against any of the authorities (other than the legislative assemblies) and against the particulars. The court of appeal did (obviously) not deny the existence of this total freedom which results from the Constitution but considered that the immunity of the natural members of Parliament did not constitute any obstacle to sue the State. According to the court of appeal, the liability of the Belgian State is not excluded because the liability of one of its bodies (i.e. the members of the Parliamentary commission) may not be invoked. According to Prof. Dr. M. Uyttendaele, this interpretation of art. 58 of the Constitution, which is new, is not admissible. This author is of the opinion that art. 58 creates a chain of exemptions of liability: The members of Parliament, then the parliamentary commissions and, finally, the Parliament itself are exempted from liability. This may be explained by the fact that the members of Parliament would no longer be totally free if they knew that the liability of third parties (such as the State) could be engaged owing to their opinion or to their vote. This author realises that this point of view could lead in certain circumstances to a lack of liability but this should be accepted for the benefit of the Parliament. Nevertheless, the author would be in favour of pushing aside the special protection provided by art. 58 when the freedom of speech and expression is used to put in jeopardy the foundations of the democracy that are precisely protected by the provision. Taking the opposite view, some authors approved the decision of the court of appeal. In summarizing all their points of view, one could say that these authors consider that the organ theory (théorie de l’organe/orgaantheorie) would apply. One recalls that an organ (organe/orgaan) is the natural person through which the legal person (private such as a company or public like the State) acts; the organ acts as if it were the legal person: a legal person may not act otherwise than through a natural person who is called the organ. Therefore, when an organ acted with fault, the liability of the legal person may be incurred directly on the basis of art. 1382 of the Civil Code. There is no question of vicarious liability: the acts performed by the natural person are regarded as having been performed by the legal person itself. Three authors at least consider that the decision of 28 June 2005 is justified under the organ theory. Prof. Dr. H. Vuye, for instance, who had already pleaded for the application of this theory in 1997, wrote once again that the theory may apply to the State for acts performed by the members of Parliament. It means concretely, according to this author, that under the organ theory the Belgian State may incur liability for faulty conduct of members of Parliament while these members personally do not incur any liability by application of art. 58 of the Constitution. By way of short conclusion, one may note that mathematically the authors who approved the decision of the court of appeal seem to form the majority. Nevertheless, one should not lose sight of the fact that the Belgian State, represented by the President of the Chambre des Représentants/Kamer van volksvertegenwoordigers, did not agree with the decision of the court of appeal and appealed to the Supreme Court. The case is therefore not really closed … ",
+        "additional_information": "<em>none</em>",
+        "orig_data_csv": "{\"entscheidung_id\": 119, \"entscheidung_code\": \"7316624C-E3AB-4C63-B7C8-8D74C12019B0\", \"entscheidung_staat\": 2, \"entscheidung_teilrechtsordnung\": 2, \"entscheidung_gericht\": 11, \"entscheidung_datum\": \"2005-06-28 00:00:00.000\", \"entscheidung_aktenzahl\": \"R.G./A.R. 2000/3035\", \"entscheidung_parteien\": NaN, \"entscheidung_parteien_lang\": NaN, \"entscheidung_fundstelle\": \"JLMB, 2005, 1576, cmt. M. Uyttendaele and cmt. J. Wildemeersch; JT 2005, cmt. M.-Fr. Rigaux; RGDC/TBBR 2005, 596, cmt. H. Vuye; Chroniques de droit public/Publiekrechtelijke Kronieken (CDPK) 2005, 655, cmt. K. Muylle\", \"entscheidung_yearbook\": \"I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006) 178\", \"entscheidung_kurzbeschreibung\": \"Freedom of the Members of the Parliament and Liability of the State \", \"entscheidung_sachverhalt\": \"On 24 June 1998, the non-profit-making organization Eglise universelle du Royaume de Dieu/Universele Kerk van het Rijk God (below \\u201cthe Church\\u201d) and three natural persons (its president, its secretary and its treasurer) sued the Belgian State through the Chambre des repr\\u00e9sentants/Kamer van volksvertegenwoordigers, one of two Belgian federal legislative assemblies, represented by its president, before the court of first instance of Brussels with the aim of obtaining damages. They considered they had suffered damage caused by a faulty conduct of the parliamentary commission responsible for an investigation into sects. More precisely, they criticized the use of some words and sentences in the final written report established by the commission and (partially) voted by the legislative assembly. In the first instance, judges considered that the judicial suit was inadmissible. Therefore, the claimants appealed to the court of appeal. \", \"entscheidung_leitsatz\": \"Before the court of appeal, the claimants were successful. According to the court of appeal, the Belgian State breached the precautionary duty in writing the report. Indeed, one can read in it that the Church is apparently a criminal organization, the sole aim of which is its enrichment, that its activities are assimilated to swindling, that sexual scandals have happened within the organization, etc. Noting that the report was established by a parliamentary commission that holds powers similar to the powers of an examining magistrate, that the authors of the report alleged they had adopted an objective point of view and that the report was intended to be widely read by the public, the court of appeal considered that the parliamentary commission showed great negligence and great tactlessness and that this attitude constituted a tortious fault of the State: the State, embodied by the parliamentary commission, did not take into consideration the usual caution in writing public reports. Having considered that the State committed a fault, the court of appeal was of the opinion that the best way to compensate the damage resulting from the fault was to have its judgment partially published in newspapers. Indeed, according to the court of appeal, the report exposes the Church to public contempt. The certain and non-pecuniary damage caused by the fault was described by the court of appeal as being an attack against the social image of an association. \", \"entscheidung_kommentar\": \"The decision of the court of appeal was profusely commented upon in several newspapers as well as in legal journals. Some authors approved the decision founded on art. 1382 of the Civil Code; others disapproved of it. Briefly, it can be said that the authors who disapproved of the decision essentially based their criticism on art. 58 of the Constitution, exactly as the defendant (i.e. the Belgian State) did before the court of appeal. According to this art. 58, none of the natural persons forming the legislative assemblies may be sued on the occasion of opinions delivered or votes formulated in their functions. This art. 58 aims to insure each member of the Parliament a total freedom of speech and expression in the exercise of his/her function. This freedom, said an older public prosecutor, protects the national representation against the government, against the judicial power, against any of the authorities (other than the legislative assemblies) and against the particulars. The court of appeal did (obviously) not deny the existence of this total freedom which results from the Constitution but considered that the immunity of the natural members of Parliament did not constitute any obstacle to sue the State. According to the court of appeal, the liability of the Belgian State is not excluded because the liability of one of its bodies (i.e. the members of the Parliamentary commission) may not be invoked. According to Prof. Dr. M. Uyttendaele, this interpretation of art. 58 of the Constitution, which is new, is not admissible. This author is of the opinion that art. 58 creates a chain of exemptions of liability: The members of Parliament, then the parliamentary commissions and, finally, the Parliament itself are exempted from liability. This may be explained by the fact that the members of Parliament would no longer be totally free if they knew that the liability of third parties (such as the State) could be engaged owing to their opinion or to their vote. This author realises that this point of view could lead in certain circumstances to a lack of liability but this should be accepted for the benefit of the Parliament. Nevertheless, the author would be in favour of pushing aside the special protection provided by art. 58 when the freedom of speech and expression is used to put in jeopardy the foundations of the democracy that are precisely protected by the provision. Taking the opposite view, some authors approved the decision of the court of appeal. In summarizing all their points of view, one could say that these authors consider that the organ theory (th\\u00e9orie de l\\u2019organe/orgaantheorie) would apply. One recalls that an organ (organe/orgaan) is the natural person through which the legal person (private such as a company or public like the State) acts; the organ acts as if it were the legal person: a legal person may not act otherwise than through a natural person who is called the organ. Therefore, when an organ acted with fault, the liability of the legal person may be incurred directly on the basis of art. 1382 of the Civil Code. There is no question of vicarious liability: the acts performed by the natural person are regarded as having been performed by the legal person itself. Three authors at least consider that the decision of 28 June 2005 is justified under the organ theory. Prof. Dr. H. Vuye, for instance, who had already pleaded for the application of this theory in 1997, wrote once again that the theory may apply to the State for acts performed by the members of Parliament. It means concretely, according to this author, that under the organ theory the Belgian State may incur liability for faulty conduct of members of Parliament while these members personally do not incur any liability by application of art. 58 of the Constitution. By way of short conclusion, one may note that mathematically the authors who approved the decision of the court of appeal seem to form the majority. Nevertheless, one should not lose sight of the fact that the Belgian State, represented by the President of the Chambre des Repr\\u00e9sentants/Kamer van volksvertegenwoordigers, did not agree with the decision of the court of appeal and appealed to the Supreme Court. The case is therefore not really closed \\u2026 \", \"entscheidung_zusatzinfo\": \"<em>none</em>\", \"entscheidung_originaltext\": \"<em>currently not available</em>\", \"entscheidung_originaltext_pdf\": NaN, \"entscheidung_originaltext_www\": \"http://www.juridat.be\", \"entscheidung_letzter_bearbeiter\": 2, \"entscheidung_aufnahme\": \"2007-11-20 11:47:13.980\", \"entscheidung_gespeichert\": \"2007-12-06 16:30:31.877\", \"entscheidung_interne_bemerkung\": NaN, \"entscheidung_freigabe\": 1, \"entscheidung_besitzer\": 2}",
+        "keyword": [
+            206,
+            185,
+            80,
+            130,
+            154
+        ],
+        "author": [
+            2
+        ]
+    }
+},
+{
+    "model": "archiv.courtdecission",
+    "pk": 4,
+    "fields": {
+        "legacy_id": "6.0",
+        "legacy_pk": 6,
+        "country": 1,
+        "partial_legal_system": 1,
+        "court": 1,
+        "decission_date": "2000-05-30",
+        "file_number": "1 Ob 48/00s",
+        "party": "",
+        "location": "[2000] JBl, 729; [2000] Evidenzblatt der Rechtsmittelentscheidungen in: Österreichische Juristen- Zeitung (EvBl), no. 198; [2001] Österreichisches Recht der Wirtschaft (RdW), 18; [2001] ÖBA, 247",
+        "year_book_title": 288,
+        "year_book_issue": "60",
+        "short_description": "Official Liability Towards the Creditor in Case of an Incorrect Confirmation Declaring a Certain Piece of Land Building Ground ",
+        "situation": "A municipality issued an incorrect confirmation declaring a certain piece of land building ground. This confirmation was presented to a bank (the plaintiff) by the purchaser of said real estate. Relying on the confirmation, a bank granted a mortgage loan to the purchaser. Consequently, the bank – <i>i.e. </i>a third person – suffered pure financial loss as the purchaser was not able to pay back the loan. The bank claims compensation for this loss from the municipality issuing the confirmation. ",
+        "motto": "The Supreme Court holds that the confirmation is information according to the <i>Auskunftsgesetz </i>(Information Act) of <i>Niederösterreich </i>(Lower Austria). Without doubt, the purpose of this act is to provide the person seeking information with correct and complete information to adjust his or her dispositions accordingly. The Court then focuses on the question if persons other than the person seeking the information are included in the protective purpose of the norm. The purpose of the confirmation declaring a certain piece of land building ground is first of all to make sure for the purchaser that the land he is going to buy is building ground. Nonetheless, the confirmation also has the purpose of showing the creditor what kind of property the real estate to be purchased is and the extent to which it can serve as security for the loan. More so, as it is common knowledge that real estate is usually financed via loans. If the bank directly obtains such a confirmation to examine if the land can serve as security, the bank can in any case claim compensation for its pecuniary loss. Therefore, it would be inexplicable if the creditor is not included in the protective purpose of a confirmation obtained by the owner for the same reasons. Especially when taking into account that confirmations declaring a certain piece of land building ground are in most cases demanded from the owner of the land for this purpose. Therefore, according to the Supreme Court, the bank is included in the protective purpose of the norm. The court states that the defendant is liable in principle but that it still has to be clarified if there is any contributory negligence on the side of the plaintiff. ",
+        "commentary": "The decision has been met with approval in a review article by E. Karner. In this article Karner first deals with the protective purpose of the norm in the field of official liability and emphasizes that the existence of a subjective public right indicates the inclusion of pure economic loss in the protective purpose of the norm. He then draws a comparison with the general principles developed under &#167; 1300 ABGB (liability for advice and information), which also applies in the field of official liability . As <i>in casu </i>the municipality was obliged to provide the requested information, there is a special legal relationship, which means that the more severe liability of &#167; 1300 sentence 1 applies. Subsequently, Karner analyses the particular problem that not the person requesting the information but a third person suffers the loss. He comes to the conclusion that the third person is included in the protective purpose of the norm: The special legal relationship between the municipality and the person requesting the information also has effects on the third person, this is clear for the municipality and the circle of potentially protected persons is sufficiently restricted. ",
+        "additional_information": "<em>none</em>",
+        "orig_data_csv": "{\"entscheidung_id\": 6, \"entscheidung_code\": \"92597BDB-B727-42D5-84B9-05E404EBE639\", \"entscheidung_staat\": 1, \"entscheidung_teilrechtsordnung\": 1, \"entscheidung_gericht\": 1, \"entscheidung_datum\": \"2000-05-30 00:00:00.000\", \"entscheidung_aktenzahl\": \"1 Ob 48/00s\", \"entscheidung_parteien\": NaN, \"entscheidung_parteien_lang\": NaN, \"entscheidung_fundstelle\": \"[2000] JBl, 729; [2000] Evidenzblatt der Rechtsmittelentscheidungen in: \\u00d6sterreichische Juristen- Zeitung (EvBl), no. 198; [2001] \\u00d6sterreichisches Recht der Wirtschaft (RdW), 18; [2001] \\u00d6BA, 247\", \"entscheidung_yearbook\": \"B.C. Steininger, Austria, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2001 (2002) 60\", \"entscheidung_kurzbeschreibung\": \"Official Liability Towards the Creditor in Case of an Incorrect Confirmation Declaring a Certain Piece of Land Building Ground \", \"entscheidung_sachverhalt\": \"A municipality issued an incorrect confirmation declaring a certain piece of land building ground. This confirmation was presented to a bank (the plaintiff) by the purchaser of said real estate. Relying on the confirmation, a bank granted a mortgage loan to the purchaser. Consequently, the bank \\u2013 <i>i.e. </i>a third person \\u2013 suffered pure financial loss as the purchaser was not able to pay back the loan. The bank claims compensation for this loss from the municipality issuing the confirmation. \", \"entscheidung_leitsatz\": \"The Supreme Court holds that the confirmation is information according to the <i>Auskunftsgesetz </i>(Information Act) of <i>Nieder\\u00f6sterreich </i>(Lower Austria). Without doubt, the purpose of this act is to provide the person seeking information with correct and complete information to adjust his or her dispositions accordingly. The Court then focuses on the question if persons other than the person seeking the information are included in the protective purpose of the norm. The purpose of the confirmation declaring a certain piece of land building ground is first of all to make sure for the purchaser that the land he is going to buy is building ground. Nonetheless, the confirmation also has the purpose of showing the creditor what kind of property the real estate to be purchased is and the extent to which it can serve as security for the loan. More so, as it is common knowledge that real estate is usually financed via loans. If the bank directly obtains such a confirmation to examine if the land can serve as security, the bank can in any case claim compensation for its pecuniary loss. Therefore, it would be inexplicable if the creditor is not included in the protective purpose of a confirmation obtained by the owner for the same reasons. Especially when taking into account that confirmations declaring a certain piece of land building ground are in most cases demanded from the owner of the land for this purpose. Therefore, according to the Supreme Court, the bank is included in the protective purpose of the norm. The court states that the defendant is liable in principle but that it still has to be clarified if there is any contributory negligence on the side of the plaintiff. \", \"entscheidung_kommentar\": \"The decision has been met with approval in a review article by E. Karner. In this article Karner first deals with the protective purpose of the norm in the field of official liability and emphasizes that the existence of a subjective public right indicates the inclusion of pure economic loss in the protective purpose of the norm. He then draws a comparison with the general principles developed under &#167; 1300 ABGB (liability for advice and information), which also applies in the field of official liability . As <i>in casu </i>the municipality was obliged to provide the requested information, there is a special legal relationship, which means that the more severe liability of &#167; 1300 sentence 1 applies. Subsequently, Karner analyses the particular problem that not the person requesting the information but a third person suffers the loss. He comes to the conclusion that the third person is included in the protective purpose of the norm: The special legal relationship between the municipality and the person requesting the information also has effects on the third person, this is clear for the municipality and the circle of potentially protected persons is sufficiently restricted. \", \"entscheidung_zusatzinfo\": \"<em>none</em>\", \"entscheidung_originaltext\": \"<em>currently not available</em>\", \"entscheidung_originaltext_pdf\": NaN, \"entscheidung_originaltext_www\": \"http://www.ris2.bka.gv.at/Dokumente/Justiz/JJT_20000530_OGH0002_0010OB00048_00S0000_000.html\", \"entscheidung_letzter_bearbeiter\": 2, \"entscheidung_aufnahme\": \"2007-11-15 14:25:24.410\", \"entscheidung_gespeichert\": \"2008-02-28 17:44:54.827\", \"entscheidung_interne_bemerkung\": NaN, \"entscheidung_freigabe\": 1, \"entscheidung_besitzer\": 2}",
+        "keyword": [
+            146,
+            43,
+            149,
+            131,
+            111,
+            113,
+            79,
+            153,
+            130
+        ],
+        "author": [
+            1
+        ]
+    }
+}
+]
