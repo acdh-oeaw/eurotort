@@ -491,10 +491,12 @@ class KeyWord(models.Model):
         verbose_name = "KeyWord"
 
     def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
+        if self.name and self.part_of:
+            return f"{self.part_of} >> {self.name}"
+        elif self.name:
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
