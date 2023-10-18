@@ -549,7 +549,7 @@ class KeyWord(models.Model):
 
 
 class PartialLegalSystem(models.Model):
-    """PartialLegalSystem"""
+    """Legal system"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -571,6 +571,19 @@ class PartialLegalSystem(models.Model):
         is_public=True,
         data_lookup="Teilrecht_Bezeichnung",
     )
+    ecli_abbr = models.CharField(
+        max_length=2,
+        blank=True,
+        null=True,
+        verbose_name="ECLI country code",
+        help_text="ECLI country code"
+    )
+    link_to_legal_db = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name="Link to legal db",
+        help_text="Link to legal db"
+    )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
@@ -579,7 +592,7 @@ class PartialLegalSystem(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "PartialLegalSystem"
+        verbose_name = "Legal System"
 
     def __str__(self):
         if self.name:
