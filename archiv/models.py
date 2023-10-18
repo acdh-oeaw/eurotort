@@ -768,6 +768,11 @@ class Person(models.Model):
         data_lookup="Autor_Vorname",
         arche_prop="hasFirstName",
     )
+    contact = models.EmailField(
+        blank=True,
+        verbose_name="Contact",
+        help_text="Email address"
+    )
     nationality = models.ForeignKey(
         "Country",
         related_name="rvn_person_nationality_country",
