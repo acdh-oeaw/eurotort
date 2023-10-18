@@ -193,7 +193,7 @@ class Court(models.Model):
 
 
 class CourtDecission(models.Model):
-    """CourtDecission"""
+    """Decision"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -234,7 +234,7 @@ class CourtDecission(models.Model):
         blank=True,
         null=True,
         verbose_name="Date",
-        help_text="Date",
+        help_text="Date of decision",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Datum",
@@ -242,8 +242,8 @@ class CourtDecission(models.Model):
     file_number = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="File Number",
-        help_text="File Number",
+        verbose_name="Case number",
+        help_text="Case number",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Aktenzahl",
@@ -261,8 +261,8 @@ class CourtDecission(models.Model):
     location = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Decission Location",
-        help_text="Decission Location",
+        verbose_name="reported in",
+        help_text="reported in",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Fundstelle",
@@ -286,8 +286,8 @@ class CourtDecission(models.Model):
     short_description = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Short Description",
-        help_text="Short Description",
+        verbose_name="Brief description",
+        help_text="Brief description",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
@@ -296,8 +296,8 @@ class CourtDecission(models.Model):
     situation = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Sachverhalt",
-        help_text="Sachverhalt",
+        verbose_name="Facst",
+        help_text="Brief summary of the facst",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Sachverhalt",
@@ -305,8 +305,8 @@ class CourtDecission(models.Model):
     motto = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Leitsatz",
-        help_text="Sachverhalt",
+        verbose_name="Decision",
+        help_text="Decision of the court",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Leitsatz",
@@ -314,8 +314,8 @@ class CourtDecission(models.Model):
     commentary = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Commentary",
+        help_text="Commentary",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kommentar",
@@ -323,8 +323,8 @@ class CourtDecission(models.Model):
     additional_information = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Zusatzinfo",
-        help_text="Zusatzinfo",
+        verbose_name="Additional Information",
+        help_text="Additional Information",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Zusatzinfo",
@@ -343,8 +343,8 @@ class CourtDecission(models.Model):
         "Person",
         related_name="rvn_courtdecission_author_person",
         blank=True,
-        verbose_name="AutorIn",
-        help_text="AutorIn",
+        verbose_name="Authors",
+        help_text="Authors",
     ).set_extra(
         is_public=True,
         arche_prop="hasSubject",
@@ -373,9 +373,11 @@ class CourtDecission(models.Model):
 
     def __str__(self):
         if self.file_number and self.party:
-            return f"{self.file_number},»{self.party}«"
+            return f"{self.party}, {self.file_number}"
         elif self.file_number:
             return f"{self.file_number}"
+        elif self.party:
+            return f"{self.party}"
         else:
             return f"{self.id}"
 
