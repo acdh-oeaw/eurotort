@@ -571,8 +571,8 @@ class PartialLegalSystem(models.Model):
         verbose_name = "PartialLegalSystem"
 
     def __str__(self):
-        if self.name and self.country:
-            return f"{self.name} ({self.country})"
+        if self.name:
+            return f"{self.name}"
         else:
             return f"{self.id}"
 
@@ -665,6 +665,14 @@ class Person(models.Model):
         blank=True,
         verbose_name="Contact",
         help_text="Email address"
+    )
+    orcid = models.URLField(
+        blank=True,
+        verbose_name="ORCID",
+        help_text="ORCID (as URL)"
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasIdentifier",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
