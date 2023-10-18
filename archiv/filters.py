@@ -319,5 +319,5 @@ class PersonListFilter(django_filters.FilterSet):
             "legacy_pk",
             "last_name",
             "first_name",
-            "partial_legal_system"
+            "partial_legal_system",
         ]

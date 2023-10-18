@@ -349,6 +349,13 @@ class CourtDecission(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
+    ecli = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="ECLI",
+        help_text="European Case Law Identifier",
+    )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
@@ -364,7 +371,7 @@ class CourtDecission(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "CourtDecission"
+        verbose_name = "Decision"
         indexes = (GinIndex(fields=["vector_column"]),)
 
     def save(self, *args, **kwargs):
@@ -666,14 +673,10 @@ class Person(models.Model):
         arche_prop="hasAuthor",
     )
     contact = models.EmailField(
-        blank=True,
-        verbose_name="Contact",
-        help_text="Email address"
+        blank=True, verbose_name="Contact", help_text="Email address"
     )
     orcid = models.URLField(
-        blank=True,
-        verbose_name="ORCID",
-        help_text="ORCID (as URL)"
+        blank=True, verbose_name="ORCID", help_text="ORCID (as URL)"
     ).set_extra(
         is_public=True,
         arche_prop="hasIdentifier",
