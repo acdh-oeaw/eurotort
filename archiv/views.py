@@ -4,7 +4,6 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from .filters import (
-    CountryListFilter,
     CourtListFilter,
     CourtDecissionListFilter,
     KeyWordListFilter,
@@ -13,8 +12,6 @@ from .filters import (
     YearBookListFilter,
 )
 from .forms import (
-    CountryForm,
-    CountryFilterFormHelper,
     CourtForm,
     CourtFilterFormHelper,
     CourtDecissionForm,
@@ -29,7 +26,6 @@ from .forms import (
     YearBookForm,
 )
 from .tables import (
-    CountryTable,
     CourtTable,
     CourtDecissionTable,
     KeyWordTable,
@@ -38,7 +34,6 @@ from .tables import (
     YearBookTable,
 )
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
@@ -52,51 +47,6 @@ from browsing.browsing_utils import (
     BaseUpdateView,
     BaseDetailView,
 )
-
-
-class CountryListView(GenericListView):
-    model = Country
-    filter_class = CountryListFilter
-    formhelper_class = CountryFilterFormHelper
-    table_class = CountryTable
-    init_columns = [
-        "id",
-        "name",
-    ]
-    enable_merge = True
-
-
-class CountryDetailView(BaseDetailView):
-    model = Country
-    template_name = "archiv/country_detail.html"
-
-
-class CountryCreate(BaseCreateView):
-    model = Country
-    form_class = CountryForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryCreate, self).dispatch(*args, **kwargs)
-
-
-class CountryUpdate(BaseUpdateView):
-    model = Country
-    form_class = CountryForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryUpdate, self).dispatch(*args, **kwargs)
-
-
-class CountryDelete(DeleteView):
-    model = Country
-    template_name = "webpage/confirm_delete.html"
-    success_url = reverse_lazy("archiv:country_browse")
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryDelete, self).dispatch(*args, **kwargs)
 
 
 class CourtListView(GenericListView):

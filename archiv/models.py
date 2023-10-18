@@ -79,87 +79,6 @@ class YearBook(models.Model):
         return False
 
 
-class Country(models.Model):
-    """Country"""
-
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Staat_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
-    name = models.CharField(
-        max_length=250,
-        blank=True,
-        verbose_name="Name",
-        help_text="Name",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Staat_Bezeichnung",
-        arche_prop="hasTitle",
-    )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
-
-    class Meta:
-        ordering = [
-            "name",
-        ]
-        verbose_name = "Country"
-
-    def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
-        else:
-            return "{}".format(self.legacy_id)
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:country_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "tb_staat.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:country_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:country_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:country_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:country_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return reverse("archiv:country_detail", kwargs={"pk": next.id})
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return reverse("archiv:country_detail", kwargs={"pk": prev.id})
-        return False
-
-
 class Court(models.Model):
     """Court"""
 
@@ -203,18 +122,6 @@ class Court(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
-    )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_court_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Gericht_Staat",
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
@@ -298,18 +205,6 @@ class CourtDecission(models.Model):
         is_public=False,
         data_lookup="Entscheidung_Id",
         arche_prop="hasNonLinkedIdentifier",
-    )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_courtdecission_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Staat",
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
@@ -656,18 +551,6 @@ class PartialLegalSystem(models.Model):
         data_lookup="Teilrecht_Id",
         arche_prop="hasNonLinkedIdentifier",
     )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_partiallegalsystem_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Teilrecht_Staat",
-    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -772,18 +655,6 @@ class Person(models.Model):
         blank=True,
         verbose_name="Contact",
         help_text="Email address"
-    )
-    nationality = models.ForeignKey(
-        "Country",
-        related_name="rvn_person_nationality_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Nationality",
-        help_text="Nationality",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Autor_Staat",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"

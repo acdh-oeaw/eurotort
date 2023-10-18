@@ -4,11 +4,6 @@ from . import dal_views
 
 app_name = "archiv"
 urlpatterns = [
-    path(
-        "country-autocomplete",
-        dal_views.CountryAC.as_view(),
-        name="country-autocomplete",
-    ),
     path("court-autocomplete", dal_views.CourtAC.as_view(), name="court-autocomplete"),
     path(
         "courtdecission-autocomplete",

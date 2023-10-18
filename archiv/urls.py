@@ -4,17 +4,6 @@ from . import views
 
 app_name = "archiv"
 urlpatterns = [
-    path("country/", views.CountryListView.as_view(), name="country_browse"),
-    path(
-        "country/detail/<int:pk>",
-        views.CountryDetailView.as_view(),
-        name="country_detail",
-    ),
-    path("country/create/", views.CountryCreate.as_view(), name="country_create"),
-    path("country/edit/<int:pk>", views.CountryUpdate.as_view(), name="country_edit"),
-    path(
-        "country/delete/<int:pk>", views.CountryDelete.as_view(), name="country_delete"
-    ),
     path("court/", views.CourtListView.as_view(), name="court_browse"),
     path("court/detail/<int:pk>", views.CourtDetailView.as_view(), name="court_detail"),
     path("court/create/", views.CourtCreate.as_view(), name="court_create"),

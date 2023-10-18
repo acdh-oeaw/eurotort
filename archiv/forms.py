@@ -6,7 +6,6 @@ from crispy_forms.bootstrap import AccordionGroup
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
 
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
@@ -38,40 +37,6 @@ class YearBookForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(YearBookForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = "form-horizontal"
-        self.helper.label_class = "col-md-3"
-        self.helper.field_class = "col-md-9"
-        self.helper.add_input(
-            Submit("submit", "save"),
-        )
-
-
-class CountryFilterFormHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(CountryFilterFormHelper, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.form_class = "genericFilterForm"
-        self.form_method = "GET"
-        self.form_tag = False
-        self.layout = Layout(
-            BS5Accordion(
-                AccordionGroup(
-                    "Basic Search", "id", "legacy_pk", "name", css_id="more"
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
-            )
-        )
-
-
-class CountryForm(forms.ModelForm):
-    class Meta:
-        model = Country
-        fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super(CountryForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"

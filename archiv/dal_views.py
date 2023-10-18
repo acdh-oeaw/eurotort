@@ -2,7 +2,6 @@
 from django.db.models import Q
 from dal import autocomplete
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
@@ -18,15 +17,6 @@ class YearBookAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(title__icontains=self.q)
-        return qs
-
-
-class CountryAC(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Country.objects.all()
-
-        if self.q:
-            qs = qs.filter(Q(legacy_id__icontains=self.q) | Q(name__icontains=self.q))
         return qs
 
 
