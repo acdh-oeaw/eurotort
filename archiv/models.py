@@ -768,16 +768,6 @@ class Person(models.Model):
         data_lookup="Autor_Vorname",
         arche_prop="hasFirstName",
     )
-    cv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Curriculum Vitae",
-        help_text="Curriculum Vitae",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Autor_CV",
-        arche_prop="hasDescription",
-    )
     nationality = models.ForeignKey(
         "Country",
         related_name="rvn_person_nationality_country",

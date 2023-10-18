@@ -272,7 +272,6 @@ class PersonFilterFormHelper(FormHelper):
                     "legacy_pk",
                     "last_name",
                     "first_name",
-                    "cv",
                     "nationality",
                     css_id="more",
                 ),

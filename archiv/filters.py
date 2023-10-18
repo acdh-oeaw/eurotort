@@ -351,11 +351,6 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field("first_name").help_text,
         label=Person._meta.get_field("first_name").verbose_name,
     )
-    cv = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Person._meta.get_field("cv").help_text,
-        label=Person._meta.get_field("cv").verbose_name,
-    )
     nationality = django_filters.ModelMultipleChoiceFilter(
         queryset=Country.objects.all(),
         help_text=Person._meta.get_field("nationality").help_text,
@@ -373,6 +368,5 @@ class PersonListFilter(django_filters.FilterSet):
             "legacy_pk",
             "last_name",
             "first_name",
-            "cv",
             "nationality",
         ]
