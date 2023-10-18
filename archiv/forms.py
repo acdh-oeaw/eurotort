@@ -194,7 +194,6 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
                     "Basic Search",
                     "id",
                     "legacy_pk",
-                    "country",
                     "name",
                     css_id="more",
                 ),
