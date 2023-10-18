@@ -302,6 +302,14 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field("first_name").help_text,
         label=Person._meta.get_field("first_name").verbose_name,
     )
+    partial_legal_system = django_filters.ModelMultipleChoiceFilter(
+        queryset=PartialLegalSystem.objects.all(),
+        help_text=Person._meta.get_field("legal_system").help_text,
+        label=Person._meta.get_field("legal_system").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:partiallegalsystem-autocomplete",
+        ),
+    )
 
     class Meta:
         model = Person
@@ -311,4 +319,5 @@ class PersonListFilter(django_filters.FilterSet):
             "legacy_pk",
             "last_name",
             "first_name",
+            "partial_legal_system"
         ]

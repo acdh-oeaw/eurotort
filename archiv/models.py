@@ -651,6 +651,16 @@ class Person(models.Model):
         data_lookup="Autor_Vorname",
         arche_prop="hasFirstName",
     )
+    legal_system = models.ManyToManyField(
+        "PartialLegalSystem",
+        related_name="has_related_author",
+        blank=True,
+        verbose_name="Legalsystem",
+        help_text="Legalsystem",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasAuthor",
+    )
     contact = models.EmailField(
         blank=True,
         verbose_name="Contact",
