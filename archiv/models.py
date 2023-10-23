@@ -117,8 +117,8 @@ class Court(models.Model):
         default=False,
         blank=True,
         null=True,
-        verbose_name="High Court",
-        help_text="High Court",
+        verbose_name="Highest Court",
+        help_text="Highest Court",
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
@@ -129,11 +129,18 @@ class Court(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Partial Legal System",
-        help_text="Partial Legal System",
+        verbose_name="Legalsystem",
+        help_text="Legalsystem",
     ).set_extra(
         is_public=True,
         data_lookup="Gericht_Teilrechtsordnung",
+    )
+    ecli_abbr = models.CharField(
+        max_length=7,
+        blank=True,
+        null=True,
+        verbose_name="ECLI court code",
+        help_text="ECLI court code",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -576,13 +583,13 @@ class PartialLegalSystem(models.Model):
         blank=True,
         null=True,
         verbose_name="ECLI country code",
-        help_text="ECLI country code"
+        help_text="ECLI country code",
     )
     link_to_legal_db = models.URLField(
         blank=True,
         null=True,
         verbose_name="Link to legal db",
-        help_text="Link to legal db"
+        help_text="Link to legal db",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
