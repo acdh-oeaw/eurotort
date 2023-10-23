@@ -6,8 +6,10 @@
         "legacy_id": "188.0",
         "legacy_pk": 188,
         "name": "Protected interests",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 188, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Protected interests\"}"
+        "orig_data_csv": "{\"stichwort_id\": 188, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Protected interests\"}",
+        "see_also": []
     }
 },
 {
@@ -17,8 +19,10 @@
         "legacy_id": "74.0",
         "legacy_pk": 74,
         "name": "Damage",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 74, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Damage\"}"
+        "orig_data_csv": "{\"stichwort_id\": 74, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Damage\"}",
+        "see_also": []
     }
 },
 {
@@ -28,8 +32,10 @@
         "legacy_id": "110.0",
         "legacy_pk": 110,
         "name": "Wrongfulness",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 110, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Wrongfulness\"}"
+        "orig_data_csv": "{\"stichwort_id\": 110, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Wrongfulness\"}",
+        "see_also": []
     }
 },
 {
@@ -39,8 +45,10 @@
         "legacy_id": "125.0",
         "legacy_pk": 125,
         "name": "Liability for others",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 125, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Liability for others\"}"
+        "orig_data_csv": "{\"stichwort_id\": 125, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Liability for others\"}",
+        "see_also": []
     }
 },
 {
@@ -50,8 +58,10 @@
         "legacy_id": "44.0",
         "legacy_pk": 44,
         "name": "Contract law",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 44, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Contract law\"}"
+        "orig_data_csv": "{\"stichwort_id\": 44, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Contract law\"}",
+        "see_also": []
     }
 },
 {
@@ -61,8 +71,10 @@
         "legacy_id": "146.0",
         "legacy_pk": 146,
         "name": "Sources of harm",
+        "introduction": null,
         "part_of": null,
-        "orig_data_csv": "{\"stichwort_id\": 146, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Sources of harm\"}"
+        "orig_data_csv": "{\"stichwort_id\": 146, \"stichwort_parent\": 0, \"stichwort_bezeichnung\": \"Sources of harm\"}",
+        "see_also": []
     }
 },
 {
@@ -86,8 +98,10 @@
         "legacy_id": "156.0",
         "legacy_pk": 156,
         "name": "Statements",
+        "introduction": null,
         "part_of": 144,
-        "orig_data_csv": "{\"stichwort_id\": 156, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Statements\"}"
+        "orig_data_csv": "{\"stichwort_id\": 156, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Statements\"}",
+        "see_also": []
     }
 },
 {
@@ -97,8 +111,10 @@
         "legacy_id": "82.0",
         "legacy_pk": 82,
         "name": "Non-pecuniary loss",
+        "introduction": null,
         "part_of": 72,
-        "orig_data_csv": "{\"stichwort_id\": 82, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Non-pecuniary loss\"}"
+        "orig_data_csv": "{\"stichwort_id\": 82, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Non-pecuniary loss\"}",
+        "see_also": []
     }
 },
 {
@@ -108,8 +124,10 @@
         "legacy_id": "187.0",
         "legacy_pk": 187,
         "name": "Media reports",
+        "introduction": null,
         "part_of": 144,
-        "orig_data_csv": "{\"stichwort_id\": 187, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Media reports\"}"
+        "orig_data_csv": "{\"stichwort_id\": 187, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Media reports\"}",
+        "see_also": []
     }
 },
 {
@@ -119,15 +137,18 @@
         "legacy_id": "208.0",
         "legacy_pk": 208,
         "name": "Honour and reputation",
+        "introduction": null,
         "part_of": 186,
-        "orig_data_csv": "{\"stichwort_id\": 208, \"stichwort_parent\": 188, \"stichwort_bezeichnung\": \"Honour and reputation\"}"
+        "orig_data_csv": "{\"stichwort_id\": 208, \"stichwort_parent\": 188, \"stichwort_bezeichnung\": \"Honour and reputation\"}",
+        "see_also": []
     }
 },
 {
     "model": "archiv.yearbook",
     "pk": 296,
     "fields": {
-        "title": "I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006)"
+        "title": "I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006)",
+        "doi": null
     }
 },
 {
@@ -140,6 +161,7 @@
         "abbreviation": "Brussels Court of Appeal",
         "is_high_court": false,
         "partial_legal_system": 3,
+        "ecli_abbr": null,
         "orig_data_csv": "{\"gericht_id\": 11, \"gericht_bezeichnung\": \"Bruxelles Cour d'Appel (Brussels Court of Appeal)\", \"gericht_kurzbezeichnung\": \"Brussels Court of Appeal\", \"gericht_hoechstgericht\": 0, \"gericht_staat\": 2, \"gericht_teilrechtsordnung\": 2}"
     }
 },
@@ -176,8 +198,10 @@
         "legacy_id": "132.0",
         "legacy_pk": 132,
         "name": "State liability",
+        "introduction": null,
         "part_of": 123,
-        "orig_data_csv": "{\"stichwort_id\": 132, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"State liability\"}"
+        "orig_data_csv": "{\"stichwort_id\": 132, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"State liability\"}",
+        "see_also": []
     }
 },
 {
@@ -187,8 +211,10 @@
         "legacy_id": "155.0",
         "legacy_pk": 155,
         "name": "Services",
+        "introduction": null,
         "part_of": 144,
-        "orig_data_csv": "{\"stichwort_id\": 155, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Services\"}"
+        "orig_data_csv": "{\"stichwort_id\": 155, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Services\"}",
+        "see_also": []
     }
 },
 {
@@ -198,8 +224,10 @@
         "legacy_id": "81.0",
         "legacy_pk": 81,
         "name": "Pure economic loss",
+        "introduction": null,
         "part_of": 72,
-        "orig_data_csv": "{\"stichwort_id\": 81, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Pure economic loss\"}"
+        "orig_data_csv": "{\"stichwort_id\": 81, \"stichwort_parent\": 74, \"stichwort_bezeichnung\": \"Pure economic loss\"}",
+        "see_also": []
     }
 },
 {
@@ -209,8 +237,10 @@
         "legacy_id": "115.0",
         "legacy_pk": 115,
         "name": "Protective purpose of the norm",
+        "introduction": null,
         "part_of": 108,
-        "orig_data_csv": "{\"stichwort_id\": 115, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective purpose of the norm\"}"
+        "orig_data_csv": "{\"stichwort_id\": 115, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective purpose of the norm\"}",
+        "see_also": []
     }
 },
 {
@@ -220,8 +250,10 @@
         "legacy_id": "113.0",
         "legacy_pk": 113,
         "name": "Protective laws",
+        "introduction": null,
         "part_of": 108,
-        "orig_data_csv": "{\"stichwort_id\": 113, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective laws\"}"
+        "orig_data_csv": "{\"stichwort_id\": 113, \"stichwort_parent\": 110, \"stichwort_bezeichnung\": \"Protective laws\"}",
+        "see_also": []
     }
 },
 {
@@ -231,8 +263,10 @@
         "legacy_id": "133.0",
         "legacy_pk": 133,
         "name": "Liability for public officers",
+        "introduction": null,
         "part_of": 123,
-        "orig_data_csv": "{\"stichwort_id\": 133, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"Liability for public officers\"}"
+        "orig_data_csv": "{\"stichwort_id\": 133, \"stichwort_parent\": 125, \"stichwort_bezeichnung\": \"Liability for public officers\"}",
+        "see_also": []
     }
 },
 {
@@ -242,8 +276,10 @@
         "legacy_id": "151.0",
         "legacy_pk": 151,
         "name": "Experts",
+        "introduction": null,
         "part_of": 144,
-        "orig_data_csv": "{\"stichwort_id\": 151, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Experts\"}"
+        "orig_data_csv": "{\"stichwort_id\": 151, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Experts\"}",
+        "see_also": []
     }
 },
 {
@@ -253,8 +289,10 @@
         "legacy_id": "45.0",
         "legacy_pk": 45,
         "name": "Contract for the benefit of a third party",
+        "introduction": null,
         "part_of": 42,
-        "orig_data_csv": "{\"stichwort_id\": 45, \"stichwort_parent\": 44, \"stichwort_bezeichnung\": \"Contract for the benefit of a third party\"}"
+        "orig_data_csv": "{\"stichwort_id\": 45, \"stichwort_parent\": 44, \"stichwort_bezeichnung\": \"Contract for the benefit of a third party\"}",
+        "see_also": []
     }
 },
 {
@@ -264,15 +302,18 @@
         "legacy_id": "148.0",
         "legacy_pk": 148,
         "name": "Acts of public officers",
+        "introduction": null,
         "part_of": 144,
-        "orig_data_csv": "{\"stichwort_id\": 148, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Acts of public officers\"}"
+        "orig_data_csv": "{\"stichwort_id\": 148, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Acts of public officers\"}",
+        "see_also": []
     }
 },
 {
     "model": "archiv.yearbook",
     "pk": 288,
     "fields": {
-        "title": "B.C. Steininger, Austria, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2001 (2002)"
+        "title": "B.C. Steininger, Austria, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2001 (2002)",
+        "doi": null
     }
 },
 {
@@ -285,6 +326,7 @@
         "abbreviation": "OGH",
         "is_high_court": true,
         "partial_legal_system": 1,
+        "ecli_abbr": null,
         "orig_data_csv": "{\"gericht_id\": 1, \"gericht_bezeichnung\": \"Oberster Gerichtshof (Supreme Court)\", \"gericht_kurzbezeichnung\": \"OGH\", \"gericht_hoechstgericht\": 1, \"gericht_staat\": 1, \"gericht_teilrechtsordnung\": 1}"
     }
 },

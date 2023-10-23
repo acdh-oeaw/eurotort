@@ -29,12 +29,15 @@ class YearBook(models.Model):
         is_public=True,
         arche_prop="hasTitle",
     )
+    doi = models.URLField(
+        blank=True, null=True, verbose_name="DOI", help_text="DOI (URL)"
+    )
 
     class Meta:
         ordering = [
             "title",
         ]
-        verbose_name = "Yearbook"
+        verbose_name = "Bibliographic Item"
 
     def __str__(self):
         if self.title:
