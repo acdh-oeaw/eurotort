@@ -484,6 +484,9 @@ class KeyWord(models.Model):
         data_lookup="Stichwort_Bezeichnung",
         arche_prop="hasTitle",
     )
+    introduction = models.TextField(
+        blank=True, null=True, verbose_name="Introduction", help_text="Introduction"
+    )
     part_of = models.ForeignKey(
         "KeyWord",
         related_name="rvn_keyword_part_of_keyword",
@@ -495,6 +498,12 @@ class KeyWord(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Stichwort_Parent",
+    )
+    see_also = models.ManyToManyField(
+        "KeyWord",
+        blank=True,
+        verbose_name="related Keyword",
+        help_text="related Keyword",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
