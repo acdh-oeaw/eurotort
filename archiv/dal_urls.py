@@ -30,7 +30,12 @@ urlpatterns = [
     ),
     path(
         "tag-autocomplete",
-        dal_views.YearBookAC.as_view(),
+        dal_views.TagAC.as_view(create_field="tag", validate_create=True),
         name="tag-autocomplete",
+    ),
+    path(
+        "tag-filter-autocomplete",
+        dal_views.TagAC.as_view(),
+        name="tag-no-filter-autocomplete",
     ),
 ]

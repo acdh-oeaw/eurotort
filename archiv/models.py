@@ -783,6 +783,12 @@ class Tag(models.Model):
         blank=True, null=True, max_length=300, verbose_name="Tag", help_text="Tag"
     )
 
+    class Meta:
+        ordering = [
+            "tag",
+        ]
+        verbose_name = "Tag"
+
     def __str__(self):
         return f"{self.tag}"
 

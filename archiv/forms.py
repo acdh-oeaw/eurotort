@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from crispy_forms.bootstrap import AccordionGroup
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
+from dal import autocomplete
 
 from .models import (
     Court,
@@ -116,6 +117,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "commentary",
                     "additional_information",
                     "keyword",
+                    "tag",
                     "author",
                     css_id="more",
                 ),
@@ -130,6 +132,9 @@ class CourtDecissionForm(forms.ModelForm):
         exclude = [
             "vector_column",
         ]
+        widgets = {
+            "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
+        }
 
     def __init__(self, *args, **kwargs):
         super(CourtDecissionForm, self).__init__(*args, **kwargs)

@@ -95,6 +95,14 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:yearbook-autocomplete",
         ),
     )
+    tag = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects.all(),
+        help_text=CourtDecission._meta.get_field("tag").help_text,
+        label=CourtDecission._meta.get_field("tag").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:tag-no-filter-autocomplete",
+        ),
+    )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
         help_text=CourtDecission._meta.get_field("partial_legal_system").help_text,
@@ -229,6 +237,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "commentary",
             "additional_information",
             "keyword",
+            "tag",
             "author",
             "year_book_title",
         ]
