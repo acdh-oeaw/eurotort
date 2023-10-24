@@ -44,6 +44,13 @@
         </div>
     </div>
     <div class="card-body container">
+        
+        {% if object.doi %}
+        <div class="text-center">
+            <h2>DOI</h2>
+            <a href="{{ object.doi }}">{{ object.doi }}</a>
+        </div>
+        {% endif %}
 
         {% with courtdecissions=object.related_court_decission %}
         <h2>{{ courtdecissions.count }} quoted Court Decissions</h2>

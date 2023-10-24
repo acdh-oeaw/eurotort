@@ -44,6 +44,12 @@
         </div>
     </div>
     <div class="card-body container">
+        {% if object.introduction %}
+        <h2>Part of</h2>
+        <p class="ps-5">
+            {{ object.introduction }}
+        </p>
+        {% endif %}
         {% if object.part_of %}
         <h2>Part of</h2>
         <p class="ps-5">
@@ -53,7 +59,7 @@
             </a>
         </p>
         {% endif %}
-        {% if object.rvn_keyword_part_of_keyword %}
+        {% if object.rvn_keyword_part_of_keyword.all %}
         <h2>has Children</h2>
         <p class="ps-5">
             <ul>
