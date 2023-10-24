@@ -290,7 +290,7 @@
         "legacy_id": "151.0",
         "legacy_pk": 151,
         "name": "Experts",
-        "introduction": null,
+        "introduction": "Here some clever introduction/definition of the term \"Experts\"",
         "part_of": 144,
         "orig_data_csv": "{\"stichwort_id\": 151, \"stichwort_parent\": 146, \"stichwort_bezeichnung\": \"Experts\"}",
         "see_also": []
