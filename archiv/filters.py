@@ -5,13 +5,13 @@ from django.contrib.postgres.search import SearchQuery, SearchHeadline, SearchRa
 from dal import autocomplete
 
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 START_SELECTOR = '<span class="text-nowrap bg-warning border-warning rounded border-5">'
@@ -36,28 +36,6 @@ class YearBookListFilter(django_filters.FilterSet):
         ]
 
 
-class CountryListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Country._meta.get_field("legacy_id").help_text,
-        label=Country._meta.get_field("legacy_id").verbose_name,
-    )
-    name = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Country._meta.get_field("name").help_text,
-        label=Country._meta.get_field("name").verbose_name,
-    )
-
-    class Meta:
-        model = Country
-        fields = [
-            "id",
-            "legacy_id",
-            "legacy_pk",
-            "name",
-        ]
-
-
 class CourtListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
         lookup_expr="icontains",
@@ -74,14 +52,7 @@ class CourtListFilter(django_filters.FilterSet):
         help_text=Court._meta.get_field("abbreviation").help_text,
         label=Court._meta.get_field("abbreviation").verbose_name,
     )
-    country = django_filters.ModelMultipleChoiceFilter(
-        queryset=Country.objects.all(),
-        help_text=Court._meta.get_field("country").help_text,
-        label=Court._meta.get_field("country").verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:country-autocomplete",
-        ),
-    )
+
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
         help_text=Court._meta.get_field("partial_legal_system").help_text,
@@ -100,7 +71,6 @@ class CourtListFilter(django_filters.FilterSet):
             "name",
             "abbreviation",
             "is_high_court",
-            "country",
             "partial_legal_system",
         ]
 
@@ -117,20 +87,20 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("legacy_id").help_text,
         label=CourtDecission._meta.get_field("legacy_id").verbose_name,
     )
-    country = django_filters.ModelMultipleChoiceFilter(
-        queryset=Country.objects.all(),
-        help_text=CourtDecission._meta.get_field("country").help_text,
-        label=CourtDecission._meta.get_field("country").verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:country-autocomplete",
-        ),
-    )
     year_book_title = django_filters.ModelMultipleChoiceFilter(
         queryset=YearBook.objects.all(),
         help_text=CourtDecission._meta.get_field("year_book_title").help_text,
         label=CourtDecission._meta.get_field("year_book_title").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:yearbook-autocomplete",
+        ),
+    )
+    tag = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects.all(),
+        help_text=CourtDecission._meta.get_field("tag").help_text,
+        label=CourtDecission._meta.get_field("tag").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:tag-no-filter-autocomplete",
         ),
     )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(
@@ -255,7 +225,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "legacy_id",
             "legacy_pk",
             "ft_search",
-            "country",
             "partial_legal_system",
             "court",
             "decission_date",
@@ -268,6 +237,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "commentary",
             "additional_information",
             "keyword",
+            "tag",
             "author",
             "year_book_title",
         ]
@@ -310,14 +280,6 @@ class PartialLegalSystemListFilter(django_filters.FilterSet):
         help_text=PartialLegalSystem._meta.get_field("legacy_id").help_text,
         label=PartialLegalSystem._meta.get_field("legacy_id").verbose_name,
     )
-    country = django_filters.ModelMultipleChoiceFilter(
-        queryset=Country.objects.all(),
-        help_text=PartialLegalSystem._meta.get_field("country").help_text,
-        label=PartialLegalSystem._meta.get_field("country").verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:country-autocomplete",
-        ),
-    )
     name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=PartialLegalSystem._meta.get_field("name").help_text,
@@ -330,7 +292,6 @@ class PartialLegalSystemListFilter(django_filters.FilterSet):
             "id",
             "legacy_id",
             "legacy_pk",
-            "country",
             "name",
         ]
 
@@ -351,17 +312,12 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field("first_name").help_text,
         label=Person._meta.get_field("first_name").verbose_name,
     )
-    cv = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Person._meta.get_field("cv").help_text,
-        label=Person._meta.get_field("cv").verbose_name,
-    )
-    nationality = django_filters.ModelMultipleChoiceFilter(
-        queryset=Country.objects.all(),
-        help_text=Person._meta.get_field("nationality").help_text,
-        label=Person._meta.get_field("nationality").verbose_name,
+    partial_legal_system = django_filters.ModelMultipleChoiceFilter(
+        queryset=PartialLegalSystem.objects.all(),
+        help_text=Person._meta.get_field("legal_system").help_text,
+        label=Person._meta.get_field("legal_system").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:country-autocomplete",
+            url="archiv-ac:partiallegalsystem-autocomplete",
         ),
     )
 
@@ -373,6 +329,20 @@ class PersonListFilter(django_filters.FilterSet):
             "legacy_pk",
             "last_name",
             "first_name",
-            "cv",
-            "nationality",
+            "partial_legal_system",
+        ]
+
+
+class TagListFilter(django_filters.FilterSet):
+    tag = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Tag._meta.get_field("tag").help_text,
+        label=Tag._meta.get_field("tag").verbose_name,
+    )
+
+    class Meta:
+        model = Tag
+        fields = [
+            "id",
+            "tag",
         ]

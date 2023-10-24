@@ -3,13 +3,13 @@ import django_tables2 as tables
 
 from browsing.browsing_utils import MergeColumn
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -36,16 +36,6 @@ class YearBookTable(tables.Table):
 
     class Meta:
         model = YearBook
-        sequence = ("id",)
-        attrs = {"class": "table table-responsive table-hover"}
-
-
-class CountryTable(tables.Table):
-    id = tables.LinkColumn(verbose_name="ID")
-    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
-
-    class Meta:
-        model = Country
         sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
@@ -104,5 +94,15 @@ class PersonTable(tables.Table):
 
     class Meta:
         model = Person
+        sequence = ("id",)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class TagTable(tables.Table):
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+
+    class Meta:
+        model = Tag
         sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}

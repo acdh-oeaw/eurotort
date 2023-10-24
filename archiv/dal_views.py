@@ -2,13 +2,13 @@
 from django.db.models import Q
 from dal import autocomplete
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -18,15 +18,6 @@ class YearBookAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(title__icontains=self.q)
-        return qs
-
-
-class CountryAC(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Country.objects.all()
-
-        if self.q:
-            qs = qs.filter(Q(legacy_id__icontains=self.q) | Q(name__icontains=self.q))
         return qs
 
 
@@ -44,9 +35,7 @@ class CourtDecissionAC(autocomplete.Select2QuerySetView):
         qs = CourtDecission.objects.all()
 
         if self.q:
-            qs = qs.filter(
-                Q(legacy_id__icontains=self.q) | Q(legacy_pk__icontains=self.q)
-            )
+            qs = qs.filter(Q(id__icontains=self.q) | Q(legacy_pk__icontains=self.q))
         return qs
 
 
@@ -55,7 +44,7 @@ class KeyWordAC(autocomplete.Select2QuerySetView):
         qs = KeyWord.objects.all()
 
         if self.q:
-            qs = qs.filter(Q(legacy_id__icontains=self.q) | Q(name__icontains=self.q))
+            qs = qs.filter(Q(id__icontains=self.q) | Q(name__icontains=self.q))
         return qs
 
 
@@ -64,9 +53,7 @@ class PartialLegalSystemAC(autocomplete.Select2QuerySetView):
         qs = PartialLegalSystem.objects.all()
 
         if self.q:
-            qs = qs.filter(
-                Q(legacy_id__icontains=self.q) | Q(legacy_pk__icontains=self.q)
-            )
+            qs = qs.filter(Q(name__icontains=self.q) | Q(id__icontains=self.q))
         return qs
 
 
@@ -76,6 +63,15 @@ class PersonAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(legacy_id__icontains=self.q) | Q(last_name__icontains=self.q)
+                Q(first_name__icontains=self.q) | Q(last_name__icontains=self.q)
             )
+        return qs
+
+
+class TagAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Tag.objects.all()
+
+        if self.q:
+            qs = qs.filter(Q(tag__icontains=self.q) | Q(id__icontains=self.q))
         return qs

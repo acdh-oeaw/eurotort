@@ -44,19 +44,10 @@
         </div>
     </div>
     <div class="card-body container">
-        {% if object.cv %}
-        <h2>CV</h2>
-        <p class="ps-5">{{ object.cv }}</p>
-        {% endif %}
-        <h2>Nationality</h2>
-        <p class="ps-5">{{ object.nationality }}</p>
         {% with courtdecissions=object.rvn_courtdecission_author_person %}
         <h2>{{ courtdecissions.count }} Edited Court Decissions</h2>
             {% include "archiv/partials/courtdecission_table.html" %}
         {% endwith %}
-
-               
-               
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">

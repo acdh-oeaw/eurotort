@@ -44,37 +44,13 @@
         </div>
     </div>
     <div class="card-body container">
-        <h2>Courts</h2>
-        <p class="ps-5">
-        <ul>
-            {% for x in object.rvn_court_country_country.all %}
-            <li>
-                {{ x }}
-                <a href="{{ x.get_absolute_url }}">
-                    <i class="bi bi bi-link-45deg"></i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        </p>
-
-        <h2>Legal Systems</h2>
-        <p class="ps-5">
-        <ul>
-            {% for x in object.rvn_partiallegalsystem_country_country.all %}
-            <li>
-                {{ x }}
-                <a href="{{ x.get_absolute_url }}">
-                    <i class="bi bi bi-link-45deg"></i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        </p>
-        {% with courtdecissions=object.rvn_courtdecission_country_country %}
-        <h2>{{ courtdecissions.count }} related Court Decissions</h2>
-        {% include "archiv/partials/courtdecission_table.html" %}
+        {% with courtdecissions=object.has_related_keywords %}
+        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
+            {% include "archiv/partials/courtdecission_table.html" %}
         {% endwith %}
+
+               
+               
     </div>
     {% if user.is_authenticated %}
     <div class="card-footer">

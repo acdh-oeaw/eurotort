@@ -4,17 +4,15 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from .filters import (
-    CountryListFilter,
     CourtListFilter,
     CourtDecissionListFilter,
     KeyWordListFilter,
     PartialLegalSystemListFilter,
     PersonListFilter,
     YearBookListFilter,
+    TagListFilter,
 )
 from .forms import (
-    CountryForm,
-    CountryFilterFormHelper,
     CourtForm,
     CourtFilterFormHelper,
     CourtDecissionForm,
@@ -27,24 +25,26 @@ from .forms import (
     PersonFilterFormHelper,
     YearBookFilterFormHelper,
     YearBookForm,
+    TagFilterFormHelper,
+    TagForm,
 )
 from .tables import (
-    CountryTable,
     CourtTable,
     CourtDecissionTable,
     KeyWordTable,
     PartialLegalSystemTable,
     PersonTable,
     YearBookTable,
+    TagTable,
 )
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 from browsing.browsing_utils import (
     GenericListView,
@@ -52,51 +52,6 @@ from browsing.browsing_utils import (
     BaseUpdateView,
     BaseDetailView,
 )
-
-
-class CountryListView(GenericListView):
-    model = Country
-    filter_class = CountryListFilter
-    formhelper_class = CountryFilterFormHelper
-    table_class = CountryTable
-    init_columns = [
-        "id",
-        "name",
-    ]
-    enable_merge = True
-
-
-class CountryDetailView(BaseDetailView):
-    model = Country
-    template_name = "archiv/country_detail.html"
-
-
-class CountryCreate(BaseCreateView):
-    model = Country
-    form_class = CountryForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryCreate, self).dispatch(*args, **kwargs)
-
-
-class CountryUpdate(BaseUpdateView):
-    model = Country
-    form_class = CountryForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryUpdate, self).dispatch(*args, **kwargs)
-
-
-class CountryDelete(DeleteView):
-    model = Country
-    template_name = "webpage/confirm_delete.html"
-    success_url = reverse_lazy("archiv:country_browse")
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CountryDelete, self).dispatch(*args, **kwargs)
 
 
 class CourtListView(GenericListView):
@@ -372,3 +327,48 @@ class YearBookDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(YearBookDelete, self).dispatch(*args, **kwargs)
+
+
+class TagListView(GenericListView):
+    model = Tag
+    filter_class = TagListFilter
+    formhelper_class = TagFilterFormHelper
+    table_class = TagTable
+    init_columns = [
+        "id",
+        "name",
+    ]
+    enable_merge = True
+
+
+class TagDetailView(BaseDetailView):
+    model = Tag
+    template_name = "archiv/tag_detail.html"
+
+
+class TagCreate(BaseCreateView):
+    model = Tag
+    form_class = TagForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagCreate, self).dispatch(*args, **kwargs)
+
+
+class TagUpdate(BaseUpdateView):
+    model = Tag
+    form_class = TagForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagUpdate, self).dispatch(*args, **kwargs)
+
+
+class TagDelete(DeleteView):
+    model = Tag
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:tag_browse")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagDelete, self).dispatch(*args, **kwargs)

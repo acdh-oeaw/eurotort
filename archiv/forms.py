@@ -4,15 +4,16 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from crispy_forms.bootstrap import AccordionGroup
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
+from dal import autocomplete
 
 from .models import (
-    Country,
     Court,
     CourtDecission,
     KeyWord,
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -48,40 +49,6 @@ class YearBookForm(forms.ModelForm):
         )
 
 
-class CountryFilterFormHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(CountryFilterFormHelper, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.form_class = "genericFilterForm"
-        self.form_method = "GET"
-        self.form_tag = False
-        self.layout = Layout(
-            BS5Accordion(
-                AccordionGroup(
-                    "Basic Search", "id", "legacy_pk", "name", css_id="more"
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
-            )
-        )
-
-
-class CountryForm(forms.ModelForm):
-    class Meta:
-        model = Country
-        fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super(CountryForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = "form-horizontal"
-        self.helper.label_class = "col-md-3"
-        self.helper.field_class = "col-md-9"
-        self.helper.add_input(
-            Submit("submit", "save"),
-        )
-
-
 class CourtFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(CourtFilterFormHelper, self).__init__(*args, **kwargs)
@@ -98,7 +65,6 @@ class CourtFilterFormHelper(FormHelper):
                     "name",
                     "abbreviation",
                     "is_high_court",
-                    "country",
                     "partial_legal_system",
                     css_id="more",
                 ),
@@ -138,7 +104,6 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "id",
                     "ft_search",
                     "legacy_pk",
-                    "country",
                     "partial_legal_system",
                     "court",
                     "year_book_title",
@@ -152,6 +117,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "commentary",
                     "additional_information",
                     "keyword",
+                    "tag",
                     "author",
                     css_id="more",
                 ),
@@ -166,6 +132,9 @@ class CourtDecissionForm(forms.ModelForm):
         exclude = [
             "vector_column",
         ]
+        widgets = {
+            "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
+        }
 
     def __init__(self, *args, **kwargs):
         super(CourtDecissionForm, self).__init__(*args, **kwargs)
@@ -231,7 +200,6 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
                     "Basic Search",
                     "id",
                     "legacy_pk",
-                    "country",
                     "name",
                     css_id="more",
                 ),
@@ -272,8 +240,6 @@ class PersonFilterFormHelper(FormHelper):
                     "legacy_pk",
                     "last_name",
                     "first_name",
-                    "cv",
-                    "nationality",
                     css_id="more",
                 ),
                 AccordionGroup("admin", "legacy_id", css_id="admin_search"),
@@ -288,6 +254,44 @@ class PersonForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
+
+
+class TagFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(TagFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
+        self.form_tag = False
+        self.layout = Layout(
+            BS5Accordion(
+                AccordionGroup(
+                    "Basic Search",
+                    "id",
+                    "tag",
+                    "last_name",
+                    "first_name",
+                    css_id="more",
+                ),
+            )
+        )
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(TagForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"

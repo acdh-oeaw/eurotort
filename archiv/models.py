@@ -29,12 +29,15 @@ class YearBook(models.Model):
         is_public=True,
         arche_prop="hasTitle",
     )
+    doi = models.URLField(
+        blank=True, null=True, verbose_name="DOI", help_text="DOI (URL)"
+    )
 
     class Meta:
         ordering = [
             "title",
         ]
-        verbose_name = "Yearbook"
+        verbose_name = "Bibliographic Item"
 
     def __str__(self):
         if self.title:
@@ -79,87 +82,6 @@ class YearBook(models.Model):
         return False
 
 
-class Country(models.Model):
-    """Country"""
-
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Staat_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
-    name = models.CharField(
-        max_length=250,
-        blank=True,
-        verbose_name="Name",
-        help_text="Name",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Staat_Bezeichnung",
-        arche_prop="hasTitle",
-    )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
-
-    class Meta:
-        ordering = [
-            "name",
-        ]
-        verbose_name = "Country"
-
-    def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
-        else:
-            return "{}".format(self.legacy_id)
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:country_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "tb_staat.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:country_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:country_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:country_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:country_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return reverse("archiv:country_detail", kwargs={"pk": next.id})
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return reverse("archiv:country_detail", kwargs={"pk": prev.id})
-        return False
-
-
 class Court(models.Model):
     """Court"""
 
@@ -198,23 +120,11 @@ class Court(models.Model):
         default=False,
         blank=True,
         null=True,
-        verbose_name="High Court",
-        help_text="High Court",
+        verbose_name="Highest Court",
+        help_text="Highest Court",
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
-    )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_court_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Gericht_Staat",
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
@@ -222,11 +132,18 @@ class Court(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Partial Legal System",
-        help_text="Partial Legal System",
+        verbose_name="Legalsystem",
+        help_text="Legalsystem",
     ).set_extra(
         is_public=True,
         data_lookup="Gericht_Teilrechtsordnung",
+    )
+    ecli_abbr = models.CharField(
+        max_length=7,
+        blank=True,
+        null=True,
+        verbose_name="ECLI court code",
+        help_text="ECLI court code",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -286,7 +203,7 @@ class Court(models.Model):
 
 
 class CourtDecission(models.Model):
-    """CourtDecission"""
+    """Decision"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -298,18 +215,6 @@ class CourtDecission(models.Model):
         is_public=False,
         data_lookup="Entscheidung_Id",
         arche_prop="hasNonLinkedIdentifier",
-    )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_courtdecission_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Staat",
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
@@ -339,7 +244,7 @@ class CourtDecission(models.Model):
         blank=True,
         null=True,
         verbose_name="Date",
-        help_text="Date",
+        help_text="Date of decision",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Datum",
@@ -347,8 +252,8 @@ class CourtDecission(models.Model):
     file_number = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="File Number",
-        help_text="File Number",
+        verbose_name="Case number",
+        help_text="Case number",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Aktenzahl",
@@ -366,8 +271,8 @@ class CourtDecission(models.Model):
     location = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Decission Location",
-        help_text="Decission Location",
+        verbose_name="reported in",
+        help_text="reported in",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Fundstelle",
@@ -391,8 +296,8 @@ class CourtDecission(models.Model):
     short_description = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Short Description",
-        help_text="Short Description",
+        verbose_name="Brief description",
+        help_text="Brief description",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
@@ -401,8 +306,8 @@ class CourtDecission(models.Model):
     situation = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Sachverhalt",
-        help_text="Sachverhalt",
+        verbose_name="Facst",
+        help_text="Brief summary of the facst",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Sachverhalt",
@@ -410,8 +315,8 @@ class CourtDecission(models.Model):
     motto = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Leitsatz",
-        help_text="Sachverhalt",
+        verbose_name="Decision",
+        help_text="Decision of the court",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Leitsatz",
@@ -419,8 +324,8 @@ class CourtDecission(models.Model):
     commentary = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Commentary",
+        help_text="Commentary",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kommentar",
@@ -428,8 +333,8 @@ class CourtDecission(models.Model):
     additional_information = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Zusatzinfo",
-        help_text="Zusatzinfo",
+        verbose_name="Additional Information",
+        help_text="Additional Information",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Zusatzinfo",
@@ -442,17 +347,30 @@ class CourtDecission(models.Model):
         help_text="Keywords",
     ).set_extra(
         is_public=True,
-        arche_prop="hasAuthor",
+    )
+    tag = models.ManyToManyField(
+        "Tag",
+        related_name="has_related_keywords",
+        blank=True,
+        verbose_name="Tags",
+        help_text="Tags",
     )
     author = models.ManyToManyField(
         "Person",
         related_name="rvn_courtdecission_author_person",
         blank=True,
-        verbose_name="AutorIn",
-        help_text="AutorIn",
+        verbose_name="Authors",
+        help_text="Authors",
     ).set_extra(
         is_public=True,
         arche_prop="hasSubject",
+    )
+    ecli = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="ECLI",
+        help_text="European Case Law Identifier",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -469,7 +387,7 @@ class CourtDecission(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "CourtDecission"
+        verbose_name = "Decision"
         indexes = (GinIndex(fields=["vector_column"]),)
 
     def save(self, *args, **kwargs):
@@ -478,9 +396,11 @@ class CourtDecission(models.Model):
 
     def __str__(self):
         if self.file_number and self.party:
-            return f"{self.file_number},»{self.party}«"
+            return f"{self.party}, {self.file_number}"
         elif self.file_number:
             return f"{self.file_number}"
+        elif self.party:
+            return f"{self.party}"
         else:
             return f"{self.id}"
 
@@ -573,6 +493,9 @@ class KeyWord(models.Model):
         data_lookup="Stichwort_Bezeichnung",
         arche_prop="hasTitle",
     )
+    introduction = models.TextField(
+        blank=True, null=True, verbose_name="Introduction", help_text="Introduction"
+    )
     part_of = models.ForeignKey(
         "KeyWord",
         related_name="rvn_keyword_part_of_keyword",
@@ -585,6 +508,12 @@ class KeyWord(models.Model):
         is_public=True,
         data_lookup="Stichwort_Parent",
     )
+    see_also = models.ManyToManyField(
+        "KeyWord",
+        blank=True,
+        verbose_name="related Keyword",
+        help_text="related Keyword",
+    )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
@@ -596,10 +525,12 @@ class KeyWord(models.Model):
         verbose_name = "KeyWord"
 
     def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
+        if self.name and self.part_of:
+            return f"{self.part_of} >> {self.name}"
+        elif self.name:
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -643,7 +574,7 @@ class KeyWord(models.Model):
 
 
 class PartialLegalSystem(models.Model):
-    """PartialLegalSystem"""
+    """Legal system"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -656,18 +587,6 @@ class PartialLegalSystem(models.Model):
         data_lookup="Teilrecht_Id",
         arche_prop="hasNonLinkedIdentifier",
     )
-    country = models.ForeignKey(
-        "Country",
-        related_name="rvn_partiallegalsystem_country_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="country",
-        help_text="Country",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Teilrecht_Staat",
-    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -677,6 +596,19 @@ class PartialLegalSystem(models.Model):
         is_public=True,
         data_lookup="Teilrecht_Bezeichnung",
     )
+    ecli_abbr = models.CharField(
+        max_length=2,
+        blank=True,
+        null=True,
+        verbose_name="ECLI country code",
+        help_text="ECLI country code",
+    )
+    link_to_legal_db = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name="Link to legal db",
+        help_text="Link to legal db",
+    )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
@@ -685,11 +617,11 @@ class PartialLegalSystem(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "PartialLegalSystem"
+        verbose_name = "Legal System"
 
     def __str__(self):
-        if self.name and self.country:
-            return f"{self.name} ({self.country})"
+        if self.name:
+            return f"{self.name}"
         else:
             return f"{self.id}"
 
@@ -768,27 +700,24 @@ class Person(models.Model):
         data_lookup="Autor_Vorname",
         arche_prop="hasFirstName",
     )
-    cv = models.TextField(
+    legal_system = models.ManyToManyField(
+        "PartialLegalSystem",
+        related_name="has_related_author",
         blank=True,
-        null=True,
-        verbose_name="Curriculum Vitae",
-        help_text="Curriculum Vitae",
+        verbose_name="Legalsystem",
+        help_text="Legalsystem",
     ).set_extra(
         is_public=True,
-        data_lookup="Autor_CV",
-        arche_prop="hasDescription",
+        arche_prop="hasAuthor",
     )
-    nationality = models.ForeignKey(
-        "Country",
-        related_name="rvn_person_nationality_country",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Nationality",
-        help_text="Nationality",
+    contact = models.EmailField(
+        blank=True, verbose_name="Contact", help_text="Email address"
+    )
+    orcid = models.URLField(
+        blank=True, verbose_name="ORCID", help_text="ORCID (as URL)"
     ).set_extra(
         is_public=True,
-        data_lookup="Autor_Staat",
+        arche_prop="hasIdentifier",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -844,4 +773,57 @@ class Person(models.Model):
         prev = prev_in_order(self)
         if prev:
             return reverse("archiv:person_detail", kwargs={"pk": prev.id})
+        return False
+
+
+class Tag(models.Model):
+    """Tag"""
+
+    tag = models.CharField(
+        blank=True, null=True, max_length=300, verbose_name="Tag", help_text="Tag"
+    )
+
+    class Meta:
+        ordering = [
+            "tag",
+        ]
+        verbose_name = "Tag"
+
+    def __str__(self):
+        return f"{self.tag}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse("archiv:person_browse")
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "tag"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse("archiv:tag_create")
+
+    def get_absolute_url(self):
+        return reverse("archiv:tag_detail", kwargs={"pk": self.id})
+
+    def get_delete_url(self):
+        return reverse("archiv:tag_delete", kwargs={"pk": self.id})
+
+    def get_edit_url(self):
+        return reverse("archiv:tag_edit", kwargs={"pk": self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return reverse("archiv:tag_detail", kwargs={"pk": next.id})
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return reverse("archiv:tag_detail", kwargs={"pk": prev.id})
         return False

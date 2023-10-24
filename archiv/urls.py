@@ -4,17 +4,6 @@ from . import views
 
 app_name = "archiv"
 urlpatterns = [
-    path("country/", views.CountryListView.as_view(), name="country_browse"),
-    path(
-        "country/detail/<int:pk>",
-        views.CountryDetailView.as_view(),
-        name="country_detail",
-    ),
-    path("country/create/", views.CountryCreate.as_view(), name="country_create"),
-    path("country/edit/<int:pk>", views.CountryUpdate.as_view(), name="country_edit"),
-    path(
-        "country/delete/<int:pk>", views.CountryDelete.as_view(), name="country_delete"
-    ),
     path("court/", views.CourtListView.as_view(), name="court_browse"),
     path("court/detail/<int:pk>", views.CourtDetailView.as_view(), name="court_detail"),
     path("court/create/", views.CourtCreate.as_view(), name="court_create"),
@@ -103,4 +92,9 @@ urlpatterns = [
     path("person/create/", views.PersonCreate.as_view(), name="person_create"),
     path("person/edit/<int:pk>", views.PersonUpdate.as_view(), name="person_edit"),
     path("person/delete/<int:pk>", views.PersonDelete.as_view(), name="person_delete"),
+    path("tag/", views.TagListView.as_view(), name="tag_browse"),
+    path("tag/detail/<int:pk>", views.TagDetailView.as_view(), name="tag_detail"),
+    path("tag/create/", views.TagCreate.as_view(), name="tag_create"),
+    path("tag/edit/<int:pk>", views.TagUpdate.as_view(), name="tag_edit"),
+    path("tag/delete/<int:pk>", views.TagDelete.as_view(), name="tag_delete"),
 ]
