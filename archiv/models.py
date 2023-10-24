@@ -347,7 +347,13 @@ class CourtDecission(models.Model):
         help_text="Keywords",
     ).set_extra(
         is_public=True,
-        arche_prop="hasAuthor",
+    )
+    tag = models.ManyToManyField(
+        "Tag",
+        related_name="has_related_keywords",
+        blank=True,
+        verbose_name="Tags",
+        help_text="Tags",
     )
     author = models.ManyToManyField(
         "Person",
@@ -767,4 +773,51 @@ class Person(models.Model):
         prev = prev_in_order(self)
         if prev:
             return reverse("archiv:person_detail", kwargs={"pk": prev.id})
+        return False
+
+
+class Tag(models.Model):
+    """Tag"""
+
+    tag = models.CharField(
+        blank=True, null=True, max_length=300, verbose_name="Tag", help_text="Tag"
+    )
+
+    def __str__(self):
+        return f"{self.tag}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse("archiv:person_browse")
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "tag"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse("archiv:tag_create")
+
+    def get_absolute_url(self):
+        return reverse("archiv:tag_detail", kwargs={"pk": self.id})
+
+    def get_delete_url(self):
+        return reverse("archiv:tag_delete", kwargs={"pk": self.id})
+
+    def get_edit_url(self):
+        return reverse("archiv:tag_edit", kwargs={"pk": self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return reverse("archiv:tag_detail", kwargs={"pk": next.id})
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return reverse("archiv:tag_detail", kwargs={"pk": prev.id})
         return False

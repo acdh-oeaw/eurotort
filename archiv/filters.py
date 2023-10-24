@@ -11,6 +11,7 @@ from .models import (
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 START_SELECTOR = '<span class="text-nowrap bg-warning border-warning rounded border-5">'
@@ -320,4 +321,19 @@ class PersonListFilter(django_filters.FilterSet):
             "last_name",
             "first_name",
             "partial_legal_system",
+        ]
+
+
+class TagListFilter(django_filters.FilterSet):
+    tag = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=Tag._meta.get_field("tag").help_text,
+        label=Tag._meta.get_field("tag").verbose_name,
+    )
+
+    class Meta:
+        model = Tag
+        fields = [
+            "id",
+            "tag",
         ]

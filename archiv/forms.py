@@ -12,6 +12,7 @@ from .models import (
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -248,6 +249,44 @@ class PersonForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
+
+
+class TagFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(TagFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
+        self.form_tag = False
+        self.layout = Layout(
+            BS5Accordion(
+                AccordionGroup(
+                    "Basic Search",
+                    "id",
+                    "tag",
+                    "last_name",
+                    "first_name",
+                    css_id="more",
+                ),
+            )
+        )
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(TagForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"

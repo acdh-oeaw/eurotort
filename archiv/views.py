@@ -10,6 +10,7 @@ from .filters import (
     PartialLegalSystemListFilter,
     PersonListFilter,
     YearBookListFilter,
+    TagListFilter,
 )
 from .forms import (
     CourtForm,
@@ -24,6 +25,8 @@ from .forms import (
     PersonFilterFormHelper,
     YearBookFilterFormHelper,
     YearBookForm,
+    TagFilterFormHelper,
+    TagForm,
 )
 from .tables import (
     CourtTable,
@@ -32,6 +35,7 @@ from .tables import (
     PartialLegalSystemTable,
     PersonTable,
     YearBookTable,
+    TagTable,
 )
 from .models import (
     Court,
@@ -40,6 +44,7 @@ from .models import (
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 from browsing.browsing_utils import (
     GenericListView,
@@ -322,3 +327,48 @@ class YearBookDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(YearBookDelete, self).dispatch(*args, **kwargs)
+
+
+class TagListView(GenericListView):
+    model = Tag
+    filter_class = TagListFilter
+    formhelper_class = TagFilterFormHelper
+    table_class = TagTable
+    init_columns = [
+        "id",
+        "name",
+    ]
+    enable_merge = True
+
+
+class TagDetailView(BaseDetailView):
+    model = Tag
+    template_name = "archiv/tag_detail.html"
+
+
+class TagCreate(BaseCreateView):
+    model = Tag
+    form_class = TagForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagCreate, self).dispatch(*args, **kwargs)
+
+
+class TagUpdate(BaseUpdateView):
+    model = Tag
+    form_class = TagForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagUpdate, self).dispatch(*args, **kwargs)
+
+
+class TagDelete(DeleteView):
+    model = Tag
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:tag_browse")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TagDelete, self).dispatch(*args, **kwargs)

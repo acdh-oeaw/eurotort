@@ -28,4 +28,9 @@ urlpatterns = [
         dal_views.YearBookAC.as_view(),
         name="yearbook-autocomplete",
     ),
+    path(
+        "tag-autocomplete",
+        dal_views.YearBookAC.as_view(),
+        name="tag-autocomplete",
+    ),
 ]

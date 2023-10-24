@@ -9,6 +9,7 @@ from .models import (
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -93,5 +94,15 @@ class PersonTable(tables.Table):
 
     class Meta:
         model = Person
+        sequence = ("id",)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class TagTable(tables.Table):
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+
+    class Meta:
+        model = Tag
         sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}

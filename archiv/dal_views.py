@@ -8,6 +8,7 @@ from .models import (
     PartialLegalSystem,
     Person,
     YearBook,
+    Tag,
 )
 
 
@@ -64,4 +65,13 @@ class PersonAC(autocomplete.Select2QuerySetView):
             qs = qs.filter(
                 Q(first_name__icontains=self.q) | Q(last_name__icontains=self.q)
             )
+        return qs
+
+
+class TagAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Tag.objects.all()
+
+        if self.q:
+            qs = qs.filter(Q(tag__icontains=self.q) | Q(id__icontains=self.q))
         return qs
