@@ -98,6 +98,11 @@
                     <dd class="ms-5"><span class="badge rounded-pill text-bg-success ">{{ x }}</span> <a
                             href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
                     {% endfor %}
+                    <dt>Related Cases</dt>
+                    {% for x in object.related_decision.all %}
+                    <dd class="ms-5"><span class="badge rounded-pill text-bg-warning ">{{ x }}</span> <a
+                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                    {% endfor %}
                 </dl>
                 <h2>The Case</h2>
                 <h3>Brief Description</h3>

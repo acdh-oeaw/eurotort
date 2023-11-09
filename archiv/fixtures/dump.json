@@ -13,6 +13,15 @@
     }
 },
 {
+    "model": "archiv.yearbook",
+    "pk": 642,
+    "fields": {
+        "title": "A. Bitāns, Latvia in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2008 (2009)",
+        "doi": null,
+        "part_of": null
+    }
+},
+{
     "model": "archiv.keyword",
     "pk": 72,
     "fields": {
@@ -148,7 +157,8 @@
     "pk": 296,
     "fields": {
         "title": "I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006)",
-        "doi": null
+        "doi": "https://doi.org/10.1515/tortlaw-2022-frontmatter1",
+        "part_of": 642
     }
 },
 {
@@ -158,8 +168,10 @@
         "legacy_id": "11.0",
         "legacy_pk": 11,
         "name": "Bruxelles Cour d'Appel (Brussels Court of Appeal)",
+        "name_english": "",
         "abbreviation": "Brussels Court of Appeal",
         "is_high_court": false,
+        "note": null,
         "partial_legal_system": 3,
         "ecli_abbr": null,
         "orig_data_csv": "{\"gericht_id\": 11, \"gericht_bezeichnung\": \"Bruxelles Cour d'Appel (Brussels Court of Appeal)\", \"gericht_kurzbezeichnung\": \"Brussels Court of Appeal\", \"gericht_hoechstgericht\": 0, \"gericht_staat\": 2, \"gericht_teilrechtsordnung\": 2}"
@@ -327,7 +339,8 @@
     "pk": 288,
     "fields": {
         "title": "B.C. Steininger, Austria, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2001 (2002)",
-        "doi": "https://doi.org/10.1515/tortlaw-2022-frontmatter1"
+        "doi": "https://doi.org/10.1515/tortlaw-2022-frontmatter1",
+        "part_of": null
     }
 },
 {
@@ -337,8 +350,10 @@
         "legacy_id": "1.0",
         "legacy_pk": 1,
         "name": "Oberster Gerichtshof (Supreme Court)",
+        "name_english": "",
         "abbreviation": "OGH",
         "is_high_court": true,
+        "note": null,
         "partial_legal_system": 1,
         "ecli_abbr": null,
         "orig_data_csv": "{\"gericht_id\": 1, \"gericht_bezeichnung\": \"Oberster Gerichtshof (Supreme Court)\", \"gericht_kurzbezeichnung\": \"OGH\", \"gericht_hoechstgericht\": 1, \"gericht_staat\": 1, \"gericht_teilrechtsordnung\": 1}"
@@ -387,6 +402,7 @@
             154
         ],
         "tag": [],
+        "related_decision": [],
         "author": [
             2
         ]
@@ -430,6 +446,7 @@
             2,
             1
         ],
+        "related_decision": [],
         "author": [
             1
         ]
