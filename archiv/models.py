@@ -153,7 +153,7 @@ class Court(models.Model):
         ordering = [
             "name",
         ]
-        verbose_name = "Court"
+        verbose_name = "Deciding court"
 
     def __str__(self):
         if self.name:
@@ -203,7 +203,7 @@ class Court(models.Model):
 
 
 class CourtDecission(models.Model):
-    """Decision"""
+    """Case"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -253,7 +253,7 @@ class CourtDecission(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Case number",
-        help_text="Case number",
+        help_text="Case number (file number/reference as cited in the given legal system, e.g. '[2010] UKSC 33' for a UK Supreme Court decision or _VI ZR 548/12' for a German BGH decision)",  # noqa: E501
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Aktenzahl",
@@ -263,7 +263,7 @@ class CourtDecission(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Parties",
-        help_text="Parties",
+        help_text="Parties or name of the case (if cited in the given legal system)",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Parteien",
@@ -271,8 +271,8 @@ class CourtDecission(models.Model):
     location = models.TextField(
         blank=True,
         null=True,
-        verbose_name="reported in",
-        help_text="reported in",
+        verbose_name="Reported in",
+        help_text="Reference to law report or journal reporting the case in a given legal system",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Fundstelle",
@@ -283,8 +283,8 @@ class CourtDecission(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Year Book",
-        help_text="Published in Year Book",
+        verbose_name="Bibliographic source",
+        help_text="Bibliographic source",
     )
     year_book_issue = models.CharField(
         max_length=250,
@@ -296,8 +296,8 @@ class CourtDecission(models.Model):
     short_description = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Brief description",
-        help_text="Brief description",
+        verbose_name="Subject matter",
+        help_text="Brief information on what the case concerns (for Yearbook cases, this is the headline provided by the author)",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
@@ -306,8 +306,8 @@ class CourtDecission(models.Model):
     situation = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Facst",
-        help_text="Brief summary of the facst",
+        verbose_name="Facts",
+        help_text="Summary of the facts",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Sachverhalt",
@@ -325,7 +325,7 @@ class CourtDecission(models.Model):
         blank=True,
         null=True,
         verbose_name="Commentary",
-        help_text="Commentary",
+        help_text="Commentary by the author",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kommentar",
@@ -333,8 +333,8 @@ class CourtDecission(models.Model):
     additional_information = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Additional Information",
-        help_text="Additional Information",
+        verbose_name="Additional information",
+        help_text="Additional information provided by the author (e.g. related publications, comments etc.)",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Zusatzinfo",
@@ -359,8 +359,8 @@ class CourtDecission(models.Model):
         "Person",
         related_name="rvn_courtdecission_author_person",
         blank=True,
-        verbose_name="Authors",
-        help_text="Authors",
+        verbose_name="Author",
+        help_text="Author",
     ).set_extra(
         is_public=True,
         arche_prop="hasSubject",
@@ -387,7 +387,7 @@ class CourtDecission(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "Decision"
+        verbose_name = "Case"
         indexes = (GinIndex(fields=["vector_column"]),)
 
     def save(self, *args, **kwargs):
@@ -683,8 +683,8 @@ class Person(models.Model):
     last_name = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Last Name",
-        help_text="Last Name",
+        verbose_name="Last name",
+        help_text="Last name",
     ).set_extra(
         is_public=True,
         data_lookup="Autor_Nachname",
@@ -693,8 +693,8 @@ class Person(models.Model):
     first_name = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="First Name",
-        help_text="First Name",
+        verbose_name="First name",
+        help_text="First name",
     ).set_extra(
         is_public=True,
         data_lookup="Autor_Vorname",
@@ -711,7 +711,7 @@ class Person(models.Model):
         arche_prop="hasAuthor",
     )
     contact = models.EmailField(
-        blank=True, verbose_name="Contact", help_text="Email address"
+        blank=True, verbose_name="Contact", help_text="E-mail address"
     )
     orcid = models.URLField(
         blank=True, verbose_name="ORCID", help_text="ORCID (as URL)"
