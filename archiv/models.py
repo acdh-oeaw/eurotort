@@ -23,14 +23,25 @@ class YearBook(models.Model):
     title = models.CharField(
         max_length=500,
         blank=True,
-        verbose_name="Title",
-        help_text="Title",
+        verbose_name="Bibliographic source",
+        help_text="Bibliographic source",
     ).set_extra(
         is_public=True,
         arche_prop="hasTitle",
     )
     doi = models.URLField(
         blank=True, null=True, verbose_name="DOI", help_text="DOI (URL)"
+    )
+    part_of = models.ForeignKey(
+        "YearBook",
+        related_name="has_bibliographic_items",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Parent",
+        help_text="For chapters, select volume here",
+    ).set_extra(
+        is_public=True,
     )
 
     class Meta:
