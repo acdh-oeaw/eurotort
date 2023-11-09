@@ -36,6 +36,9 @@ class YearBookForm(forms.ModelForm):
     class Meta:
         model = YearBook
         fields = "__all__"
+        widgets = {
+            "part_of": autocomplete.ModelSelect2(url="archiv-ac:yearbook-autocomplete")
+        }
 
     def __init__(self, *args, **kwargs):
         super(YearBookForm, self).__init__(*args, **kwargs)
@@ -134,6 +137,18 @@ class CourtDecissionForm(forms.ModelForm):
         ]
         widgets = {
             "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
+            "related_decision": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:courtdecission-autocomplete"
+            ),
+            "author": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:person-autocomplete"
+            ),
+            "keyword": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:keyword-autocomplete"
+            ),
+            "year_book_title": autocomplete.ModelSelect2(
+                url="archiv-ac:yearbook-autocomplete"
+            ),
         }
 
     def __init__(self, *args, **kwargs):

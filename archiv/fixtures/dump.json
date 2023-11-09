@@ -14,9 +14,9 @@
 },
 {
     "model": "archiv.yearbook",
-    "pk": 663,
+    "pk": 642,
     "fields": {
-        "title": "A. Anfinsen & B. Askeland Norway in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2009 (2010)",
+        "title": "A. Bitāns, Latvia in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2008 (2009)",
         "doi": null,
         "part_of": null
     }
@@ -158,7 +158,7 @@
     "fields": {
         "title": "I.C. Durant, Belgium, in: H. Koziol/B.C. Steininger (eds.), European Tort Law 2005 (2006)",
         "doi": "https://doi.org/10.1515/tortlaw-2022-frontmatter1",
-        "part_of": 663
+        "part_of": 642
     }
 },
 {

@@ -44,7 +44,22 @@
         </div>
     </div>
     <div class="card-body container">
-        
+        {% if object.part_of %}
+        <div class="text-center">
+            <h2>Parent Item</h2>
+            <a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a>
+        </div>
+        {% endif %}
+
+        {% if object.has_bibliographic_items.all %}
+        <h2 class="text-center">has bibliographic items</h2>
+        <ul>
+            {% for x in object.has_bibliographic_items.all %}
+            <li> <a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         {% if object.doi %}
         <div class="text-center">
             <h2>DOI</h2>

@@ -56,12 +56,16 @@
         </p>
         {% endif %}
         </p>
+        <h2>Court name (translated)</h2>
+        <p class="ps-5">{{ object.name_english }}</p>
+        {% if object.country %}
         <h2>Country</h2>
         <p class="ps-5">{{ object.country }}
             <a href="{{ object.country.get_absolute_url }}">
                 <i class="bi bi bi-link-45deg"></i>
             </a>
         </p>
+        {% endif %}
         <h2>Legal System</h2>
         <p class="ps-5">
             {{ object.partial_legal_system.name }}
@@ -69,6 +73,8 @@
                 <i class="bi bi bi-link-45deg"></i>
             </a>
         </p>
+        <h2>Optional notes</h2>
+        <p class="ps-5">{{ object.note }}</p>
         {% with courtdecissions=object.rvn_courtdecission_court_court %}
         <h2>{{ courtdecissions.count }} issued Court Decissions</h2>
         {% include "archiv/partials/courtdecission_table.html" %}
