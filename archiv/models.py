@@ -99,8 +99,18 @@ class Court(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Name",
-        help_text="Name",
+        verbose_name="Court",
+        help_text="Court name (in original language)",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Gericht_Bezeichnung",
+        arche_prop="hasTitle",
+    )
+    name_english = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Court name (translated)",
+        help_text="Court name (translated into English)",
     ).set_extra(
         is_public=True,
         data_lookup="Gericht_Bezeichnung",
@@ -121,10 +131,18 @@ class Court(models.Model):
         blank=True,
         null=True,
         verbose_name="Highest Court",
-        help_text="Highest Court",
+        help_text="True, if court is a highest court in a country",
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
+    )
+    note = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Notes",
+        help_text="Optional notes",
+    ).set_extra(
+        is_public=True,
     )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
@@ -297,7 +315,7 @@ class CourtDecission(models.Model):
         blank=True,
         null=True,
         verbose_name="Subject matter",
-        help_text="Brief information on what the case concerns (for Yearbook cases, this is the headline provided by the author)",
+        help_text="Brief information on what the case concerns (for Yearbook cases, this is the headline provided by the author)",  # noqa: E501
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
@@ -354,6 +372,13 @@ class CourtDecission(models.Model):
         blank=True,
         verbose_name="Tags",
         help_text="Tags",
+    )
+    related_decision = models.ManyToManyField(
+        "CourtDecission",
+        related_name="has_related_decisions",
+        blank=True,
+        verbose_name="Related decisions",
+        help_text="Related decisions",
     )
     author = models.ManyToManyField(
         "Person",
@@ -606,7 +631,7 @@ class PartialLegalSystem(models.Model):
     link_to_legal_db = models.URLField(
         blank=True,
         null=True,
-        verbose_name="Link to legal db",
+        verbose_name="Legal database",
         help_text="Link to legal db",
     )
     orig_data_csv = models.TextField(
