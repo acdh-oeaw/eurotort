@@ -654,7 +654,7 @@ class PartialLegalSystem(models.Model):
         ordering = [
             "id",
         ]
-        verbose_name = "Legal System"
+        verbose_name = "Legal system"
 
     def __str__(self):
         if self.name:
