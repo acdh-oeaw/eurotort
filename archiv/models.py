@@ -418,6 +418,7 @@ class CourtDecission(models.Model):
         help_text="Fulltext field (technical field)",
     )
     vector_column = SearchVectorField(null=True)
+    modified_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = [

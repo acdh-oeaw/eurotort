@@ -120,6 +120,7 @@
                 {% for x in object.author.all %}
                 <p>{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
                 {% endfor %}
+                <small>updated: {{ object.modified_date }}</small>
             </div>
         </div>
     </div>
