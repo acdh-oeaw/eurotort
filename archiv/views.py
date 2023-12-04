@@ -54,6 +54,26 @@ from browsing.browsing_utils import (
 )
 
 
+class CustomUpdateView(BaseUpdateView):
+    h1 = "Edit"
+    template_name = "archiv/custom_create.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomUpdateView, self).get_context_data()
+        context["h1"] = self.h1
+        return context
+
+
+class CustomCreateView(BaseCreateView):
+    h1 = "Create"
+    template_name = "archiv/custom_create.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomCreateView, self).get_context_data()
+        context["h1"] = self.h1
+        return context
+
+
 class CustomListView(GenericListView):
     h1 = "Hallo"
     template_name = "archiv/custom_list.html"
@@ -82,7 +102,8 @@ class CourtDetailView(BaseDetailView):
     template_name = "archiv/court_detail.html"
 
 
-class CourtCreate(BaseCreateView):
+class CourtCreate(CustomCreateView):
+    h1 = "Create court"
     model = Court
     form_class = CourtForm
 
@@ -91,7 +112,8 @@ class CourtCreate(BaseCreateView):
         return super(CourtCreate, self).dispatch(*args, **kwargs)
 
 
-class CourtUpdate(BaseUpdateView):
+class CourtUpdate(CustomUpdateView):
+    h1 = "Edit court"
     model = Court
     form_class = CourtForm
 
@@ -133,7 +155,8 @@ class CourtDecissionDetailView(BaseDetailView):
     template_name = "archiv/courtdecission_detail.html"
 
 
-class CourtDecissionCreate(BaseCreateView):
+class CourtDecissionCreate(CustomCreateView):
+    h1 = "Create case"
     model = CourtDecission
     form_class = CourtDecissionForm
 
@@ -142,7 +165,8 @@ class CourtDecissionCreate(BaseCreateView):
         return super(CourtDecissionCreate, self).dispatch(*args, **kwargs)
 
 
-class CourtDecissionUpdate(BaseUpdateView):
+class CourtDecissionUpdate(CustomUpdateView):
+    h1 = "Edit case"
     model = CourtDecission
     form_class = CourtDecissionForm
 
@@ -179,7 +203,8 @@ class KeyWordDetailView(BaseDetailView):
     template_name = "archiv/keyword_detail.html"
 
 
-class KeyWordCreate(BaseCreateView):
+class KeyWordCreate(CustomCreateView):
+    h1 = "Create keyword"
     model = KeyWord
     form_class = KeyWordForm
 
@@ -188,7 +213,8 @@ class KeyWordCreate(BaseCreateView):
         return super(KeyWordCreate, self).dispatch(*args, **kwargs)
 
 
-class KeyWordUpdate(BaseUpdateView):
+class KeyWordUpdate(CustomUpdateView):
+    h1 = "Edit keyword"
     model = KeyWord
     form_class = KeyWordForm
 
@@ -225,7 +251,8 @@ class PartialLegalSystemDetailView(BaseDetailView):
     template_name = "archiv/legalsystem_detail.html"
 
 
-class PartialLegalSystemCreate(BaseCreateView):
+class PartialLegalSystemCreate(CustomCreateView):
+    h1 = "Create legal system"
     model = PartialLegalSystem
     form_class = PartialLegalSystemForm
 
@@ -234,7 +261,8 @@ class PartialLegalSystemCreate(BaseCreateView):
         return super(PartialLegalSystemCreate, self).dispatch(*args, **kwargs)
 
 
-class PartialLegalSystemUpdate(BaseUpdateView):
+class PartialLegalSystemUpdate(CustomUpdateView):
+    h1 = "Edit legal system"
     model = PartialLegalSystem
     form_class = PartialLegalSystemForm
 
@@ -271,7 +299,8 @@ class PersonDetailView(BaseDetailView):
     template_name = "archiv/person_detail.html"
 
 
-class PersonCreate(BaseCreateView):
+class PersonCreate(CustomCreateView):
+    h1 = "Create author"
     model = Person
     form_class = PersonForm
 
@@ -280,8 +309,9 @@ class PersonCreate(BaseCreateView):
         return super(PersonCreate, self).dispatch(*args, **kwargs)
 
 
-class PersonUpdate(BaseUpdateView):
+class PersonUpdate(CustomUpdateView):
     model = Person
+    h1 = "Edit author"
     form_class = PersonForm
 
     @method_decorator(login_required)
@@ -317,7 +347,8 @@ class YearBookDetailView(BaseDetailView):
     template_name = "archiv/yearbook_detail.html"
 
 
-class YearBookCreate(BaseCreateView):
+class YearBookCreate(CustomCreateView):
+    h1 = "Create bibliographic item"
     model = YearBook
     form_class = YearBookForm
 
@@ -326,7 +357,8 @@ class YearBookCreate(BaseCreateView):
         return super(YearBookCreate, self).dispatch(*args, **kwargs)
 
 
-class YearBookUpdate(BaseUpdateView):
+class YearBookUpdate(CustomUpdateView):
+    h1 = "Edit bibliographic item"
     model = YearBook
     form_class = YearBookForm
 
@@ -363,7 +395,8 @@ class TagDetailView(BaseDetailView):
     template_name = "archiv/tag_detail.html"
 
 
-class TagCreate(BaseCreateView):
+class TagCreate(CustomCreateView):
+    h1 = "Create tag"
     model = Tag
     form_class = TagForm
 
@@ -372,7 +405,8 @@ class TagCreate(BaseCreateView):
         return super(TagCreate, self).dispatch(*args, **kwargs)
 
 
-class TagUpdate(BaseUpdateView):
+class TagUpdate(CustomUpdateView):
+    h1 = "Edit tag"
     model = Tag
     form_class = TagForm
 
