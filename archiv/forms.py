@@ -152,9 +152,7 @@ class CourtDecissionForm(forms.ModelForm):
             "partial_legal_system": autocomplete.ModelSelect2(
                 url="archiv-ac:partiallegalsystem-autocomplete"
             ),
-            "court": autocomplete.ModelSelect2(
-                url="archiv-ac:court-autocomplete"
-            ),
+            "court": autocomplete.ModelSelect2(url="archiv-ac:court-autocomplete"),
         }
 
     def __init__(self, *args, **kwargs):

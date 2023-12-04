@@ -54,8 +54,19 @@ from browsing.browsing_utils import (
 )
 
 
-class CourtListView(GenericListView):
+class CustomListView(GenericListView):
+    h1 = "Hallo"
+    template_name = "archiv/custom_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomListView, self).get_context_data()
+        context["h1"] = self.h1
+        return context
+
+
+class CourtListView(CustomListView):
     model = Court
+    h1 = "Browse courts"
     filter_class = CourtListFilter
     formhelper_class = CourtFilterFormHelper
     table_class = CourtTable
@@ -99,8 +110,9 @@ class CourtDelete(DeleteView):
         return super(CourtDelete, self).dispatch(*args, **kwargs)
 
 
-class CourtDecissionListView(GenericListView):
+class CourtDecissionListView(CustomListView):
     model = CourtDecission
+    h1 = "Browse cases"
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
@@ -149,8 +161,9 @@ class CourtDecissionDelete(DeleteView):
         return super(CourtDecissionDelete, self).dispatch(*args, **kwargs)
 
 
-class KeyWordListView(GenericListView):
+class KeyWordListView(CustomListView):
     model = KeyWord
+    h1 = "Browse keywords"
     filter_class = KeyWordListFilter
     formhelper_class = KeyWordFilterFormHelper
     table_class = KeyWordTable
@@ -194,8 +207,9 @@ class KeyWordDelete(DeleteView):
         return super(KeyWordDelete, self).dispatch(*args, **kwargs)
 
 
-class PartialLegalSystemListView(GenericListView):
+class PartialLegalSystemListView(CustomListView):
     model = PartialLegalSystem
+    h1 = "Browse legal systems"
     filter_class = PartialLegalSystemListFilter
     formhelper_class = PartialLegalSystemFilterFormHelper
     table_class = PartialLegalSystemTable
@@ -239,8 +253,9 @@ class PartialLegalSystemDelete(DeleteView):
         return super(PartialLegalSystemDelete, self).dispatch(*args, **kwargs)
 
 
-class PersonListView(GenericListView):
+class PersonListView(CustomListView):
     model = Person
+    h1 = "Browse persons"
     filter_class = PersonListFilter
     formhelper_class = PersonFilterFormHelper
     table_class = PersonTable
@@ -284,8 +299,9 @@ class PersonDelete(DeleteView):
         return super(PersonDelete, self).dispatch(*args, **kwargs)
 
 
-class YearBookListView(GenericListView):
+class YearBookListView(CustomListView):
     model = YearBook
+    h1 = "Browse bibliographic items"
     filter_class = YearBookListFilter
     formhelper_class = YearBookFilterFormHelper
     table_class = YearBookTable
@@ -329,8 +345,9 @@ class YearBookDelete(DeleteView):
         return super(YearBookDelete, self).dispatch(*args, **kwargs)
 
 
-class TagListView(GenericListView):
+class TagListView(CustomListView):
     model = Tag
+    h1 = "Browse tags"
     filter_class = TagListFilter
     formhelper_class = TagFilterFormHelper
     table_class = TagTable
