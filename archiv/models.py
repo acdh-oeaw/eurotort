@@ -38,7 +38,7 @@ class YearBook(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Parent",
+        verbose_name="Parent keyword",
         help_text="For chapters, select volume here",
     ).set_extra(
         is_public=True,
@@ -142,7 +142,7 @@ class Court(models.Model):
         blank=True,
         null=True,
         verbose_name="Highest Court",
-        help_text="True, if court is a highest court in a country",
+        help_text="True if court is the highest court in a country",
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
@@ -264,7 +264,7 @@ class CourtDecission(models.Model):
         null=True,
         blank=True,
         verbose_name="Court",
-        help_text="Court",
+        help_text="Deciding court",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Gericht",
@@ -548,8 +548,8 @@ class KeyWord(models.Model):
     see_also = models.ManyToManyField(
         "KeyWord",
         blank=True,
-        verbose_name="related Keyword",
-        help_text="related Keyword",
+        verbose_name="related to",
+        help_text="Related keyword(s)",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -644,7 +644,7 @@ class PartialLegalSystem(models.Model):
         blank=True,
         null=True,
         verbose_name="Legal database",
-        help_text="Link to legal db",
+        help_text="Link to legal database",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -737,18 +737,18 @@ class Person(models.Model):
         data_lookup="Autor_Vorname",
         arche_prop="hasFirstName",
     )
+    contact = models.EmailField(
+        blank=True, verbose_name="Contact", help_text="E-mail address"
+    )
     legal_system = models.ManyToManyField(
         "PartialLegalSystem",
         related_name="has_related_author",
         blank=True,
-        verbose_name="Legalsystem",
-        help_text="Legalsystem",
+        verbose_name="Legal system",
+        help_text="Legal system",
     ).set_extra(
         is_public=True,
         arche_prop="hasAuthor",
-    )
-    contact = models.EmailField(
-        blank=True, verbose_name="Contact", help_text="E-mail address"
     )
     orcid = models.URLField(
         blank=True, verbose_name="ORCID", help_text="ORCID (as URL)"
