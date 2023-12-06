@@ -36,3 +36,4 @@ secret.env
 *.ipynb
 hansi.html
 /data
+/venv
