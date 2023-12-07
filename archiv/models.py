@@ -38,7 +38,7 @@ class YearBook(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Parent keyword",
+        verbose_name="Parent",
         help_text="For chapters, select volume here",
     ).set_extra(
         is_public=True,
@@ -142,7 +142,7 @@ class Court(models.Model):
         blank=True,
         null=True,
         verbose_name="Highest Court",
-        help_text="True if court is the highest court in a country",
+        help_text="True if court is the highest court in a country in the relevant field",
     ).set_extra(
         is_public=True,
         data_lookup="Abbreviation",
@@ -251,8 +251,8 @@ class CourtDecission(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="PartialLegalSystem",
-        help_text="PartialLegalSystem",
+        verbose_name="Legal system",
+        help_text="Legal system",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Teilrechtsordnung",
@@ -523,8 +523,8 @@ class KeyWord(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Name",
-        help_text="Name",
+        verbose_name="Keyword",
+        help_text="Keyword",
     ).set_extra(
         is_public=True,
         data_lookup="Stichwort_Bezeichnung",
@@ -540,7 +540,7 @@ class KeyWord(models.Model):
         null=True,
         blank=True,
         verbose_name="Parent",
-        help_text="Parent",
+        help_text="Parent Keyword",
     ).set_extra(
         is_public=True,
         data_lookup="Stichwort_Parent",
@@ -548,7 +548,7 @@ class KeyWord(models.Model):
     see_also = models.ManyToManyField(
         "KeyWord",
         blank=True,
-        verbose_name="related to",
+        verbose_name="Related to",
         help_text="Related keyword(s)",
     )
     orig_data_csv = models.TextField(

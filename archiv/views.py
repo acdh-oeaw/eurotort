@@ -76,17 +76,20 @@ class CustomCreateView(BaseCreateView):
 
 class CustomListView(GenericListView):
     h1 = "Hallo"
+    create_button_text = "Create new item"
     template_name = "archiv/custom_list.html"
 
     def get_context_data(self, **kwargs):
         context = super(CustomListView, self).get_context_data()
         context["h1"] = self.h1
+        context["create_button_text"] = self.create_button_text
         return context
 
 
 class CourtListView(CustomListView):
     model = Court
     h1 = "Browse courts"
+    create_button_text = "Create new court"
     filter_class = CourtListFilter
     formhelper_class = CourtFilterFormHelper
     table_class = CourtTable
@@ -135,6 +138,7 @@ class CourtDelete(DeleteView):
 class CourtDecissionListView(CustomListView):
     model = CourtDecission
     h1 = "Browse cases"
+    create_button_text = "Create new case"
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
@@ -188,6 +192,7 @@ class CourtDecissionDelete(DeleteView):
 class KeyWordListView(CustomListView):
     model = KeyWord
     h1 = "Browse keywords"
+    create_button_text = "Create new keyword"
     filter_class = KeyWordListFilter
     formhelper_class = KeyWordFilterFormHelper
     table_class = KeyWordTable
@@ -236,6 +241,7 @@ class KeyWordDelete(DeleteView):
 class PartialLegalSystemListView(CustomListView):
     model = PartialLegalSystem
     h1 = "Browse legal systems"
+    create_button_text = "Create new legal system"
     filter_class = PartialLegalSystemListFilter
     formhelper_class = PartialLegalSystemFilterFormHelper
     table_class = PartialLegalSystemTable
@@ -283,7 +289,8 @@ class PartialLegalSystemDelete(DeleteView):
 
 class PersonListView(CustomListView):
     model = Person
-    h1 = "Browse persons"
+    h1 = "Browse authors"
+    create_button_text = "Create new author"
     filter_class = PersonListFilter
     formhelper_class = PersonFilterFormHelper
     table_class = PersonTable
@@ -332,6 +339,7 @@ class PersonDelete(DeleteView):
 class YearBookListView(CustomListView):
     model = YearBook
     h1 = "Browse bibliographic items"
+    create_button_text = "Create new bibliographic item"
     filter_class = YearBookListFilter
     formhelper_class = YearBookFilterFormHelper
     table_class = YearBookTable
@@ -380,6 +388,7 @@ class YearBookDelete(DeleteView):
 class TagListView(CustomListView):
     model = Tag
     h1 = "Browse tags"
+    create_button_text = "Create new tag"
     filter_class = TagListFilter
     formhelper_class = TagFilterFormHelper
     table_class = TagTable

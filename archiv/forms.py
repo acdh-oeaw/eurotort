@@ -35,7 +35,7 @@ class YearBookFilterFormHelper(FormHelper):
 class YearBookForm(forms.ModelForm):
     class Meta:
         model = YearBook
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
         widgets = {
             "part_of": autocomplete.ModelSelect2(url="archiv-ac:yearbook-autocomplete")
         }
@@ -79,7 +79,7 @@ class CourtFilterFormHelper(FormHelper):
 class CourtForm(forms.ModelForm):
     class Meta:
         model = Court
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
         super(CourtForm, self).__init__(*args, **kwargs)
@@ -133,7 +133,7 @@ class CourtDecissionForm(forms.ModelForm):
     class Meta:
         model = CourtDecission
         exclude = [
-            "vector_column",
+            "vector_column", "legacy_id", "legacy_pk", "orig_data_csv", "full_text"
         ]
         widgets = {
             "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
@@ -192,7 +192,7 @@ class KeyWordFilterFormHelper(FormHelper):
 class KeyWordForm(forms.ModelForm):
     class Meta:
         model = KeyWord
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
         super(KeyWordForm, self).__init__(*args, **kwargs)
@@ -230,7 +230,7 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
 class PartialLegalSystemForm(forms.ModelForm):
     class Meta:
         model = PartialLegalSystem
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
         super(PartialLegalSystemForm, self).__init__(*args, **kwargs)
@@ -269,7 +269,7 @@ class PersonFilterFormHelper(FormHelper):
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
@@ -307,7 +307,7 @@ class TagFilterFormHelper(FormHelper):
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = "__all__"
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
         super(TagForm, self).__init__(*args, **kwargs)

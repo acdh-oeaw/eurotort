@@ -90,6 +90,7 @@ class PartialLegalSystemTable(tables.Table):
 
 class PersonTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
+    legal_system = tables.columns.ManyToManyColumn(verbose_name="Legal system")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
