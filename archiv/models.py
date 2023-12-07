@@ -540,7 +540,7 @@ class KeyWord(models.Model):
         null=True,
         blank=True,
         verbose_name="Parent",
-        help_text="Parent Keyword",
+        help_text="Parent keyword",
     ).set_extra(
         is_public=True,
         data_lookup="Stichwort_Parent",
@@ -627,8 +627,8 @@ class PartialLegalSystem(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="name",
-        help_text="name",
+        verbose_name="Name",
+        help_text="Name",
     ).set_extra(
         is_public=True,
         data_lookup="Teilrecht_Bezeichnung",
