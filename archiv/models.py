@@ -161,8 +161,8 @@ class Court(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Legalsystem",
-        help_text="Legalsystem",
+        verbose_name="Legal system",
+        help_text="Legal system",
     ).set_extra(
         is_public=True,
         data_lookup="Gericht_Teilrechtsordnung",
