@@ -247,6 +247,7 @@ class PartialLegalSystemListView(CustomListView):
     table_class = PartialLegalSystemTable
     init_columns = [
         "id",
+        "name",
         "legacy_pk",
     ]
     enable_merge = True

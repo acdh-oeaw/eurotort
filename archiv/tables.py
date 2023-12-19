@@ -84,7 +84,7 @@ class PartialLegalSystemTable(tables.Table):
 
     class Meta:
         model = PartialLegalSystem
-        sequence = ("id",)
+        sequence = ("id", "name")
         attrs = {"class": "table table-responsive table-hover"}
 
 
