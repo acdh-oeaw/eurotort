@@ -49,6 +49,7 @@ class YearBook(models.Model):
             "title",
         ]
         verbose_name = "Bibliographic Item"
+        verbose_name_plural = "Bibliographic Items"
 
     def __str__(self):
         if self.title:
@@ -182,7 +183,8 @@ class Court(models.Model):
         ordering = [
             "name",
         ]
-        verbose_name = "Deciding court"
+        verbose_name = "Court"
+        verbose_name_plural = "Courts"
 
     def __str__(self):
         if self.name:
@@ -425,6 +427,7 @@ class CourtDecission(models.Model):
             "id",
         ]
         verbose_name = "Case"
+        verbose_name_plural = "Cases"
         indexes = (GinIndex(fields=["vector_column"]),)
 
     def save(self, *args, **kwargs):
@@ -559,7 +562,8 @@ class KeyWord(models.Model):
         ordering = [
             "name",
         ]
-        verbose_name = "KeyWord"
+        verbose_name = "Keyword"
+        verbose_name_plural = "Keywords"
 
     def __str__(self):
         if self.name and self.part_of:
@@ -656,6 +660,7 @@ class PartialLegalSystem(models.Model):
             "id",
         ]
         verbose_name = "Legal system"
+        verbose_name_plural = "Legal systems"
 
     def __str__(self):
         if self.name:
@@ -765,7 +770,8 @@ class Person(models.Model):
         ordering = [
             "last_name",
         ]
-        verbose_name = "Person"
+        verbose_name = "Author"
+        verbose_name_plural = "Authors"
 
     def __str__(self):
         if self.last_name and self.first_name:
@@ -826,6 +832,7 @@ class Tag(models.Model):
             "tag",
         ]
         verbose_name = "Tag"
+        verbose_name_plural = "Tags"
 
     def __str__(self):
         return f"{self.tag}"
