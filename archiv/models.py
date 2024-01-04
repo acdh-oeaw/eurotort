@@ -652,6 +652,7 @@ class PartialLegalSystem(models.Model):
 
     class Meta:
         ordering = [
+            "name",
             "id",
         ]
         verbose_name = "Legal system"
