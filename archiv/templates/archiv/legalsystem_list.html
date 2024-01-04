@@ -9,8 +9,14 @@
 
 {% endblock %}
 {% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ verbose_name }}</li>
+    </ol>
+  </nav>
 <div class="container">
-    <h1 class="text-center">Legal systems</h1>
+    <h1 class="text-center">{{ verbose_name }}</h1>
 
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
         <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">

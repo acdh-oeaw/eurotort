@@ -83,6 +83,7 @@ class CustomListView(GenericListView):
         context = super(CustomListView, self).get_context_data()
         context["h1"] = self.h1
         context["create_button_text"] = self.create_button_text
+        context["verbose_name"] = self.model._meta.verbose_name
         return context
 
 
