@@ -18,7 +18,14 @@
 <div class="container">
     <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
 
-    {{ authors_by_legal }}
+    {% for key, value in authors_by_legal.items %}
+    <h2>{{ key }}</h2>
+    <ul>
+        {% for x in value %}
+        <li>{{ x.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
 </div>
 
 {% endblock %}
