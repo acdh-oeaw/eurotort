@@ -252,6 +252,12 @@ class PartialLegalSystemListView(CustomListView):
     ]
     enable_merge = True
 
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/legalsystem_list.html"]
+
 
 class PartialLegalSystemDetailView(BaseDetailView):
     model = PartialLegalSystem
