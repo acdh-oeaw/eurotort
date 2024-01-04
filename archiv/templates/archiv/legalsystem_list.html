@@ -1,0 +1,56 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load django_tables2 %}
+{% load browsing_extras %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% block title %} Browse {{ class_name }} {% endblock %}
+{% block scriptHeader %}
+
+{% endblock %}
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ verbose_name_plural }}</li>
+    </ol>
+</nav>
+<div class="container">
+    <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
+
+    <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+        <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+    </div>
+    
+    <ul class="list-group" id="myUL">
+        {% for x in object_list %}
+        <li class="list-group-item text-center">
+            <a href="{{ x.get_absolute_url }}">{{ x }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
+{% endblock %}

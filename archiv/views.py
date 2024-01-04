@@ -83,6 +83,8 @@ class CustomListView(GenericListView):
         context = super(CustomListView, self).get_context_data()
         context["h1"] = self.h1
         context["create_button_text"] = self.create_button_text
+        context["verbose_name"] = self.model._meta.verbose_name
+        context["verbose_name_plural"] = self.model._meta.verbose_name_plural
         return context
 
 
@@ -252,6 +254,18 @@ class PartialLegalSystemListView(CustomListView):
     ]
     enable_merge = True
 
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/legalsystem_list.html"]
+
+    def get_paginate_by(self, queryset):
+        if self.request.user.is_authenticated:
+            return 50
+        else:
+            None
+
 
 class PartialLegalSystemDetailView(BaseDetailView):
     model = PartialLegalSystem
@@ -300,6 +314,18 @@ class PersonListView(CustomListView):
         "last_name",
     ]
     enable_merge = True
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/legalsystem_list.html"]
+
+    def get_paginate_by(self, queryset):
+        if self.request.user.is_authenticated:
+            return 50
+        else:
+            None
 
 
 class PersonDetailView(BaseDetailView):
