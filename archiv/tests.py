@@ -35,6 +35,15 @@ class ArchivTestCase(TestCase):
             if url:
                 response = client.get(url)
                 self.assertEqual(response.status_code, 200)
+        client.login(**USER)
+        for x in MODELS:
+            try:
+                url = x.get_listview_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url)
+                self.assertEqual(response.status_code, 200)
 
     def test_003_detailviews(self):
         for x in MODELS:

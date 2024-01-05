@@ -133,7 +133,11 @@ class CourtDecissionForm(forms.ModelForm):
     class Meta:
         model = CourtDecission
         exclude = [
-            "vector_column", "legacy_id", "legacy_pk", "orig_data_csv", "full_text"
+            "vector_column",
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv",
+            "full_text",
         ]
         widgets = {
             "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
