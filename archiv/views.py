@@ -205,6 +205,40 @@ class KeyWordListView(CustomListView):
     ]
     enable_merge = True
 
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/keyword_public_list.html"]
+
+    def get_paginate_by(self, queryset):
+        if self.request.user.is_authenticated:
+            return 50
+        else:
+            None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            pass
+        else:
+            properties = [
+                "name",
+                "id",
+                "part_of__name",
+                "part_of__id",
+            ]
+            data = self.model.objects.all().values_list(
+                *properties
+            )
+            print(data)
+            df = pd.DataFrame(data=data, columns=properties)
+            data = {}
+            for gr, ndf in df.groupby("part_of__name"):
+                data[gr] = ndf.to_dict("records")
+            context["grouped_items"] = data
+        return context
+
 
 class KeyWordDetailView(BaseDetailView):
     model = KeyWord
