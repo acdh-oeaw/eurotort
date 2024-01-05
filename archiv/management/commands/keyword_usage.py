@@ -1,10 +1,12 @@
-import pandas as pd
-from django.conf import settings
 import os
 
+import pandas as pd
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db.models import Count
-from archiv.models import KeyWord, CourtDecission
+
+from archiv.models import CourtDecission
+from archiv.models import KeyWord
 
 
 class Command(BaseCommand):

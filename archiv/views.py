@@ -1,58 +1,48 @@
 import pandas as pd
-from browsing.browsing_utils import (
-    BaseCreateView,
-    BaseDetailView,
-    BaseUpdateView,
-    GenericListView,
-)
+from browsing.browsing_utils import BaseCreateView
+from browsing.browsing_utils import BaseDetailView
+from browsing.browsing_utils import BaseUpdateView
+from browsing.browsing_utils import GenericListView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import DeleteView
 
-from .filters import (
-    CourtDecissionListFilter,
-    CourtListFilter,
-    KeyWordListFilter,
-    PartialLegalSystemListFilter,
-    PersonListFilter,
-    TagListFilter,
-    YearBookListFilter,
-)
-from .forms import (
-    CourtDecissionFilterFormHelper,
-    CourtDecissionForm,
-    CourtFilterFormHelper,
-    CourtForm,
-    KeyWordFilterFormHelper,
-    KeyWordForm,
-    PartialLegalSystemFilterFormHelper,
-    PartialLegalSystemForm,
-    PersonFilterFormHelper,
-    PersonForm,
-    TagFilterFormHelper,
-    TagForm,
-    YearBookFilterFormHelper,
-    YearBookForm,
-)
-from .models import (
-    Court,
-    CourtDecission,
-    KeyWord,
-    PartialLegalSystem,
-    Person,
-    Tag,
-    YearBook,
-)
-from .tables import (
-    CourtDecissionTable,
-    CourtTable,
-    KeyWordTable,
-    PartialLegalSystemTable,
-    PersonTable,
-    TagTable,
-    YearBookTable,
-)
+from .filters import CourtDecissionListFilter
+from .filters import CourtListFilter
+from .filters import KeyWordListFilter
+from .filters import PartialLegalSystemListFilter
+from .filters import PersonListFilter
+from .filters import TagListFilter
+from .filters import YearBookListFilter
+from .forms import CourtDecissionFilterFormHelper
+from .forms import CourtDecissionForm
+from .forms import CourtFilterFormHelper
+from .forms import CourtForm
+from .forms import KeyWordFilterFormHelper
+from .forms import KeyWordForm
+from .forms import PartialLegalSystemFilterFormHelper
+from .forms import PartialLegalSystemForm
+from .forms import PersonFilterFormHelper
+from .forms import PersonForm
+from .forms import TagFilterFormHelper
+from .forms import TagForm
+from .forms import YearBookFilterFormHelper
+from .forms import YearBookForm
+from .models import Court
+from .models import CourtDecission
+from .models import KeyWord
+from .models import PartialLegalSystem
+from .models import Person
+from .models import Tag
+from .models import YearBook
+from .tables import CourtDecissionTable
+from .tables import CourtTable
+from .tables import KeyWordTable
+from .tables import PartialLegalSystemTable
+from .tables import PersonTable
+from .tables import TagTable
+from .tables import YearBookTable
 
 
 class CustomUpdateView(BaseUpdateView):

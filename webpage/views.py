@@ -1,14 +1,17 @@
 from copy import deepcopy
 
 import requests
-
 from django.conf import settings
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.template.exceptions import TemplateDoesNotExist
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login, logout
 
 from .forms import form_user_login
 from .metadata import PROJECT_METADATA as PM
@@ -37,9 +40,7 @@ class ImprintView(TemplateView):
         if r.status_code == 200:
             context["imprint_body"] = "{}".format(r.text)
         else:
-            context[
-                "imprint_body"
-            ] = """
+            context["imprint_body"] = """
             On of our services is currently not available.\
             Please try it later or write an email to\
             acdh@oeaw.ac.at; if you are service provide,\

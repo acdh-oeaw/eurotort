@@ -1,7 +1,9 @@
 from django.views.generic import TemplateView
 
 from webpage.metadata import PROJECT_METADATA as PM
-from .models import AboutTheProject, TeamMember
+
+from .models import AboutTheProject
+from .models import TeamMember
 
 
 class TeamView(TemplateView):

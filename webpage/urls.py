@@ -1,6 +1,7 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
 from django_spaghetti.views import Plate
+
 from . import views
 
 app_name = "webpage"
