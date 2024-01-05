@@ -259,7 +259,7 @@ class PartialLegalSystemListView(CustomListView):
         if self.request.user.is_authenticated:
             return ["archiv/custom_list.html"]
         else:
-            return ["archiv/legalsystem_list.html"]
+            return ["archiv/legalsystem_public_list.html"]
 
     def get_paginate_by(self, queryset):
         if self.request.user.is_authenticated:

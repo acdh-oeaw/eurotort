@@ -17,15 +17,72 @@
 </nav>
 <div class="container">
     <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
-
-    {% for key, value in authors_by_legal.items %}
-    <h2>{{ key }}</h2>
-    <ul>
-        {% for x in value %}
-        <li>{{ x.name }}</li>
+    <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+        <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+    </div>
+    <div id="filterMe">
+        {% for key, value in authors_by_legal.items %}
+            <div class="card m-2">
+                <div class="card-header">
+                    <h2>{{ key }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        {% for x in value %}
+                        <li><a href="/archiv/person/detail/{{ x.id }}">{{ x.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-    {% endfor %}
+    </div>
+    
 </div>
+<script>
+    const elementsVisible = (els) => {
+        let visible = false;
+        for (let i in els) {
+          if (els[i].style.display !== 'none') {
+            visible = true;
+            break;
+          }
+        }
+        return visible;
+    };
 
+    function myFunction() {
+        // Declare variables
+        var input, filter, filterMe, li, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filterMe = document.getElementById('filterMe')
+        filter = input.value.toUpperCase();
+        li = filterMe.getElementsByTagName('li');
+        cards = filterMe.getElementsByClassName('card')
+
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+
+         // Loop through all cards and check if any child li is visble, if not hide the div
+        for (i = 0; i < cards.length; i++) {
+            var els = Array.from(cards[i].getElementsByTagName("li"));
+            var visible = elementsVisible(els);
+            console.log(visible)
+            if (visible) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
 {% endblock %}
