@@ -1,42 +1,39 @@
 import pandas as pd
-
+from browsing.browsing_utils import (
+    BaseCreateView,
+    BaseDetailView,
+    BaseUpdateView,
+    GenericListView,
+)
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic.edit import DeleteView
+
 from .filters import (
-    CourtListFilter,
     CourtDecissionListFilter,
+    CourtListFilter,
     KeyWordListFilter,
     PartialLegalSystemListFilter,
     PersonListFilter,
-    YearBookListFilter,
     TagListFilter,
+    YearBookListFilter,
 )
 from .forms import (
-    CourtForm,
-    CourtFilterFormHelper,
-    CourtDecissionForm,
     CourtDecissionFilterFormHelper,
-    KeyWordForm,
+    CourtDecissionForm,
+    CourtFilterFormHelper,
+    CourtForm,
     KeyWordFilterFormHelper,
-    PartialLegalSystemForm,
+    KeyWordForm,
     PartialLegalSystemFilterFormHelper,
-    PersonForm,
+    PartialLegalSystemForm,
     PersonFilterFormHelper,
-    YearBookFilterFormHelper,
-    YearBookForm,
+    PersonForm,
     TagFilterFormHelper,
     TagForm,
-)
-from .tables import (
-    CourtTable,
-    CourtDecissionTable,
-    KeyWordTable,
-    PartialLegalSystemTable,
-    PersonTable,
-    YearBookTable,
-    TagTable,
+    YearBookFilterFormHelper,
+    YearBookForm,
 )
 from .models import (
     Court,
@@ -44,14 +41,17 @@ from .models import (
     KeyWord,
     PartialLegalSystem,
     Person,
-    YearBook,
     Tag,
+    YearBook,
 )
-from browsing.browsing_utils import (
-    GenericListView,
-    BaseCreateView,
-    BaseUpdateView,
-    BaseDetailView,
+from .tables import (
+    CourtDecissionTable,
+    CourtTable,
+    KeyWordTable,
+    PartialLegalSystemTable,
+    PersonTable,
+    TagTable,
+    YearBookTable,
 )
 
 
@@ -228,9 +228,7 @@ class KeyWordListView(CustomListView):
                 "part_of__name",
                 "part_of__id",
             ]
-            data = self.model.objects.all().values_list(
-                *properties
-            )
+            data = self.model.objects.all().values_list(*properties)
             print(data)
             df = pd.DataFrame(data=data, columns=properties)
             data = {}
