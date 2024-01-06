@@ -7,6 +7,6 @@ source set_env_variables.sh
 mkdir ./archiv/fixtures
 touch ./archiv/fixtures/dump.json
 echo "create fixtures_courtdecission"
-python manage.py dump_object archiv.courtdecission 4  100 > ./archiv/fixtures/dump.json
+python manage.py dump_object archiv.courtdecission 4  100 4353 > ./archiv/fixtures/dump.json
 
 echo "done"

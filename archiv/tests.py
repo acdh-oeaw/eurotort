@@ -1,11 +1,13 @@
 from django.apps import apps
 from django.contrib.auth.models import User
+from django.core.management import call_command
 from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
 from archiv.models import CourtDecission
+from archiv.models import YearBook
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -111,3 +113,11 @@ class ArchivTestCase(TestCase):
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
             self.assertTrue("results" in response.json().keys())
+
+    def test_017_yearbook_part_of(self):
+        for x in YearBook.objects.exclude(has_bibliographic_items=None):
+            x.delete()
+        call_command("yearbook_parent")
+        self.assertFalse(
+            YearBook.objects.filter(has_bibliographic_items=None).filter(part_of=None)
+        )
