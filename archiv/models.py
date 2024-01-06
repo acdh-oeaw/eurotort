@@ -56,9 +56,7 @@ class YearBook(models.Model):
     )
 
     class Meta:
-        ordering = [
-            "title",
-        ]
+        ordering = ["id"]
         verbose_name = "Bibliographic Item"
         verbose_name_plural = "Bibliographic Items"
 
@@ -67,6 +65,10 @@ class YearBook(models.Model):
             year = re.findall(pattern, self.title)
             if year:
                 self.year = year[0]
+            else:
+                self.year = 9999
+        elif not self.year:
+            self.year = 9999
         super(YearBook, self).save(*args, **kwargs)
 
     def __str__(self):

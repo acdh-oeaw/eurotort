@@ -407,7 +407,7 @@ class PersonListView(CustomListView):
             data = {}
             for gr, ndf in df.groupby("legal_system__name"):
                 data[gr] = ndf.to_dict("records")
-            context["authors_by_legal"] = data
+            context["grouped_items"] = data
         return context
 
 
@@ -458,6 +458,44 @@ class YearBookListView(CustomListView):
         "title",
     ]
     enable_merge = True
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/yearbook_public_list.html"]
+
+    def get_paginate_by(self, queryset):
+        if self.request.user.is_authenticated:
+            return 50
+        else:
+            None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            pass
+        else:
+            properties = [
+                "title",
+                "id",
+                "year",
+                "part_of__title",
+                "part_of__id",
+                "part_of__year",
+            ]
+            data = (
+                self.model.objects.filter(has_bibliographic_items=None)
+                .exclude(part_of=None)
+                .exclude(year=None)
+                .values_list(*properties)
+            )
+            df = pd.DataFrame(data=data, columns=properties)
+            data = {}
+            for gr, ndf in df.groupby("part_of__title"):
+                data[gr] = ndf.to_dict("records")
+            context["grouped_items"] = data
+        return context
 
 
 class YearBookDetailView(BaseDetailView):
