@@ -27,12 +27,21 @@ class YearBookListFilter(django_filters.FilterSet):
         help_text=YearBook._meta.get_field("title").help_text,
         label=YearBook._meta.get_field("title").verbose_name,
     )
+    part_of = django_filters.ModelMultipleChoiceFilter(
+        queryset=YearBook.objects.all(),
+        help_text=YearBook._meta.get_field("part_of").help_text,
+        label=YearBook._meta.get_field("part_of").verbose_name,
+        widget=autocomplete.ModelSelect2Multiple(
+            url="archiv-ac:monograph-autocomplete",
+        ),
+    )
 
     class Meta:
         model = YearBook
         fields = [
             "id",
             "title",
+            "year",
         ]
 
 
@@ -57,7 +66,7 @@ class CourtListFilter(django_filters.FilterSet):
         queryset=PartialLegalSystem.objects.all(),
         help_text=Court._meta.get_field("partial_legal_system").help_text,
         label=Court._meta.get_field("partial_legal_system").verbose_name,
-        widget=autocomplete.Select2Multiple(
+        widget=autocomplete.ModelSelect2Multiple(
             url="archiv-ac:partiallegalsystem-autocomplete",
         ),
     )

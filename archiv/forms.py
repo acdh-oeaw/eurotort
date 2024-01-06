@@ -25,7 +25,9 @@ class YearBookFilterFormHelper(FormHelper):
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
-                AccordionGroup("Basic Search", "title", css_id="more"),
+                AccordionGroup(
+                    "Basic Search", "title", "part_of", "year", css_id="more"
+                ),
                 AccordionGroup("admin", "id", css_id="admin_search"),
             )
         )
@@ -36,7 +38,7 @@ class YearBookForm(forms.ModelForm):
         model = YearBook
         exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
         widgets = {
-            "part_of": autocomplete.ModelSelect2(url="archiv-ac:yearbook-autocomplete")
+            "part_of": autocomplete.ModelSelect2(url="archiv-ac:monograph-autocomplete")
         }
 
     def __init__(self, *args, **kwargs):

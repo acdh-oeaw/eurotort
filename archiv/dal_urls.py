@@ -30,6 +30,11 @@ urlpatterns = [
         name="yearbook-autocomplete",
     ),
     path(
+        "monograph-autocomplete",
+        dal_views.MonographAC.as_view(),
+        name="monograph-autocomplete",
+    ),
+    path(
         "tag-autocomplete",
         dal_views.TagAC.as_view(create_field="tag", validate_create=True),
         name="tag-autocomplete",

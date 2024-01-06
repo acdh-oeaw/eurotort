@@ -20,6 +20,15 @@ class YearBookAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class MonographAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = YearBook.objects.exclude(has_bibliographic_items=None)
+
+        if self.q:
+            qs = qs.filter(title__icontains=self.q)
+        return qs
+
+
 class CourtAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Court.objects.all()
