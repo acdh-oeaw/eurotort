@@ -122,9 +122,9 @@ class CourtListView(CustomListView):
             df = pd.DataFrame(data=data, columns=properties)
             data = {}
             for gr, ndf in df.groupby("partial_legal_system__name"):
-                data[gr] = ndf.sort_values(by=["is_high_court", "name"], ascending=[False, True]).to_dict(
-                    "records"
-                )
+                data[gr] = ndf.sort_values(
+                    by=["is_high_court", "name"], ascending=[False, True]
+                ).to_dict("records")
             context["grouped_items"] = data
         return context
 

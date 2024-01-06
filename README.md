@@ -37,3 +37,13 @@ To run the image you should provide an `.env` file to pass in needed environment
 -----
 
 This project was bootstraped by [djangobase-cookiecutter](https://github.com/acdh-oeaw/djangobase-cookiecutter)
+
+
+## development cheatsheet
+
+### sort imports
+
+```bash
+ruff check --select I --fix .
+ruff format .
+```
