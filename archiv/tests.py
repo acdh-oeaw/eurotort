@@ -115,6 +115,8 @@ class ArchivTestCase(TestCase):
             self.assertTrue("results" in response.json().keys())
 
     def test_017_yearbook_part_of(self):
+        for x in YearBook.objects.exclude(has_bibliographic_items=None):
+            x.delete()
         call_command("yearbook_parent")
         self.assertFalse(
             YearBook.objects.filter(has_bibliographic_items=None).filter(part_of=None)
