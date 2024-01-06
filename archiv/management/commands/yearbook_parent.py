@@ -20,3 +20,5 @@ class Command(BaseCommand):
             parent, _ = YearBook.objects.get_or_create(title=new_title)
             x.part_of = parent
             x.save()
+        for x in YearBook.objects.all():
+            x.save()
