@@ -30,6 +30,14 @@ class YearBook(models.Model):
         is_public=True,
         arche_prop="hasTitle",
     )
+    year = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Publication Year",
+        help_text="Publication Year",
+    ).set_extra(
+        is_public=True,
+    )
     doi = models.URLField(
         blank=True, null=True, verbose_name="DOI", help_text="DOI (URL)"
     )
