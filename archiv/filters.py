@@ -35,6 +35,10 @@ class YearBookListFilter(django_filters.FilterSet):
             url="archiv-ac:monograph-autocomplete",
         ),
     )
+    year = django_filters.RangeFilter(
+        help_text=YearBook._meta.get_field("year").help_text,
+        label=YearBook._meta.get_field("year").verbose_name,
+    )
 
     class Meta:
         model = YearBook
@@ -184,6 +188,10 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:person-autocomplete",
         ),
     )
+    decission_date__year = django_filters.RangeFilter(
+        help_text="Year of Decision.",
+        label=CourtDecission._meta.get_field("decission_date").verbose_name,
+    )
 
     def search_fulltext(self, queryset, field_name, value):
         search_type = "websearch"
@@ -236,7 +244,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "ft_search",
             "partial_legal_system",
             "court",
-            "decission_date",
+            "decission_date__year",
             "file_number",
             "party",
             "location",

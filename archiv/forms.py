@@ -111,7 +111,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "partial_legal_system",
                     "court",
                     "year_book_title",
-                    "decission_date",
+                    "decission_date__year",
                     "file_number",
                     "party",
                     "location",
