@@ -9,12 +9,8 @@
 
 {% endblock %}
 {% block content %}
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{ verbose_name_plural }}</li>
-    </ol>
-</nav>
+{% include 'archiv/partials/listview_breadcrumb.html' %}
+
 <div class="container">
     <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
