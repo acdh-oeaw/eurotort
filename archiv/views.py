@@ -45,6 +45,14 @@ from .tables import TagTable
 from .tables import YearBookTable
 
 
+class CustomDetailView(BaseDetailView):
+    def get_context_data(self, **kwargs):
+        context = super(CustomDetailView, self).get_context_data()
+        context["verbose_name"] = self.model._meta.verbose_name
+        context["verbose_name_plural"] = self.model._meta.verbose_name_plural
+        return context
+
+
 class CustomUpdateView(BaseUpdateView):
     h1 = "Edit"
     template_name = "archiv/custom_create.html"
@@ -129,7 +137,7 @@ class CourtListView(CustomListView):
         return context
 
 
-class CourtDetailView(BaseDetailView):
+class CourtDetailView(CustomDetailView):
     model = Court
     template_name = "archiv/court_detail.html"
 
@@ -183,7 +191,7 @@ class CourtDecissionListView(CustomListView):
         return self.filter.qs.distinct()
 
 
-class CourtDecissionDetailView(BaseDetailView):
+class CourtDecissionDetailView(CustomDetailView):
     model = CourtDecission
     template_name = "archiv/courtdecission_detail.html"
 
@@ -263,7 +271,7 @@ class KeyWordListView(CustomListView):
         return context
 
 
-class KeyWordDetailView(BaseDetailView):
+class KeyWordDetailView(CustomDetailView):
     model = KeyWord
     template_name = "archiv/keyword_detail.html"
 
@@ -325,7 +333,7 @@ class PartialLegalSystemListView(CustomListView):
             None
 
 
-class PartialLegalSystemDetailView(BaseDetailView):
+class PartialLegalSystemDetailView(CustomDetailView):
     model = PartialLegalSystem
     template_name = "archiv/legalsystem_detail.html"
 
@@ -411,7 +419,7 @@ class PersonListView(CustomListView):
         return context
 
 
-class PersonDetailView(BaseDetailView):
+class PersonDetailView(CustomDetailView):
     model = Person
     template_name = "archiv/person_detail.html"
 
@@ -498,7 +506,7 @@ class YearBookListView(CustomListView):
         return context
 
 
-class YearBookDetailView(BaseDetailView):
+class YearBookDetailView(CustomDetailView):
     model = YearBook
     template_name = "archiv/yearbook_detail.html"
 
@@ -547,7 +555,7 @@ class TagListView(CustomListView):
     enable_merge = True
 
 
-class TagDetailView(BaseDetailView):
+class TagDetailView(CustomDetailView):
     model = Tag
     template_name = "archiv/tag_detail.html"
 
