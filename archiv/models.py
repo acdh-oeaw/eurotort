@@ -456,7 +456,7 @@ class CourtDecission(models.Model):
 
     def __str__(self):
         if self.file_number and self.party:
-            return f"{self.party}, {self.court.name} {ſelf.decission_date}, {self.file_number}"
+            return f"{self.party}, {self.court.name} {self.decission_date}, {self.file_number}"
         elif self.file_number:
             return f"{self.court.name} {ſelf.decission_date}, {self.file_number}"
         elif self.party:
