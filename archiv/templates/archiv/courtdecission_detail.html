@@ -6,16 +6,14 @@
 <!-- <div class="container"> -->
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
 <div class="card courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
-    <div class="card-header">
-        {% include 'archiv/partials/detailview_title.html' %}
-    </div>
+   
     <div class="card-body">
         <div class="row">
             <div class="col-md-2">
                 <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
             </div>
             <div class="col-md-10" id="contentToPrint">
-                <h2">{{ object }}</h2>
+                <h1>{{ object }}</h1>
                     <div class="d-flex justify-content-center" >
                         <i class="bi bi-filetype-pdf"  onclick="Convert_HTML_To_PDF();"
                             title="print as pdf" id="pdfbutton"></i>
@@ -51,9 +49,6 @@
                 <dl>
                     <dt>Eurotort number</dt>
                     <dd class="ms-5">{{ object.id }}</dd>
-                    <dt>Publication link</dt>
-                    <dd class="ms-5"><a href="{{ object.year_book_title.get_absolute_url }}"><i
-                                class="bi bi-link-45deg"></i></a>{{ object.year_book_title}} {{ object.year_book_issue }}</dd>
                     <dt>Keywords</dt>
                     {% for x in object.keyword.all %}
                     <dd class="ms-5"><span class="badge rounded-pill text-bg-primary ">{{ x }}</span> <a
@@ -64,29 +59,47 @@
                     <dd class="ms-5"><span class="badge rounded-pill text-bg-success ">{{ x }}</span> <a
                             href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
                     {% endfor %}
-                    <dt>Related Cases</dt>
-                    {% for x in object.related_decision.all %}
-                    <dd class="ms-5"><span class="badge rounded-pill text-bg-warning ">{{ x }}</span> <a
-                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
-                    {% endfor %}
+                    {% if object.related_decision.all %}
+                        <dt>Related Cases</dt>
+                        {% for x in object.related_decision.all %}
+                        <dd class="ms-5"><span class="badge rounded-pill text-bg-warning ">{{ x }}</span> <a
+                                href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+                        {% endfor %}
+                    {% endif %}
                 </dl>
-                <h2>The Case</h2>
-                <h3>Brief Description</h3>
-                <p>{{ object.short_description|safe }}</p>
-                <h3>Additional information </h3>
+                <p>{{ object }}</p>
+                
+                <h3>{{ object.short_description|safe }}</h3>
+                <h3>Facts</h3>
                 <p>{{ object.situation|safe }}</p>
-                <h3>Motto</h3>
+                <h3>Decision</h3>
                 <p>{{ object.motto|safe }}</p>
                 <h3>Commentary</h3>
-                <p>{{ object.commentary|safe }}</p>
-                <h3>Additional Information</h3>
-                <p>{{ object.additional_information|safe }}</p>
+                {% if object.commentary %}
+                    <p>{{ object.commentary|safe }}</p>
+                {% else %}
+                    <p>For commentary visist <a href="{{ object.year_book_title.doi }}">{{ object.year_book_title}} {{ object.year_book_issue }}</a></p>
+                {% endif %}
+                {% if object.additional_information %}
+                    <h3>Additional Information</h3>
+                    <p>{{ object.additional_information|safe }}</p>
+                {% endif %}
+                {% if object.location %}
+                    <h3>Reported in</h3>
+                    <p>{{ object.location|safe }}</p>
+                {% endif %}
                 <hr>
                 <h2>Authors</h2>
                 {% for x in object.author.all %}
                 <p>{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
                 {% endfor %}
-                <small>updated: {{ object.modified_date }}</small>
+                
+                <h2>Bibliographic Source</h2>
+                <p><a href="{{ object.year_book_title.get_absolute_url }}"><i
+                                class="bi bi-link-45deg"></i></a>{{ object.year_book_title}} {{ object.year_book_issue }}</p>
+                <h2>Eurotort reference</h2>
+                <p>Eurotort no. {{ object.id }}</p>
+               <small>updated: {{ object.modified_date }}</small>
             </div>
         </div>
     </div>
