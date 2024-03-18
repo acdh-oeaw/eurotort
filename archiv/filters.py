@@ -50,11 +50,6 @@ class YearBookListFilter(django_filters.FilterSet):
 
 
 class CourtListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Court._meta.get_field("legacy_id").help_text,
-        label=Court._meta.get_field("legacy_id").verbose_name,
-    )
     name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=Court._meta.get_field("name").help_text,

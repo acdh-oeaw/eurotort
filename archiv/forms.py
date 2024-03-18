@@ -77,7 +77,13 @@ class CourtFilterFormHelper(FormHelper):
 class CourtForm(forms.ModelForm):
     class Meta:
         model = Court
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = [
+            "id",
+            "name",
+            "abbreviation",
+            "is_high_court",
+            "partial_legal_system",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(CourtForm, self).__init__(*args, **kwargs)
