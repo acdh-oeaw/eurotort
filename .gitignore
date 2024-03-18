@@ -33,7 +33,7 @@ node_modules
 
 # other things
 secret.env
-*.ipynb
+Untitled.*
 hansi.html
 /data
 /venv
