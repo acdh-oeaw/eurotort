@@ -50,11 +50,6 @@ class YearBookListFilter(django_filters.FilterSet):
 
 
 class CourtListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Court._meta.get_field("legacy_id").help_text,
-        label=Court._meta.get_field("legacy_id").verbose_name,
-    )
     name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=Court._meta.get_field("name").help_text,
@@ -79,8 +74,6 @@ class CourtListFilter(django_filters.FilterSet):
         model = Court
         fields = [
             "id",
-            "legacy_id",
-            "legacy_pk",
             "name",
             "abbreviation",
             "is_high_court",
@@ -94,11 +87,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         method="search_fulltext",
         label="Volltextsuche",
         help_text=FT_HELPTEXT,
-    )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=CourtDecission._meta.get_field("legacy_id").help_text,
-        label=CourtDecission._meta.get_field("legacy_id").verbose_name,
     )
     year_book_title = django_filters.ModelMultipleChoiceFilter(
         queryset=YearBook.objects.all(),
@@ -239,8 +227,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         model = CourtDecission
         fields = [
             "id",
-            "legacy_id",
-            "legacy_pk",
             "ft_search",
             "partial_legal_system",
             "court",
@@ -261,11 +247,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
 
 
 class KeyWordListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=KeyWord._meta.get_field("legacy_id").help_text,
-        label=KeyWord._meta.get_field("legacy_id").verbose_name,
-    )
     name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=KeyWord._meta.get_field("name").help_text,
@@ -284,19 +265,12 @@ class KeyWordListFilter(django_filters.FilterSet):
         model = KeyWord
         fields = [
             "id",
-            "legacy_id",
-            "legacy_pk",
             "name",
             "part_of",
         ]
 
 
 class PartialLegalSystemListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=PartialLegalSystem._meta.get_field("legacy_id").help_text,
-        label=PartialLegalSystem._meta.get_field("legacy_id").verbose_name,
-    )
     name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=PartialLegalSystem._meta.get_field("name").help_text,
@@ -307,18 +281,11 @@ class PartialLegalSystemListFilter(django_filters.FilterSet):
         model = PartialLegalSystem
         fields = [
             "id",
-            "legacy_id",
-            "legacy_pk",
             "name",
         ]
 
 
 class PersonListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr="icontains",
-        help_text=Person._meta.get_field("legacy_id").help_text,
-        label=Person._meta.get_field("legacy_id").verbose_name,
-    )
     last_name = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=Person._meta.get_field("last_name").help_text,
@@ -329,7 +296,7 @@ class PersonListFilter(django_filters.FilterSet):
         help_text=Person._meta.get_field("first_name").help_text,
         label=Person._meta.get_field("first_name").verbose_name,
     )
-    partial_legal_system = django_filters.ModelMultipleChoiceFilter(
+    legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
         help_text=Person._meta.get_field("legal_system").help_text,
         label=Person._meta.get_field("legal_system").verbose_name,
@@ -342,11 +309,9 @@ class PersonListFilter(django_filters.FilterSet):
         model = Person
         fields = [
             "id",
-            "legacy_id",
-            "legacy_pk",
             "last_name",
             "first_name",
-            "partial_legal_system",
+            "legal_system",
         ]
 
 

@@ -27,8 +27,7 @@ class YearBookFilterFormHelper(FormHelper):
             BS5Accordion(
                 AccordionGroup(
                     "Basic Search", "title", "part_of", "year", css_id="more"
-                ),
-                AccordionGroup("admin", "id", css_id="admin_search"),
+                )
             )
         )
 
@@ -36,7 +35,7 @@ class YearBookFilterFormHelper(FormHelper):
 class YearBookForm(forms.ModelForm):
     class Meta:
         model = YearBook
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = ["title", "year", "part_of"]
         widgets = {
             "part_of": autocomplete.ModelSelect2(url="archiv-ac:monograph-autocomplete")
         }
@@ -65,14 +64,12 @@ class CourtFilterFormHelper(FormHelper):
                 AccordionGroup(
                     "Basic Search",
                     "id",
-                    "legacy_pk",
                     "name",
                     "abbreviation",
                     "is_high_court",
                     "partial_legal_system",
                     css_id="more",
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
+                )
             )
         )
 
@@ -80,7 +77,13 @@ class CourtFilterFormHelper(FormHelper):
 class CourtForm(forms.ModelForm):
     class Meta:
         model = Court
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = [
+            "id",
+            "name",
+            "abbreviation",
+            "is_high_court",
+            "partial_legal_system",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(CourtForm, self).__init__(*args, **kwargs)
@@ -107,7 +110,6 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "Basic Search",
                     "id",
                     "ft_search",
-                    "legacy_pk",
                     "partial_legal_system",
                     "court",
                     "year_book_title",
@@ -124,8 +126,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "tag",
                     "author",
                     css_id="more",
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
+                )
             )
         )
 
@@ -135,9 +136,6 @@ class CourtDecissionForm(forms.ModelForm):
         model = CourtDecission
         exclude = [
             "vector_column",
-            "legacy_id",
-            "legacy_pk",
-            "orig_data_csv",
             "full_text",
         ]
         widgets = {
@@ -184,12 +182,10 @@ class KeyWordFilterFormHelper(FormHelper):
                 AccordionGroup(
                     "Basic Search",
                     "id",
-                    "legacy_pk",
                     "name",
                     "part_of",
                     css_id="more",
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
+                )
             )
         )
 
@@ -197,7 +193,11 @@ class KeyWordFilterFormHelper(FormHelper):
 class KeyWordForm(forms.ModelForm):
     class Meta:
         model = KeyWord
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = [
+            "id",
+            "name",
+            "part_of",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(KeyWordForm, self).__init__(*args, **kwargs)
@@ -223,11 +223,9 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
                 AccordionGroup(
                     "Basic Search",
                     "id",
-                    "legacy_pk",
                     "name",
                     css_id="more",
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
+                )
             )
         )
 
@@ -235,7 +233,7 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
 class PartialLegalSystemForm(forms.ModelForm):
     class Meta:
         model = PartialLegalSystem
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = ["name"]
 
     def __init__(self, *args, **kwargs):
         super(PartialLegalSystemForm, self).__init__(*args, **kwargs)
@@ -261,12 +259,11 @@ class PersonFilterFormHelper(FormHelper):
                 AccordionGroup(
                     "Basic Search",
                     "id",
-                    "legacy_pk",
                     "last_name",
                     "first_name",
+                    "legal_system",
                     css_id="more",
-                ),
-                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
+                )
             )
         )
 
@@ -274,7 +271,12 @@ class PersonFilterFormHelper(FormHelper):
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
+        fields = [
+            "id",
+            "last_name",
+            "first_name",
+            "legal_system",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)

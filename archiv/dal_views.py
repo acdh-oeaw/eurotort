@@ -34,7 +34,7 @@ class CourtAC(autocomplete.Select2QuerySetView):
         qs = Court.objects.all()
 
         if self.q:
-            qs = qs.filter(Q(legacy_id__icontains=self.q) | Q(name__icontains=self.q))
+            qs = qs.filter(Q(name__icontains=self.q))
         return qs
 
 
@@ -43,7 +43,7 @@ class CourtDecissionAC(autocomplete.Select2QuerySetView):
         qs = CourtDecission.objects.all()
 
         if self.q:
-            qs = qs.filter(Q(id__icontains=self.q) | Q(legacy_pk__icontains=self.q))
+            qs = qs.filter(Q(id__icontains=self.q))
         return qs
 
 

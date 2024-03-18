@@ -117,17 +117,6 @@ class YearBook(models.Model):
 class Court(models.Model):
     """Court"""
 
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Gericht_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -195,9 +184,6 @@ class Court(models.Model):
         verbose_name="ECLI court code",
         help_text="ECLI court code",
     )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
 
     class Meta:
         ordering = [
@@ -218,14 +204,6 @@ class Court(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse("archiv:court_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "tb_gericht.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
@@ -256,17 +234,6 @@ class Court(models.Model):
 class CourtDecission(models.Model):
     """Case"""
 
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Entscheidung_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
     partial_legal_system = models.ForeignKey(
         "PartialLegalSystem",
         related_name="rvn_courtdecission_partial_legal_system_partiallegalsystem",
@@ -430,9 +397,6 @@ class CourtDecission(models.Model):
         verbose_name="ECLI",
         help_text="European Case Law Identifier",
     )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
     full_text = models.TextField(
         blank=True,
         null=True,
@@ -510,10 +474,6 @@ class CourtDecission(models.Model):
         return "tb_entscheidungen.csv"
 
     @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
-
-    @classmethod
     def get_createview_url(self):
         return reverse("archiv:courtdecission_create")
 
@@ -542,17 +502,6 @@ class CourtDecission(models.Model):
 class KeyWord(models.Model):
     """KeyWord"""
 
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Stichwort_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -584,9 +533,6 @@ class KeyWord(models.Model):
         verbose_name="Related to",
         help_text="Related keyword(s)",
     )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
 
     class Meta:
         ordering = [
@@ -609,14 +555,6 @@ class KeyWord(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse("archiv:keyword_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "tb_stichworte.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
@@ -647,17 +585,6 @@ class KeyWord(models.Model):
 class PartialLegalSystem(models.Model):
     """Legal system"""
 
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Teilrecht_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -706,14 +633,6 @@ class PartialLegalSystem(models.Model):
         return reverse("archiv:partiallegalsystem_browse")
 
     @classmethod
-    def get_source_table(self):
-        return "tb_teilrechtsordnung.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
-
-    @classmethod
     def get_createview_url(self):
         return reverse("archiv:partiallegalsystem_create")
 
@@ -742,17 +661,6 @@ class PartialLegalSystem(models.Model):
 class Person(models.Model):
     """Person"""
 
-    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
-    legacy_pk = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
-    ).set_extra(
-        is_public=False,
-        data_lookup="Autor_Id",
-        arche_prop="hasNonLinkedIdentifier",
-    )
     last_name = models.CharField(
         max_length=250,
         blank=True,
@@ -792,9 +700,6 @@ class Person(models.Model):
         is_public=True,
         arche_prop="hasIdentifier",
     )
-    orig_data_csv = models.TextField(
-        blank=True, null=True, verbose_name="The original data"
-    ).set_extra(is_public=True)
 
     class Meta:
         ordering = [
@@ -815,14 +720,6 @@ class Person(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse("archiv:person_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "tb_autor.csv"
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
