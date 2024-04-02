@@ -25,8 +25,8 @@
     </dl>
     {% with courtdecissions=object.rvn_courtdecission_author_person %}
     <h2 class="pt-3">{{ courtdecissions.count }} contributed cases</h2>
-    <div class="ps-5">
-        <table class="table table-sm tabulatortable" id="tabulatortable">
+    <div class="ps-5" style="height: 800px;">
+        <table id="tabulatortable">
             <thead>
                 <tr>
                     <th scope="col">Date</th>
@@ -82,7 +82,7 @@
     var table = new Tabulator("#tabulatortable", {
         layout: "fitColumns",
         responsiveLayout: "collapse",
-        rowHeight: 55,
+        height: "100%",
         columns: [
             {
                 title: "Date",
@@ -116,7 +116,7 @@
                 field: "Keywords",
                 sorter: "string",
                 headerFilter: "input",
-                formatter: scrollHtml
+                formatter: "html"
             }
         ]
     });
