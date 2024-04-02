@@ -1,6 +1,7 @@
 .courtdecissioncart {
   position: relative;
 }
+
 nav[data-toggle='toc'] .nav .nav {
-    display: block;
-  }
+  display: block;
+}
