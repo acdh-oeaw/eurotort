@@ -17,16 +17,16 @@
         <dt>Contact</dt>
         <dd class="ms-5">
             {% if object.contact %}
-                {{ object.contact }}
+            {{ object.contact }}
             {% else %}
-                eurotort@oeaw.ac.at
+            eurotort@oeaw.ac.at
             {% endif %}
         </dd>
     </dl>
     {% with courtdecissions=object.rvn_courtdecission_author_person %}
     <h2 class="pt-3">{{ courtdecissions.count }} contributed cases</h2>
     <div class="ps-5">
-        <table class="table table-sm tabulatortable" id="courtdecissiontable">
+        <table class="table table-sm tabulatortable" id="tabulatortable">
             <thead>
                 <tr>
                     <th scope="col">Date</th>
@@ -34,7 +34,6 @@
                     <th scope="col">Case Reference</th>
                     <th scope="col">Subject matter</th>
                     <th scope="col">Keywords</th>
-                    
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +44,7 @@
                         {{ x.court }}
                         <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
                     </td>
-                    
+
                     <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
                     <td scope="row">{% if x.short_description != 'none' %}{{ x.short_description|safe }}{% endif %}</td>
                     <td>
@@ -57,26 +56,69 @@
                             </li>
                             {% endfor %}
                         </ul>
-    
+
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% if user.is_authenticated %}
+
+        <div class="float-end">
+            <a href="{{ object.get_delete_url }}">
+                <i class="bi bi-trash3" title="delete entry"></i>
+            </a>
+        </div>
+        {% endif %}
     </div>
     {% endwith %}
-    {% if user.is_authenticated %}
-
-    <div class="float-end">
-        <a href="{{ object.get_delete_url }}">
-            <i class="bi bi-trash3" title="delete entry"></i>
-        </a>
-    </div>
-    {% endif %}
 </div>
 
 
 {% endblock %}
 {% block scripts2 %}
-<!-- {% include "archiv/partials/courtdecission_table_js.html" %} -->
+{% include "archiv/partials/courtdecission_table_js.html" %}
+<script>
+    var table = new Tabulator("#tabulatortable", {
+        layout: "fitColumns",
+        responsiveLayout: "collapse",
+        rowHeight: 55,
+        columns: [
+            {
+                title: "Date",
+                field: "Date",
+                sorter: "string",
+                headerFilter: "input"
+            },
+            {
+                title: "Court",
+                field: "Court",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: "html"
+            },
+            {
+                title: "Case Reference",
+                field: "Case Reference",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: "html"
+            },
+            {
+                title: "Subject matter",
+                field: "Subject matter",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: "textarea"
+            },
+            {
+                title: "Keywords",
+                field: "Keywords",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            }
+        ]
+    });
+</script>
 {% endblock scripts2 %}
