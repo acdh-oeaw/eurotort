@@ -1,21 +1,17 @@
 {% extends "webpage/base.html" %}
 {% load static %}
 {% load webpage_extras %}
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ object }}{% endblock %}
 {% block content %}
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-
-<div class="card">
-    <div class="card-header">
         {% include 'archiv/partials/detailview_title.html' %}
-    </div>
-    <div class="card-body container">
+    <div class="container">
         <h2>Courts</h2>
         <p class="ps-5">
         <ul>
             {% for x in object.rvn_court_partial_legal_system_partiallegalsystem.all %}
             <li>
-                {{ x }}
+                {{ x }} ({{ x.name_english }}), {{ x.abbreviation }}
                 <a href="{{ x.get_absolute_url }}">
                     <i class="bi bi bi-link-45deg"></i>
                 </a>
@@ -25,22 +21,99 @@
         </p>
 
         {% with courtdecissions=object.rvn_courtdecission_partial_legal_system_partiallegalsystem %}
-        <h2>{{ courtdecissions.count }} related Court Decissions</h2>
-        {% include "archiv/partials/courtdecission_table.html" %}
-        {% endwith %}
-    </div>
-    {% if user.is_authenticated %}
-    <div class="card-footer">
-        <div class="float-end">
-            <a href="{{ object.get_delete_url }}">
-                <i class="bi bi-trash3" title="delete entry"></i>
-            </a>
+        <h2>{{ courtdecissions.count }} cases</h2>
+        <div class="ps-5" style="height: 800px;">
+            <table id="tabulatortable">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Court</th>
+                        <th scope="col">Case Reference</th>
+                        <th scope="col">Subject matter</th>
+                        <th scope="col">Keywords</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in courtdecissions.all %}
+                    <tr>
+                        <td>{{ x.decission_date|date:"Y-m-d" }}</td>
+                        <td>
+                            {{ x.court.abbreviation }}
+                            <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                        </td>
+    
+                        <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
+                        <td scope="row">{{ x.short_description|safe }}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                {% for y in x.keyword.all %}
+                                <li>
+                                    <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
+                                        href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if user.is_authenticated %}
+    
+            <div class="float-end">
+                <a href="{{ object.get_delete_url }}">
+                    <i class="bi bi-trash3" title="delete entry"></i>
+                </a>
+            </div>
+            {% endif %}
         </div>
-    </div>
-    {% endif %}
+        {% endwith %}
 </div>
 
 {% endblock %}
 {% block scripts2 %}
 {% include "archiv/partials/courtdecission_table_js.html" %}
+<script>
+    var table = new Tabulator("#tabulatortable", {
+        layout: "fitColumns",
+        responsiveLayout: "collapse",
+        height: "100%",
+        columns: [
+            {
+                title: "Date",
+                field: "Date",
+                sorter: "string",
+                headerFilter: "input"
+            },
+            {
+                title: "Court",
+                field: "Court",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Case Reference",
+                field: "Case Reference",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: "html"
+            },
+            {
+                title: "Subject matter",
+                field: "Subject matter",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Keywords",
+                field: "Keywords",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            }
+        ]
+    });
+</script>
 {% endblock scripts2 %}
