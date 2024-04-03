@@ -27,7 +27,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
-                        <th scope="col">Court abbr.</th>
+                        <th scope="col">Court</th>
                         <th scope="col">Case Reference</th>
                         <th scope="col">Subject matter</th>
                         <th scope="col">Keywords</th>
@@ -38,12 +38,12 @@
                     <tr>
                         <td>{{ x.decission_date|date:"Y-m-d" }}</td>
                         <td>
-                            {{ x.court }}
+                            {{ x.court.abbreviation }}
                             <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
                         </td>
     
                         <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
-                        <td scope="row">{% if x.short_description != 'none' %}{{ x.short_description|safe }}{% endif %}</td>
+                        <td scope="row">{{ x.short_description|safe }}</td>
                         <td>
                             <ul class="list-unstyled">
                                 {% for y in x.keyword.all %}
@@ -53,7 +53,6 @@
                                 </li>
                                 {% endfor %}
                             </ul>
-    
                         </td>
                     </tr>
                     {% endfor %}
@@ -79,7 +78,6 @@
         layout: "fitColumns",
         responsiveLayout: "collapse",
         height: "100%",
-        rowHeight: 50,
         columns: [
             {
                 title: "Date",
@@ -88,11 +86,11 @@
                 headerFilter: "input"
             },
             {
-                title: "Court abbr.",
-                field: "Court abbr.",
+                title: "Court",
+                field: "Court",
                 sorter: "string",
                 headerFilter: "input",
-                formatter: "html"
+                formatter: scrollHtml
             },
             {
                 title: "Case Reference",
@@ -106,7 +104,7 @@
                 field: "Subject matter",
                 sorter: "string",
                 headerFilter: "input",
-                formatter: "textarea"
+                formatter: scrollHtml
             },
             {
                 title: "Keywords",
