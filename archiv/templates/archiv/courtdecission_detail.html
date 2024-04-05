@@ -46,7 +46,8 @@
                         </tr>
                         <tr>
                             <th>Date of Decision</th>
-                            <td>{% if object.decission_date %}{{ object.decission_date }} {% else %} not data provided {% endif %}</td>
+                            <td>{% if object.decission_date %}{{ object.decission_date }} {% else %} not data provided
+                                {% endif %}</td>
                         </tr>
                         <tr>
                             <th title="European Case Law Identifier">ECLI</th>
@@ -91,8 +92,11 @@
                 {% if object.commentary %}
                 <p>{{ object.commentary|safe }}</p>
                 {% else %}
-                <p>For commentary visit <a href="{{ object.year_book_title.doi }}">{{ object.year_book_title}} {{
-                        object.year_book_issue }}</a></p>
+                <p>For commentary visit
+                    <a href="{{ object.year_book_title.doi }}">
+                        {{ object.year_book_title}} {{object.year_book_issue }}
+                    </a>
+                </p>
                 {% endif %}
                 {% if object.additional_information %}
                 <h3>Additional Information</h3>
@@ -109,7 +113,8 @@
                 {% endfor %}
 
                 <h2>Bibliographic Source</h2>
-                <p>{{ object.year_book_title}} {{ object.year_book_issue }} <a href="{{ object.year_book_title.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
+                <p>{{ object.year_book_title}} {{ object.year_book_issue }} <a
+                        href="{{ object.year_book_title.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
                 <h2>Eurotort reference</h2>
                 <p>Eurotort no. {{ object.id }}</p>
                 <small>updated: {{ object.modified_date }}</small>
