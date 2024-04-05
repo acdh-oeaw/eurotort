@@ -7,25 +7,24 @@
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
 {% include 'archiv/partials/detailview_title.html' %}
 <div class="container">
-    <dl>
-        <dt>Name</dt>
-        <dd class="ms-5">{{ object }}</dd>
-        <dt>Legal system(s)</dt>
+    
+        <h2>Name</h2>
+        <p class="ps-5">{{ object }}</p>
+        <h2>Legal system(s)</h2>
         {% for x in object.legal_system.all %}
-        <dd class="ms-5">{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
+        <p class="ps-5">{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
         {% endfor %}
-        <dt>Contact</dt>
-        <dd class="ms-5">
+        <h2>Contact</h2>
+        <p class="ps-5">
             {% if object.contact %}
             {{ object.contact }}
             {% else %}
             eurotort@oeaw.ac.at
             {% endif %}
-        </dd>
-    </dl>
+        </p>
     {% with courtdecissions=object.rvn_courtdecission_author_person %}
     <h2 class="pt-3">{{ courtdecissions.count }} contributed cases</h2>
-    <div class="ps-5" style="height: 800px;">
+    <div class="ps-5">
         <table id="tabulatortable">
             <thead>
                 <tr>
@@ -82,7 +81,7 @@
     var table = new Tabulator("#tabulatortable", {
         layout: "fitColumns",
         responsiveLayout: "collapse",
-        height: "100%",
+        height: 800,
         columns: [
             {
                 title: "Date",

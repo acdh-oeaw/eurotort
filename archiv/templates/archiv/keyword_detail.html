@@ -79,51 +79,49 @@
 
     {% if object.rvn_keyword_part_of_keyword.all %}
     <h2>has Children</h2>
-    <p class="ps-5">
     <ul>
         {% for x in object.rvn_keyword_part_of_keyword.all %}
         <span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span>
         <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
         {% endfor %}
     </ul>
-    </p>
     {% endif %}
-    {% with courtdecissions=object.rvn_courtdecission_keyword_keyword %}
+    {% with courtdecissions=cases %}
     <h2>{{ courtdecissions.count }} cases</h2>
-    <table id="tabulatortable">
-        <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Court</th>
-                <th scope="col">Case Reference</th>
-                <th scope="col">Subject matter</th>
-                <th scope="col">Keywords</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in courtdecissions.all %}
-            <tr>
-                <td>{{ x.decission_date|date:"Y-m-d" }}</td>
-                <td>
-                    {{ x.court }}
-                    <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                </td>
-                <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
-                <td scope="row">{{ x.short_description|safe }}</td>
-                <td>
-                    <ul class="list-unstyled">
-                        {% for y in x.keyword.all %}
-                        <li>
-                            <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
-                                href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <table id="tabulatortable">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Court</th>
+                    <th scope="col">Case Reference</th>
+                    <th scope="col">Subject matter</th>
+                    <th scope="col">Keywords</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in courtdecissions.all %}
+                <tr>
+                    <td>{{ x.decission_date|date:"Y-m-d" }}</td>
+                    <td>
+                        {{ x.court }}
+                        <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                    </td>
+                    <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
+                    <td scope="row">{{ x.short_description|safe }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for y in x.keyword.all %}
+                            <li>
+                                <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
+                                    href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% endwith %}
 
 
@@ -144,7 +142,7 @@
     var table = new Tabulator("#tabulatortable", {
         layout: "fitColumns",
         responsiveLayout: "collapse",
-        height: "100%",
+        height: 800,
         columns: [
             {
                 title: "Date",
