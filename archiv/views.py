@@ -275,6 +275,19 @@ class KeyWordDetailView(CustomDetailView):
     model = KeyWord
     template_name = "archiv/keyword_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.object.part_of:
+            context[
+                "cases"
+            ] = self.object.rvn_courtdecission_keyword_keyword.all().distinct()
+            return context
+        else:
+            children = self.object.rvn_keyword_part_of_keyword.all()
+            cases = CourtDecission.objects.filter(keyword__in=children).distinct()
+            context["cases"] = cases
+            return context
+
 
 class KeyWordCreate(CustomCreateView):
     h1 = "Create keyword"

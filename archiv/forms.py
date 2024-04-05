@@ -197,6 +197,7 @@ class KeyWordForm(forms.ModelForm):
             "id",
             "name",
             "part_of",
+            "introduction",
         ]
 
     def __init__(self, *args, **kwargs):
