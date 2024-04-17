@@ -526,13 +526,13 @@ class YearBookDetailView(CustomDetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.object.part_of:
-            context[
-                "cases"
-            ] = self.object.related_court_decission.all().distinct()
+            context["cases"] = self.object.related_court_decission.all().distinct()
             return context
         else:
             children = self.object.has_bibliographic_items.all()
-            cases = CourtDecission.objects.filter(year_book_title__in=children).distinct()
+            cases = CourtDecission.objects.filter(
+                year_book_title__in=children
+            ).distinct()
             context["cases"] = cases
             return context
 
