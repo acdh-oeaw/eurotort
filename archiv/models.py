@@ -421,10 +421,12 @@ class CourtDecission(models.Model):
     def __str__(self):
         if self.file_number and self.party:
             return f"{self.party}, {self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
-        elif self.file_number:
-            return f"{self.court.name} {ſelf.decission_date.strftime('%d %b %Y')}, {self.file_number}"
-        elif self.party:
+        elif self.file_number and self.court.name and self.decission_date:
+            return f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
+        elif self.party and self.court.name and self.decission_date:
             return f"{self.party}, {self.court.name} {ſelf.decission_date.strftime('%d %b %Y')}"
+        elif self.court.name and self.decission_date:
+            return f"{self.court.name} {ſelf.decission_date.strftime('%d %b %Y')}"
         else:
             return f"{self.id}"
 
@@ -542,9 +544,7 @@ class KeyWord(models.Model):
         verbose_name_plural = "Keywords"
 
     def __str__(self):
-        if self.name and self.part_of:
-            return f"{self.part_of} >> {self.name}"
-        elif self.name:
+        if self.name:
             return f"{self.name}"
         else:
             return f"{self.id}"

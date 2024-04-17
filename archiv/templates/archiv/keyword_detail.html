@@ -86,6 +86,17 @@
         {% endfor %}
     </ul>
     {% endif %}
+
+    {% if object.see_also.all %}
+    <h2>Related keyword(s)</h2>
+    <ul>
+        {% for x in object.see_also.all %}
+        <span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span>
+        <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
     {% with courtdecissions=cases %}
     <h2>{{ courtdecissions.count }} cases</h2>
         <table id="tabulatortable">

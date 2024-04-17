@@ -203,6 +203,13 @@ class KeyWordForm(forms.ModelForm):
         model = KeyWord
         fields = ["id", "name", "part_of", "introduction", "see_also"]
 
+        widgets = {
+            "see_also": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:keyword-autocomplete"
+            ),
+            "part_of": autocomplete.ModelSelect2(url="archiv-ac:keyword-autocomplete"),
+        }
+
     def __init__(self, *args, **kwargs):
         super(KeyWordForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
