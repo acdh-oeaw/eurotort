@@ -40,7 +40,9 @@ class ImprintView(TemplateView):
         if r.status_code == 200:
             context["imprint_body"] = "{}".format(r.text)
         else:
-            context["imprint_body"] = """
+            context[
+                "imprint_body"
+            ] = """
             On of our services is currently not available.\
             Please try it later or write an email to\
             acdh@oeaw.ac.at; if you are service provide,\

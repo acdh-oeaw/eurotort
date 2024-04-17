@@ -35,7 +35,12 @@ class YearBookFilterFormHelper(FormHelper):
 class YearBookForm(forms.ModelForm):
     class Meta:
         model = YearBook
-        fields = ["title", "year", "part_of"]
+        fields = [
+            "title",
+            "year",
+            "part_of",
+            "doi",
+        ]
         widgets = {
             "part_of": autocomplete.ModelSelect2(url="archiv-ac:monograph-autocomplete")
         }
@@ -80,9 +85,12 @@ class CourtForm(forms.ModelForm):
         fields = [
             "id",
             "name",
+            "name_english",
             "abbreviation",
             "is_high_court",
             "partial_legal_system",
+            "ecli_abbr",
+            "note",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -193,12 +201,14 @@ class KeyWordFilterFormHelper(FormHelper):
 class KeyWordForm(forms.ModelForm):
     class Meta:
         model = KeyWord
-        fields = [
-            "id",
-            "name",
-            "part_of",
-            "introduction",
-        ]
+        fields = ["id", "name", "part_of", "introduction", "see_also"]
+
+        widgets = {
+            "see_also": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:keyword-autocomplete"
+            ),
+            "part_of": autocomplete.ModelSelect2(url="archiv-ac:keyword-autocomplete"),
+        }
 
     def __init__(self, *args, **kwargs):
         super(KeyWordForm, self).__init__(*args, **kwargs)
@@ -234,7 +244,11 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
 class PartialLegalSystemForm(forms.ModelForm):
     class Meta:
         model = PartialLegalSystem
-        fields = ["name"]
+        fields = [
+            "name",
+            "ecli_abbr",
+            "link_to_legal_db",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(PartialLegalSystemForm, self).__init__(*args, **kwargs)
@@ -277,6 +291,8 @@ class PersonForm(forms.ModelForm):
             "last_name",
             "first_name",
             "legal_system",
+            "contact",
+            "orcid",
         ]
 
     def __init__(self, *args, **kwargs):

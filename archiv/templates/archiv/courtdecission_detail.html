@@ -5,15 +5,21 @@
 {% block content %}
 <!-- <div class="container"> -->
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-<div class="card courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
+<div class="courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
 
-    <div class="card-body">
+    <div>
         <div class="row">
             <div class="col-md-2">
                 <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
             </div>
             <div class="col-md-10" id="contentToPrint">
-                <h1>{{ object }}</h1>
+                <h1>{{ object }} {% if user.is_authenticated %}
+                    <small>
+                        <a href="{{ object.get_edit_url }}">
+                            <i class="bi bi-pencil-square" title="edit entry"></i>
+                        </a>
+                    </small>
+                    {% endif %}</h1>
                 <div class="d-flex justify-content-center">
                     <i class="bi bi-filetype-pdf" onclick="Convert_HTML_To_PDF();" title="print as pdf"
                         id="pdfbutton"></i>
@@ -122,7 +128,7 @@
         </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="card-footer">
+    <div>
         <div class="float-end">
             <a href="{{ object.get_delete_url }}">
                 <i class="bi bi-trash3" title="delete entry"></i>
