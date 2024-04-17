@@ -26,27 +26,27 @@ urlpatterns = [
         name="yearbook_delete",
     ),
     path(
-        "courtdecission/",
+        "case/",
         views.CourtDecissionListView.as_view(),
         name="courtdecission_browse",
     ),
     path(
-        "courtdecission/detail/<int:pk>",
+        "case/detail/<int:pk>",
         views.CourtDecissionDetailView.as_view(),
         name="courtdecission_detail",
     ),
     path(
-        "courtdecission/create/",
+        "case/create/",
         views.CourtDecissionCreate.as_view(),
         name="courtdecission_create",
     ),
     path(
-        "courtdecission/edit/<int:pk>",
+        "case/edit/<int:pk>",
         views.CourtDecissionUpdate.as_view(),
         name="courtdecission_edit",
     ),
     path(
-        "courtdecission/delete/<int:pk>",
+        "case/delete/<int:pk>",
         views.CourtDecissionDelete.as_view(),
         name="courtdecission_delete",
     ),
