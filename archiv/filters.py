@@ -6,6 +6,8 @@ from django.contrib.postgres.search import SearchQuery
 from django.contrib.postgres.search import SearchRank
 from django.db.utils import ProgrammingError
 
+from acdh_django_widgets.widgets import RangeSliderWidget
+
 from .models import Court
 from .models import CourtDecission
 from .models import KeyWord
@@ -38,6 +40,9 @@ class YearBookListFilter(django_filters.FilterSet):
     year = django_filters.RangeFilter(
         help_text=YearBook._meta.get_field("year").help_text,
         label=YearBook._meta.get_field("year").verbose_name,
+        widget=RangeSliderWidget(
+            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+        ),
     )
 
     class Meta:
@@ -179,6 +184,9 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     decission_date__year = django_filters.RangeFilter(
         help_text="Year of Decision.",
         label=CourtDecission._meta.get_field("decission_date").verbose_name,
+        widget=RangeSliderWidget(
+            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+        ),
     )
 
     def search_fulltext(self, queryset, field_name, value):

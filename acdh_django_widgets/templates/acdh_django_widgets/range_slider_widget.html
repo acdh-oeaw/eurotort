@@ -1,0 +1,58 @@
+<div id="{{ name }}_slider" class="slider"></div>
+<div class="pt-2 container d-flex justify-content-center {% if attrs.hide_input_fileds %} d-none {% endif %}">
+    <div class="row">
+        <div class="col-5">
+            <input id="id_{{ name }}_0" name="{{ name }}_min" type="text" value="{{ value.0 }}"
+                class="textinput form-control">
+        </div>
+        <div class="col-auto align-self-center">
+            <span class="fs-4">—</span>
+          </div>
+        <div class="col-5">
+            <input id="id_{{ name }}_1" name="{{ name }}_max" type="text" value="{{ value.1 }}"
+                class="textinput form-control">
+        </div>
+    </div>
+</div>
+<script>
+    var minValue = {{ attrs.min }};
+    var maxValue = {{ attrs.max }};
+    var sliderId = "{{ name }}_slider";
+    var minValForm = document.getElementById("id_{{ name }}_0");
+    var maxValForm = document.getElementById("id_{{ name }}_1");
+    var startValue = minValForm.value;
+    var endValue = maxValForm.value;
+    var slider = document.getElementById(sliderId);
+
+    noUiSlider.create(slider, {
+        start: [startValue, endValue],
+        step: 1,
+        connect: true,
+        tooltips: true,
+        format: wNumb({
+            decimals: 0
+        }),
+        range: {
+            "min": minValue,
+            "max": maxValue
+        }
+    });
+
+    slider.noUiSlider.on('update', function (values, handle) {
+
+        var value = values[handle];
+        if (handle) {
+            maxValForm.value = value;
+        } else {
+            minValForm.value = value;
+        }
+    });
+
+    minValForm.addEventListener('change', function () {
+        slider.noUiSlider.set([this.value, null]);
+    });
+
+    maxValForm.addEventListener('change', function () {
+        slider.noUiSlider.set([null, this.value]);
+    });
+</script>
