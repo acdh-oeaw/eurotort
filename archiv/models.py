@@ -451,6 +451,7 @@ class CourtDecission(models.Model):
             "motto",
             "commentary",
             "additional_information",
+            "party",
         ]
         return text_fields
 
