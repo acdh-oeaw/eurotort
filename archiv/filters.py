@@ -18,8 +18,10 @@ from .models import YearBook
 
 START_SELECTOR = '<span class="text-nowrap bg-warning border-warning rounded border-5">'
 
+
 FT_HELPTEXT = """
-Fuzzy Fulltext Search
+    <i class="bi bi-info-circle" role="button" title="Click for information about the full text search"
+    data-bs-toggle="modal" data-bs-target="#searchInfoModal"></i>
 """
 
 

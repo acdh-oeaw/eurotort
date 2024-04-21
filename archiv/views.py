@@ -174,6 +174,7 @@ class CourtDelete(DeleteView):
 
 class CourtDecissionListView(CustomListView):
     model = CourtDecission
+    template_name = "archiv/case_listview.html"
     h1 = "Browse cases"
     create_button_text = "Create new case"
     filter_class = CourtDecissionListFilter
