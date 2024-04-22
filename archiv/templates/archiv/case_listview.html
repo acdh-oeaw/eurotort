@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-8" id="results">
 
-               
+
                 <div class="card-body table-responsive">
                     {% block table %}
                     {% include 'browsing/partials/table.html' %}
@@ -67,4 +67,21 @@
 {% block scripts2 %}
 <script src="{% static 'browsing/js/set-form-attributes.js' %}"></script>
 <script src="{% static 'browsing/js/filter-for-blank-fields.js' %}"></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var accordion = document.getElementsByClassName('accordion')[0];
+        accordion.addEventListener('shown.bs.collapse', function (event) {
+            var shownElement = event.target;
+            var allSelect2Spans = document.getElementsByClassName("select2");
+            var firstSpan = allSelect2Spans[0];
+            var widthToset = allSelect2Spans[0].style["width"];
+            for (var i = 0; i < allSelect2Spans.length; i++) {
+                allSelect2Spans[i].style.width = widthToset;
+            }
+        });
+    });
+
+
+</script>
 {% endblock scripts2 %}
