@@ -132,6 +132,11 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("file_number").help_text,
         label=CourtDecission._meta.get_field("file_number").verbose_name,
     )
+    ecli = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("ecli").help_text,
+        label=CourtDecission._meta.get_field("ecli").verbose_name,
+    )
     party = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=CourtDecission._meta.get_field("party").help_text,
@@ -173,6 +178,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         label=CourtDecission._meta.get_field("keyword").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
+            attrs={'data-html': True}
         ),
     )
     author = django_filters.ModelMultipleChoiceFilter(

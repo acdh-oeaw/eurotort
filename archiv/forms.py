@@ -140,7 +140,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "author",
                     css_id="extended",
                 ),
-                always_open=True
+                always_open=True,
             )
         )
 
