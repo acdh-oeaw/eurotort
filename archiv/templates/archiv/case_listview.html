@@ -13,15 +13,16 @@
 <div class="container-fluid">
     <div class="card-header text-center">
 
-        <h1 class="text-center">{{table.paginator.count }} {{ verbose_name_plural }}</h1>
-        {% if user.is_authenticated %}
+        <h1 class="text-center">
+            {{table.paginator.count }} {{ verbose_name_plural }}
+            {% if user.is_authenticated %}
         {% if create_view_link %}
-        <div class="d-grid gap-2">
-            <a class="btn btn-primary float-center ms-5 me-5" href="{{ create_view_link }}">Create new {{ class_name
-                }}</a>
-        </div>
+       <br />
+            <a class="btn btn-primary float-center ms-5 me-5" href="{{ create_view_link }}">Create new {{ class_name }}</a>
         {% endif %}
         {% endif %}
+        </h1>
+        
     </div>
     <div>
         <div class="row">
