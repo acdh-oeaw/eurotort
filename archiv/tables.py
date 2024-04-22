@@ -54,7 +54,9 @@ class CourtDecissionTable(tables.Table):
     keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
     author = tables.columns.ManyToManyColumn(verbose_name="Authors")
     kwic = tables.columns.TemplateColumn(
-        template_code="{{ record.kwic|safe }}", verbose_name="Keyword in Context"
+        template_code="{{ record.kwic|safe }}",
+        verbose_name="Keyword in Context",
+        orderable=False,
     )
     rank = tables.columns.TemplateColumn(
         template_code="{{ record.rank|safe }}", verbose_name="Search Rank"

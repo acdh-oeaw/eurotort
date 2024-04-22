@@ -1,0 +1,23 @@
+<div class="modal" id="searchInfoModal" tabindex="-1" aria-labelledby="searchInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Search information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>With this search, the fields "Short Description", "Facts", "Decision", "Commentary", "Additional Information" and "Parties" of a decision can be searched together. In order to keep the search efficient, the corresponding fields have been indexed. For this index, the individual texts are normalised back to their original forms. This also applies to the search term entered. Such a search index also allows more complex search queries such as:
+            <ul>
+                <li><strong>Phrase search</strong>: Terms in inverted commas are searched for together: "medical records".</li>
+                <li><strong>medical records</strong> finds all documents in which either <em>medical</em> or <em>recods</em> appears</li>
+                <li>A <strong>*</strong> at the end of a search term serves as a wildcard. <em>share*</em> also finds entries with <em>shareholder</em>, for example.</li>
+            </ul>
+          </p>
+          <p>For information: Displaying many hits as so called <em>Keywords in context (KWIC)</em> like e.g. <span class="text-nowrap bg-warning border-warning rounded border-5">example</span> can take some time. It is therefore advisable to narrow down the search results using additional filter options. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

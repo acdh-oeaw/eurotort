@@ -116,25 +116,31 @@ class CourtDecissionFilterFormHelper(FormHelper):
             BS5Accordion(
                 AccordionGroup(
                     "Basic Search",
-                    "id",
                     "ft_search",
                     "partial_legal_system",
                     "court",
-                    "year_book_title",
                     "decission_date__year",
-                    "file_number",
-                    "party",
-                    "location",
-                    "short_description",
-                    "situation",
-                    "motto",
-                    "commentary",
-                    "additional_information",
+                    # "location",
+                    # "short_description",
+                    # "situation",
+                    # "motto",
+                    # "commentary",
+                    # "additional_information",
                     "keyword",
                     "tag",
+                    css_id="basic",
+                ),
+                AccordionGroup(
+                    "Extended search fields",
+                    "party",
+                    "file_number",
+                    "id",
+                    "ecli",
+                    "year_book_title",
                     "author",
-                    css_id="more",
-                )
+                    css_id="extended",
+                ),
+                always_open=True,
             )
         )
 

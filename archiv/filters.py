@@ -6,6 +6,8 @@ from django.contrib.postgres.search import SearchQuery
 from django.contrib.postgres.search import SearchRank
 from django.db.utils import ProgrammingError
 
+from acdh_django_widgets.widgets import RangeSliderWidget
+
 from .models import Court
 from .models import CourtDecission
 from .models import KeyWord
@@ -16,8 +18,10 @@ from .models import YearBook
 
 START_SELECTOR = '<span class="text-nowrap bg-warning border-warning rounded border-5">'
 
+
 FT_HELPTEXT = """
-Fuzzy Fulltext Search
+    <i class="bi bi-info-circle" role="button" title="Click for information about the full text search"
+    data-bs-toggle="modal" data-bs-target="#searchInfoModal"></i>
 """
 
 
@@ -38,6 +42,9 @@ class YearBookListFilter(django_filters.FilterSet):
     year = django_filters.RangeFilter(
         help_text=YearBook._meta.get_field("year").help_text,
         label=YearBook._meta.get_field("year").verbose_name,
+        widget=RangeSliderWidget(
+            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+        ),
     )
 
     class Meta:
@@ -125,6 +132,11 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("file_number").help_text,
         label=CourtDecission._meta.get_field("file_number").verbose_name,
     )
+    ecli = django_filters.CharFilter(
+        lookup_expr="icontains",
+        help_text=CourtDecission._meta.get_field("ecli").help_text,
+        label=CourtDecission._meta.get_field("ecli").verbose_name,
+    )
     party = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=CourtDecission._meta.get_field("party").help_text,
@@ -166,6 +178,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         label=CourtDecission._meta.get_field("keyword").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
+            attrs={'data-html': True}
         ),
     )
     author = django_filters.ModelMultipleChoiceFilter(
@@ -179,6 +192,9 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     decission_date__year = django_filters.RangeFilter(
         help_text="Year of Decision.",
         label=CourtDecission._meta.get_field("decission_date").verbose_name,
+        widget=RangeSliderWidget(
+            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+        ),
     )
 
     def search_fulltext(self, queryset, field_name, value):
