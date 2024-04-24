@@ -36,6 +36,10 @@ class CourtAC(autocomplete.Select2QuerySetView):
 
     def get_queryset(self):
         qs = Court.objects.all()
+        constraint = self.forwarded.get("partial_legal_system", None)
+
+        if constraint:
+            qs = qs.filter(partial_legal_system__in=[int(x) for x in constraint])
 
         if self.q:
             qs = qs.filter(
@@ -57,7 +61,9 @@ class CourtDecissionAC(autocomplete.Select2QuerySetView):
 
 class KeyWordAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, result):
-        return format_html('<span class="badge rounded-pill text-bg-primary ">{}</span>', result.name)
+        return format_html(
+            '<span class="badge rounded-pill text-bg-primary ">{}</span>', result.name
+        )
 
     def get_queryset(self):
         qs = KeyWord.objects.all()
@@ -79,7 +85,11 @@ class PartialLegalSystemAC(autocomplete.Select2QuerySetView):
 class PersonAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Person.objects.all()
-
+        constraint = self.forwarded.get("partial_legal_system", None)
+        print("############")
+        print(constraint)
+        if constraint:
+            qs = qs.filter(legal_system__in=[int(x) for x in constraint])
         if self.q:
             qs = qs.filter(
                 Q(first_name__icontains=self.q) | Q(last_name__icontains=self.q)
