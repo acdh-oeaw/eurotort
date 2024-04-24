@@ -124,7 +124,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("court").help_text,
         label=CourtDecission._meta.get_field("court").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:court-autocomplete",
+            url="archiv-ac:court-autocomplete", forward=["partial_legal_system"]
         ),
     )
     file_number = django_filters.CharFilter(
@@ -177,8 +177,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("keyword").help_text,
         label=CourtDecission._meta.get_field("keyword").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:keyword-autocomplete",
-            attrs={'data-html': True}
+            url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
         ),
     )
     author = django_filters.ModelMultipleChoiceFilter(
@@ -186,7 +185,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=CourtDecission._meta.get_field("author").help_text,
         label=CourtDecission._meta.get_field("author").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:person-autocomplete",
+            url="archiv-ac:person-autocomplete", forward=["partial_legal_system"]
         ),
     )
     decission_date__year = django_filters.RangeFilter(
