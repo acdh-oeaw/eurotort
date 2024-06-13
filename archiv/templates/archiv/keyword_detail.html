@@ -106,6 +106,7 @@
                     <th scope="col">Court</th>
                     <th scope="col">Case Reference</th>
                     <th scope="col">Subject matter</th>
+                    <th scope="col">Legal system</th>
                     <th scope="col">Keywords</th>
                 </tr>
             </thead>
@@ -119,6 +120,10 @@
                     </td>
                     <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
                     <td scope="row">{{ x.short_description|safe }}</td>
+                    <td>
+                        {{ x.partial_legal_system }}
+                        <a href="{{ x.partial_legal_system.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                    </td>
                     <td>
                         <ul class="list-unstyled">
                             {% for y in x.keyword.all %}
@@ -178,6 +183,13 @@
             {
                 title: "Subject matter",
                 field: "Subject matter",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Legal system",
+                field: "Legal system",
                 sorter: "string",
                 headerFilter: "input",
                 formatter: scrollHtml
