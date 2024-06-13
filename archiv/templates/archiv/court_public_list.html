@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <ul>
                         {% for x in value %}
-                        <li {% if x.is_high_court %} class="highCourt" {% else %} class="noHighCourt"{% endif %}><a href="/archiv/court/detail/{{ x.id }}">{% if x.is_high_court %}<strong title="is high court">{{ x.name }}</strong>{% else %}{{x.name}}{% endif %}{% if x.name_english %}, ({{ x.name_english }}),{% endif %} {{ x.abbreviation }} </a></li>
+                        <li {% if x.is_high_court %} class="highCourt" {% else %} class="noHighCourt"{% endif %}><a href="/archiv/court/detail/{{ x.id }}">{% if x.is_high_court %}<strong title="is high court">{{ x.name }}</strong>{% else %}{{x.name}}{% endif %}{% if x.name_english %} ({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %} </a></li>
                         {% endfor %}
                     </ul>
                 </div>

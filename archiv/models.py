@@ -271,7 +271,7 @@ class CourtDecission(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Case number",
-        help_text="Case number (file number/reference as cited in the given legal system, e.g. '[2010] UKSC 33' for a UK Supreme Court decision or _VI ZR 548/12' for a German BGH decision)",  # noqa: E501
+        help_text="Case number (file number/reference as cited in the given legal system, e.g. '[2010] UKSC 33' for a UK Supreme Court decision or 'VI ZR 548/12' for a German BGH decision)",  # noqa: E501
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Aktenzahl",

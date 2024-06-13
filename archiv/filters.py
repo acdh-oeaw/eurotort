@@ -43,7 +43,7 @@ class YearBookListFilter(django_filters.FilterSet):
         help_text=YearBook._meta.get_field("year").help_text,
         label=YearBook._meta.get_field("year").verbose_name,
         widget=RangeSliderWidget(
-            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+            attrs={"min": "1900", "max": "2030", "hide_input_fileds": False}
         ),
     )
 
@@ -192,7 +192,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text="Year of Decision.",
         label=CourtDecission._meta.get_field("decission_date").verbose_name,
         widget=RangeSliderWidget(
-            attrs={"min": "1990", "max": "2022", "hide_input_fileds": False}
+            attrs={"min": "1900", "max": "2030", "hide_input_fileds": False}
         ),
     )
 
