@@ -30,6 +30,17 @@ class MonographAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class ChapterAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = YearBook.objects.all()
+        constraint = self.forwarded.get("year_book_title", None)
+        if constraint:
+            qs = qs.filter(part_of=constraint[0])
+        if self.q:
+            qs = qs.filter(Q(title__icontains=self.q) | Q(id__icontains=self.q))
+        return qs
+
+
 class CourtAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, item):
         return f"{item.name} ({item.name_english}) {item.abbreviation}"
@@ -86,8 +97,6 @@ class PersonAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Person.objects.all()
         constraint = self.forwarded.get("partial_legal_system", None)
-        print("############")
-        print(constraint)
         if constraint:
             qs = qs.filter(legal_system__in=[int(x) for x in constraint])
         if self.q:

@@ -539,7 +539,7 @@ class KeyWord(models.Model):
     linked_to_cases = models.BooleanField(
         default=True,
         verbose_name="can be linked to cases",
-        help_text="can be linked to cases"
+        help_text="can be linked to cases",
     )
 
     class Meta:

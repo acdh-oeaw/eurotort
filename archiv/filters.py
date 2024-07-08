@@ -96,11 +96,21 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         help_text=FT_HELPTEXT,
     )
     year_book_title = django_filters.ModelMultipleChoiceFilter(
+        field_name="year_book_title__part_of",
         queryset=YearBook.objects.all(),
-        help_text=CourtDecission._meta.get_field("year_book_title").help_text,
-        label=CourtDecission._meta.get_field("year_book_title").verbose_name,
+        label="Yearbook",
+        help_text="List all cases discussed in the selected yearbook",
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:yearbook-autocomplete",
+            url="archiv-ac:monograph-autocomplete",
+        ),
+    )
+    year_book_chapter = django_filters.ModelMultipleChoiceFilter(
+        field_name="year_book_title",
+        queryset=YearBook.objects.all(),
+        label="Article",
+        help_text="Lists all cases discussed in the selected article.",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:chapter-autocomplete", forward=["year_book_title"]
         ),
     )
     tag = django_filters.ModelMultipleChoiceFilter(
@@ -176,14 +186,14 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         queryset=KeyWord.objects.all(),
         help_text=CourtDecission._meta.get_field("keyword").help_text,
         label=CourtDecission._meta.get_field("keyword").verbose_name,
-        widget=autocomplete.Select2Multiple(
+        widget=autocomplete.ModelSelect2Multiple(
             url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
         ),
     )
     author = django_filters.ModelMultipleChoiceFilter(
         queryset=Person.objects.all(),
-        help_text=CourtDecission._meta.get_field("author").help_text,
         label=CourtDecission._meta.get_field("author").verbose_name,
+        help_text="Lists all cases related to articles written by the selected author.",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:person-autocomplete", forward=["partial_legal_system"]
         ),
@@ -258,6 +268,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "tag",
             "author",
             "year_book_title",
+            "year_book_chapter",
         ]
 
 

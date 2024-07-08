@@ -137,6 +137,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "id",
                     "ecli",
                     "year_book_title",
+                    "year_book_chapter",
                     "author",
                     css_id="extended",
                 ),
