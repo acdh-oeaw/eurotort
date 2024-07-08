@@ -272,7 +272,15 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text=KeyWord._meta.get_field("part_of").help_text,
         label=KeyWord._meta.get_field("part_of").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:keyword-autocomplete",
+            url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
+        ),
+    )
+    see_also = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text=KeyWord._meta.get_field("see_also").help_text,
+        label=KeyWord._meta.get_field("see_also").verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
         ),
     )
 
@@ -282,6 +290,7 @@ class KeyWordListFilter(django_filters.FilterSet):
             "id",
             "name",
             "part_of",
+            "see_also",
             "linked_to_cases",
         ]
 
