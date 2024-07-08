@@ -536,6 +536,11 @@ class KeyWord(models.Model):
         verbose_name="Related to",
         help_text="Related keyword(s)",
     )
+    linked_to_cases = models.BooleanField(
+        default=True,
+        verbose_name="can be linked to cases",
+        help_text="can be linked to cases"
+    )
 
     class Meta:
         ordering = [
