@@ -3,11 +3,13 @@
 {% load webpage_extras %}
 {% block title %} Imprint {% endblock %}
 {% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Imprint</li>
+    </ol>
+</nav>
 <div class="container">
-<div class="card imprint">
-<div class="card-body">
     {{ imprint_body|safe }}
-</div>
-</div>
 </div>
 {% endblock %}
