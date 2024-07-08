@@ -161,7 +161,7 @@ class CourtDecissionForm(forms.ModelForm):
                 url="archiv-ac:person-autocomplete"
             ),
             "keyword": autocomplete.ModelSelect2Multiple(
-                url="archiv-ac:keyword-autocomplete"
+                url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
             ),
             "year_book_title": autocomplete.ModelSelect2(
                 url="archiv-ac:yearbook-autocomplete"
@@ -198,6 +198,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     "id",
                     "name",
                     "part_of",
+                    "see_also",
                     "linked_to_cases",
                     css_id="more",
                 )
@@ -208,13 +209,22 @@ class KeyWordFilterFormHelper(FormHelper):
 class KeyWordForm(forms.ModelForm):
     class Meta:
         model = KeyWord
-        fields = ["id", "name", "part_of", "introduction", "see_also", "linked_to_cases"]
+        fields = [
+            "id",
+            "name",
+            "part_of",
+            "introduction",
+            "see_also",
+            "linked_to_cases",
+        ]
 
         widgets = {
             "see_also": autocomplete.ModelSelect2Multiple(
-                url="archiv-ac:keyword-autocomplete"
+                url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
             ),
-            "part_of": autocomplete.ModelSelect2(url="archiv-ac:keyword-autocomplete"),
+            "part_of": autocomplete.ModelSelect2(
+                url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
+            ),
         }
 
     def __init__(self, *args, **kwargs):
