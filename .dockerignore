@@ -1,5 +1,8 @@
 myenv
 env
+.git
+.github
+*.env
 db.sqlite3
 .env
 secret.env
