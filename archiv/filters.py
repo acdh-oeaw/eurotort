@@ -282,6 +282,7 @@ class KeyWordListFilter(django_filters.FilterSet):
             "id",
             "name",
             "part_of",
+            "linked_to_cases",
         ]
 
 

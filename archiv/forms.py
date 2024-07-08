@@ -198,6 +198,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     "id",
                     "name",
                     "part_of",
+                    "linked_to_cases",
                     css_id="more",
                 )
             )
@@ -207,7 +208,7 @@ class KeyWordFilterFormHelper(FormHelper):
 class KeyWordForm(forms.ModelForm):
     class Meta:
         model = KeyWord
-        fields = ["id", "name", "part_of", "introduction", "see_also"]
+        fields = ["id", "name", "part_of", "introduction", "see_also", "linked_to_cases"]
 
         widgets = {
             "see_also": autocomplete.ModelSelect2Multiple(
