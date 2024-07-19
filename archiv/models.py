@@ -368,7 +368,7 @@ class CourtDecission(models.Model):
     )
     tag = models.ManyToManyField(
         "Tag",
-        related_name="has_related_keywords",
+        related_name="has_related_decisions",
         blank=True,
         verbose_name="Tags",
         help_text="Tags",
