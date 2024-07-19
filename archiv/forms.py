@@ -120,12 +120,6 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "partial_legal_system",
                     "court",
                     "decission_date__year",
-                    # "location",
-                    # "short_description",
-                    # "situation",
-                    # "motto",
-                    # "commentary",
-                    # "additional_information",
                     "keyword",
                     "tag",
                     css_id="basic",
@@ -154,7 +148,9 @@ class CourtDecissionForm(forms.ModelForm):
             "full_text",
         ]
         widgets = {
-            "tag": autocomplete.ModelSelect2Multiple(url="archiv-ac:tag-autocomplete"),
+            "tag": autocomplete.ModelSelect2Multiple(
+                url="archiv-ac:tag-autocomplete", attrs={"data-html": True}
+            ),
             "related_decision": autocomplete.ModelSelect2Multiple(
                 url="archiv-ac:courtdecission-autocomplete"
             ),

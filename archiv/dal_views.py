@@ -107,6 +107,11 @@ class PersonAC(autocomplete.Select2QuerySetView):
 
 
 class TagAC(autocomplete.Select2QuerySetView):
+    def get_result_label(self, result):
+        return format_html(
+            '<span class="badge rounded-pill text-bg-success ">{}</span>', result.tag
+        )
+
     def get_queryset(self):
         qs = Tag.objects.all()
 
