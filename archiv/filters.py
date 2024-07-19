@@ -6,7 +6,7 @@ from django.contrib.postgres.search import SearchQuery
 from django.contrib.postgres.search import SearchRank
 from django.db.utils import ProgrammingError
 
-from acdh_django_widgets.widgets import RangeSliderWidget
+from acdh_django_widgets.widgets import RangeSliderWidget, DateRangePickerWidget
 
 from .models import Court
 from .models import CourtDecission
@@ -199,12 +199,10 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:person-autocomplete", forward=["partial_legal_system"]
         ),
     )
-    decission_date__year = django_filters.RangeFilter(
-        help_text="Year of Decision.",
+    decission_date = django_filters.DateFromToRangeFilter(
+        help_text=CourtDecission._meta.get_field("decission_date").help_text,
         label=CourtDecission._meta.get_field("decission_date").verbose_name,
-        widget=RangeSliderWidget(
-            attrs={"min": "1900", "max": "2030", "hide_input_fileds": False}
-        ),
+        widget=DateRangePickerWidget
     )
 
     def search_fulltext(self, queryset, field_name, value):
@@ -256,7 +254,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "ft_search",
             "partial_legal_system",
             "court",
-            "decission_date__year",
+            "decission_date",
             "file_number",
             "party",
             "location",

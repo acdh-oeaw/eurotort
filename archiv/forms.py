@@ -119,7 +119,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "ft_search",
                     "partial_legal_system",
                     "court",
-                    "decission_date__year",
+                    "decission_date",
                     "keyword",
                     "tag",
                     css_id="basic",
