@@ -180,8 +180,8 @@ class CourtDecissionListView(CustomListView):
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
-    init_columns = ["id", "file_number", "party", "kwic"]
-    exclude_columns = ["full_text", "vector_column"]
+    init_columns = ["id", "file_number", "party"]
+    exclude_columns = ["full_text", "vector_column", "year_book_issue"]
     enable_merge = True
 
     def get_queryset(self, **kwargs):
