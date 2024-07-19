@@ -334,8 +334,6 @@ class TagFilterFormHelper(FormHelper):
                     "Basic Search",
                     "id",
                     "tag",
-                    "last_name",
-                    "first_name",
                     css_id="more",
                 ),
             )

@@ -775,7 +775,7 @@ class Tag(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse("archiv:person_browse")
+        return reverse("archiv:tag_browse")
 
     @classmethod
     def get_natural_primary_key(self):
