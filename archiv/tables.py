@@ -53,13 +53,12 @@ class CourtDecissionTable(tables.Table):
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
     author = tables.columns.ManyToManyColumn(verbose_name="Authors")
+    related_decision = tables.columns.ManyToManyColumn(verbose_name="Related decisions")
+    tag = tables.columns.ManyToManyColumn(verbose_name="Tags")
     kwic = tables.columns.TemplateColumn(
         template_code="{{ record.kwic|safe }}",
         verbose_name="Keyword in Context",
         orderable=False,
-    )
-    rank = tables.columns.TemplateColumn(
-        template_code="{{ record.rank|safe }}", verbose_name="Search Rank"
     )
 
     class Meta:
