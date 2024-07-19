@@ -119,6 +119,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         label=CourtDecission._meta.get_field("tag").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:tag-no-filter-autocomplete",
+            attrs={"data-html": True}
         ),
     )
     partial_legal_system = django_filters.ModelMultipleChoiceFilter(

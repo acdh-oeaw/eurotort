@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
-from archiv.models import CourtDecission
+from archiv.models import CourtDecission, Tag
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -111,3 +111,14 @@ class ArchivTestCase(TestCase):
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
             self.assertTrue("results" in response.json().keys())
+
+    def test_017_ac_keyword(self):
+        url = reverse("archiv-ac:keyword-autocomplete")
+        response = client.get(f"{url}?q=o")
+        self.assertTrue("text-bg-primary" in str(response.content))
+
+    def test_018_ac_tag(self):
+        Tag.objects.get_or_create(tag="test tag")
+        url = reverse("archiv-ac:tag-autocomplete")
+        response = client.get(f"{url}?q=t")
+        self.assertTrue("text-bg-success" in str(response.content))
