@@ -1,34 +1,120 @@
 {% extends "webpage/base.html" %}
 {% load static %}
 {% load webpage_extras %}
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ object }}{% endblock %}
 {% block content %}
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-<div class="card">
-    <div class="card-header">
-        {% include 'archiv/partials/detailview_title.html' %}
-    </div>
-    <div class="card-body container">
-        {% with courtdecissions=object.has_related_keywords %}
-        <h2>{{ courtdecissions.count }} Tagged Court Decissions</h2>
-            {% include "archiv/partials/courtdecission_table.html" %}
-        {% endwith %}
+{% include 'archiv/partials/detailview_title.html' %}
+  
+<div class="container">
+    {% with courtdecissions=object.has_related_decisions %}
+    <h2>{{ courtdecissions.count }} case(s)</h2>
+    <table id="tabulatortable">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Court</th>
+                <th scope="col">Case Reference</th>
+                <th scope="col">Subject matter</th>
+                <th scope="col">Legal system</th>
+                <th scope="col">Keywords</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in courtdecissions.all %}
+            <tr>
+                <td>{{ x.decission_date|date:"Y-m-d" }}</td>
+                <td>
+                    {{ x.court }}
+                    <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                </td>
+                <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
+                <td scope="row">{{ x.short_description|safe }}</td>
+                <td>
+                    {{ x.partial_legal_system }}
+                    <a href="{{ x.partial_legal_system.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                </td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for y in x.keyword.all %}
+                        <li>
+                            <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
+                                href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="ps-5">
+{% endwith %}
 
                
                
+{% if user.is_authenticated %}
+    <div class="float-end">
+        <a href="{{ object.get_delete_url }}">
+            <i class="bi bi-trash3" title="delete entry"></i>
+        </a>
     </div>
-    {% if user.is_authenticated %}
-    <div class="card-footer">
-        <div class="float-end">
-            <a href="{{ object.get_delete_url }}">
-                <i class="bi bi-trash3" title="delete entry"></i>
-            </a>
-        </div>
-    </div>
-    {% endif %}
+{% endif %}
 </div>
+
 
 {% endblock %}
 {% block scripts2 %}
 {% include "archiv/partials/courtdecission_table_js.html" %}
+<script>
+    var table = new Tabulator("#tabulatortable", {
+        layout: "fitColumns",
+        responsiveLayout: "collapse",
+        height: 800,
+        columns: [
+            {
+                title: "Date",
+                field: "Date",
+                sorter: "string",
+                headerFilter: "input",
+                minWidth: 320
+            },
+            {
+                title: "Court",
+                field: "Court",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Case Reference",
+                field: "Case Reference",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: "html"
+            },
+            {
+                title: "Subject matter",
+                field: "Subject matter",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Legal system",
+                field: "Legal system",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            },
+            {
+                title: "Keywords",
+                field: "Keywords",
+                sorter: "string",
+                headerFilter: "input",
+                formatter: scrollHtml
+            }
+        ]
+    });
+</script>
 {% endblock scripts2 %}
