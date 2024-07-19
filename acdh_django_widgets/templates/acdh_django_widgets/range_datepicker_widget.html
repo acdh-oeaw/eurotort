@@ -1,0 +1,24 @@
+<div class="acdhch-django-datepicker-start">
+    <label for="startDate">Start</label>
+    <input id="id_{{ name }}_0" name="{{ name }}_after" class="form-control" type="date" value="{{ value.0 }}"/>
+    <span id="{{ name }}_after_selected"></span>
+</div>
+<div class="acdhch-django-datepicker-end">
+    <label for="endDate">End</label>
+    <input id="id_{{ name }}_1" name="{{ name }}_before" class="form-control" class="form-control" type="date" value="{{ value.1 }}"/>
+    <span id="{{ name }}_before_selected"></span>
+</div>
+
+
+<script>
+    {% if attrs.min %}
+    var minValue = {{ attrs.min }};
+    var minValForm = document.getElementById("id_{{ name }}_0");
+    var startValue = minValForm.value;
+    {% endif %}
+    {% if attrs.max %}
+    var maxValue = {{ attrs.max }};
+    var maxValForm = document.getElementById("id_{{ name }}_1");
+    var endValue = maxValForm.value;
+    {% endif %}
+</script>
