@@ -1,4 +1,4 @@
-acdh-django-browsing>=2.0
+acdh-django-browsing>=3.2
 acdh-django-widgets
 django-autocomplete-light>=3.9,<4
 django_extensions
