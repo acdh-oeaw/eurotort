@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "appcreator",
     "webpage",
     "browsing",
-    "infos",
     "archiv",
     "django_extensions",
     "fixture_magic",
@@ -84,7 +83,7 @@ ROOT_URLCONF = "djangobaseproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,9 +91,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "webpage.webpage_content_processors.installed_apps",
-                "webpage.webpage_content_processors.get_db_name",
-                "webpage.webpage_content_processors.my_app_name",
             ],
         },
     },

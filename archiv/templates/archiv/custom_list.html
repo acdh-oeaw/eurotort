@@ -1,7 +1,6 @@
-{% extends "webpage/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load django_tables2 %}
-{% load browsing_extras %}
 {% load crispy_forms_field %}
 {% load crispy_forms_tags %}
 {% block title %} Browse {{ class_name }} {% endblock %}
@@ -39,7 +38,7 @@
                             <a class="btn btn-primary"  href=".">Reset</a>
                             <button type="submit" class="btn btn-primary">Search</button>
                     </form>
-                        {% include 'browsing/partials/chart_form.html' %}
+                        
                     </div>
                 </div>
             </div>

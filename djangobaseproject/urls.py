@@ -23,6 +23,5 @@ urlpatterns = [
     path("archiv-ac/", include("archiv.dal_urls", namespace="archiv-ac")),
     path("browsing/", include("browsing.urls", namespace="browsing")),
     path("", include("webpage.urls", namespace="webpage")),
-    path("infos/", include("infos.urls", namespace="infos")),
 ]
 handler404 = "webpage.views.handler404"
