@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.test import Client
 from django.test import TestCase
 
@@ -21,3 +22,9 @@ class WebpageTest(TestCase):
         form_data = {"username": "non_exist", "password": "temporary"}
         rv = self.client.post("/accounts/login/", form_data, follow=True)
         self.assertContains(rv, "user does not exist")
+
+    def test_imprint_view(self):
+
+        rv = self.client.get(reverse("webpage:imprint"))
+        self.assertEqual(rv.status_code, 200)
+        self.assertContains(rv, "Austrian media law")
