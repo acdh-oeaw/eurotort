@@ -1,7 +1,34 @@
 {% load webpage_extras %}
+{% load static %}
 
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="float-end me-3">
-    <a href="{% projects_metadata 'github' %}"><i class="bi bi-github"></i></a>
+<footer class="py-3">
+  <div class="container text-center">
+    <div class="d-flex align-items-center gap-2 border-bottom pb-3 mb-4" style="color: #444;"><i class="bi bi-chat"
+        style="font-size: 1.125rem;"></i><span class="fw-medium" style="font-size: 0.875rem;">Kontakt</span></div>
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-4">
+        <div><a href="https://www.oeaw.ac.at/acdh/acdh-home">
+          <img class="footerlogo" src="{% static 'webpage/images/acdh-logo-with-text-color.svg' %}" alt="ACDH logo"></a></div>
+        <div class="text-center p-4">
+          ACDH Austrian Centre for Digital Humanities Österreichische
+          Akademie der Wissenschaften
+          <br><a href="mailto:acdh-helpdesk@oeaw.ac.at">acdh-helpdesk@oeaw.ac.at</a>
+        </div>
+      </div>
+      <div class="col col-lg-4"></div>
+      <div class="col col-lg-4">
+        <div>
+          <a href="https://www.oeaw.ac.at/etl"><img
+              class="footerlogo" src="{% static 'webpage/images/etl-logo.svg' %}"
+              alt="Institute for European Tort Law (ETL) logo"></a>
+        </div>
+        <div class="text-center p-4">
+          Institute for European Tort Law (ETL) of the Austrian Academy of Sciences and the University of Graz
+          <br><a href="mailto:etl@oeaw.ac.at">etl@oeaw.ac.at</a>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="text-center"><a href="{% projects_metadata 'github' %}"><i
+        aria-hidden="true" class="bi bi-github fs-2"></i><span class="visually-hidden">GitHub repo</span></a></div>
 </footer>
