@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
-{% load webpage_extras %}
 {% block content %}
 
 
-    <h1 class="text-center">{% projects_metadata 'title' %}</h1>
-    <h2 class="text-center">{% lorem 10 w %}</h2>
-    {% include "archiv/partials/search_form.html" %}
-    {% include 'archiv/partials/info_modal.html' %}
+<div class="my-5">
+    <div class="p-5 text-center bg-body-tertiary">
+        <div class="container py-5">
+            <h1 class="text-body-emphasis">Eurotort</h1>
+            <h2 class="text-body-emphasis">Database on European Tort Law</h2>
+            <p class="col-lg-8 mx-auto lead">
+                Welcome to EUROTORT, the first comprehensive database of European cases on tort law! A web-based research for researchers as well as practitioners to access the vast wealth of jurisprudence on tort law throughout Europe.
+            </p>
+            {% include "archiv/partials/search_form.html" %}
+            {% include 'archiv/partials/info_modal.html' %}
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

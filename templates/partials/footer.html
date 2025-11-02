@@ -29,6 +29,19 @@
       </div>
     </div>
   </div>
-  <div class="text-center"><a href="{% projects_metadata 'github' %}"><i
-        aria-hidden="true" class="bi bi-github fs-2"></i><span class="visually-hidden">GitHub repo</span></a></div>
+  <div class="text-center">
+    <a href="{% projects_metadata 'github' %}">
+      <i aria-hidden="true" class="bi bi-github fs-2"></i>
+      <span class="visually-hidden">GitHub repo</span>
+    </a>
+  </div>
+  <div class="text-end me-5">
+    {% if user.is_authenticated %}
+    <a href="{% url 'webpage:user_logout' %}"><i class="bi bi-person-check fs-2"><span
+                class="visually-hidden">Click to log out</span></i></a>
+    {% else %}
+    <a href="{% url 'webpage:user_login' %}"><i class="bi bi-box-arrow-in-right fs-2"><span
+                class="visually-hidden">Click to log in</span></i></a>
+    {% endif %}
+  </div>
 </footer>
