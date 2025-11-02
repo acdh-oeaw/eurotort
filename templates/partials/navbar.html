@@ -35,28 +35,34 @@
                             </li>
                             <li><a class="dropdown-item" href="{% url 'archiv:court_browse' %}">Courts</a>
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'archiv:partiallegalsystem_browse' %}">Legal systems</a>
+                            <li><a class="dropdown-item" href="{% url 'archiv:partiallegalsystem_browse' %}">Legal
+                                    systems</a>
                             </li>
                             <li><a class="dropdown-item" href="{% url 'archiv:keyword_browse' %}">Keywords</a>
                             </li>
                             <li><a class="dropdown-item" href="{% url 'archiv:tag_browse' %}">Tags</a>
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'archiv:yearbook_browse' %}">Bibliographic items</a>
+                            <li><a class="dropdown-item" href="{% url 'archiv:yearbook_browse' %}">Bibliographic
+                                    items</a>
                             </li>
                             <li><a class="dropdown-item" href="{% url 'archiv:person_browse' %}">Authors</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" method="get" action="{% url 'archiv:courtdecission_browse' %}">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" {% if query_string %} value="{{ query_string }}" {% endif %} required name="ft_search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form method="get" action="{% url 'archiv:courtdecission_browse' %}">
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                            placeholder="search e.g. 'Liability'"
+                            aria-label="search e.g. 'Liability'" aria-describedby="basic-addon2"
+                            {% if query_string %} value="{{ query_string }}" {% endif %} required name="ft_search">
+                        <button class="btn btn-block btn-lg btn-primary" type="submit" id="basic-addon2">
+                            <i class="bi bi-search">
+                                <span class="visually-hidden">Click to search</span>
+                            </i>
+                        </button>
+                    </div>
                 </form>
-                {% if user.is_authenticated %}
-                <a href="{% url 'webpage:user_logout' %}"><i class="bi bi-person-check"></i></a>
-                {% else %}
-                <a href="{% url 'webpage:user_login' %}"><i class="bi bi-box-arrow-in-right"></i></a>
-                {% endif %}
             </div>
         </div>
     </nav>

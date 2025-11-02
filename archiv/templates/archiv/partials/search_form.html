@@ -1,12 +1,11 @@
 <div class="container">
   <form method="get" action="{% url 'archiv:courtdecission_browse' %}">
     <div class="input-group mt-5">
-      <span class="input-group-text" title="Click for information about the search" data-bs-toggle="modal" data-bs-target="#searchInfoModal"><i class="bi bi-info-circle" role="button"></i></span>
+      <span class="input-group-text" title="Click for information about the search" data-bs-toggle="modal" data-bs-target="#searchInfoModal"><i class="bi bi-info-circle" role="button"><span class="visually-hidden">Click for information about the search</span></i></span>
 
       <input type="text" class="form-control" placeholder="start typing your search term, e.g. 'Liability'"
         aria-label="start typing your search term, e.g. 'Liability'" aria-describedby="basic-addon2" {% if query_string %} value="{{ query_string }}" {% endif %} required name="ft_search">
       <button class="btn btn-block btn-lg btn-primary" type="submit" id="basic-addon2">Search</span>
     </div>
-    
   </form>
 </div>
