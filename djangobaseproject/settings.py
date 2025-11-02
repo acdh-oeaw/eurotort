@@ -50,10 +50,15 @@ INSTALLED_APPS = [
     "webpage",
     "browsing",
     "archiv",
-    "django_extensions",
-    "fixture_magic",
     "acdh_django_widgets",
 ]
+
+DEV_APPS = [
+    "django_extensions",
+    "fixture_magic",
+]
+if DEBUG:
+    INSTALLED_APPS = INSTALLED_APPS + DEV_APPS
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
