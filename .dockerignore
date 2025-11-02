@@ -3,5 +3,11 @@ env
 db.sqlite3
 .env
 secret.env
-/data
-/venv
+data/
+venv/
+.venv/
+.git/
+htmlcov/
+notebooks/
+.vscode/
+.github/

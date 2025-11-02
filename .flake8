@@ -4,13 +4,8 @@ max-line-length = 120
 exclude =
     */migrations,
     manage.py
+    .venv/
     .git,
-    .tox,
-    docs/conf.py,
     build,
-    dist
-    env
-    appcreator
-    webpage
-    venv
-[isort]
+    .venv/
+    appcreator/
