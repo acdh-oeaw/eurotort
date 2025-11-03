@@ -3,18 +3,40 @@
 {% load webpage_extras %}
 {% block title %} About {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1 class="card-title">{% projects_metadata 'title' %}</h1>
-        </div>
-        <div class="card-body">
-            <div>
-                <p>
-                    {% projects_metadata 'description' %}
-                </p>
-            </div>
-        </div>
-    </div>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="pt-2">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">About the project</li>
+    </ol>
+</nav>
+<div class="container pt-2 pb-2">
+    <h1 class="text-center pt-2">About the project</h1>
+    <p>
+        Welcome to EUROTORT, the first comprehensive database of European cases on tort law! This web-based research
+        tool shall allow both researchers as well as practitioners to access the vast wealth of jurisprudence on tort
+        law throughout Europe in a single language (English) and with a standardized index system. While there are of
+        course national databases giving access to court cases, they are limited both by language and by focus, since
+        they lack the cross-border perspective that only EUROTORT offers. With a single search string, the most
+        important aspects of tort law can be researched either in any one of the jurisdictions covered, in a selection
+        of countries or without geographical limitation. At present, the collection contains almost 1,500 decisions from
+        26 European countries, all categorized and indexed. You can search by jurisdiction, time period, keywords, full
+        text, or a combination thereof. The materials stem from cases reported in the “Tort and Insurance Law Yearbook”
+        series, co-published by the European Centre of Tort and Insurance Law (ECTIL) and the Research Unit for European
+        Tort Law of the Austrian Academy of Sciences, as well as in the “Digest of European Tort Law” series of the
+        latter institution. Further additions are being made continuously.</p>
+    <p>
+        The cases have been selected by experts from each respective jurisdiction, who have also drafted the English
+        texts presenting the facts of the case and an abstract of the decision.
+    </p>
+    <p>
+
+        Access to this database is limited, and you need individual user identification to log in. If you are interested
+        in accessing this extensive collection of case law, please contact us at eurotort@ectil.org.
+    </p>
+    <p>
+        The start-up of this database was made possible with the support of the European Union under the Framework
+        Programme for Judicial Cooperation in Civil Matters coordinated by the Directorate-General for Justice, Freedom
+        and Security of the European Commission.”
+    </p>
 </div>
 {% endblock %}
