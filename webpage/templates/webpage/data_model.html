@@ -3,11 +3,18 @@
 {% load webpage_extras %}
 {% block title %} Datenmodell {% endblock %}
 {% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="pt-2">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Data model</li>
+    </ol>
+</nav>
 <div class="container">
     <style>
         #visualization {
             height: 800px;
         }
     </style>
+    <h1 class="text-center pt-2">Data model</h1>
     {% include 'django_spaghetti/plate.html' %}
 {% endblock %}
