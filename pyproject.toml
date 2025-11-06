@@ -22,4 +22,6 @@ dependencies = [
 dev = [
     "django-extensions>=4.1",
     "django-fixture-magic>=0.1.5",
+    "jupyterlab>=4.4.10",
+    "notebook>=7.4.7",
 ]
