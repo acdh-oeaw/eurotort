@@ -1,48 +1,58 @@
 import pandas as pd
-from browsing.utils import BaseCreateView
-from browsing.utils import BaseDetailView
-from browsing.utils import BaseUpdateView
-from browsing.utils import GenericListView
+from browsing.utils import (
+    BaseCreateView,
+    BaseDetailView,
+    BaseUpdateView,
+    GenericListView,
+)
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import DeleteView
 
-from .filters import CourtDecissionListFilter
-from .filters import CourtListFilter
-from .filters import KeyWordListFilter
-from .filters import PartialLegalSystemListFilter
-from .filters import PersonListFilter
-from .filters import TagListFilter
-from .filters import YearBookListFilter
-from .forms import CourtDecissionFilterFormHelper
-from .forms import CourtDecissionForm
-from .forms import CourtFilterFormHelper
-from .forms import CourtForm
-from .forms import KeyWordFilterFormHelper
-from .forms import KeyWordForm
-from .forms import PartialLegalSystemFilterFormHelper
-from .forms import PartialLegalSystemForm
-from .forms import PersonFilterFormHelper
-from .forms import PersonForm
-from .forms import TagFilterFormHelper
-from .forms import TagForm
-from .forms import YearBookFilterFormHelper
-from .forms import YearBookForm
-from .models import Court
-from .models import CourtDecission
-from .models import KeyWord
-from .models import PartialLegalSystem
-from .models import Person
-from .models import Tag
-from .models import YearBook
-from .tables import CourtDecissionTable
-from .tables import CourtTable
-from .tables import KeyWordTable
-from .tables import PartialLegalSystemTable
-from .tables import PersonTable
-from .tables import TagTable
-from .tables import YearBookTable
+from .filters import (
+    CourtDecissionListFilter,
+    CourtListFilter,
+    KeyWordListFilter,
+    PartialLegalSystemListFilter,
+    PersonListFilter,
+    TagListFilter,
+    YearBookListFilter,
+)
+from .forms import (
+    CourtDecissionFilterFormHelper,
+    CourtDecissionForm,
+    CourtFilterFormHelper,
+    CourtForm,
+    KeyWordFilterFormHelper,
+    KeyWordForm,
+    PartialLegalSystemFilterFormHelper,
+    PartialLegalSystemForm,
+    PersonFilterFormHelper,
+    PersonForm,
+    TagFilterFormHelper,
+    TagForm,
+    YearBookFilterFormHelper,
+    YearBookForm,
+)
+from .models import (
+    Court,
+    CourtDecission,
+    KeyWord,
+    PartialLegalSystem,
+    Person,
+    Tag,
+    YearBook,
+)
+from .tables import (
+    CourtDecissionTable,
+    CourtTable,
+    KeyWordTable,
+    PartialLegalSystemTable,
+    PersonTable,
+    TagTable,
+    YearBookTable,
+)
 
 
 class CustomDetailView(BaseDetailView):
@@ -279,9 +289,9 @@ class KeyWordDetailView(CustomDetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.object.part_of:
-            context[
-                "cases"
-            ] = self.object.rvn_courtdecission_keyword_keyword.all().distinct()
+            context["cases"] = (
+                self.object.rvn_courtdecission_keyword_keyword.all().distinct()
+            )
             return context
         else:
             children = self.object.rvn_keyword_part_of_keyword.all()
@@ -424,7 +434,7 @@ class PersonListView(CustomListView):
             )
             df = pd.DataFrame(data=data, columns=properties)
             df["name"] = df.apply(
-                lambda x: f'{x["last_name"]}, {x["first_name"]}', axis=1
+                lambda x: f"{x['last_name']}, {x['first_name']}", axis=1
             )
             data = {}
             for gr, ndf in df.groupby("legal_system__name"):
@@ -577,7 +587,7 @@ class TagListView(CustomListView):
     table_class = TagTable
     init_columns = [
         "id",
-        "name",
+        "tag",
     ]
     enable_merge = True
 
