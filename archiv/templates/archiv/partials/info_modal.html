@@ -2,18 +2,19 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Search information</h5>
+          <h1 class="modal-title fs-4" id="searchInfoModalLabel">Search information</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>With this search, the fields "Short Description", "Facts", "Decision", "Commentary", "Additional Information" and "Parties" of a decision can be searched together. In order to keep the search efficient, the corresponding fields have been indexed. For this index, the individual texts are normalised back to their original forms. This also applies to the search term entered. Such a search index also allows more complex search queries such as:
+          <p>With this search, you can quickly browse through all our cases. Here are a few tips that will make it easier for you:
             <ul>
-                <li><strong>Phrase search</strong>: Terms in inverted commas are searched for together: "medical records".</li>
-                <li><strong>medical records</strong> finds all documents in which either <em>medical</em> or <em>recods</em> appears</li>
-                <li>A <strong>*</strong> at the end of a search term serves as a wildcard. <em>share*</em> also finds entries with <em>shareholder</em>, for example.</li>
+                <li>The search is designed as a full-text search. Your term will be searched for in the head note, the facts and the decision text.</li>
+                <li>Terms in inverted commas (eg: <i>'medical error'</i>) are searched for together.</li>
+                <li><i>medical error</i> finds all cases in which either <i>medical</i> or <i>error</i> appears</li>
+                <li>A * at the end of a search term serves as a wildcard. share* also finds cases with shareholder, for example.</li>
             </ul>
           </p>
-          <p>For information: Displaying many hits as so called <em>Keywords in context (KWIC)</em> like e.g. <span class="text-nowrap bg-warning border-warning rounded border-5">example</span> can take some time. It is therefore advisable to narrow down the search results using additional filter options. </p>
+          <p>You can narrow down your search by using the additional filter options of our <a href="{% url 'archiv:courtdecission_browse' %}">advanced search</a>.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
