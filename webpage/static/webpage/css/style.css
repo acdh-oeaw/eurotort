@@ -1,20 +1,20 @@
-:root {
+/* :root {
   --dse-base-color: #29354d;
-  --dse-accent-color: #F2A104; /* warm golden orange */
-}
+  --dse-accent-color: #f2a104; /* warm golden orange */
+} */
 
 .courtdecissioncart {
   position: relative;
 }
 
-nav[data-toggle='toc'] .nav .nav {
+nav[data-toggle="toc"] .nav .nav {
   display: block;
 }
 
-header {
+/* header {
   border-bottom: solid;
   border-bottom-color: var(--dse-base-color);
-}
+} */
 
 .navbar-brand {
   padding-top: 0;
@@ -24,19 +24,20 @@ header {
 .footerlogo {
   height: 60px;
 }
-footer {
+/* footer {
   border-top: solid;
   border-color: var(--dse-base-color);
-}
+} */
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-	background-color: var(--bs-body-bg)!important; 
-	border: 1px solid  var(--bs-body-bg) !important;
-	border-radius: 4px;
-	cursor: default;
-	float: left;
-	margin-right: 5px;
-	margin-top: 5px;
-	padding: 0 5px;
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice {
+  background-color: var(--bs-body-bg) !important;
+  border: 1px solid var(--bs-body-bg) !important;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0 5px;
 }
-

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} More detailed search information {% endblock %}
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="pt-2">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">More detailed search information</li>
+    </ol>
+</nav>
+<div class="container pt-2 pb-2">
+    <h1 class="text-center pt-2">More detailed search information</h1>
+    <h2>Full-text search</h2>
+    <p>By means of the general full-text search on the <a href="/">home page</a>, all decisions can be searched quickly.
+        Just type your search term or phrase and you are good to go.
+    <ul>
+        <li>The search is designed as a full-text search. Your term will be searched for in the head note, the facts and
+            the decision text.</li>
+        <li>Terms in inverted commas (eg: <i>'medical error'</i>) are searched for together.</li>
+        <li><i>medical error</i> finds all cases in which either <i>medical</i> or <i>error</i> appears</li>
+        <li>A * at the end of a search term serves as a wildcard. share* also finds cases with shareholder, for example.
+        </li>
+    </ul>
+    </p>
+    <h2>Advanced search functionality</h2>
+    <p>Please note that displaying many results may take some time. It is therefore advisable that you narrow down your
+        search by using <strong>additional filters</strong> available on our website.</p>
+    <p>If you are interested in cases from a particular <i>legal system</i> or court or if you look for cases reported
+        in one of our publications or by an author you can get a quick overview of the cases on the respective ‘Browse’
+        pages. You will find the links in the main navigation on the top of the screen.</p>
+    <p>For more <strong>advanced search functionality</strong>, we recommend the <a
+            href="{% url 'archiv:courtdecission_browse' %}">Browse cases</a> subsection. It lets you combine the
+        full-text search with different filters, among them <i>legal system</i>, <i>court</i>, <i>date of decision</i>,
+        <i>keywords</i> and <i>tags</i>, and a number of additional search fields, such as <i>parties</i> (relevant for
+        common law jurisdictions and European Union case law), <i>Eurotort number</i>, <i>ECLI</i>, <i>author</i>
+        (referring to the author of a case report) or <i>bibliographic source</i> (referring to the place of publication
+        of the case report).
+    </p>
+    <h2>Keywords</h2>
+    <p><strong>Keywords</strong> are search terms denoting important legal aspects of a case with a clear focus on tort
+        law, of course. We manually attributed one or more keywords to each of the cases to make them more accessible
+        and easier to search. As legal concepts are used differently across legal systems and to enable comparisons, it
+        was sometimes necessary to introduce ‘neutral’ terms or not be too strict with labelling. We have provided short
+        introductions to some of the keywords to better explain our use of the terms.</p>
+    <p>Have a look yourself and <a href="{% url 'archiv:keyword_browse' %}">browse through the list of keywords</a>.
+    <ul>
+        <li>
+            Keywords can be hierarchical in the way that one keyword can be <i>part of</i> another keyword (e.g.
+            <i>causation/cumulative causation</i>, <i>fault/intent</i>). The structure is two-tier, i.e. there can be
+            ‘parent’ and ‘child’ keywords, but no ‘grandchildren’.
+        </li>
+        <li>
+            Keywords can be <i>related</i> to one or more other keywords. This is often used to indicate keywords that
+            might also be of interest to the user.
+        </li>
+    </ul>
+    </p>
+    <h2>Tags</h2>
+    <p>Tags are search terms describing the factual circumstances of the case (e.g. while keywords such as
+        <i>causation</i> or <i>non-pecuniary damage</i> relate to specific legal aspects of a case, the tags
+        <i>animals</i>, <i>traffic accidents</i> or <i>war</i> give a better impression of the circumstances of the
+        case). They can be useful if you are interested in particular groups of cases or in particular fields of
+        application.</p>
+    <h2>Other useful tools:</h2>
+    <ul>
+        <li>
+            Shaping the way you see your search results: Choose additional columns that you wish to see displayed
+            (please note, that displaying many hits as so called <i>Search phrase in context</i> can take some time. It
+            is therefore advisable to narrow down the search results using additional filter options.)
+        </li>
+    </ul>
+    <h2>Questions</h2>
+    <p>If you have any questions or requests, please do not hesitate to <a href="{% url 'webpage:staticpage' template='about' %}"></a>.</p>
+</div>
+{% endblock %}
