@@ -47,21 +47,10 @@ a:hover {
     column-gap: 1.5rem;
   }
 }
-@media (min-width: 768px) {
-  .multi-column-dl {
-    column-count: 3;
-    column-gap: 1.5rem;
-  }
-}
-@media (min-width: 992px) {
-  .multi-column-dl {
-    column-count: 4;
-    column-gap: 2rem;
-  }
-}
+
 @media (min-width: 1200px) {
   .multi-column-dl {
-    column-count: 5;
+    column-count: 3;
     column-gap: 2rem;
   }
 }
