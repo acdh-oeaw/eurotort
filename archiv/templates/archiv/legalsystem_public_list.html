@@ -11,41 +11,59 @@
 {% include 'archiv/partials/listview_breadcrumb.html' %}
 
 <div class="container">
-    <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
+    <h1 class="text-center p-3">{{ object_list|length }} {{ verbose_name_plural }}</h1>
 
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
         <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
     </div>
-    
-    <ul class="list-group" id="myUL">
-        {% for x in object_list %}
-        <li class="list-group-item text-center">
-            <a href="{{ x.get_absolute_url }}">{{ x }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <div id="filterMe" class="pt-2">
+        <dl class="multi-column-dl">
+            <dt class="visually-hidden">countries</dt>
+            {% for x in object_list %}
+            <dd class="list-group-item text-center">
+                <a href="{{ x.get_absolute_url }}">{{ x }}</a>
+            </dd>
+            {% endfor %}
+        </dl>
+    </div>
 </div>
 
 <script>
     function myFunction() {
-        // Declare variables
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('myInput');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("myUL");
-        li = ul.getElementsByTagName('li');
-
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
-            txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
+      const input = document.getElementById('myInput');
+      const filter = input.value.toLowerCase();
+      const container = document.getElementById('filterMe');
+      const items = container.querySelectorAll('dd');
+      const terms = container.querySelectorAll('dt');
+      
+      // Filter dd elements
+      items.forEach(item => {
+        const text = item.textContent || item.innerText;
+        if (text.toLowerCase().indexOf(filter) > -1) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
         }
+      });
+      
+      // Hide dt elements if they have no visible dd siblings
+      terms.forEach(term => {
+        let nextElement = term.nextElementSibling;
+        let hasVisibleDd = false;
+        
+        while (nextElement && nextElement.tagName === 'DD') {
+          if (nextElement.style.display !== 'none') {
+            hasVisibleDd = true;
+            break;
+          }
+          nextElement = nextElement.nextElementSibling;
+        }
+        
+        term.style.display = hasVisibleDd ? '' : 'none';
+      });
     }
 </script>
+
+
 {% endblock %}
