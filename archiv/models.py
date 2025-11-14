@@ -7,8 +7,7 @@ from django.contrib.postgres.search import SearchVectorField
 from django.db import models
 from django.urls import reverse
 from django.utils.html import strip_tags
-from next_prev import next_in_order
-from next_prev import prev_in_order
+from next_prev import next_in_order, prev_in_order
 
 
 def set_extra(self, **kwargs):

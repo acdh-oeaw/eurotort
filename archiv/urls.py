@@ -86,13 +86,13 @@ urlpatterns = [
         views.PartialLegalSystemDelete.as_view(),
         name="partiallegalsystem_delete",
     ),
-    path("person/", views.PersonListView.as_view(), name="person_browse"),
+    path("author/", views.PersonListView.as_view(), name="person_browse"),
     path(
-        "person/detail/<int:pk>", views.PersonDetailView.as_view(), name="person_detail"
+        "author/detail/<int:pk>", views.PersonDetailView.as_view(), name="person_detail"
     ),
-    path("person/create/", views.PersonCreate.as_view(), name="person_create"),
-    path("person/edit/<int:pk>", views.PersonUpdate.as_view(), name="person_edit"),
-    path("person/delete/<int:pk>", views.PersonDelete.as_view(), name="person_delete"),
+    path("author/create/", views.PersonCreate.as_view(), name="person_create"),
+    path("author/edit/<int:pk>", views.PersonUpdate.as_view(), name="person_edit"),
+    path("author/delete/<int:pk>", views.PersonDelete.as_view(), name="person_delete"),
     path("tag/", views.TagListView.as_view(), name="tag_browse"),
     path("tag/detail/<int:pk>", views.TagDetailView.as_view(), name="tag_detail"),
     path("tag/create/", views.TagCreate.as_view(), name="tag_create"),
