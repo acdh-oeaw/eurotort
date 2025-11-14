@@ -62,27 +62,27 @@ urlpatterns = [
         "keyword/delete/<int:pk>", views.KeyWordDelete.as_view(), name="keyword_delete"
     ),
     path(
-        "partiallegalsystem/",
+        "legalsystem/",
         views.PartialLegalSystemListView.as_view(),
         name="partiallegalsystem_browse",
     ),
     path(
-        "partiallegalsystem/detail/<int:pk>",
+        "legalsystem/detail/<int:pk>",
         views.PartialLegalSystemDetailView.as_view(),
         name="partiallegalsystem_detail",
     ),
     path(
-        "partiallegalsystem/create/",
+        "legalsystem/create/",
         views.PartialLegalSystemCreate.as_view(),
         name="partiallegalsystem_create",
     ),
     path(
-        "partiallegalsystem/edit/<int:pk>",
+        "legalsystem/edit/<int:pk>",
         views.PartialLegalSystemUpdate.as_view(),
         name="partiallegalsystem_edit",
     ),
     path(
-        "partiallegalsystem/delete/<int:pk>",
+        "legalsystem/delete/<int:pk>",
         views.PartialLegalSystemDelete.as_view(),
         name="partiallegalsystem_delete",
     ),
