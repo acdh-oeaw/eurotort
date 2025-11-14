@@ -11,91 +11,75 @@
 {% include 'archiv/partials/listview_breadcrumb.html' %}
 
 <div class="container">
-    <h1 class="text-center">{{ object_list|length }} {{ verbose_name_plural }}</h1>
-    <div class="input-group mb-3 d-flex align-items-center justify-content-center">
-        <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+    <h1 class="text-center p-3">{{ object_list|length }} {{ verbose_name_plural }}</h1>
+    <div class="p-3">
+        <div class="input-group mb-3 d-flex align-items-center justify-content-center">
+            <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+        </div>
+        <div class="form-check form-switch d-flex align-items-center justify-content-center">
+            <input class="form-check-input" type="checkbox" role="switch" id="hideNotHighCourts">
+            <label class="form-check-label" for="hideNotHighCourts">Show high courts only</label>
+        </div>
     </div>
-    <div class="form-check form-switch d-flex align-items-center justify-content-center">
-        <input class="form-check-input" type="checkbox" role="switch" id="hideNotHighCourts">
-        <label class="form-check-label" for="hideNotHighCourts">Show high courts only</label>
-      </div>
     <div id="filterMe">
+        <dl class="multi-column-dl">
         {% for key, value in grouped_items.items %}
-            <div class="card m-2">
-                <div class="card-header">
-                    <h2>{{ key }}</h2>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        {% for x in value %}
-                        <li {% if x.is_high_court %} class="highCourt" {% else %} class="noHighCourt"{% endif %}><a href="/archiv/court/detail/{{ x.id }}">{% if x.is_high_court %}<strong title="is high court">{{ x.name }}</strong>{% else %}{{x.name}}{% endif %}{% if x.name_english %} ({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %} </a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
+            <dt>{{ key }}</dt>
+            {% for x in value %}
+            <dd {% if x.is_high_court %} class="highCourt" {% else %} class="noHighCourt"{% endif %}>
+                <a href="/archive/court/detail/{{ x.id }}">{% if x.is_high_court %}<strong class="isHighcourt">{{ x.name }}</strong>{% else %}{{x.name}}{% endif %}{% if x.name_english %} ({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
+            </dd>
+            {% endfor %}
         {% endfor %}
+        </dl>
     </div>
     
 </div>
 <script>
-    const elementsVisible = (els) => {
-        let visible = false;
-        for (let i in els) {
-          if (els[i].style.display !== 'none') {
-            visible = true;
+    function myFunction() {
+      const input = document.getElementById('myInput');
+      const filter = input.value.toLowerCase();
+      const container = document.getElementById('filterMe');
+      const items = container.querySelectorAll('dd');
+      const terms = container.querySelectorAll('dt');
+      const hideNotHighCourts = document.getElementById('hideNotHighCourts').checked;
+      
+      // Filter dd elements
+      items.forEach(item => {
+        const text = item.textContent || item.innerText;
+        const hasHighCourtClass = item.querySelector('strong.isHighcourt') !== null;
+        const matchesFilter = text.toLowerCase().indexOf(filter) > -1;
+        
+        if (hideNotHighCourts) {
+          // Show only if it has isHighcourt class AND matches filter
+          item.style.display = (hasHighCourtClass && matchesFilter) ? '' : 'none';
+        } else {
+          // Show if it matches filter
+          item.style.display = matchesFilter ? '' : 'none';
+        }
+      });
+      
+      // Hide dt elements if they have no visible dd siblings
+      terms.forEach(term => {
+        let nextElement = term.nextElementSibling;
+        let hasVisibleDd = false;
+        
+        while (nextElement && nextElement.tagName === 'DD') {
+          if (nextElement.style.display !== 'none') {
+            hasVisibleDd = true;
             break;
           }
+          nextElement = nextElement.nextElementSibling;
         }
-        return visible;
-    };
-    var input = document.getElementById('hideNotHighCourts');
-    input.addEventListener('change',function(){
-        var items = filterMe.getElementsByClassName('noHighCourt')
-        if(this.checked) {
-            console.log("hide")
-            for (i = 0; i < items.length; i++) {
-                items[i].style.display = "none";
-            }
-        } else {
-            for (i = 0; i < items.length; i++) {
-                items[i].style.display = "";
-            }
-        }
-    });
-
-    function myFunction() {
-        // Declare variables
-        var input, filter, filterMe, li, a, i, txtValue;
-        input = document.getElementById('myInput');
-        filterMe = document.getElementById('filterMe')
-        filter = input.value.toUpperCase();
-        li = filterMe.getElementsByTagName('li');
-        cards = filterMe.getElementsByClassName('card')
-
-
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
-            txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-
-         // Loop through all cards and check if any child li is visble, if not hide the div
-        for (i = 0; i < cards.length; i++) {
-            var els = Array.from(cards[i].getElementsByTagName("li"));
-            var visible = elementsVisible(els);
-            console.log(visible)
-            if (visible) {
-                cards[i].style.display = "";
-            } else {
-                cards[i].style.display = "none";
-            }
-        }
+        
+        term.style.display = hasVisibleDd ? '' : 'none';
+      });
     }
+    
+    // Add event listener to checkbox
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('hideNotHighCourts').addEventListener('change', myFunction);
+    });
 </script>
 {% endblock %}
