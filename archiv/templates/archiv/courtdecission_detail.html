@@ -68,7 +68,7 @@
                 <dl>
                     <dt>Keywords</dt>
                     {% for x in object.keyword.all %}
-                    <dd class="ms-5 fs-5"><span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span> <a
+                    <dd class="ms-5 fs-5"><span class="badge rounded-pill text-bg-primary">{{ x.name }}</span> <a
                             href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
                     {% endfor %}
 

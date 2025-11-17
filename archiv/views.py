@@ -348,7 +348,7 @@ class PartialLegalSystemListView(CustomListView):
         if self.request.user.is_authenticated:
             return ["archiv/custom_list.html"]
         else:
-            return ["archiv/legalsystem_public_list.html"]
+            return ["archiv/tags_and_legalsystem_public_list.html"]
 
     def get_paginate_by(self, queryset):
         if self.request.user.is_authenticated:
@@ -590,6 +590,18 @@ class TagListView(CustomListView):
         "tag",
     ]
     enable_merge = True
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ["archiv/custom_list.html"]
+        else:
+            return ["archiv/tags_and_legalsystem_public_list.html"]
+
+    def get_paginate_by(self, queryset):
+        if self.request.user.is_authenticated:
+            return 50
+        else:
+            None
 
 
 class TagDetailView(CustomDetailView):
