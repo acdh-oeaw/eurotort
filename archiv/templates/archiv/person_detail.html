@@ -9,9 +9,11 @@
 <div class="container">
     
     <h2 class="pb-2 pt-2 fs-4">Legal system(s)</h2>
+    <p class="ps-5">
     {% for x in object.legal_system.all %}
-    <p class="ps-5"><a href="{{ x.get_absolute_url }}">{{ x }}</a></p>
+    <a href="{{ x.get_absolute_url }}">{{ x }}</a>{% if not forloop.last %}, {% endif %}
     {% endfor %}
+    </p>
     <h2 class="pb-2 pt-2 fs-4">Contact</h2>
     <p class="ps-5">
         {% if object.contact %}
