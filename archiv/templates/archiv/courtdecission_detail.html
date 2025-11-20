@@ -88,8 +88,9 @@
 
                 </dl>
                 <p>{{ object }}</p>
-
+                {% if object.short_description %}
                 <h3>{{ object.short_description|safe }}</h3>
+                {% endif %}
                 <h3>Facts</h3>
                 <p>{{ object.situation|safe }}</p>
                 <h3>Decision</h3>
@@ -115,12 +116,11 @@
                 <hr>
                 <h2>Authors</h2>
                 {% for x in object.author.all %}
-                <p>{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
+                <p><a href="{{ x.get_absolute_url }}">{{ x }}</a></p>
                 {% endfor %}
 
                 <h2>Bibliographic Source</h2>
-                <p>{{ object.year_book_title}} {{ object.year_book_issue }} <a
-                        href="{{ object.year_book_title.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
+                <p><a href="{{ object.year_book_title.get_absolute_url }}">{{ object.year_book_title}} {{ object.year_book_issue }}</a></p>
                 <h2>Eurotort reference</h2>
                 <p>Eurotort no. {{ object.id }}</p>
                 <small>updated: {{ object.modified_date }}</small>
