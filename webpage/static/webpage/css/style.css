@@ -64,13 +64,16 @@ a:hover {
   break-after: avoid;
 }
 
-.court-detail-dd {
+.case-detail-dd {
   margin-bottom: 0.1rem;
+  padding-left: 0;
 }
 
 .dd-final {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--bs-border-color);
 }
 
+.dl-wrapper {
+  display: inline-block;
+}

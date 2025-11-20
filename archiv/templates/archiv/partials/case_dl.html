@@ -1,0 +1,20 @@
+<dl class="multi-column-dl">
+{% for x in courtdecissions.all %}
+<div class="dl-wrapper">
+<dt>
+    <a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a>
+</dt>
+<dd class="case-detail-dd">
+    <a href="{{ x.partial_legal_system.get_absolute_url }}">{{ x.partial_legal_system.ecli_abbr }}</a>, <a href="{{ x.court.get_absolute_url }}">{{ x.court.name_and_ecli }}</a>{% if x.decission_date %}, {{ x.proper_date_format }}{% endif %}</dd>
+{% if x.short_description %}
+<dd class="case-detail-dd">{{ x.short_description|safe }}</dd>
+{% endif %}
+<dd class="case-detail-dd">{% for y in x.keyword.all|slice:":5" %}
+    <span class="badge rounded-pill text-bg-primary "><a href="{{ y.get_absolute_url }}">{{ y }}</a></span>{% endfor %}
+</dd>
+<dd class="case-detail-dd dd-final">{% for y in x.tag.all|slice:":3" %}
+    <span class="badge rounded-pill text-bg-success "><a href="{{ y.get_absolute_url }}">{{ y }}</a></span>{% endfor %}
+</dd>
+</div>
+{% endfor %}
+</dl>
