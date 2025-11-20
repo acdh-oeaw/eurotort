@@ -58,56 +58,37 @@
 
 <div class="container">
     {% if object.part_of %}
-    <dl>
-        <dt>published in</dt>
-        <dd>
-            <a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a>
-        </dd>
-        {% endif %}
-    </dl>
+    <h2 class="pb-2 pt-2 fs-4">published in</h2>
+    <p class="ps-5">
+        <a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a>
+    </p>
+    {% endif %}
+
+    {% if object.doi %}
+    <h2 class="pb-2 pt-2 fs-4">DOI</h2>
+    <p class="ps-5"><a href="{{ object.doi }}">{{ object.doi }}</a></p>
         
+    {% endif %}
+    {% if object.has_bibliographic_items.all %}
+    <h2 class="pb-2 pt-2 fs-4">Chapters</h2>
     <dl class="multi-column-dl">
-        {% if object.doi %}
-        <dt>DOI</dt>
-        <dd>
-            <a href="{{ object.doi }}">{{ object.doi }}</a>
-        </dd>
-        {% endif %}
-       
-        {% if object.has_bibliographic_items.all %}
-        <dt>Chapters</dt>
+        <dt class="visually-hidden">Chapters</dt>
         {% for x in object.has_bibliographic_items.all %}
         <dd><a href="{{ x.get_absolute_url }}">{{ x }}</a></dd>
         {% endfor %}
-        {% endif %}
     </dl>
-            
+    {% endif %}
     {% with courtdecissions=cases %}
-    <h2 class="text-center p-3">
+    <h2 class="p-3 text-center">
         {% if object.part_of %}
         <a href="{% url 'archiv:courtdecission_browse' %}?year_book_chapter={{ object.id }}">{{ courtdecissions.count }} reported cases</a>
         {% else %}
         {{ courtdecissions.count }} reported cases
         {% endif %}
     </h2>
-    <dl class="multi-column-dl">
-        {% for x in courtdecissions.all %}
-        <dt><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></dt>
-        <dd>{{ x.decission_date|date:"Y-m-d" }}</dd>
-        <dd><a href="{{ x.court.get_absolute_url }}">{{ x.court }}</a></dd>
-        <dd>{{ x.short_description|safe }}</dd>
-        <dd>{% for y in x.keyword.all %}
-            <span class="badge rounded-pill text-bg-primary "><a href="{{ y.get_absolute_url }}">{{ y }}</a></span>{% endfor %}
-        </dd>
-        <dd>{% for y in x.tag.all %}
-            <span class="badge rounded-pill text-bg-success "><a href="{{ y.get_absolute_url }}">{{ y }}</a></span>{% endfor %}
-        </dd>
-        
-        {% endfor %}
-    </dl>
+    {% include 'archiv/partials/court_dl.html' %}
     {% endwith %}
     {% if user.is_authenticated %}
-
     <div class="float-end">
         <a href="{{ object.get_delete_url }}">
             <i class="bi bi-trash3" title="delete entry"></i>
