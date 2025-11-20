@@ -197,6 +197,12 @@ class Court(models.Model):
         else:
             return f"{self.id}"
 
+    def name_and_ecli(self):
+        if self.ecli_abbr:
+            return f"{self.name} ({self.ecli_abbr})"
+        else:
+            return str(self.name)
+
     def field_dict(self):
         return model_to_dict(self)
 
@@ -417,17 +423,31 @@ class CourtDecission(models.Model):
         self.full_text = self.join_search_fields()
         super(CourtDecission, self).save(*args, **kwargs)
 
+    def proper_date_format(self):
+        if self.decission_date:
+            return self.decission_date.strftime("%d %b %Y")
+        else:
+            return ""
+
     def __str__(self):
         if self.file_number and self.party:
-            return f"{self.party}, {self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
+            return_value = (
+                f"{self.party}, "
+                f"{self.court.name} "
+                f"{self.decission_date.strftime('%d %b %Y')}, "
+                f"{self.file_number}"
+            )
         elif self.file_number and self.court.name and self.decission_date:
-            return f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
+            return_value = f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
         elif self.party and self.court.name and self.decission_date:
-            return f"{self.party}, {self.court.name} {ſelf.decission_date.strftime('%d %b %Y')}"
+            return_value = f"{self.party}, {self.court.name} {self.decission_date.strftime('%d %b %Y')}"
         elif self.court.name and self.decission_date:
-            return f"{self.court.name} {ſelf.decission_date.strftime('%d %b %Y')}"
+            return_value = (
+                f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}"
+            )
         else:
-            return f"{self.id}"
+            return_value = f"{self.id}"
+        return return_value.strip().replace("  ,", ",")
 
     def case_reference(self):
         if self.file_number and self.party:

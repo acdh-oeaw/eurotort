@@ -8,116 +8,23 @@
 {% include 'archiv/partials/detailview_title.html' %}
 <div class="container">
     
-        <h2>Name</h2>
-        <p class="ps-5">{{ object }}</p>
-        <h2>Legal system(s)</h2>
-        {% for x in object.legal_system.all %}
-        <p class="ps-5">{{ x }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></p>
-        {% endfor %}
-        <h2>Contact</h2>
-        <p class="ps-5">
-            {% if object.contact %}
-            {{ object.contact }}
-            {% else %}
-            eurotort@oeaw.ac.at
-            {% endif %}
-        </p>
-    {% with courtdecissions=object.rvn_courtdecission_author_person %}
-    <h2 class="pt-3">{{ courtdecissions.count }} contributed cases</h2>
-    <div class="ps-5">
-        <table id="tabulatortable">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Court</th>
-                    <th scope="col">Case Reference</th>
-                    <th scope="col">Subject matter</th>
-                    <th scope="col">Keywords</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for x in courtdecissions.all %}
-                <tr>
-                    <td>{{ x.decission_date|date:"Y-m-d" }}</td>
-                    <td>
-                        {{ x.court }}
-                        <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                    </td>
-
-                    <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
-                    <td scope="row">{% if x.short_description != 'none' %}{{ x.short_description|safe }}{% endif %}</td>
-                    <td>
-                        <ul class="list-unstyled">
-                            {% for y in x.keyword.all %}
-                            <li>
-                                <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
-                                    href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% if user.is_authenticated %}
-
-        <div class="float-end">
-            <a href="{{ object.get_delete_url }}">
-                <i class="bi bi-trash3" title="delete entry"></i>
-            </a>
-        </div>
+    <h2 class="pb-2 pt-2 fs-4">Legal system(s)</h2>
+    {% for x in object.legal_system.all %}
+    <p class="ps-5"><a href="{{ x.get_absolute_url }}">{{ x }}</a></p>
+    {% endfor %}
+    <h2 class="pb-2 pt-2 fs-4">Contact</h2>
+    <p class="ps-5">
+        {% if object.contact %}
+        <a href="mailto:{{ object.contact }}">{{ object.contact }}</a>
+        {% else %}
+        <a href="mailto:eurotort@oeaw.ac.at">eurotort@oeaw.ac.at</a>
         {% endif %}
-    </div>
+    </p>
+    {% with courtdecissions=object.rvn_courtdecission_author_person %}
+    <h2 class="p-3 text-center"><a href="{% url 'archiv:courtdecission_browse' %}?author={{ object.id }}">{{ courtdecissions.count }} contributed cases</a></h2>
+    {% include 'archiv/partials/court_dl.html' %}
     {% endwith %}
 </div>
 
 
 {% endblock %}
-{% block scripts2 %}
-{% include "archiv/partials/courtdecission_table_js.html" %}
-<script>
-    var table = new Tabulator("#tabulatortable", {
-        layout: "fitColumns",
-        responsiveLayout: "collapse",
-        height: 800,
-        columns: [
-            {
-                title: "Date",
-                field: "Date",
-                sorter: "string",
-                headerFilter: "input"
-            },
-            {
-                title: "Court",
-                field: "Court",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "html"
-            },
-            {
-                title: "Case Reference",
-                field: "Case Reference",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "html"
-            },
-            {
-                title: "Subject matter",
-                field: "Subject matter",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "textarea"
-            },
-            {
-                title: "Keywords",
-                field: "Keywords",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "html"
-            }
-        ]
-    });
-</script>
-{% endblock scripts2 %}

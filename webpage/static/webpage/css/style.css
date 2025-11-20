@@ -9,6 +9,11 @@ nav[data-toggle="toc"] .nav .nav {
 dd {
   padding-left: 1.5rem;
   margin-bottom: 0.3;
+  break-inside: avoid;
+}
+
+dt {
+  break-inside: avoid;
 }
 
 a {
@@ -58,3 +63,14 @@ a:hover {
 .multi-column-dl dt {
   break-after: avoid;
 }
+
+.court-detail-dd {
+  margin-bottom: 0.1rem;
+}
+
+.dd-final {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
