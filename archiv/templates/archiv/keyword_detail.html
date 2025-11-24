@@ -3,58 +3,10 @@
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item"><a href="{{ object.get_listview_url }}">{{ verbose_name_plural }}</a></li>
-      {% if object.part_of %}
-      <li class="breadcrumb-item"><a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of.name }}</a></li>
-      {% endif %}
-      <li class="breadcrumb-item active" aria-current="page">{{ object.name }}</li>
-    </ol>
-</nav>
-
-<div class="row">
-    <div class="col-md-2">
-        {% if user.is_authenticated %}
-        {% if object.get_prev %}
-        <p class="text-start">
-            <a href="{{ object.get_prev }}">
-                <i class="bi bi-chevron-left" title="previous entry"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% endif %}
-    </div>
-    <div class="col-md-8">
-        <h1 class="text-center">
-            {{ object.name }}
-            {% if user.is_authenticated %}
-            <small>
-                <a href="{{ object.get_edit_url }}">
-                    <i class="bi bi-pencil-square" title="edit entry"></i>
-                </a>
-            </small>
-            {% endif %}
-
-        </h1>
-    </div>
-    <div class="col-md-2">
-        {% if user.is_authenticated %}
-        {% if object.get_prev %}
-        <p class="text-end">
-            
-            <a href="{{ object.get_next }}">
-                <i class="bi bi-chevron-right" title="next entry"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% endif %}
-    </div>
-</div>
+{% include 'archiv/partials/detailview_breadcrumb.html' %}
+{% include 'archiv/partials/detailview_title.html' %}
 <div class="container">
-    
-    <h2>Inroduction</h2>
+    <h2 class="pb-2 pt-2 fs-4">Inroduction</h2>
     <p class="ps-5">
         {% if object.introduction %}
         {{ object.introduction }}
@@ -62,31 +14,25 @@
         no introduction provided yet
         {% endif %}
     </p>
-   
     {% if object.part_of %}
-    <h2>Part of</h2>
+    <h2 class="pb-2 pt-2 fs-4">Part of</h2>
     <p class="ps-5">
-        {{ object.part_of }}
-        <a href="{{ object.part_of.get_absolute_url }}">
-            <i class="bi bi bi-link-45deg"></i>
-        </a>
+        <a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a>
     </p>
     {% endif %}
-
-
-
     {% if object.rvn_keyword_part_of_keyword.all %}
-    <h2>has Children</h2>
+    <h2 class="pb-2 pt-2 fs-4">has Children</h2>
     <ul>
         {% for x in object.rvn_keyword_part_of_keyword.all %}
-        <span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span>
-        <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+        <li>
+            <span class="badge rounded-pill text-bg-primary"><a href="{{ x.get_absolute_url }}">{{ x.name }}</a></span>
+        </li>
         {% endfor %}
     </ul>
     {% endif %}
 
     {% if object.see_also.all %}
-    <h2>Related keyword(s)</h2>
+    <h2 class="pb-2 pt-2 fs-4">Related keyword(s)</h2>
     <ul>
         {% for x in object.see_also.all %}
         <span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span>
@@ -96,51 +42,10 @@
     {% endif %}
     
     {% with courtdecissions=cases %}
-    <h2>{{ courtdecissions.count }} cases</h2>
-        <table id="tabulatortable">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Court</th>
-                    <th scope="col">Case Reference</th>
-                    <th scope="col">Subject matter</th>
-                    <th scope="col">Legal system</th>
-                    <th scope="col">Keywords</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for x in courtdecissions.all %}
-                <tr>
-                    <td>{{ x.decission_date|date:"Y-m-d" }}</td>
-                    <td>
-                        {{ x.court }}
-                        <a href="{{ x.court.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                    </td>
-                    <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
-                    <td scope="row">{{ x.short_description|safe }}</td>
-                    <td>
-                        {{ x.partial_legal_system }}
-                        <a href="{{ x.partial_legal_system.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                    </td>
-                    <td>
-                        <ul class="list-unstyled">
-                            {% for y in x.keyword.all %}
-                            <li>
-                                <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
-                                    href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <h2 class="pb-2 pt-2 fs-4">{{ courtdecissions.count }} cases</h2>
+    {% include 'archiv/partials/case_dl.html' %}
     {% endwith %}
-
-
     {% if user.is_authenticated %}
-
     <div class="float-end">
         <a href="{{ object.get_delete_url }}">
             <i class="bi bi-trash3" title="delete entry"></i>
@@ -150,56 +55,3 @@
 </div>
 
 {% endblock %}
-{% block scripts2 %}
-{% include "archiv/partials/courtdecission_table_js.html" %}
-<script>
-    var table = new Tabulator("#tabulatortable", {
-        layout: "fitColumns",
-        responsiveLayout: "collapse",
-        height: 800,
-        columns: [
-            {
-                title: "Date",
-                field: "Date",
-                sorter: "string",
-                headerFilter: "input"
-            },
-            {
-                title: "Court",
-                field: "Court",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            },
-            {
-                title: "Case Reference",
-                field: "Case Reference",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "html"
-            },
-            {
-                title: "Subject matter",
-                field: "Subject matter",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            },
-            {
-                title: "Legal system",
-                field: "Legal system",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            },
-            {
-                title: "Keywords",
-                field: "Keywords",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            }
-        ]
-    });
-</script>
-{% endblock scripts2 %}

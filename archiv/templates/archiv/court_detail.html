@@ -5,49 +5,10 @@
 {% block content %}
 <!-- <div class="container"> -->
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-
-<div class="row">
-    <div class="col-md-2">
-        {% if user.is_authenticated %}
-        {% if object.get_prev %}
-        <p class="text-start">
-            <a href="{{ object.get_prev }}">
-                <i class="bi bi-chevron-left" title="previous entry"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% endif %}
-    </div>
-    <div class="col-md-8">
-        <h1 class="text-center">
-            {{ object.abbreviation }}
-            {% if user.is_authenticated %}
-            <small>
-                <a href="{{ object.get_edit_url }}">
-                    <i class="bi bi-pencil-square" title="edit entry"></i>
-                </a>
-            </small>
-            {% endif %}
-
-        </h1>
-    </div>
-    <div class="col-md-2">
-        {% if user.is_authenticated %}
-        {% if object.get_prev %}
-        <p class="text-end">
-
-            <a href="{{ object.get_next }}">
-                <i class="bi bi-chevron-right" title="next entry"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% endif %}
-    </div>
-</div>
-
+{% include 'archiv/partials/detailview_title.html' %}
 <div class="container">
 
-    <h2>Name</h2>
+    <h2 class="pb-2 pt-2 fs-4">Name</h2>
     <p class="ps-5">{% if object.is_high_court %}
         Highest Court,
         {% endif %}
@@ -56,49 +17,14 @@
         ({{ object.name_english }})
         {% endif %}
     </p>
-    <h2>Legal system</h2>
+    <h2 class="pb-2 pt-2 fs-4">Legal system</h2>
     <p class="ps-5">
-        {{ object.partial_legal_system }}<a href="{{ object.partial_legal_system.get_absolute_url }}"><i
-                class="bi bi-link-45deg"></i></a>
+        <a href="{{ object.partial_legal_system.get_absolute_url }}">{{ object.partial_legal_system }}</a>
     </p>
 
     {% with courtdecissions=object.rvn_courtdecission_court_court %}
-    <h2>{{ courtdecissions.count }} decided cases</h2>
-    <table id="tabulatortable">
-        <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Legal system</th>
-                <th scope="col">Case Reference</th>
-                <th scope="col">Subject matter</th>
-                <th scope="col">Keywords</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for x in courtdecissions.all %}
-            <tr>
-                <td>{{ x.decission_date|date:"Y-m-d" }}</td>
-                <td>
-                    {{ x.court.partial_legal_system }}
-                    <a href="{{ x.court.partial_legal_system.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                </td>
-
-                <td scope="row"><a href="{{ x.get_absolute_url }}">{{ x.case_reference }}</a></td>
-                <td scope="row">{{ x.short_description|safe }}</td>
-                <td>
-                    <ul class="list-unstyled">
-                        {% for y in x.keyword.all %}
-                        <li>
-                            <span class="badge rounded-pill text-bg-primary ">{{ y.name }}</span> <a
-                                href="{{ y.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h2 class="pb-2 pt-2 fs-4">{{ courtdecissions.count }} decided cases</h2>
+    {% include 'archiv/partials/case_dl.html' %}
     {% endwith %}
 
 
@@ -114,49 +40,3 @@
 </div>
 
 {% endblock %}
-{% block scripts2 %}
-{% include "archiv/partials/courtdecission_table_js.html" %}
-<script>
-    var table = new Tabulator("#tabulatortable", {
-        layout: "fitColumns",
-        responsiveLayout: "collapse",
-        height: 800,
-        columns: [
-            {
-                title: "Date",
-                field: "Date",
-                sorter: "string",
-                headerFilter: "input"
-            },
-            {
-                title: "Legal system",
-                field: "Legal system",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            },
-            {
-                title: "Case Reference",
-                field: "Case Reference",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: "html"
-            },
-            {
-                title: "Subject matter",
-                field: "Subject matter",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            },
-            {
-                title: "Keywords",
-                field: "Keywords",
-                sorter: "string",
-                headerFilter: "input",
-                formatter: scrollHtml
-            }
-        ]
-    });
-</script>
-{% endblock scripts2 %}
