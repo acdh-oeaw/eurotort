@@ -11,7 +11,7 @@
     <ul>
         {% for x in object.rvn_court_partial_legal_system_partiallegalsystem.all %}
         <li>
-            <a href="{{ x.get_absolute_url }}">{{ x }} ({{ x.name_english }}), {{ x.abbreviation }}</a>
+            <a href="{{ x.get_absolute_url }}">{{ x }}{% if x.name_english %}({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
         </li>
         {% endfor %}
     </ul>
