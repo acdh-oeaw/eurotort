@@ -204,7 +204,7 @@ class CourtDecissionListView(CustomListView):
 
 class CourtDecissionDetailView(CustomDetailView):
     model = CourtDecission
-    template_name = "archiv/courtdecission_detail.html"
+    template_name = "archiv/case_detail.html"
 
 
 class CourtDecissionCreate(CustomCreateView):

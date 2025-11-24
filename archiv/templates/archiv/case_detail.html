@@ -3,16 +3,19 @@
 {% load webpage_extras %}
 {% block title %}{{ object }}{% endblock %}
 {% block content %}
-<!-- <div class="container"> -->
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
 <div class="courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
 
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+            <div class="col-md-3">
+                <details class="d-md-none mb-3 toc-details">
+                    <summary>Table of Contents</summary>
+                    <nav id="toc" data-toggle="toc" class="sticky-top" title="page navigation"></nav>
+                </details>
+                <nav id="toc" data-toggle="toc" class="sticky-top d-none d-md-block" title="page navigation"></nav>
             </div>
-            <div class="col-md-10" id="contentToPrint">
+            <div class="col-md-8">
                 <h1>{{ object }} {% if user.is_authenticated %}
                     <small>
                         <a href="{{ object.get_edit_url }}">
@@ -20,40 +23,33 @@
                         </a>
                     </small>
                     {% endif %}</h1>
-                <div class="d-flex justify-content-center">
-                    <i class="bi bi-filetype-pdf" onclick="Convert_HTML_To_PDF();" title="print as pdf"
-                        id="pdfbutton"></i>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status" id="pdfspinner" style="display: none;">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
+                <h2 class="visually-hidden" id="info">Info (top)</h2>
                 <table class="table">
 
                     <tbody>
                         <tr>
                             <th>Legal System</th>
                             <td>
-                                {{ object.partial_legal_system }}
                                 <a href="{{ object.partial_legal_system.get_absolute_url }}">
-                                    <i class="bi bi-link-45deg"></i>
+                                    {{ object.partial_legal_system }}
                                 </a>
                             </td>
                         </tr>
                         <tr>
                             <th>Court</th>
                             <td>
-                                {{ object.court }}
                                 <a href="{{ object.court.get_absolute_url }}">
-                                    <i class="bi bi-link-45deg"></i>
+                                    {{ object.court }} {% if object.court.name_english %}({{ object.court.name_english }}){% endif %}
                                 </a>
                             </td>
                         </tr>
                         <tr>
                             <th>Date of Decision</th>
-                            <td>{% if object.decission_date %}{{ object.decission_date }} {% else %} not data provided
-                                {% endif %}</td>
+                            <td>
+                                {% if object.decission_date %}
+                                    {{ object.decission_date }} {% else %} not data provided
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th title="European Case Law Identifier">ECLI</th>
@@ -63,33 +59,48 @@
                             <th>Eurotort number</th>
                             <td>{{ object.id }}</td>
                         </tr>
+                        {% if object.keyword.all %}
+                            <tr>
+                                <th>Keywords</th>
+                                <td>
+                                    {% for x in object.keyword.all %}
+                                        <span class="badge rounded-pill text-bg-primary">
+                                            <a href="{{ x.get_absolute_url }}">{{ x.name }}</a>
+                                        </span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if object.tag.all %}
+                            <tr>
+                                <th>Tags</th>
+                                <td>
+                                    {% for x in object.tag.all %}
+                                        <span class="badge rounded-pill text-bg-success">
+                                            <a href="{{ x.get_absolute_url }}">{{ x.tag }}</a>
+                                        </span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if object.related_decision.all %}
+                            <tr>
+                                <th>Related Cases</th>
+                                <td>
+                                    {% for x in object.related_decision.all %}
+                                        <span class="badge rounded-pill text-bg-warning">
+                                            <a href="{{ x.get_absolute_url }}">{{ x }}</a>
+                                        </span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endif %}
                     </tbody>
                 </table>
-                <dl>
-                    <dt>Keywords</dt>
-                    {% for x in object.keyword.all %}
-                    <dd class="ms-5 fs-5"><span class="badge rounded-pill text-bg-primary">{{ x.name }}</span> <a
-                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
-                    {% endfor %}
-
-                    <dt>Tags</dt>
-                    {% for x in object.tag.all %}
-                    <dd class="ms-5 fs-5"><span class="badge rounded-pill text-bg-success ">{{ x }}</span> <a
-                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
-                    {% endfor %}
-
-                    {% if object.related_decision.all %}
-                    <dt>Related Cases</dt>
-                    {% for x in object.related_decision.all %}
-                    <dd class="ms-5 fs-5"><span class="badge rounded-pill text-bg-warning ">{{ x }}</span> <a
-                            href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a></dd>
-                    {% endfor %}
-                    {% endif %}
-
-                </dl>
-                <p>{{ object }}</p>
+                <p class="pt-2">{{ object }}</p>
                 {% if object.short_description %}
-                <h3>{{ object.short_description|safe }}</h3>
+                <h3>Case report</h3>
+                <p>{{ object.short_description }}</p>
                 {% endif %}
                 <h3>Facts</h3>
                 <p>{{ object.situation|safe }}</p>
@@ -125,6 +136,7 @@
                 <p>Eurotort no. {{ object.id }}</p>
                 <small>updated: {{ object.modified_date }}</small>
             </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
     {% if user.is_authenticated %}
@@ -139,38 +151,3 @@
 </div>
 
 {% endblock %}
-{% block scripts2 %}
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-<script>
-
-    // Convert HTML content to PDF
-    window.jsPDF = window.jspdf.jsPDF;
-    function Convert_HTML_To_PDF() {
-        $("#pdfspinner").css("display", "block")
-        $("#pdfbutton").css("display", "none")
-        var doc = new jsPDF();
-
-        // Source HTMLElement or a string containing HTML.
-        var elementHTML = document.querySelector("#contentToPrint");
-
-        doc.html(elementHTML, {
-            callback: function (doc) {
-                doc.save('eurotort-doc-{{ object.id}}.pdf');
-                $("#pdfspinner").css("display", "none")
-                $("#pdfbutton").css("display", "block")
-            },
-            fontSize: 6,
-            autoSize: true,
-            margin: [10, 10, 10, 10],
-            autoPaging: 'text',
-            x: 0,
-            y: 0,
-            width: 190, //target width in the PDF document
-            windowWidth: 675 //window width in CSS pixels
-        });
-    }
-</script>
-
-{% endblock scripts2 %}
