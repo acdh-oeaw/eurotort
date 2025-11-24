@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import pandas as pd
 from browsing.utils import (
     BaseCreateView,
@@ -267,18 +269,19 @@ class KeyWordListView(CustomListView):
         if self.request.user.is_authenticated:
             pass
         else:
-            properties = [
-                "name",
-                "id",
-                "part_of__name",
-                "part_of__id",
-            ]
-            data = self.model.objects.all().values_list(*properties)
-            df = pd.DataFrame(data=data, columns=properties)
-            data = {}
-            for gr, ndf in df.groupby("part_of__name"):
-                data[gr] = ndf.to_dict("records")
-            context["grouped_items"] = data
+            grouped = defaultdict(list)
+            for keyword in self.model.objects.select_related("part_of").order_by(
+                "name"
+            ):
+                if keyword.part_of:
+                    grouped[keyword.part_of].append(keyword)
+                else:
+                    grouped[keyword]
+
+            sorted_grouped = dict(
+                sorted(grouped.items(), key=lambda x: x[0].name.lower())
+            )
+            context["grouped_items"] = sorted_grouped
         return context
 
 

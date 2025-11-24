@@ -19,12 +19,16 @@
     <div id="filterMe" class="pt-2">
         <dl class="multi-column-dl">
         {% for key, value in grouped_items.items %}
-            <dt>{{ key }}</dt>
+            <dt>
+              <span class="badge rounded-pill text-bg-primary fs-6 mb-1 mt-1">
+                <a href="{{ key.get_absolute_url }}">{{ key }}</a>
+              </span>
+            </dt>
             {% for x in value %}
-            <dd>
-                <a href="/archive/keyword/detail/{{ x.id }}">
-                    <span class="badge rounded-pill text-bg-primary fs-6">{{ x.name }}</span>
-                </a>
+            <dd class="mb-0">
+              <span class="badge rounded-pill text-bg-primary">
+                <a href="{{ x.get_absolute_url }}">{{ x.name }}</a>
+              </span>
             </dd>
             {% endfor %}
         {% endfor %}
@@ -50,8 +54,11 @@
         }
       });
       
-      // Hide dt elements if they have no visible dd siblings
+      // Filter and show/hide dt elements
       terms.forEach(term => {
+        const termText = term.textContent || term.innerText;
+        const termMatches = termText.toLowerCase().indexOf(filter) > -1;
+        
         let nextElement = term.nextElementSibling;
         let hasVisibleDd = false;
         
@@ -63,7 +70,8 @@
           nextElement = nextElement.nextElementSibling;
         }
         
-        term.style.display = hasVisibleDd ? '' : 'none';
+        // Show dt if it matches the filter OR has visible dd children
+        term.style.display = (termMatches || hasVisibleDd) ? '' : 'none';
       });
     }
 </script>
