@@ -13,19 +13,23 @@
 <div class="container">
     <h1 class="text-center p-3">{{ object_list|length }} {{ verbose_name_plural }}</h1>
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
-        <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+      <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
+      <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+    </div>
+    <div class="form-check form-switch d-flex align-items-center justify-content-center">
+      <input class="form-check-input" type="checkbox" role="switch" id="showNoCrossRefernce" onchange="toggleCrossReferences()">
+      <label class="form-check-label" for="showNoCrossRefernce">Show cross references</label>
     </div>
     <div id="filterMe" class="pt-2">
         <dl class="multi-column-dl">
         {% for key, value in grouped_items.items %}
-            <dt>
+            <dt {% if key.linked_to_cases %} data-linkable="yes" {% else %} data-linkable="no" {% endif %}>
               <span class="badge rounded-pill text-bg-primary fs-6 mb-1 mt-1">
                 <a href="{{ key.get_absolute_url }}">{{ key }}</a>
               </span>
             </dt>
             {% for x in value %}
-            <dd class="mb-0">
+            <dd class="mb-0" {% if x.linked_to_cases %} data-linkable="yes" {% else %} data-linkable="no" {% endif %}>
               <span class="badge rounded-pill text-bg-primary">
                 <a href="{{ x.get_absolute_url }}">{{ x.name }}</a>
               </span>
@@ -37,17 +41,38 @@
     
 </div>
 <script>
+    function toggleCrossReferences() {
+      const checkbox = document.getElementById('showNoCrossRefernce');
+      const showNoCrossRef = checkbox.checked;
+      const container = document.getElementById('filterMe');
+      const allElements = container.querySelectorAll('[data-linkable]');
+      
+      allElements.forEach(element => {
+        if (element.getAttribute('data-linkable') === 'no') {
+          element.style.display = showNoCrossRef ? '' : 'none';
+        }
+      });
+      
+      // Re-apply text filter if there's one active
+      myFunction();
+    }
+    
     function myFunction() {
       const input = document.getElementById('myInput');
       const filter = input.value.toLowerCase();
       const container = document.getElementById('filterMe');
       const items = container.querySelectorAll('dd');
       const terms = container.querySelectorAll('dt');
+      const showNoCrossRef = document.getElementById('showNoCrossRefernce').checked;
       
       // Filter dd elements
       items.forEach(item => {
         const text = item.textContent || item.innerText;
-        if (text.toLowerCase().indexOf(filter) > -1) {
+        const matchesFilter = text.toLowerCase().indexOf(filter) > -1;
+        const isLinkable = item.getAttribute('data-linkable') === 'yes';
+        
+        // Show if matches filter AND (is linkable OR showNoCrossRef is checked)
+        if (matchesFilter && (isLinkable || showNoCrossRef)) {
           item.style.display = '';
         } else {
           item.style.display = 'none';
@@ -58,6 +83,7 @@
       terms.forEach(term => {
         const termText = term.textContent || term.innerText;
         const termMatches = termText.toLowerCase().indexOf(filter) > -1;
+        const isLinkable = term.getAttribute('data-linkable') === 'yes';
         
         let nextElement = term.nextElementSibling;
         let hasVisibleDd = false;
@@ -70,9 +96,18 @@
           nextElement = nextElement.nextElementSibling;
         }
         
-        // Show dt if it matches the filter OR has visible dd children
-        term.style.display = (termMatches || hasVisibleDd) ? '' : 'none';
+        // Show dt if (matches filter OR has visible dd children) AND (is linkable OR showNoCrossRef is checked)
+        if ((termMatches || hasVisibleDd) && (isLinkable || showNoCrossRef)) {
+          term.style.display = '';
+        } else {
+          term.style.display = 'none';
+        }
       });
     }
+    
+    // Initialize visibility on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      toggleCrossReferences();
+    });
 </script>
 {% endblock %}
