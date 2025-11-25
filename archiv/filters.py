@@ -24,6 +24,17 @@ FT_HELPTEXT = """
 """
 
 
+def filter_by_ids(queryset, name, value):
+    values_raw = value.split(",")
+    values = []
+    for x in values_raw:
+        try:
+            values.append(int(x))
+        except ValueError:
+            pass
+    return queryset.filter(id__in=values)
+
+
 class YearBookListFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(
         lookup_expr="icontains",
@@ -88,6 +99,11 @@ class CourtListFilter(django_filters.FilterSet):
 
 
 class CourtDecissionListFilter(django_filters.FilterSet):
+    id = django_filters.CharFilter(
+        method=filter_by_ids,
+        label="Eurotort number",
+        help_text="Enter comma-separated Eurotort numbers",
+    )
     ft_search = django_filters.CharFilter(
         field_name="vector_column",
         method="search_fulltext",
