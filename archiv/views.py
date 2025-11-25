@@ -511,25 +511,17 @@ class YearBookListView(CustomListView):
         if self.request.user.is_authenticated:
             pass
         else:
-            properties = [
-                "title",
-                "id",
-                "year",
-                "part_of__title",
-                "part_of__id",
-                "part_of__year",
-            ]
-            data = (
-                self.model.objects.filter(has_bibliographic_items=None)
-                .exclude(part_of=None)
-                .exclude(year=None)
-                .values_list(*properties)
+            grouped = defaultdict(list)
+            for item in self.model.objects.select_related("part_of").order_by("title"):
+                if item.part_of and not item.part_of.id == item.id:
+                    grouped[item.part_of].append(item)
+                else:
+                    grouped[item]
+
+            sorted_grouped = dict(
+                sorted(grouped.items(), key=lambda x: x[0].title.lower())
             )
-            df = pd.DataFrame(data=data, columns=properties)
-            data = {}
-            for gr, ndf in df.groupby("part_of__title"):
-                data[gr] = ndf.to_dict("records")
-            context["grouped_items"] = data
+            context["grouped_items"] = sorted_grouped
         return context
 
 
