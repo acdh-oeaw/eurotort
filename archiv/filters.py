@@ -113,8 +113,8 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     year_book_title = django_filters.ModelMultipleChoiceFilter(
         field_name="year_book_title__part_of",
         queryset=YearBook.objects.all(),
-        label="Yearbook",
-        help_text="List all cases discussed in the selected yearbook",
+        label="Bibliographic source",
+        help_text="Filter for cases reported in the selected source",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:monograph-autocomplete",
         ),
@@ -122,8 +122,8 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     year_book_chapter = django_filters.ModelMultipleChoiceFilter(
         field_name="year_book_title",
         queryset=YearBook.objects.all(),
-        label="Article",
-        help_text="Lists all cases discussed in the selected article.",
+        label="Chapter",
+        help_text="Filter for cases reported in the selected chapter",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:chapter-autocomplete", forward=["year_book_title"]
         ),
