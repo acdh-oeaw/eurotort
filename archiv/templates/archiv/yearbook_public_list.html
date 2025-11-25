@@ -18,9 +18,13 @@
     <div id="filterMe" class="pt-2">
         <dl class="multi-column-dl">
         {% for key, value in grouped_items.items %}
-            <dt>{{ key}} </dt>
+            <dt>
+              <a href="{{ key.get_absolute_url }}">{{ key }}</a>
+            </dt>
             {% for x in value %}
-            <dd><a href="/archive/yearbook/detail/{{ x.id }}">{{ x.title }}</a></dd>
+            <dd>
+              <a href="{{ x.get_absolute_url }}">{{ x.title }}</a>
+            </dd>
             {% endfor %}
         {% endfor %}
         </dl>
