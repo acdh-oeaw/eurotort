@@ -10,26 +10,11 @@
 {% block content %}
 {% include 'archiv/partials/listview_breadcrumb.html' %}
 <div class="container-fluid">
-    <div class="card-header text-center">
-
-        <h1 class="text-center">
-            {{table.paginator.count }} {{ verbose_name_plural }}
-            {% if user.is_authenticated %}
-        {% if create_view_link %}
-       <br />
-            <a class="btn btn-primary float-center ms-5 me-5" href="{{ create_view_link }}">Create new {{ verbose_name }}</a>
-        {% endif %}
-        {% endif %}
-        </h1>
-        
-    </div>
     <div>
         <div class="row">
             <div class="col-md-3">
-
                 <div>
                     {% block create_button %}{% endblock %}
-                    <!--Search mask-->
                     {% load django_tables2 crispy_forms_tags %}
                     <form action="." class="uniForm" method="get">
                         {% crispy filter.form filter.form.helper %}
@@ -39,13 +24,21 @@
                             <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </form>
-                    
                 </div>
             </div>
-            <div class="col-md-9" id="results">
-
-
-                <div class="card-body table-responsive">
+            <div class="col-md-9" >
+                <div class="text-center">
+                    <h1 class="text-center" id="results">
+                        {{table.paginator.count }} search results
+                        {% if user.is_authenticated %}
+                            {% if create_view_link %}
+                            <br>
+                                <a class="btn btn-primary float-center ms-5 me-5" href="{{ create_view_link }}">Create new {{ verbose_name }}</a>
+                            {% endif %}
+                        {% endif %}
+                    </h1>
+                </div>
+                <div>
                     {% block table %}
                     {% include 'browsing/partials/table.html' %}
                     {% endblock table %}
@@ -67,11 +60,16 @@
 
 {% endblock %}
 {% block scripts2 %}
-<script src="{% static 'browsing/js/set-form-attributes.js' %}"></script>
+<!-- <script src="{% static 'browsing/js/set-form-attributes.js' %}"></script> -->
 <script src="{% static 'browsing/js/filter-for-blank-fields.js' %}"></script>
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
+        // Add #results anchor to URL if there are query parameters
+        if (window.location.search && !window.location.hash) {
+            window.location.hash = 'results';
+        }
+        
         var accordion = document.getElementsByClassName('accordion')[0];
         accordion.addEventListener('shown.bs.collapse', function (event) {
             var shownElement = event.target;
@@ -83,7 +81,5 @@
             }
         });
     });
-
-
 </script>
 {% endblock scripts2 %}
