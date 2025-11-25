@@ -23,7 +23,10 @@
         {% endif %}
     </p>
     {% with courtdecissions=object.rvn_courtdecission_author_person %}
-    <h2 class="p-3 text-center"><a href="{% url 'archiv:courtdecission_browse' %}?author={{ object.id }}">{{ courtdecissions.count }} contributed cases</a></h2>
+    <h2 class="p-3 text-center">
+        {{ courtdecissions.count }} contributed cases <br>
+        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?author={{ object.id }}">Display in search <i class="bi bi-funnel"></i></a>
+    </h2>
     {% include 'archiv/partials/case_dl.html' %}
     {% endwith %}
 </div>
