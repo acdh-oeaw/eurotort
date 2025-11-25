@@ -18,7 +18,12 @@
     </p>
 
     {% with courtdecissions=object.rvn_courtdecission_partial_legal_system_partiallegalsystem %}
-    <h2 class="pb-2 pt-2 fs-4">{{ courtdecissions.count }} cases</h2>
+    <h2 class="p-3 text-center">
+        {{ courtdecissions.count }} cases <br>
+        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?partial_legal_system={{ object.id }}">
+            Display in search <i class="bi bi-funnel"></i>
+        </a>
+    </h2>
     {% include 'archiv/partials/case_dl.html' %}
     <div class="ps-5">
         {% if user.is_authenticated %}
