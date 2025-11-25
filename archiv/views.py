@@ -297,9 +297,9 @@ class KeyWordDetailView(CustomDetailView):
             )
             return context
         else:
-            children = self.object.rvn_keyword_part_of_keyword.all()
-            cases = CourtDecission.objects.filter(keyword__in=children).distinct()
-            context["cases"] = cases
+            context["cases"] = (
+                self.object.rvn_courtdecission_keyword_keyword.all().distinct()
+            )
             return context
 
 
