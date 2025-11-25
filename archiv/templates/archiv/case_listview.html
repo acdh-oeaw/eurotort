@@ -69,17 +69,6 @@
         if (window.location.search && !window.location.hash) {
             window.location.hash = 'results';
         }
-        
-        var accordion = document.getElementsByClassName('accordion')[0];
-        accordion.addEventListener('shown.bs.collapse', function (event) {
-            var shownElement = event.target;
-            var allSelect2Spans = document.getElementsByClassName("select2");
-            var firstSpan = allSelect2Spans[0];
-            var widthToset = allSelect2Spans[0].style["width"];
-            for (var i = 0; i < allSelect2Spans.length; i++) {
-                allSelect2Spans[i].style.width = widthToset;
-            }
-        });
     });
 </script>
 {% endblock scripts2 %}
