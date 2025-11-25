@@ -3,13 +3,15 @@ from dal import autocomplete
 from django.db.models import Q
 from django.utils.html import format_html
 
-from .models import Court
-from .models import CourtDecission
-from .models import KeyWord
-from .models import PartialLegalSystem
-from .models import Person
-from .models import Tag
-from .models import YearBook
+from .models import (
+    Court,
+    CourtDecission,
+    KeyWord,
+    PartialLegalSystem,
+    Person,
+    Tag,
+    YearBook,
+)
 
 
 class YearBookAC(autocomplete.Select2QuerySetView):
@@ -43,7 +45,13 @@ class ChapterAC(autocomplete.Select2QuerySetView):
 
 class CourtAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, item):
-        return f"{item.name} ({item.name_english}) {item.abbreviation}"
+        if item.name_english and item.abbreviation:
+            label = f"{item.name} ({item.name_english}), {item.abbreviation}"
+        elif item.name_english:
+            label = f"{item.name} ({item.name_english})"
+        else:
+            label = f"{item.name}"
+        return label
 
     def get_queryset(self):
         qs = Court.objects.all()
@@ -56,7 +64,7 @@ class CourtAC(autocomplete.Select2QuerySetView):
             qs = qs.filter(
                 Q(name__icontains=self.q)
                 | Q(name_english__icontains=self.q)
-                | Q(abbreviation__startswith=self.q)
+                | Q(abbreviation__icontains=self.q)
             )
         return qs
 
