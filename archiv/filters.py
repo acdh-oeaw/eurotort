@@ -91,7 +91,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     ft_search = django_filters.CharFilter(
         field_name="vector_column",
         method="search_fulltext",
-        label="Volltextsuche",
+        label="Full-text search",
         help_text=FT_HELPTEXT,
     )
     year_book_title = django_filters.ModelMultipleChoiceFilter(
