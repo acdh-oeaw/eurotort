@@ -81,9 +81,15 @@
     {% with courtdecissions=cases %}
     <h2 class="p-3 text-center">
         {% if object.part_of %}
-        <a href="{% url 'archiv:courtdecission_browse' %}?year_book_chapter={{ object.id }}">{{ courtdecissions.count }} reported cases</a>
+        {{ courtdecissions.count }} reported cases <br>
+        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?year_book_chapter={{ object.id }}">
+            Display in search <i class="bi bi-funnel"></i>
+        </a>
         {% else %}
-        {{ courtdecissions.count }} reported cases
+        {{ courtdecissions.count }}</a> reported cases <br>
+        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?year_book_title={{ object.id }}">
+            Display in search <i class="bi bi-funnel"></i>
+        </a>
         {% endif %}
     </h2>
     {% include 'archiv/partials/case_dl.html' %}

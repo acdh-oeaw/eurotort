@@ -25,7 +25,9 @@
     {% with courtdecissions=object.rvn_courtdecission_author_person %}
     <h2 class="p-3 text-center">
         {{ courtdecissions.count }} contributed cases <br>
-        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?author={{ object.id }}">Display in search <i class="bi bi-funnel"></i></a>
+        <a type="button" class="btn btn-outline-primary mt-2" href="{% url 'archiv:courtdecission_browse' %}?author={{ object.id }}">
+            Display in search <i class="bi bi-funnel"></i>
+        </a>
     </h2>
     {% include 'archiv/partials/case_dl.html' %}
     {% endwith %}
