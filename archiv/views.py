@@ -192,9 +192,31 @@ class CourtDecissionListView(CustomListView):
     filter_class = CourtDecissionListFilter
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
-    init_columns = ["id", "file_number", "party"]
+    init_columns = [
+        "court",
+        "case_reference",
+        "decission_date",
+        "short_description",
+        "keyword",
+    ]
     exclude_columns = ["full_text", "vector_column", "year_book_issue"]
     enable_merge = True
+
+    def get(self, request, *args, **kwargs):
+        # If ft_search is present, ensure kwic is in columns
+        if "ft_search" in request.GET:
+            mutable_get = request.GET.copy()
+            columns = mutable_get.getlist("columns")
+            if "kwic" not in columns:
+                columns.append("kwic")
+                mutable_get.setlist("columns", columns)
+                request.GET = mutable_get
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["selected_columns"] = self.request.GET.getlist("columns")
+        return context
 
     def get_queryset(self, **kwargs):
         qs = super(CourtDecissionListView, self).get_queryset()

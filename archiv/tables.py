@@ -2,13 +2,15 @@
 import django_tables2 as tables
 from browsing.utils import MergeColumn
 
-from .models import Court
-from .models import CourtDecission
-from .models import KeyWord
-from .models import PartialLegalSystem
-from .models import Person
-from .models import Tag
-from .models import YearBook
+from .models import (
+    Court,
+    CourtDecission,
+    KeyWord,
+    PartialLegalSystem,
+    Person,
+    Tag,
+    YearBook,
+)
 
 
 class ResultsTable(tables.Table):
@@ -49,7 +51,17 @@ class CourtTable(tables.Table):
 
 
 class CourtDecissionTable(tables.Table):
-    id = tables.LinkColumn(verbose_name="ID")
+    id = tables.LinkColumn(verbose_name="Eurotort number")
+    case_reference = tables.columns.TemplateColumn(
+        template_code="<a href='{{ record.get_absolute_url }}'>{{ record.case_reference }}</a>",
+        verbose_name="Case reference",
+        orderable=False,
+    )
+    short_description = tables.TemplateColumn(
+        template_code="{{ record.short_description|safe }}",
+        verbose_name="Subject matter",
+        orderable=False,
+    )
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
     author = tables.columns.ManyToManyColumn(verbose_name="Authors")
@@ -57,13 +69,36 @@ class CourtDecissionTable(tables.Table):
     tag = tables.columns.ManyToManyColumn(verbose_name="Tags")
     kwic = tables.columns.TemplateColumn(
         template_code="{{ record.kwic|safe }}",
-        verbose_name="Keyword in Context",
+        verbose_name="Search term in context",
         orderable=False,
     )
 
     class Meta:
         model = CourtDecission
-        sequence = ("id",)
+        sequence = (
+            "partial_legal_system",
+            "decission_date",
+            "court",
+            "case_reference",
+            "file_number",
+            "party",
+            "short_description",
+            "kwic",
+            "keyword",
+            "tag",
+            "situation",
+            "motto",
+            "commentary",
+            "author",
+            "year_book_title",
+            "location",
+            "related_decision",
+            "additional_information",
+            "ecli",
+            "year_book_issue",
+            "full_text",
+            "modified_date",
+        )
         attrs = {"class": "table table-responsive table-hover"}
 
 
