@@ -251,6 +251,15 @@ class CourtDecission(models.Model):
         is_public=True,
         data_lookup="Entscheidung_Teilrechtsordnung",
     )
+    decission_date = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Date",
+        help_text="Date of decision",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Entscheidung_Datum",
+    )
     court = models.ForeignKey(
         "Court",
         related_name="rvn_courtdecission_court_court",
@@ -262,15 +271,6 @@ class CourtDecission(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Gericht",
-    )
-    decission_date = models.DateField(
-        blank=True,
-        null=True,
-        verbose_name="Date",
-        help_text="Date of decision",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Datum",
     )
     file_number = models.CharField(
         max_length=250,
@@ -291,31 +291,6 @@ class CourtDecission(models.Model):
         is_public=True,
         data_lookup="Entscheidung_Parteien",
     )
-    location = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Reported in",
-        help_text="Reference to law report or journal reporting the case in a given legal system",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Fundstelle",
-    )
-    year_book_title = models.ForeignKey(
-        "YearBook",
-        related_name="related_court_decission",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Bibliographic source",
-        help_text="Bibliographic source",
-    )
-    year_book_issue = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-        verbose_name="Year Book Issue/Page",
-        help_text="Issue/Page",
-    )
     short_description = models.TextField(
         blank=True,
         null=True,
@@ -325,6 +300,22 @@ class CourtDecission(models.Model):
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
         arche_prop="hasDescription",
+    )
+    keyword = models.ManyToManyField(
+        "KeyWord",
+        related_name="rvn_courtdecission_keyword_keyword",
+        blank=True,
+        verbose_name="Keywords",
+        help_text="Keywords",
+    ).set_extra(
+        is_public=True,
+    )
+    tag = models.ManyToManyField(
+        "Tag",
+        related_name="has_related_decisions",
+        blank=True,
+        verbose_name="Tags",
+        help_text="Tags",
     )
     situation = models.TextField(
         blank=True,
@@ -353,38 +344,6 @@ class CourtDecission(models.Model):
         is_public=True,
         data_lookup="Entscheidung_Kommentar",
     )
-    additional_information = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Additional information",
-        help_text="Additional information provided by the author (e.g. related publications, comments etc.)",
-    ).set_extra(
-        is_public=True,
-        data_lookup="Entscheidung_Zusatzinfo",
-    )
-    keyword = models.ManyToManyField(
-        "KeyWord",
-        related_name="rvn_courtdecission_keyword_keyword",
-        blank=True,
-        verbose_name="Keywords",
-        help_text="Keywords",
-    ).set_extra(
-        is_public=True,
-    )
-    tag = models.ManyToManyField(
-        "Tag",
-        related_name="has_related_decisions",
-        blank=True,
-        verbose_name="Tags",
-        help_text="Tags",
-    )
-    related_decision = models.ManyToManyField(
-        "CourtDecission",
-        related_name="has_related_decisions",
-        blank=True,
-        verbose_name="Related decisions",
-        help_text="Related decisions",
-    )
     author = models.ManyToManyField(
         "Person",
         related_name="rvn_courtdecission_author_person",
@@ -395,12 +354,53 @@ class CourtDecission(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
+    year_book_title = models.ForeignKey(
+        "YearBook",
+        related_name="related_court_decission",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Bibliographic source",
+        help_text="Bibliographic source",
+    )
+    location = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Reported in",
+        help_text="Reference to law report or journal reporting the case in a given legal system",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Entscheidung_Fundstelle",
+    )
+    related_decision = models.ManyToManyField(
+        "CourtDecission",
+        related_name="has_related_decisions",
+        blank=True,
+        verbose_name="Related decisions",
+        help_text="Related decisions",
+    )
+    additional_information = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Additional information",
+        help_text="Additional information provided by the author (e.g. related publications, comments etc.)",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Entscheidung_Zusatzinfo",
+    )
     ecli = models.CharField(
         max_length=250,
         blank=True,
         null=True,
         verbose_name="ECLI",
         help_text="European Case Law Identifier",
+    )
+    year_book_issue = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+        verbose_name="Year Book Issue/Page",
+        help_text="Issue/Page",
     )
     full_text = models.TextField(
         blank=True,
