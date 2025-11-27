@@ -2,18 +2,23 @@
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
 from crispy_forms.bootstrap import AccordionGroup
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Layout, Submit
 from dal import autocomplete
 from django import forms
 
-from .models import Court
-from .models import CourtDecission
-from .models import KeyWord
-from .models import PartialLegalSystem
-from .models import Person
-from .models import Tag
-from .models import YearBook
+from .models import (
+    Court,
+    CourtDecission,
+    KeyWord,
+    PartialLegalSystem,
+    Person,
+    Tag,
+    YearBook,
+)
+
+
+class DateInput(forms.DateInput):
+    input_type = "date"
 
 
 class YearBookFilterFormHelper(FormHelper):
@@ -167,6 +172,7 @@ class CourtDecissionForm(forms.ModelForm):
                 url="archiv-ac:partiallegalsystem-autocomplete"
             ),
             "court": autocomplete.ModelSelect2(url="archiv-ac:court-autocomplete"),
+            "decission_date": DateInput(),
         }
 
     def __init__(self, *args, **kwargs):
