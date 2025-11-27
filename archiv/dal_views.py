@@ -74,7 +74,7 @@ class CourtDecissionAC(autocomplete.Select2QuerySetView):
         qs = CourtDecission.objects.all()
 
         if self.q:
-            qs = qs.filter(Q(id__icontains=self.q))
+            qs = qs.filter(Q(id=self.q))
         return qs
 
 
