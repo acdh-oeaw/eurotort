@@ -153,6 +153,8 @@ class CourtDecissionForm(forms.ModelForm):
             "full_text",
         ]
         widgets = {
+            "location": forms.TextInput(),
+            "additional_information": forms.TextInput(),
             "tag": autocomplete.ModelSelect2Multiple(
                 url="archiv-ac:tag-autocomplete", attrs={"data-html": True}
             ),
