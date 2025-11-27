@@ -148,9 +148,25 @@ class CourtDecissionFilterFormHelper(FormHelper):
 class CourtDecissionForm(forms.ModelForm):
     class Meta:
         model = CourtDecission
-        exclude = [
-            "vector_column",
-            "full_text",
+        fields = [
+            "partial_legal_system",  # Legal system
+            "court",  # Court
+            "decission_date",  # Date
+            "file_number",  # Case number
+            "party",  # Parties
+            "short_description",  # Subject matter
+            "situation",  # Facts
+            "motto",  # Decision
+            "commentary",  # Commentary
+            "additional_information",  # Additional information
+            "keyword",  # Keywords
+            "tag",  # Tags
+            "related_decision",  # Related decisions
+            "author",  # Author
+            "year_book_title",  # Bibliographic source
+            "year_book_issue",  # Page
+            "location",  # Reported in
+            "ecli",  # ECLI
         ]
         widgets = {
             "location": forms.TextInput(),
