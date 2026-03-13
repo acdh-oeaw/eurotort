@@ -20,6 +20,10 @@ from .models import (
 class DateInput(forms.DateInput):
     input_type = "date"
 
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("format", "%Y-%m-%d")
+        super().__init__(*args, **kwargs)
+
 
 class YearBookFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
