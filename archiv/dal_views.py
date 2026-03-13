@@ -58,7 +58,8 @@ class CourtAC(autocomplete.Select2QuerySetView):
         constraint = self.forwarded.get("partial_legal_system", None)
 
         if constraint:
-            qs = qs.filter(partial_legal_system__in=[int(x) for x in constraint])
+            qs = qs.filter(partial_legal_system=int(constraint))
+            print(qs)
 
         if self.q:
             qs = qs.filter(
