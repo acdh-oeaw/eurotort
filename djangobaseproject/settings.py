@@ -106,6 +106,7 @@ if os.environ.get("POSTGRES_DB"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
+            "OPTIONS": {"options": "-c search_path=public,eurotort"},
             "NAME": os.environ.get("POSTGRES_DB", "eurotort"),
             "USER": os.environ.get("POSTGRES_USER", "postgres"),
             "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
