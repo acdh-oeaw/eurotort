@@ -10,12 +10,27 @@
     <p class="ps-5">
     <ul>
         {% for x in object.rvn_court_partial_legal_system_partiallegalsystem.all %}
-        <li>
-            <a href="{{ x.get_absolute_url }}">{{ x }}{% if x.name_english %}({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
-        </li>
+            {% if x.is_high_court %}
+            <li>
+                <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImage" alt="Highest court"><a href="{{ x.get_absolute_url }}">{{ x }} {% if x.name_english %}({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        {% for x in object.rvn_court_partial_legal_system_partiallegalsystem.all %}
+            {% if not x.is_high_court %}
+            <li>
+                <a href="{{ x.get_absolute_url }}">{{ x }} {% if x.name_english %}({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
+            </li>
+            {% endif %}
         {% endfor %}
     </ul>
     </p>
+    {% if object.link_to_legal_db %}
+        <h2 class="pb-2 pt-2 fs-4">Legal database</h2>
+        <p class="ps-5">
+            <a href="{{ object.link_to_legal_db}}">{{ object.link_to_legal_db}}</a>
+        </p>
+    {% endif %}
 
     {% with courtdecissions=object.rvn_courtdecission_partial_legal_system_partiallegalsystem %}
     <h2 class="p-3 text-center">
