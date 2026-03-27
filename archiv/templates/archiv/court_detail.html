@@ -5,22 +5,62 @@
 {% block content %}
 <!-- <div class="container"> -->
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-{% include 'archiv/partials/detailview_title.html' %}
+
+<div class="row p-3">
+    <div class="col-md-2">
+        {% if user.is_authenticated %}
+        {% if object.get_prev %}
+        <p class="text-start">
+            <a href="{{ object.get_prev }}">
+                <i class="bi bi-chevron-left" title="previous entry"></i>
+            </a>
+        </p>
+        {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1 class="text-center">
+            {% if object.is_high_court %}
+            <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImageH1" alt="">
+            {% endif %}
+            {{ object }}
+            {% if object.name_english %}
+            ({{ object.name_english }})
+            {% endif %}
+            {% if user.is_authenticated %}
+            <small>
+                <a href="{{ object.get_edit_url }}">
+                    <i class="bi bi-pencil-square" title="edit entry"></i>
+                </a>
+            </small>
+            {% endif %}
+
+        </h1>
+    </div>
+    <div class="col-md-2">
+        {% if user.is_authenticated %}
+        {% if object.get_prev %}
+        <p class="text-end">
+            
+            <a href="{{ object.get_next }}">
+                <i class="bi bi-chevron-right" title="next entry"></i>
+            </a>
+        </p>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+
 <div class="container">
 
-    <h2 class="pb-2 pt-2 fs-4">Name</h2>
-    <p class="ps-5">{% if object.is_high_court %}
-        Highest Court,
-        {% endif %}
-        {{ object }}
-        {% if object.name_english %}
-        ({{ object.name_english }})
-        {% endif %}
-    </p>
     <h2 class="pb-2 pt-2 fs-4">Legal system</h2>
     <p class="ps-5">
         <a href="{{ object.partial_legal_system.get_absolute_url }}">{{ object.partial_legal_system }}</a>
     </p>
+    {% if object.note %}
+    <h2 class="pb-2 pt-2 fs-4">Notes</h2>
+    <p class="ps-5">{{ object.note }}</p>
+    {% endif %}
 
     {% with courtdecissions=object.rvn_courtdecission_court_court %}
     <h2 class="p-3 text-center">
