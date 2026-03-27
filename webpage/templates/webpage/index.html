@@ -4,18 +4,26 @@
 {% block content %}
 
 <div class="my-5">
-    <div class="p-5 text-center">
-        <div class="container py-5">
-            <h1 class="text-body-emphasis">Eurotort</h1>
-            <h2 class="text-body-emphasis">Database on European Tort Law</h2>
-            <p class="col-lg-8 mx-auto lead">
-                Welcome to Eurotort, the first database on European tort law! Access the vast wealth of jurisprudence on tort law from over 30 legal systems.
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <a href="{% url 'webpage:staticpage' template='about' %}" type="button" class="btn btn-outline-primary btn-lg px-4 me-md-2">More information</a>
-                <a href="{% url 'archiv:courtdecission_browse' %}" type="button" class="btn btn-outline-primary btn-lg px-4">Advanced search</a>
+    <div class="p-3 text-center">
+        <div class="container">
+            <div>
+                <h1>
+                    <img src="{% static 'webpage/images/project-logo.gif' %}" alt="project-logo" width="80" height="80">
+                    Eurotort
+                </h1>
             </div>
+            <h2>Database on European Tort Law</h2>
+            <p class="col-lg-8 mx-auto lead">
+                Welcome to Eurotort, the first database on European tort law! Access the vast wealth of jurisprudence on
+                tort law from over 30 legal systems.
+            </p>
             {% include "archiv/partials/search_form.html" %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center pt-5">
+                <a href="{% url 'webpage:staticpage' template='about' %}" type="button"
+                    class="btn btn-outline-primary btn-lg px-4 me-md-2">More information</a>
+                <a href="{% url 'archiv:courtdecission_browse' %}" type="button"
+                    class="btn btn-outline-primary btn-lg px-4">Advanced search</a>
+            </div>
         </div>
     </div>
 </div>
