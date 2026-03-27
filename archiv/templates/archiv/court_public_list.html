@@ -19,7 +19,7 @@
         </div>
         <div class="form-check form-switch d-flex align-items-center justify-content-center">
             <input class="form-check-input" type="checkbox" role="switch" id="hideNotHighCourts">
-            <label class="form-check-label" for="hideNotHighCourts">Show high courts only</label>
+            <label class="form-check-label" for="hideNotHighCourts">Show highest courts only</label>
         </div>
     </div>
     <div id="filterMe">
@@ -28,7 +28,8 @@
             <dt>{{ key }}</dt>
             {% for x in value %}
             <dd {% if x.is_high_court %} class="highCourt" {% else %} class="noHighCourt"{% endif %}>
-                <a href="/archive/court/detail/{{ x.id }}">{% if x.is_high_court %}<strong class="isHighcourt">{{ x.name }}</strong>{% else %}{{x.name}}{% endif %}{% if x.name_english %} ({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
+                <a href="/archive/court/detail/{{ x.id }}">{% if x.is_high_court %}<span class="isHighcourt">
+                  <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImage" alt="">{{ x.name }}</span>{% else %}{{x.name}}{% endif %}{% if x.name_english %} ({{ x.name_english }}){% endif %}{% if x.abbreviation %}, {{ x.abbreviation }}{% endif %}</a>
             </dd>
             {% endfor %}
         {% endfor %}
@@ -48,7 +49,7 @@
       // Filter dd elements
       items.forEach(item => {
         const text = item.textContent || item.innerText;
-        const hasHighCourtClass = item.querySelector('strong.isHighcourt') !== null;
+        const hasHighCourtClass = item.querySelector('span.isHighcourt') !== null;
         const matchesFilter = text.toLowerCase().indexOf(filter) > -1;
         
         if (hideNotHighCourts) {
