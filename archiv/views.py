@@ -508,7 +508,7 @@ class PersonDelete(DeleteView):
 
 class YearBookListView(CustomListView):
     model = YearBook
-    h1 = "Browse bibliographic items"
+    h1 = "Browse bibliography"
     create_button_text = "Create new bibliographic item"
     filter_class = YearBookListFilter
     formhelper_class = YearBookFilterFormHelper

@@ -10,7 +10,9 @@
 {% block content %}
 {% include 'archiv/partials/listview_breadcrumb.html' %}
 <div class="container">
-    <h1 class="text-center p-3">{{ object_list|length }} {{ verbose_name_plural }}</h1>
+    <h1 class="text-center p-3">{{ verbose_name_plural }}</h1>
+    <p class="lead">The cases in this database mainly come from two sources: the <a href="https://www.oeaw.ac.at/etl/publications/european-tort-law-yearbook">European Tort Law Yearbooks</a>, co-published by the Institute for European Tort Law of the Austrian Academy of Sciences and the University of Graz (ETL) and the European Centre of Tort and Insurance Law (ECTIL) as well as ETL’s <a href="https://www.oeaw.ac.at/etl/publications/digest-of-european-tort-law-1">Digest of European Tort Law series.</a></p>
+    <h2 class="text-center p-3 fs-3" >{{ object_list|length }} Bibliographic items</h2>
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
         <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
