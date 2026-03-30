@@ -57,7 +57,7 @@ class YearBook(models.Model):
     class Meta:
         ordering = ["id"]
         verbose_name = "Bibliographic Item"
-        verbose_name_plural = "Bibliographic Items"
+        verbose_name_plural = "Bibliography"
 
     def save(self, *args, **kwargs):
         if not self.year and self.title:
