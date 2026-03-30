@@ -304,6 +304,9 @@ class KeyWordListView(CustomListView):
                 sorted(grouped.items(), key=lambda x: x[0].name.lower())
             )
             context["grouped_items"] = sorted_grouped
+            context["number_of_items"] = self.model.objects.filter(
+                linked_to_cases=True
+            ).count()
         return context
 
 

@@ -11,7 +11,7 @@
 {% include 'archiv/partials/listview_breadcrumb.html' %}
 
 <div class="container">
-    <h1 class="text-center p-3">{{ object_list|length }} {{ verbose_name_plural }}</h1>
+    <h1 class="text-center p-3">{{ number_of_items }} {{ verbose_name_plural }}</h1>
     <div class="input-group mb-3 d-flex align-items-center justify-content-center">
       <input class="input-group-text" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to filter ...">
       <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
@@ -24,15 +24,19 @@
         <dl class="multi-column-dl">
         {% for key, value in grouped_items.items %}
             <dt {% if key.linked_to_cases %} data-linkable="yes" {% else %} data-linkable="no" {% endif %}>
-              <span class="badge rounded-pill text-bg-primary fs-6 mb-1 mt-1">
-                <a href="{{ key.get_absolute_url }}">{{ key }}</a>
+              <a href="{{ key.get_absolute_url }}">
+              <span class="badge rounded-pill mb-1 fs-6 {% if key.linked_to_cases %} text-bg-primary {% else %} text-bg-secondary {% endif %} mt-1">
+                {{ key }}
               </span>
+              </a>
             </dt>
             {% for x in value %}
-            <dd class="mb-0" {% if x.linked_to_cases %} data-linkable="yes" {% else %} data-linkable="no" {% endif %}>
-              <span class="badge rounded-pill text-bg-primary">
-                <a href="{{ x.get_absolute_url }}">{{ x.name }}</a>
-              </span>
+            <dd class="mb-1" {% if x.linked_to_cases %} data-linkable="yes" {% else %} data-linkable="no" {% endif %}>
+              <a href="{{ x.get_absolute_url }}">
+                <span class="badge rounded-pill fs-6 {% if key.linked_to_cases %} text-bg-primary {% else %} text-bg-secondary {% endif %}">
+                  {{ x.name }}
+                </span>
+              </a>
             </dd>
             {% endfor %}
         {% endfor %}
