@@ -19,7 +19,7 @@
     </div>
     <div id="filterMe" class="pt-2">
         <dl class="multi-column-dl">
-            <dt class="visually-hidden">countries</dt>
+            <dt class="visually-hidden">{% if verbose_name == 'Tag' %} tags {% else %} countries {% endif %}</dt>
             {% for x in object_list %}
             <dd class="list-group-item text-center">
                 <a href="{{ x.get_absolute_url }}">{% if verbose_name == 'Tag' %}
