@@ -4,25 +4,60 @@
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-{% include 'archiv/partials/detailview_title.html' %}
-<div class="container">
-    <h2 class="pb-2 pt-2 fs-4">Inroduction</h2>
-    <p class="ps-5">
-        {% if object.introduction %}
-        {{ object.introduction }}
-        {% else %}
-        no introduction provided yet
+<div class="row p-3">
+    <div class="col-md-2">
+        {% if user.is_authenticated %}
+        {% if object.get_prev %}
+        <p class="text-start">
+            <a href="{{ object.get_prev }}">
+                <i class="bi bi-chevron-left" title="previous entry"></i>
+            </a>
+        </p>
         {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1 class="text-center {% if not object.linked_to_cases %} text-secondary {% endif %}">
+            {{ object }}
+            {% if user.is_authenticated %}
+            <small>
+                <a href="{{ object.get_edit_url }}">
+                    <i class="bi bi-pencil-square" title="edit entry"></i>
+                </a>
+            </small>
+            {% endif %}
+
+        </h1>
+    </div>
+    <div class="col-md-2">
+        {% if user.is_authenticated %}
+        {% if object.get_prev %}
+        <p class="text-end">
+            
+            <a href="{{ object.get_next }}">
+                <i class="bi bi-chevron-right" title="next entry"></i>
+            </a>
+        </p>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+<div class="container">
+    {% if object.introduction %}
+    <h2 class="pb-2 pt-2 fs-4">Introduction</h2>
+    <p class="ps-5">
+        {{ object.introduction }}
     </p>
+    {% endif %}
     {% if object.part_of %}
     <h2 class="pb-2 pt-2 fs-4">Part of</h2>
     <p class="ps-5">
-        <a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a>
+        <span class="badge rounded-pill text-bg-primary"><a href="{{ object.part_of.get_absolute_url }}">{{ object.part_of }}</a></span>
     </p>
     {% endif %}
     {% if object.rvn_keyword_part_of_keyword.all %}
-    <h2 class="pb-2 pt-2 fs-4">has Children</h2>
-    <ul>
+    <h2 class="pb-2 pt-2 fs-4">Contains</h2>
+    <ul class="list-unstyled">
         {% for x in object.rvn_keyword_part_of_keyword.all %}
         <li>
             <span class="badge rounded-pill text-bg-primary"><a href="{{ x.get_absolute_url }}">{{ x.name }}</a></span>
@@ -32,15 +67,15 @@
     {% endif %}
 
     {% if object.see_also.all %}
-    <h2 class="pb-2 pt-2 fs-4">Related keyword(s)</h2>
-    <ul>
+    <h2 class="pb-2 pt-2 fs-4">{% if object.linked_to_cases %} Related keyword(s) {% else %} See {% endif %}</h2>
+    <ul class="list-unstyled">
         {% for x in object.see_also.all %}
-        <span class="badge rounded-pill text-bg-primary ">{{ x.name }}</span>
-        <a href="{{ x.get_absolute_url }}"><i class="bi bi-link-45deg"></i></a>
+        <li><span class="badge rounded-pill text-bg-primary "><a href="{{ x.get_absolute_url }}">{{ x.name }}</a></span></li>
         {% endfor %}
     </ul>
     {% endif %}
-    
+
+    {% if object.linked_to_cases %}
     {% with courtdecissions=cases %}
     <h2 class="p-3 text-center">
         {{ courtdecissions.count }} cases <br>
@@ -50,6 +85,7 @@
     </h2>
     {% include 'archiv/partials/case_dl.html' %}
     {% endwith %}
+    {% endif %}
     {% if user.is_authenticated %}
     <div class="float-end">
         <a href="{{ object.get_delete_url }}">
