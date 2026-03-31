@@ -35,7 +35,7 @@ class YearBookFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search", "title", "part_of", "year", css_id="more"
+                    "Basic search", "title", "part_of", "year", css_id="more"
                 )
             )
         )
@@ -76,7 +76,7 @@ class CourtFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "id",
                     "name",
                     "abbreviation",
@@ -124,7 +124,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "ft_search",
                     "partial_legal_system",
                     "court",
@@ -221,7 +221,7 @@ class KeyWordFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "id",
                     "name",
                     "part_of",
@@ -276,7 +276,7 @@ class PartialLegalSystemFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "id",
                     "name",
                     css_id="more",
@@ -316,7 +316,7 @@ class PersonFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "id",
                     "last_name",
                     "first_name",
@@ -361,7 +361,7 @@ class TagFilterFormHelper(FormHelper):
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    "Basic Search",
+                    "Basic search",
                     "id",
                     "tag",
                     css_id="more",
