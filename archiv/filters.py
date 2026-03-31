@@ -123,7 +123,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         field_name="year_book_title",
         queryset=YearBook.objects.all(),
         label="Chapter",
-        help_text="Filter for cases reported in the selected chapter",
+        help_text="Filter for cases reported in the selected chapter (select bibliographic source first)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:chapter-autocomplete", forward=["year_book_title"]
         ),
