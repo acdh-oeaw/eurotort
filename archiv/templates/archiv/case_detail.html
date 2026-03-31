@@ -23,12 +23,12 @@
                         </a>
                     </small>
                     {% endif %}</h1>
-                <h2 class="visually-hidden" id="info">Info (top)</h2>
+                <h2 class="visually-hidden" id="info">Case info</h2>
                 <table class="table">
 
                     <tbody>
                         <tr>
-                            <th>Legal System</th>
+                            <th>Legal system</th>
                             <td>
                                 <a href="{{ object.partial_legal_system.get_absolute_url }}">
                                     {{ object.partial_legal_system }}
@@ -39,22 +39,27 @@
                             <th>Court</th>
                             <td>
                                 <a href="{{ object.court.get_absolute_url }}">
+                                    {% if object.court.is_high_court %}
+            <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImage" alt="Highest court">
+            {% endif %}
                                     {{ object.court }} {% if object.court.name_english %}({{ object.court.name_english }}){% endif %}
                                 </a>
                             </td>
                         </tr>
                         <tr>
-                            <th>Date of Decision</th>
+                            <th>Decision date</th>
                             <td>
                                 {% if object.decission_date %}
                                     {{ object.decission_date }} {% else %} not data provided
                                 {% endif %}
                             </td>
                         </tr>
+                        {% if object.ecli %}
                         <tr>
                             <th title="European Case Law Identifier">ECLI</th>
-                            <td>{% if object.ecli %}{{ object.ecli }}{% else %} no data provided {% endif %}</td>
+                            <td>{{ object.ecli }}</td>
                         </tr>
+                        {% endif %}
                         <tr>
                             <th>Eurotort number</th>
                             <td>{{ object.id }}</td>
@@ -97,11 +102,6 @@
                         {% endif %}
                     </tbody>
                 </table>
-                <p class="pt-2">{{ object }}</p>
-                {% if object.short_description %}
-                <h3>Case report</h3>
-                <p>{{ object.short_description }}</p>
-                {% endif %}
                 <h3>Facts</h3>
                 <p>{{ object.situation|safe }}</p>
                 <h3>Decision</h3>
@@ -110,14 +110,13 @@
                 {% if object.commentary %}
                 <p>{{ object.commentary|safe }}</p>
                 {% else %}
-                <p>For commentary visit
-                    <a href="{{ object.year_book_title.doi }}">
-                        {{ object.year_book_title}} {{object.year_book_issue }}
-                    </a>
+                <p>A commentary is included in the original publication 
+                    <a href="{{ object.year_book_title.get_absolute_url }}">
+                        {{ object.year_book_title }}{% if object.year_book_title.part_of %} ({{ object.year_book_title.part_of }}){% endif %}</a>. {% if object.year_book_title.part_of.doi %} <a href="{{ object.year_book_title.part_of.doi }}">Get access</a>{% endif %}
                 </p>
                 {% endif %}
                 {% if object.additional_information %}
-                <h3>Additional Information</h3>
+                <h3>Additional information</h3>
                 <p>{{ object.additional_information|safe }}</p>
                 {% endif %}
                 {% if object.location %}
@@ -125,13 +124,15 @@
                 <p>{{ object.location|safe }}</p>
                 {% endif %}
                 <hr>
+                <h2>Subject matter</h2>
+                <p>{{ object.short_description }}</p>
                 <h2>Authors</h2>
                 {% for x in object.author.all %}
                 <p><a href="{{ x.get_absolute_url }}">{{ x }}</a></p>
                 {% endfor %}
 
-                <h2>Bibliographic Source</h2>
-                <p><a href="{{ object.year_book_title.get_absolute_url }}">{{ object.year_book_title}} {{ object.year_book_issue }}</a></p>
+                <h2>Bibliographic source</h2>
+                <p><a href="{{ object.year_book_title.get_absolute_url }}">{{ object.year_book_title}}</a>{% if object.year_book_title.part_of %}, in: {{ object.year_book_title.part_of }}{% endif %}{% if object.year_book_issue %}, {{ object.year_book_issue }}{% endif %}.</p>
                 <h2>Eurotort reference</h2>
                 <p>Eurotort no. {{ object.id }}</p>
                 <small>updated: {{ object.modified_date }}</small>
