@@ -29,7 +29,7 @@
             <div class="col-md-9" >
                 <div class="text-center">
                     <h1 class="text-center" id="results">
-                        {{table.paginator.count }} search results
+                        {{ table.paginator.count }} search results
                         {% if user.is_authenticated %}
                             {% if create_view_link %}
                             <br>
@@ -45,9 +45,11 @@
                     {% block pagination.allpages %}
                     {% include 'browsing/partials/pagination.html' %}
                     {% endblock pagination.allpages %}
+                    {% if table.paginator.count < 251 %}
                     <div class="float-end">
                         {% include "browsing/partials/download_menu.html" %}
                     </div>
+                    {% endif %}
                 </div>
 
             </div>
