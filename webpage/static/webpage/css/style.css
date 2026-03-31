@@ -6,6 +6,10 @@ nav[data-toggle="toc"] .nav .nav {
   display: block;
 }
 
+nav[data-toggle="toc"].sticky-top {
+  z-index: 999;
+}
+
 dd {
   padding-left: 1.5rem;
   margin-bottom: 0.3;

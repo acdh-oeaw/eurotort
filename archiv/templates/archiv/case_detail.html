@@ -4,16 +4,16 @@
 {% block title %}{{ object }}{% endblock %}
 {% block content %}
 {% include 'archiv/partials/detailview_breadcrumb.html' %}
-<div class="courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc">
+<div class="courtdecissioncart" data-bs-spy="scroll" data-bs-target="#toc-desktop">
 
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <details class="d-md-none mb-3 toc-details">
-                    <summary>Table of Contents</summary>
+                    <summary>Table of ontents</summary>
                     <nav id="toc" data-toggle="toc" class="sticky-top" title="page navigation"></nav>
                 </details>
-                <nav id="toc" data-toggle="toc" class="sticky-top d-none d-md-block" title="page navigation"></nav>
+                <nav id="toc-desktop" data-toggle="toc" class="sticky-top d-none d-md-block" title="page navigation"></nav>
             </div>
             <div class="col-md-8">
                 <h1>{{ object }} {% if user.is_authenticated %}
