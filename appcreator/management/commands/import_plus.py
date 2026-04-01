@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 if ")" in data:
                     items = data.split(") ")
                     page = items[-1]
-                    title = f'{" ".join(items[:-1])})'
+                    title = f"{' '.join(items[:-1])})"
                     yearbook, _ = YearBook.objects.get_or_create(title=title)
                     x.year_book_title = yearbook
                     x.year_book_issue = page[:249]
