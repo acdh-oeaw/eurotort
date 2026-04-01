@@ -4,23 +4,36 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0022_alter_courtdecission_tag'),
+        ("archiv", "0022_alter_courtdecission_tag"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='courtdecission',
-            options={'ordering': ['-decission_date'], 'verbose_name': 'Case', 'verbose_name_plural': 'Cases'},
+            name="courtdecission",
+            options={
+                "ordering": ["-decission_date"],
+                "verbose_name": "Case",
+                "verbose_name_plural": "Cases",
+            },
         ),
         migrations.AlterModelOptions(
-            name='yearbook',
-            options={'ordering': ['id'], 'verbose_name': 'Bibliographic Item', 'verbose_name_plural': 'Bibliography'},
+            name="yearbook",
+            options={
+                "ordering": ["id"],
+                "verbose_name": "Bibliographic Item",
+                "verbose_name_plural": "Bibliography",
+            },
         ),
         migrations.AlterField(
-            model_name='courtdecission',
-            name='year_book_issue',
-            field=models.CharField(blank=True, help_text='Page', max_length=250, null=True, verbose_name='Page'),
+            model_name="courtdecission",
+            name="year_book_issue",
+            field=models.CharField(
+                blank=True,
+                help_text="Page",
+                max_length=250,
+                null=True,
+                verbose_name="Page",
+            ),
         ),
     ]

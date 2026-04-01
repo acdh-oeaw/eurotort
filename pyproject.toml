@@ -25,4 +25,5 @@ dev = [
     "django-fixture-magic>=0.1.5",
     "jupyterlab>=4.4.10",
     "notebook>=7.4.7",
+    "ruff>=0.15.8",
 ]
