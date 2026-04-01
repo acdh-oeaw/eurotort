@@ -413,7 +413,7 @@ class CourtDecission(models.Model):
 
     class Meta:
         ordering = [
-            "id",
+            "-decission_date",
         ]
         verbose_name = "Case"
         verbose_name_plural = "Cases"
