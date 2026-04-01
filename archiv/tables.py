@@ -63,10 +63,16 @@ class CourtDecissionTable(tables.Table):
         orderable=False,
     )
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
-    keyword = tables.columns.ManyToManyColumn(verbose_name="Keywords")
+    keyword = tables.columns.TemplateColumn(
+        verbose_name="Keywords",
+        template_code='{% for x in record.keyword.all %}<span class="badge rounded-pill text-bg-primary me-1">{{ x }}</span>{% endfor %}',
+    )
     author = tables.columns.ManyToManyColumn(verbose_name="Authors")
     related_decision = tables.columns.ManyToManyColumn(verbose_name="Related decisions")
-    tag = tables.columns.ManyToManyColumn(verbose_name="Tags")
+    tag = tables.columns.TemplateColumn(
+        verbose_name="Tags",
+        template_code='{% for x in record.tag.all %}<span class="badge rounded-pill text-bg-success me-1">{{ x }}</span>{% endfor %}',
+    )
     kwic = tables.columns.TemplateColumn(
         template_code="{{ record.kwic|safe }}",
         verbose_name="Search term in context",
