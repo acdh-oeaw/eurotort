@@ -193,6 +193,7 @@ class CourtDecissionListView(CustomListView):
     formhelper_class = CourtDecissionFilterFormHelper
     table_class = CourtDecissionTable
     init_columns = [
+        "partial_legal_system",
         "court",
         "case_reference",
         "decission_date",
