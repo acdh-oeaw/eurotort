@@ -12,23 +12,24 @@
 <div class="container-fluid">
     <div>
         <div class="row">
-            <div class="col-md-3 filter-sidebar">
+            <div class="col-md-3 filter-sidebar pb-5">
                 <div>
                     {% block create_button %}{% endblock %}
                     {% load django_tables2 crispy_forms_tags %}
                     <form action="." class="uniForm" method="get">
                         {% crispy filter.form filter.form.helper %}
                         {% include 'archiv/partials/column_selector.html' %}
-                        <div class="pt-2">
-                            <a class="btn btn-primary" href=".">Reset</a>
-                            <button type="submit" class="btn btn-primary">Search</button>
+                        <div class="pt-3 pb-5 d-flex justify-content-center gap-3">
+                            <a class="btn btn-primary px-4 py-2" href=".">Reset</a>
+                            <button type="submit" class="btn btn-primary px-4 py-2">Search</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col-md-9" >
+            <div class="col-md-9">
+                <a id="results"></a>
                 <div class="text-center">
-                    <h1 class="text-center" id="results">
+                    <h1 class="text-center" >
                         {{ table.paginator.count }} search results
                         {% if user.is_authenticated %}
                             {% if create_view_link %}
