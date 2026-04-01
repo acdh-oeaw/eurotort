@@ -1,13 +1,11 @@
-.courtdecissioncart {
-  position: relative;
+/* Base elements */
+a {
+  color: inherit;
+  text-decoration: underline dotted;
 }
 
-nav[data-toggle="toc"] .nav .nav {
-  display: block;
-}
-
-nav[data-toggle="toc"].sticky-top {
-  z-index: 999;
+a:hover {
+  color: inherit;
 }
 
 dd {
@@ -20,13 +18,9 @@ dt {
   break-inside: avoid;
 }
 
-a {
-  color: inherit;
-  text-decoration: underline dotted;
-}
-
-a:hover {
-  color: inherit;
+/* Layout and shared components */
+.courtdecissioncart {
+  position: relative;
 }
 
 .navbar-brand {
@@ -38,31 +32,20 @@ a:hover {
   height: 60px;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-  background-color: var(--bs-body-bg) !important;
-  border: 1px solid var(--bs-body-bg) !important;
-  border-radius: 4px;
-  cursor: default;
-  float: left;
-  margin-right: 5px;
-  margin-top: 5px;
-  padding: 0 5px;
+.toc-details {
+  border: 1px dotted #ccc;
+  padding: 0.5rem;
 }
 
-@media (min-width: 576px) {
-  .multi-column-dl {
-    column-count: 2;
-    column-gap: 1.5rem;
-  }
+nav[data-toggle="toc"] .nav .nav {
+  display: block;
 }
 
-@media (min-width: 1200px) {
-  .multi-column-dl {
-    column-count: 3;
-    column-gap: 2rem;
-  }
+nav[data-toggle="toc"].sticky-top {
+  z-index: 999;
 }
 
+/* Definition list formatting */
 .multi-column-dl dt {
   break-after: avoid;
 }
@@ -81,11 +64,21 @@ a:hover {
   display: inline-block;
 }
 
-.toc-details {
-  border: 1px dotted #ccc;
-  padding: 0.5rem;
+@media (min-width: 576px) {
+  .multi-column-dl {
+    column-count: 2;
+    column-gap: 1.5rem;
+  }
 }
 
+@media (min-width: 1200px) {
+  .multi-column-dl {
+    column-count: 3;
+    column-gap: 2rem;
+  }
+}
+
+/* Image utilities */
 .highCourtImage {
   max-width: 20px;
   padding-right: .25rem;
@@ -94,4 +87,81 @@ a:hover {
 .highCourtImageH1 {
   max-width: 30px;
   padding-right: .25rem;
+}
+
+/* Global Select2 chip style */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: var(--bs-body-bg) !important;
+  border: 1px solid var(--bs-body-bg) !important;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0 5px;
+}
+
+/* Sidebar filter column constraints */
+.filter-sidebar {
+  --s2-height: 38px;
+  min-width: 0;
+}
+
+.filter-sidebar > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-sidebar .form-control,
+.filter-sidebar .form-select,
+.filter-sidebar select,
+.filter-sidebar input,
+.filter-sidebar textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Select2 / django-autocomplete-light in sidebar */
+.filter-sidebar .select2-container {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.filter-sidebar .select2-container .select2-selection--single,
+.filter-sidebar .select2-container .select2-selection--multiple {
+  height: var(--s2-height) !important;
+  min-height: var(--s2-height) !important;
+  max-height: var(--s2-height) !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.filter-sidebar .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: calc(var(--s2-height) - 2px);
+}
+
+.filter-sidebar .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: calc(var(--s2-height) - 2px);
+}
+
+.filter-sidebar .select2-container .select2-selection--multiple .select2-selection__rendered {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.filter-sidebar .select2-container .select2-selection__choice {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0;
+}
+
+.filter-sidebar .select2-container .select2-search--inline .select2-search__field {
+  margin-top: 0;
 }
