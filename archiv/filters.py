@@ -136,11 +136,11 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:tag-no-filter-autocomplete", attrs={"data-html": True}
         ),
     )
-    partial_legal_system = django_filters.ModelChoiceFilter(
+    partial_legal_system = django_filters.ModelMultipleChoiceFilter(
         queryset=PartialLegalSystem.objects.all(),
         help_text=CourtDecission._meta.get_field("partial_legal_system").help_text,
         label=CourtDecission._meta.get_field("partial_legal_system").verbose_name,
-        widget=autocomplete.ModelSelect2(
+        widget=autocomplete.ModelSelect2Multiple(
             url="archiv-ac:partiallegalsystem-autocomplete",
         ),
     )
