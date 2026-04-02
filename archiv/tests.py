@@ -1,11 +1,12 @@
+import json
+
 from django.apps import apps
 from django.contrib.auth.models import User
-from django.test import Client
-from django.test import TestCase
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
-from archiv.models import CourtDecission, Tag
+from archiv.models import Court, CourtDecission, PartialLegalSystem, Tag
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -122,3 +123,48 @@ class ArchivTestCase(TestCase):
         url = reverse("archiv-ac:tag-autocomplete")
         response = client.get(f"{url}?q=t")
         self.assertTrue("text-bg-success" in str(response.content))
+
+    def test_conditional_ac(self):
+        pl_system_a = PartialLegalSystem.objects.create(name="Constraint LS A")
+        pl_system_b = PartialLegalSystem.objects.create(name="Constraint LS B")
+
+        court_a = Court.objects.create(
+            name="ConstraintCourt Alpha", partial_legal_system=pl_system_a
+        )
+        court_b = Court.objects.create(
+            name="ConstraintCourt Beta", partial_legal_system=pl_system_b
+        )
+        court_c = Court.objects.create(
+            name="ConstraintCourt Gamma", partial_legal_system=pl_system_a
+        )
+
+        url = reverse("archiv-ac:court-autocomplete")
+
+        response = client.get(
+            url,
+            {
+                "q": "ConstraintCourt",
+                "forward": json.dumps({"partial_legal_system": str(pl_system_a.id)}),
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        ids = {int(item["id"]) for item in response.json()["results"]}
+        self.assertSetEqual(ids, {court_a.id, court_c.id})
+
+        response = client.get(
+            url,
+            {
+                "q": "ConstraintCourt",
+                "forward": json.dumps(
+                    {
+                        "partial_legal_system": [
+                            str(pl_system_a.id),
+                            str(pl_system_b.id),
+                        ]
+                    }
+                ),
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        ids = {int(item["id"]) for item in response.json()["results"]}
+        self.assertSetEqual(ids, {court_a.id, court_b.id, court_c.id})
