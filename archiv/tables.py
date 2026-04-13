@@ -78,9 +78,6 @@ class CourtDecissionTable(tables.Table):
         verbose_name="Subject matter",
         orderable=False,
     )
-    situation = tables.TemplateColumn(
-        template_code="{{ record.situation|truncatechars:140}}"
-    )
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.TemplateColumn(
         verbose_name="Keywords",
@@ -102,6 +99,21 @@ class CourtDecissionTable(tables.Table):
         template_code="{{ record.kwic|safe }}",
         verbose_name="Search term in context",
         orderable=False,
+    )
+    situation = tables.TemplateColumn(
+        template_code="{{ record.situation|truncatechars:140}}",
+        verbose_name="Facts",
+    )
+    motto = tables.TemplateColumn(
+        template_code="{{ record.motto|truncatechars:140}}", verbose_name="Decision"
+    )
+    commentary = tables.TemplateColumn(
+        template_code="{{ record.commentary|truncatechars:140}}",
+        verbose_name="Commentary",
+    )
+    location = tables.TemplateColumn(
+        template_code="{{ record.location|truncatechars:140}}",
+        verbose_name="Reported in",
     )
 
     class Meta:

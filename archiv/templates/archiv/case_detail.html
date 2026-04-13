@@ -106,15 +106,20 @@
                 <p>{{ object.situation|safe }}</p>
                 <h3>Decision</h3>
                 <p>{{ object.motto|safe }}</p>
+                
                 <h3>Commentary</h3>
                 {% if object.commentary %}
                 <p>{{ object.commentary|safe }}</p>
-                {% else %}
+               
+                {% elif object.year_book_title %}
                 <p>A commentary is included in the original publication 
                     <a href="{{ object.year_book_title.get_absolute_url }}">
                         {{ object.year_book_title }}{% if object.year_book_title.part_of %} ({{ object.year_book_title.part_of }}){% endif %}</a>. {% if object.year_book_title.part_of.doi %} <a href="{{ object.year_book_title.part_of.doi }}">Get access</a>{% endif %}
-                </p>
+                {% else %}
+                No commentary and or any further information provided.
                 {% endif %}
+                </p>
+                
                 {% if object.additional_information %}
                 <h3>Additional information</h3>
                 <p>{{ object.additional_information|safe }}</p>
