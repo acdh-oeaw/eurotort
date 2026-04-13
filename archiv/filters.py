@@ -199,8 +199,18 @@ class CourtDecissionListFilter(django_filters.FilterSet):
     )
     keyword = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
-        help_text=CourtDecission._meta.get_field("keyword").help_text,
-        label=CourtDecission._meta.get_field("keyword").verbose_name,
+        help_text="One of the selected keywords needs to match.",
+        label="Keywords (intersection)",
+        widget=autocomplete.ModelSelect2Multiple(
+            url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
+        ),
+    )
+    keyword_and = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        field_name="keyword",
+        queryset=KeyWord.objects.all(),
+        help_text="All of the selected keywords needs to match.",
+        label="Keywords (union)",
         widget=autocomplete.ModelSelect2Multiple(
             url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
         ),
@@ -278,6 +288,7 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "commentary",
             "additional_information",
             "keyword",
+            "keyword_and",
             "tag",
             "author",
             "year_book_title",
