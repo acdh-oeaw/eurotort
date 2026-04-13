@@ -130,6 +130,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "court",
                     "decission_date",
                     "keyword",
+                    "keyword_and",
                     "tag",
                     css_id="basic",
                 ),
