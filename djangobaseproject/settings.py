@@ -112,6 +112,7 @@ if os.environ.get("POSTGRES_DB"):
             "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
             "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
             "PORT": os.environ.get("POSTEGRES_PORT", "5432"),
+            "DISABLE_SERVER_SIDE_CURSORS": True,
         }
     }
 else:
