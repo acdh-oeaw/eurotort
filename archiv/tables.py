@@ -78,6 +78,9 @@ class CourtDecissionTable(tables.Table):
         verbose_name="Subject matter",
         orderable=False,
     )
+    situation = tables.TemplateColumn(
+        template_code="{{ record.situation|truncatechars:140}}"
+    )
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
     keyword = tables.columns.TemplateColumn(
         verbose_name="Keywords",
