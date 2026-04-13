@@ -92,12 +92,11 @@ class CourtDecissionTable(tables.Table):
             "decission_date",
             "court",
             "case_reference",
-            "file_number",
-            "party",
             "short_description",
             "kwic",
             "keyword",
             "tag",
+            "id",
             "situation",
             "motto",
             "commentary",
@@ -107,9 +106,13 @@ class CourtDecissionTable(tables.Table):
             "related_decision",
             "additional_information",
             "ecli",
+            "modified_date",
+            # "foo",
+            "file_number",
+            "party",
+            "situation",
             "year_book_issue",
             "full_text",
-            "modified_date",
         )
         attrs = {"class": "table table-responsive table-hover"}
 
