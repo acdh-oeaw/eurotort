@@ -200,7 +200,13 @@ class CourtDecissionListView(CustomListView):
         "short_description",
         "keyword",
     ]
-    exclude_columns = ["full_text", "vector_column", "year_book_issue"]
+    exclude_columns = [
+        "full_text",
+        "vector_column",
+        "year_book_issue",
+        "party",
+        "file_number",
+    ]
     enable_merge = True
 
     def get(self, request, *args, **kwargs):

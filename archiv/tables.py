@@ -52,10 +52,26 @@ class CourtTable(tables.Table):
 
 class CourtDecissionTable(tables.Table):
     id = tables.LinkColumn(verbose_name="Eurotort number")
+    partial_legal_system = tables.Column(
+        attrs={
+            "th": {"style": "width: 150px;"},
+            "td": {"style": "width: 150px;"},
+        },
+    )
+    court = tables.Column(
+        attrs={
+            "dh": {"style": "width: 175px;"},
+            "td": {"style": "width: 175px;"},
+        },
+    )
     case_reference = tables.columns.TemplateColumn(
         template_code="<a href='{{ record.get_absolute_url }}'>{{ record.case_reference }}</a>",
         verbose_name="Case reference",
         orderable=False,
+        attrs={
+            "th": {"style": "width: 200px;"},
+            "td": {"style": "width: 200px;"},
+        },
     )
     short_description = tables.TemplateColumn(
         template_code="{{ record.short_description|safe }}",
@@ -107,10 +123,7 @@ class CourtDecissionTable(tables.Table):
             "additional_information",
             "ecli",
             "modified_date",
-            # "foo",
             "file_number",
-            "party",
-            "situation",
             "year_book_issue",
             "full_text",
         )
