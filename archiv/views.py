@@ -111,6 +111,7 @@ class CourtListView(CustomListView):
         "name",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
@@ -208,6 +209,7 @@ class CourtDecissionListView(CustomListView):
         "file_number",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get(self, request, *args, **kwargs):
         # If ft_search is present, ensure kwic is in columns
@@ -280,6 +282,7 @@ class KeyWordListView(CustomListView):
         "name",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
@@ -378,6 +381,7 @@ class PartialLegalSystemListView(CustomListView):
         "legacy_pk",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
@@ -439,6 +443,7 @@ class PersonListView(CustomListView):
         "last_name",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
@@ -525,6 +530,7 @@ class YearBookListView(CustomListView):
         "title",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
@@ -617,6 +623,7 @@ class TagListView(CustomListView):
         "tag",
     ]
     enable_merge = True
+    pagination_windowed = True
 
     def get_template_names(self):
         if self.request.user.is_authenticated:
