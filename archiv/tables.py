@@ -86,7 +86,10 @@ class CourtDecissionTable(tables.Table):
             <span class="badge rounded-pill text-bg-primary me-1">{{ x }}</span>
         {% endfor %}""",
     )
-    author = tables.columns.ManyToManyColumn(verbose_name="Authors")
+    author = tables.columns.ManyToManyColumn(
+        verbose_name="Authors",
+        orderable=True,
+    )
     related_decision = tables.columns.ManyToManyColumn(verbose_name="Related decisions")
     tag = tables.columns.TemplateColumn(
         verbose_name="Tags",
