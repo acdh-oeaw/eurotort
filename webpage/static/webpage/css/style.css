@@ -126,7 +126,8 @@ nav[data-toggle="toc"].sticky-top {
 
 /* Keyword filter chips: style selected text spans next to #id_keyword */
 #id_keyword + .select2 .select2-selection__choice,
-#id_keyword_and + .select2 .select2-selection__choice {
+#id_keyword_and + .select2 .select2-selection__choice,
+#id_crossreference + .select2 .select2-selection__choice {
   background: transparent !important;
   border: 0 !important;
   padding: 0 !important;
@@ -143,8 +144,19 @@ nav[data-toggle="toc"].sticky-top {
   padding: 0.1rem 0.6rem;
 }
 
+#id_crossreference + .select2 .select2-selection__choice > span:not([class]) {
+  background-color: var(--bs-secondary) !important;
+  border: 1px solid var(--bs-secondary) !important;
+  border-radius: 999px;
+  color: #fff !important;
+  display: inline-block;
+  line-height: 1.35;
+  padding: 0.1rem 0.6rem;
+}
+
 #id_keyword + .select2 .select2-selection__choice__remove,
-#id_keyword_and + .select2 .select2-selection__choice__remove {
+#id_keyword_and + .select2 .select2-selection__choice__remove,
+#id_crossreference + .select2 .select2-selection__choice__remove {
   color: #fff !important;
   margin-right: 0.35rem;
   opacity: 0.9;

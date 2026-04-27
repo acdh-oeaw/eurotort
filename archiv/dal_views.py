@@ -96,6 +96,22 @@ class KeyWordAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class CrossReferenceAC(autocomplete.Select2QuerySetView):
+    def get_result_label(self, result):
+        return format_html(
+            '<span class="badge rounded-pill text-bg-secondary">{}<br/>(<small>{}</small>)</span>',
+            result.name,
+            "|".join([x.__str__() for x in result.see_also.all()]),
+        )
+
+    def get_queryset(self):
+        qs = KeyWord.objects.filter(linked_to_cases=False)
+
+        if self.q:
+            qs = qs.filter(Q(id__icontains=self.q) | Q(name__icontains=self.q))
+        return qs
+
+
 class PartialLegalSystemAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = PartialLegalSystem.objects.all()

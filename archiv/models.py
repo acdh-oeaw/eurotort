@@ -554,6 +554,7 @@ class KeyWord(models.Model):
         blank=True,
         verbose_name="Related to",
         help_text="Related keyword(s)",
+        related_name="references",
     )
     linked_to_cases = models.BooleanField(
         default=True,
