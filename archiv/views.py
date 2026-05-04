@@ -232,7 +232,11 @@ class CourtDecissionListView(CustomListView):
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         self.filter.form.helper = self.formhelper_class()
 
-        return self.filter.qs.distinct()
+        return (
+            self.filter.qs.distinct()
+            .select_related("partial_legal_system", "court", "year_book_title")
+            .prefetch_related("keyword", "tag", "author", "related_decision")
+        )
 
 
 class CourtDecissionDetailView(CustomDetailView):
