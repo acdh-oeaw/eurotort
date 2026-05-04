@@ -17,11 +17,6 @@ urlpatterns = [
         name="keyword-autocomplete",
     ),
     path(
-        "cross-references-autocomplete",
-        dal_views.CrossReferenceAC.as_view(),
-        name="cross-references-autocomplete",
-    ),
-    path(
         "partiallegalsystem-autocomplete",
         dal_views.PartialLegalSystemAC.as_view(),
         name="partiallegalsystem-autocomplete",

@@ -84,28 +84,32 @@ class CourtDecissionAC(autocomplete.Select2QuerySetView):
 
 class KeyWordAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, result):
-        return format_html(
-            '<span class="badge rounded-pill text-bg-primary ">{}</span>', result.name
-        )
+        if result.linked_to_cases:
+            return format_html(
+                '<span class="badge rounded-pill text-bg-primary ">{}</span>',
+                result.name,
+            )
+        else:
+            return format_html(
+                '<span class="badge rounded-pill text-bg-secondary">{} ({})</span>',
+                result.name,
+                "|".join([x.__str__() for x in result.see_also.all()]),
+            )
+
+    def get_selected_result_label(self, result):
+        if result.linked_to_cases:
+            return result.name
+        else:
+            return f"{result.name} ({'|'.join([x.__str__() for x in result.see_also.all()])})"
+
+    def get_result_value(self, result):
+        if result.linked_to_cases:
+            return str(result.pk)
+        else:
+            return str(result.see_also.first().pk)
 
     def get_queryset(self):
         qs = KeyWord.objects.all()
-
-        if self.q:
-            qs = qs.filter(Q(id__icontains=self.q) | Q(name__icontains=self.q))
-        return qs
-
-
-class CrossReferenceAC(autocomplete.Select2QuerySetView):
-    def get_result_label(self, result):
-        return format_html(
-            '<span class="badge rounded-pill text-bg-secondary">{}<br/>(<small>{}</small>)</span>',
-            result.name,
-            "|".join([x.__str__() for x in result.see_also.all()]),
-        )
-
-    def get_queryset(self):
-        qs = KeyWord.objects.filter(linked_to_cases=False)
 
         if self.q:
             qs = qs.filter(Q(id__icontains=self.q) | Q(name__icontains=self.q))

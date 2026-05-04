@@ -215,16 +215,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             url="archiv-ac:keyword-autocomplete", attrs={"data-html": True}
         ),
     )
-    crossreference = django_filters.ModelMultipleChoiceFilter(
-        queryset=KeyWord.objects.all(),
-        field_name="keyword",
-        label="Keywords (cross references)",
-        help_text="Serch in cross referenced keywords",
-        widget=autocomplete.ModelSelect2Multiple(
-            url="archiv-ac:cross-references-autocomplete", attrs={"data-html": True}
-        ),
-        method="cross_reference_filter",
-    )
     author = django_filters.ModelMultipleChoiceFilter(
         queryset=Person.objects.all(),
         label=CourtDecission._meta.get_field("author").verbose_name,
@@ -238,11 +228,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
         label=CourtDecission._meta.get_field("decission_date").verbose_name,
         widget=DateRangePickerWidget,
     )
-
-    def cross_reference_filter(self, queryset, field_name, value):
-        actual_keywords = KeyWord.objects.filter(references__in=value)
-        qs = queryset.filter(keyword__in=actual_keywords)
-        return qs
 
     def search_fulltext(self, queryset, field_name, value):
         search_type = "websearch"
@@ -303,7 +288,6 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             "additional_information",
             "keyword",
             "keyword_and",
-            "crossreference",
             "tag",
             "author",
             "year_book_title",

@@ -131,7 +131,6 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "decission_date",
                     "keyword",
                     "keyword_and",
-                    "crossreference",
                     "tag",
                     css_id="basic",
                 ),
