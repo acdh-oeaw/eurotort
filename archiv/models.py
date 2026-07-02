@@ -434,20 +434,21 @@ class CourtDecission(models.Model):
             return_value = (
                 f"{self.party}, "
                 f"{self.court.name} "
-                f"{self.decission_date.strftime('%d %b %Y')}, "
+                f"{self.proper_date_format()}"
                 f"{self.file_number}"
             )
         elif self.file_number and self.court.name and self.decission_date:
-            return_value = f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}, {self.file_number}"
+            return_value = f"{self.court.name} {self.proper_date_format()}, {self.file_number}".strip()
         elif self.party and self.court.name and self.decission_date:
-            return_value = f"{self.party}, {self.court.name} {self.decission_date.strftime('%d %b %Y')}"
-        elif self.court.name and self.decission_date:
             return_value = (
-                f"{self.court.name} {self.decission_date.strftime('%d %b %Y')}"
+                f"{self.party}, {self.court.name} {self.proper_date_format()}"
             )
+        elif self.court.name and self.decission_date:
+            return_value = f"{self.court.name} {self.proper_date_format()}"
         else:
             return_value = f"{self.id}"
-        return return_value.strip().replace("  ,", ",")
+        return_value = " ".join(return_value.split())
+        return return_value
 
     def case_reference(self):
         if self.file_number and self.party:
