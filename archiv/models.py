@@ -434,16 +434,18 @@ class CourtDecission(models.Model):
             return_value = (
                 f"{self.party}, "
                 f"{self.court.name} "
-                f"{self.proper_date_format()}"
+                f"{self.proper_date_format()} "
                 f"{self.file_number}"
             )
-        elif self.file_number and self.court.name and self.decission_date:
+        elif (
+            self.file_number and self.court and self.court.name and self.decission_date
+        ):
             return_value = f"{self.court.name} {self.proper_date_format()}, {self.file_number}".strip()
-        elif self.party and self.court.name and self.decission_date:
+        elif self.party and self.court and self.court.name and self.decission_date:
             return_value = (
                 f"{self.party}, {self.court.name} {self.proper_date_format()}"
             )
-        elif self.court.name and self.decission_date:
+        elif self.court and self.court.name and self.decission_date:
             return_value = f"{self.court.name} {self.proper_date_format()}"
         else:
             return_value = f"{self.id}"
