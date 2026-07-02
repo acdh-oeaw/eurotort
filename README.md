@@ -17,7 +17,6 @@ short description of the project
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
 
-
 ## Docker
 
 At the ACDH-CH we use a centralized database-server. So instead of spawning a database for each service our services are talking to a database on this centralized db-server. This setup is reflected in the dockerized setting as well, meaning it expects an already existing database (either on your host, e.g. accessible via 'localhost' or some remote one)
@@ -26,7 +25,6 @@ At the ACDH-CH we use a centralized database-server. So instead of spawning a da
 
 * `docker build -t eurotort:latest .`
 * `docker build -t eurotort:latest --no-cache .`
-
 
 ### running the image
 
@@ -39,7 +37,6 @@ docker run -it -p 8020:8020 --network="host" --rm --env-file default.env --name 
 -----
 
 This project was bootstraped by [djangobase-cookiecutter](https://github.com/acdh-oeaw/djangobase-cookiecutter)
-
 
 ## development cheatsheet
 
