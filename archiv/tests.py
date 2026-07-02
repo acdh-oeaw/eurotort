@@ -229,3 +229,32 @@ class ArchivTestCase(TestCase):
         )
         with self.assertRaises(AttributeError):
             str(case)
+
+    def test_020_courtdecission_detail_context_data_motto_paragraphs(self):
+        case = CourtDecission.objects.create(
+            motto="First paragraph.\n\nSecond paragraph."
+        )
+
+        response = client.get(case.get_absolute_url(), {"pk": case.id})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.context["decision_paragraphs"],
+            ["First paragraph.", "Second paragraph."],
+        )
+
+    def test_021_courtdecission_detail_context_data_empty_motto(self):
+        case = CourtDecission.objects.create(motto="")
+
+        response = client.get(case.get_absolute_url(), {"pk": case.id})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["decision_paragraphs"], [])
+
+    def test_022_courtdecission_detail_context_data_missing_motto(self):
+        case = CourtDecission.objects.create()
+
+        response = client.get(case.get_absolute_url(), {"pk": case.id})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["decision_paragraphs"], [])

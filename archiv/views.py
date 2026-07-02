@@ -1,3 +1,4 @@
+import re
 from collections import defaultdict
 
 import pandas as pd
@@ -242,6 +243,14 @@ class CourtDecissionListView(CustomListView):
 class CourtDecissionDetailView(CustomDetailView):
     model = CourtDecission
     template_name = "archiv/case_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        motto = (self.object.motto or "").strip()
+        context["decision_paragraphs"] = (
+            re.split(r"\r?\n\s*\r?\n", motto) if motto else []
+        )
+        return context
 
 
 class CourtDecissionCreate(CustomCreateView):
