@@ -1,4 +1,5 @@
 import json
+from datetime import date
 
 from django.apps import apps
 from django.contrib.auth.models import User
@@ -168,3 +169,63 @@ class ArchivTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         ids = {int(item["id"]) for item in response.json()["results"]}
         self.assertSetEqual(ids, {court_a.id, court_b.id, court_c.id})
+
+    def test_019_courtdecission_str_all_cases(self):
+        court = Court.objects.create(name="StringTest Court")
+        decission_date = date(2024, 1, 31)
+
+        # file_number + party branch
+        case = CourtDecission.objects.create(
+            court=court,
+            decission_date=decission_date,
+            party="Alice v. Bob",
+            file_number="A-123/24",
+        )
+        self.assertEqual(
+            str(case), "Alice v. Bob, StringTest Court 31 Jan 2024 A-123/24"
+        )
+
+        # file_number + court + decission_date branch
+        case = CourtDecission.objects.create(
+            court=court,
+            decission_date=decission_date,
+            file_number="B-777/24",
+        )
+        self.assertEqual(str(case), "StringTest Court 31 Jan 2024, B-777/24")
+
+        # party + court + decission_date branch
+        case = CourtDecission.objects.create(
+            court=court,
+            decission_date=decission_date,
+            party="Carol v. Dave",
+        )
+        self.assertEqual(str(case), "Carol v. Dave, StringTest Court 31 Jan 2024")
+
+        # court + decission_date branch
+        case = CourtDecission.objects.create(
+            court=court,
+            decission_date=decission_date,
+        )
+        self.assertEqual(str(case), "StringTest Court 31 Jan 2024")
+
+        # fallback branch
+        case = CourtDecission.objects.create()
+        self.assertEqual(str(case), str(case.id))
+
+        # sample object with missing decission_date and file_number + party set
+        # exercises whitespace normalization when date is empty.
+        case = CourtDecission.objects.create(
+            court=court,
+            party="Erin v. Frank",
+            file_number="C-55/24",
+            decission_date=None,
+        )
+        self.assertEqual(str(case), "Erin v. Frank, StringTest Court C-55/24")
+
+        # current behavior: missing court while file_number + party are set raises.
+        case = CourtDecission.objects.create(
+            party="No Court v. Someone",
+            file_number="NC-1",
+        )
+        with self.assertRaises(AttributeError):
+            str(case)
