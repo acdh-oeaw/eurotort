@@ -19,6 +19,16 @@
             </p>
             {% include "archiv/partials/search_form.html" %}
             <div class="d-grid gap-2 d-md-flex justify-content-md-center pt-5">
+                <a href="{% url 'archiv:court_browse' %}" type="button"
+                    class="btn btn btn-outline-success btn-lg px-4 me-md-2">Courts
+                </a>
+                <a class="btn btn btn-outline-success btn-lg px-4 me-md-2" href="{% url 'archiv:partiallegalsystem_browse' %}">Legal systems</a>
+                <a class="btn btn btn-outline-success btn-lg px-4 me-md-2" href="{% url 'archiv:keyword_browse' %}">Keywords</a>
+                <a class="btn btn btn-outline-success btn-lg px-4 me-md-2" href="{% url 'archiv:tag_browse' %}">Tags</a>
+                <a class="btn btn btn-outline-success btn-lg px-4 me-md-2" href="{% url 'archiv:yearbook_browse' %}">Bibliography</a>
+                <a class="btn btn btn-outline-success btn-lg px-4 me-md-2" href="{% url 'archiv:person_browse' %}">Authors</a>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center pt-5">
                 <a href="{% url 'webpage:staticpage' template='about' %}" type="button"
                     class="btn btn-outline-primary btn-lg px-4 me-md-2">More information</a>
                 <a href="{% url 'archiv:courtdecission_browse' %}" type="button"
