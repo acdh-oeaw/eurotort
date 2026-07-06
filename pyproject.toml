@@ -7,7 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "acdh-django-browsing>=4.1.1",
     "acdh-django-widgets>=0.1.0",
-    "django>=5.2.7,<6",
+    "django>=6.0.6",
     "django-autocomplete-light>=5.0.0",
     "django-next-prev>=1.1.0",
     "django-spaghetti-and-meatballs>=0.4.2",
