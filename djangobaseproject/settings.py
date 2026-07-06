@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "django_filters",
     "django_tables2",
     "django_spaghetti",
-    "appcreator",
     "webpage",
     "browsing",
     "archiv",
