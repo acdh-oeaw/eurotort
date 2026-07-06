@@ -212,15 +212,16 @@ class ArchivTestCase(TestCase):
         case = CourtDecission.objects.create()
         self.assertEqual(str(case), str(case.id))
 
-        # sample object with missing decission_date and file_number + party set
-        # exercises whitespace normalization when date is empty.
+        # sample object with default decission_date and file_number + party set
+        # exercises formatting with the default date value.
         case = CourtDecission.objects.create(
             court=court,
             party="Erin v. Frank",
             file_number="C-55/24",
-            decission_date=None,
         )
-        self.assertEqual(str(case), "Erin v. Frank, StringTest Court C-55/24")
+        self.assertEqual(
+            str(case), "Erin v. Frank, StringTest Court 01 Jan 1800 C-55/24"
+        )
 
         # current behavior: missing court while file_number + party are set raises.
         case = CourtDecission.objects.create(
@@ -301,3 +302,7 @@ class ArchivTestCase(TestCase):
 
         self.assertNotIn("Clearable Keyword", case.full_text)
         self.assertNotIn("clearable-tag", case.full_text)
+
+    def test_026_default_date(self):
+        case = CourtDecission.objects.create(short_description="Base text")
+        self.assertEqual(case.decission_date, date(1800, 1, 1))
