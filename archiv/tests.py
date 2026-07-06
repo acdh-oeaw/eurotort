@@ -7,7 +7,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
-from archiv.models import Court, CourtDecission, PartialLegalSystem, Tag
+from archiv.models import Court, CourtDecission, KeyWord, PartialLegalSystem, Tag
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -258,3 +258,46 @@ class ArchivTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["decision_paragraphs"], [])
+
+    def test_023_full_text_includes_keyword_and_tag_values(self):
+        case = CourtDecission.objects.create(short_description="Base text")
+        keyword = KeyWord.objects.create(name="Ocean Law")
+        tag = Tag.objects.create(tag="maritime")
+
+        case.keyword.add(keyword)
+        case.tag.add(tag)
+        case.refresh_from_db()
+
+        self.assertIn("Ocean Law", case.full_text)
+        self.assertIn("maritime", case.full_text)
+
+    def test_024_full_text_updates_on_keyword_tag_remove(self):
+        case = CourtDecission.objects.create(short_description="Base text")
+        keyword_a = KeyWord.objects.create(name="River Law")
+        keyword_b = KeyWord.objects.create(name="Mountain Law")
+        tag = Tag.objects.create(tag="remove-me")
+
+        case.keyword.add(keyword_a, keyword_b)
+        case.tag.add(tag)
+        case.keyword.remove(keyword_a)
+        case.tag.remove(tag)
+        case.refresh_from_db()
+
+        self.assertNotIn("River Law", case.full_text)
+        self.assertNotIn("remove-me", case.full_text)
+        self.assertIn("Mountain Law", case.full_text)
+
+    def test_025_full_text_updates_on_reverse_clear(self):
+        case = CourtDecission.objects.create(short_description="Base text")
+        keyword = KeyWord.objects.create(name="Clearable Keyword")
+        tag = Tag.objects.create(tag="clearable-tag")
+
+        case.keyword.add(keyword)
+        case.tag.add(tag)
+
+        keyword.rvn_courtdecission_keyword_keyword.clear()
+        tag.has_related_decisions.clear()
+        case.refresh_from_db()
+
+        self.assertNotIn("Clearable Keyword", case.full_text)
+        self.assertNotIn("clearable-tag", case.full_text)

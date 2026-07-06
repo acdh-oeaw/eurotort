@@ -5,6 +5,8 @@ from browsing.utils import model_to_dict
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVectorField
 from django.db import models
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.html import strip_tags
 from next_prev import next_in_order, prev_in_order
@@ -485,6 +487,11 @@ class CourtDecission(models.Model):
                 if getattr(self, x, None) is not None
             ]
         )
+        if self.pk:
+            keyword_names = self.keyword.values_list("name", flat=True)
+            tag_names = self.tag.values_list("tag", flat=True)
+            full_text.update(keyword_names)
+            full_text.update(tag_names)
         full_text_str = " ".join(
             [x for x in full_text if isinstance(x, str) and x != "nan"]
         )
@@ -828,3 +835,40 @@ class Tag(models.Model):
         if prev:
             return reverse("archiv:tag_detail", kwargs={"pk": prev.id})
         return False
+
+
+@receiver(m2m_changed, sender=CourtDecission.keyword.through)
+@receiver(m2m_changed, sender=CourtDecission.tag.through)
+def update_courtdecission_full_text_on_m2m_change(
+    sender, instance, action, reverse, model, pk_set, **kwargs
+):
+    if action == "pre_clear" and reverse and instance.pk:
+        if isinstance(instance, KeyWord):
+            related_decisions = CourtDecission.objects.filter(keyword=instance)
+        else:
+            related_decisions = CourtDecission.objects.filter(tag=instance)
+        instance._courtdecission_ids_for_full_text_refresh = list(
+            related_decisions.values_list("pk", flat=True)
+        )
+        return
+
+    if action not in {"post_add", "post_remove", "post_clear"}:
+        return
+
+    if reverse:
+        if action == "post_clear":
+            pk_set = set(
+                getattr(instance, "_courtdecission_ids_for_full_text_refresh", [])
+            )
+            if hasattr(instance, "_courtdecission_ids_for_full_text_refresh"):
+                delattr(instance, "_courtdecission_ids_for_full_text_refresh")
+        for decission in CourtDecission.objects.filter(pk__in=(pk_set or [])):
+            CourtDecission.objects.filter(pk=decission.pk).update(
+                full_text=decission.join_search_fields()
+            )
+        return
+
+    if instance.pk:
+        CourtDecission.objects.filter(pk=instance.pk).update(
+            full_text=instance.join_search_fields()
+        )
