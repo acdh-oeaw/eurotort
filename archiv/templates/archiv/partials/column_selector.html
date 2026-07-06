@@ -11,6 +11,7 @@
             data-bs-parent="#columnTogglerAccordion">
             <div class="accordion-body">
                 {% if togglable_colums %}
+                <label for="column_selector" class="form-label">Select additional columns</label>
                 <select class="form-control mb-3" size="12" multiple name="columns" id="column_selector">
                     {% for key, value in togglable_colums.items %}
                     {% if key == 'merge' and user.is_authenticated and enable_merge %}

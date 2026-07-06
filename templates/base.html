@@ -1,4 +1,4 @@
-{% load webpage_extras %}
+{% load webpage_extras static %}
 
 <!DOCTYPE html>
 <html lang="en" class="h-100" >
@@ -23,6 +23,7 @@
         <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     {% block scripts2 %}
     {% endblock scripts2 %}
+    <script src="{% static 'webpage/js/dal-forms.js' %}"></script>
 </body>
 
 </html>
