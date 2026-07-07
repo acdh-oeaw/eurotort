@@ -250,6 +250,10 @@ class CourtDecissionDetailView(CustomDetailView):
         context["decision_paragraphs"] = (
             re.split(r"\r?\n\s*\r?\n", motto) if motto else []
         )
+        situation = (self.object.situation or "").strip()
+        context["fact_paragraphs"] = (
+            re.split(r"\r?\n\s*\r?\n", situation) if situation else []
+        )
         return context
 
 
