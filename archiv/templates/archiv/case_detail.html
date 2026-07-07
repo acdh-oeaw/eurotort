@@ -104,7 +104,9 @@
                     </tbody>
                 </table>
                 <h3>Facts</h3>
-                <p>{{ object.situation|safe }}</p>
+                {% for x in decision_paragraphs %}
+                <p>{{ x }}</p>
+                {% endfor %}
                 <h3>Decision</h3>
                 {% for x in decision_paragraphs %}
                 <p>{{ x }}</p>
