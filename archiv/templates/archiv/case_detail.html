@@ -41,8 +41,8 @@
                             <td>
                                 <a href="{{ object.court.get_absolute_url }}">
                                     {% if object.court.is_high_court %}
-            <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImage" alt="Highest court">
-            {% endif %}
+                                    <img src="{% static 'webpage/images/crown.gif' %}" class="highCourtImage" alt="Highest court">
+                                    {% endif %}
                                     {{ object.court }} {% if object.court.name_english %}({{ object.court.name_english }}){% endif %}
                                 </a>
                             </td>
@@ -104,7 +104,7 @@
                     </tbody>
                 </table>
                 <h3>Facts</h3>
-                {% for x in decision_paragraphs %}
+                {% for x in fact_paragraphs %}
                 <p>{{ x }}</p>
                 {% endfor %}
                 <h3>Decision</h3>
