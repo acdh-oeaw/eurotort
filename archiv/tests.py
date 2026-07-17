@@ -7,7 +7,14 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
-from archiv.models import Court, CourtDecission, KeyWord, PartialLegalSystem, Tag
+from archiv.models import (
+    Court,
+    CourtDecission,
+    KeyWord,
+    PartialLegalSystem,
+    Tag,
+    YearBook,
+)
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -169,6 +176,22 @@ class ArchivTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         ids = {int(item["id"]) for item in response.json()["results"]}
         self.assertSetEqual(ids, {court_a.id, court_b.id, court_c.id})
+
+    def test_monograph_autocomplete_returns_top_level_yearbooks(self):
+        standalone = YearBook.objects.create(title="MonographAutocomplete Standalone")
+        parent = YearBook.objects.create(title="MonographAutocomplete Parent")
+        child = YearBook.objects.create(
+            title="MonographAutocomplete Child", part_of=parent
+        )
+
+        url = reverse("archiv-ac:monograph-autocomplete")
+        response = client.get(url, {"q": "MonographAutocomplete"})
+
+        self.assertEqual(response.status_code, 200)
+        ids = {int(item["id"]) for item in response.json()["results"]}
+        self.assertIn(standalone.id, ids)
+        self.assertIn(parent.id, ids)
+        self.assertNotIn(child.id, ids)
 
     def test_019_courtdecission_str_all_cases(self):
         court = Court.objects.create(name="StringTest Court")

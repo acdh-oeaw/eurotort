@@ -25,7 +25,7 @@ class YearBookAC(autocomplete.Select2QuerySetView):
 
 class MonographAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = YearBook.objects.exclude(has_bibliographic_items=None)
+        qs = YearBook.objects.filter(part_of__isnull=True)
 
         if self.q:
             qs = qs.filter(title__icontains=self.q)
