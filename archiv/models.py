@@ -401,8 +401,8 @@ class CourtDecission(models.Model):
         max_length=250,
         null=True,
         blank=True,
-        verbose_name="Page",
-        help_text="Page",
+        verbose_name="Page/Paragraph/...",
+        help_text="Page/Paragraph/...",
     )
     full_text = models.TextField(
         blank=True,
