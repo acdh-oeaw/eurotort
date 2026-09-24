@@ -5,8 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db.models import Count
 
-from archiv.models import CourtDecission
-from archiv.models import KeyWord
+from archiv.models import CourtDecission, KeyWord
 
 
 class Command(BaseCommand):

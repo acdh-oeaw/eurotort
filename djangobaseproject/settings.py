@@ -8,7 +8,7 @@ PROJECT_NAME = "eurotort"
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
-REDMINE_ID = os.environ.get("REDMINE_ID", 21961)
+REDMINE_ID = os.environ.get("REDMINE_ID", "21961")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

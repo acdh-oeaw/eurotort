@@ -119,7 +119,7 @@ class ArchivTestCase(TestCase):
             url = f"{reverse(url_name)}?q=hansi"
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
-            self.assertTrue("results" in response.json().keys())
+            self.assertTrue("results" in response.json())
 
     def test_017_ac_keyword(self):
         url = reverse("archiv-ac:keyword-autocomplete")

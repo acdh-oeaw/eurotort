@@ -236,21 +236,20 @@ class CourtDecissionListFilter(django_filters.FilterSet):
             search_type = "raw"
             search_term = value.replace("*", ":*")
             query = SearchQuery(search_term, config="english", search_type=search_type)
-            qs = (
-                queryset.filter(vector_column=query)
-                .annotate(
-                    kwic=SearchHeadline(
-                        "full_text",
-                        query,
-                        start_sel=START_SELECTOR,
-                        stop_sel="</span>",
-                    )
-                )
-                .annotate(rank=SearchRank("full_text", query))
-                .order_by("-rank")
-            )
             try:
-                qs
+                qs = (
+                    queryset.filter(vector_column=query)
+                    .annotate(
+                        kwic=SearchHeadline(
+                            "full_text",
+                            query,
+                            start_sel=START_SELECTOR,
+                            stop_sel="</span>",
+                        )
+                    )
+                    .annotate(rank=SearchRank("full_text", query))
+                    .order_by("-rank")
+                )
             except ProgrammingError:
                 return queryset
         else:

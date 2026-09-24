@@ -22,9 +22,9 @@ class Command(BaseCommand):
                     if "myenv" in os.path.join(root, file):
                         pass
                     else:
-                        deleted_files.append((os.path.join(root, file)))
+                        deleted_files.append(os.path.join(root, file))
                         os.remove(os.path.join(root, file))
                         counter = +1
         self.stdout.write(f"Following {counter} files have been deleted")
         for x in deleted_files:
-            self.stdout.write("Deleted: {}".format(x))
+            self.stdout.write(f"Deleted: {x}")

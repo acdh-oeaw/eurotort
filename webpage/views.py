@@ -1,11 +1,10 @@
 import requests
-
 from django.conf import settings
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.template import loader
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login, logout
 
 from .forms import form_user_login
 
@@ -37,7 +36,7 @@ class GenericWebpageView(TemplateView):
     template_name = "webpage/index.html"
 
     def get_context_data(self, **kwargs):
-        context = super(GenericWebpageView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context["apps"] = settings.INSTALLED_APPS
         return context
 

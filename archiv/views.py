@@ -60,7 +60,7 @@ from .tables import (
 
 class CustomDetailView(BaseDetailView):
     def get_context_data(self, **kwargs):
-        context = super(CustomDetailView, self).get_context_data()
+        context = super().get_context_data()
         context["verbose_name"] = self.model._meta.verbose_name
         context["verbose_name_plural"] = self.model._meta.verbose_name_plural
         return context
@@ -71,7 +71,7 @@ class CustomUpdateView(BaseUpdateView):
     template_name = "archiv/custom_create.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CustomUpdateView, self).get_context_data()
+        context = super().get_context_data()
         context["h1"] = self.h1
         return context
 
@@ -81,7 +81,7 @@ class CustomCreateView(BaseCreateView):
     template_name = "archiv/custom_create.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CustomCreateView, self).get_context_data()
+        context = super().get_context_data()
         context["h1"] = self.h1
         return context
 
@@ -92,7 +92,7 @@ class CustomListView(GenericListView):
     template_name = "archiv/custom_list.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CustomListView, self).get_context_data()
+        context = super().get_context_data()
         context["h1"] = self.h1
         context["create_button_text"] = self.create_button_text
         context["verbose_name"] = self.model._meta.verbose_name
@@ -124,7 +124,7 @@ class CourtListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -163,7 +163,7 @@ class CourtCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class CourtUpdate(CustomUpdateView):
@@ -173,7 +173,7 @@ class CourtUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class CourtDelete(DeleteView):
@@ -183,7 +183,7 @@ class CourtDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class CourtDecissionListView(CustomListView):
@@ -229,7 +229,7 @@ class CourtDecissionListView(CustomListView):
         return context
 
     def get_queryset(self, **kwargs):
-        qs = super(CourtDecissionListView, self).get_queryset()
+        qs = super().get_queryset()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         self.filter.form.helper = self.formhelper_class()
 
@@ -264,7 +264,7 @@ class CourtDecissionCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtDecissionCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class CourtDecissionUpdate(CustomUpdateView):
@@ -274,7 +274,7 @@ class CourtDecissionUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtDecissionUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class CourtDecissionDelete(DeleteView):
@@ -284,7 +284,7 @@ class CourtDecissionDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(CourtDecissionDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class KeyWordListView(CustomListView):
@@ -311,7 +311,7 @@ class KeyWordListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -362,7 +362,7 @@ class KeyWordCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(KeyWordCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class KeyWordUpdate(CustomUpdateView):
@@ -372,7 +372,7 @@ class KeyWordUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(KeyWordUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class KeyWordDelete(DeleteView):
@@ -382,7 +382,7 @@ class KeyWordDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(KeyWordDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PartialLegalSystemListView(CustomListView):
@@ -410,7 +410,7 @@ class PartialLegalSystemListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
 
 class PartialLegalSystemDetailView(CustomDetailView):
@@ -425,7 +425,7 @@ class PartialLegalSystemCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PartialLegalSystemCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PartialLegalSystemUpdate(CustomUpdateView):
@@ -435,7 +435,7 @@ class PartialLegalSystemUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PartialLegalSystemUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PartialLegalSystemDelete(DeleteView):
@@ -445,7 +445,7 @@ class PartialLegalSystemDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PartialLegalSystemDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PersonListView(CustomListView):
@@ -472,7 +472,7 @@ class PersonListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -512,7 +512,7 @@ class PersonCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PersonCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PersonUpdate(CustomUpdateView):
@@ -522,7 +522,7 @@ class PersonUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PersonUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class PersonDelete(DeleteView):
@@ -532,7 +532,7 @@ class PersonDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PersonDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class YearBookListView(CustomListView):
@@ -559,7 +559,7 @@ class YearBookListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -568,7 +568,7 @@ class YearBookListView(CustomListView):
         else:
             grouped = defaultdict(list)
             for item in self.model.objects.select_related("part_of").order_by("title"):
-                if item.part_of and not item.part_of.id == item.id:
+                if item.part_of and item.part_of.id != item.id:
                     grouped[item.part_of].append(item)
                 else:
                     grouped[item]
@@ -605,7 +605,7 @@ class YearBookCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(YearBookCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class YearBookUpdate(CustomUpdateView):
@@ -615,7 +615,7 @@ class YearBookUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(YearBookUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class YearBookDelete(DeleteView):
@@ -625,7 +625,7 @@ class YearBookDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(YearBookDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class TagListView(CustomListView):
@@ -652,7 +652,7 @@ class TagListView(CustomListView):
         if self.request.user.is_authenticated:
             return 50
         else:
-            None
+            return None
 
 
 class TagDetailView(CustomDetailView):
@@ -667,7 +667,7 @@ class TagCreate(CustomCreateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(TagCreate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class TagUpdate(CustomUpdateView):
@@ -677,7 +677,7 @@ class TagUpdate(CustomUpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(TagUpdate, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class TagDelete(DeleteView):
@@ -687,4 +687,4 @@ class TagDelete(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(TagDelete, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)

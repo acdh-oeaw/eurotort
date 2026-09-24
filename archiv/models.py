@@ -71,7 +71,7 @@ class YearBook(models.Model):
                 self.year = 9999
         elif not self.year:
             self.year = 9999
-        super(YearBook, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         if self.title:
@@ -278,7 +278,7 @@ class CourtDecission(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Case number",
-        help_text="Case number (file number/reference as cited in the given legal system, e.g. '[2010] UKSC 33' for a UK Supreme Court decision or 'VI ZR 548/12' for a German BGH decision)",  # noqa: E501
+        help_text="Case number (file number/reference as cited in the given legal system, e.g. '[2010] UKSC 33' for a UK Supreme Court decision or 'VI ZR 548/12' for a German BGH decision)",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Aktenzahl",
@@ -297,7 +297,7 @@ class CourtDecission(models.Model):
         blank=True,
         null=True,
         verbose_name="Subject matter",
-        help_text="Brief information on what the case concerns (for Yearbook cases, this is the headline provided by the author)",  # noqa: E501
+        help_text="Brief information on what the case concerns (for Yearbook cases, this is the headline provided by the author)",
     ).set_extra(
         is_public=True,
         data_lookup="Entscheidung_Kurzbeschreibung",
@@ -423,7 +423,7 @@ class CourtDecission(models.Model):
 
     def save(self, *args, **kwargs):
         self.full_text = self.join_search_fields()
-        super(CourtDecission, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         date_str = self.decission_date.strftime("%d %b %Y")
@@ -468,13 +468,11 @@ class CourtDecission(models.Model):
         return text_fields
 
     def join_search_fields(self):
-        full_text = set(
-            [
-                getattr(self, x, "")
-                for x in self.search_field_names()
-                if getattr(self, x, None) is not None
-            ]
-        )
+        full_text = {
+            getattr(self, x, "")
+            for x in self.search_field_names()
+            if getattr(self, x, None) is not None
+        }
         if self.pk:
             keyword_names = self.keyword.values_list("name", flat=True)
             tag_names = self.tag.values_list("tag", flat=True)

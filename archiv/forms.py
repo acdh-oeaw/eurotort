@@ -27,7 +27,7 @@ class DateInput(forms.DateInput):
 
 class YearBookFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(YearBookFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -55,7 +55,7 @@ class YearBookForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(YearBookForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -68,7 +68,7 @@ class YearBookForm(forms.ModelForm):
 
 class CourtFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(CourtFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -103,7 +103,7 @@ class CourtForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        super(CourtForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -116,7 +116,7 @@ class CourtForm(forms.ModelForm):
 
 class CourtDecissionFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(CourtDecissionFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -201,7 +201,7 @@ class CourtDecissionForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(CourtDecissionForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -214,7 +214,7 @@ class CourtDecissionForm(forms.ModelForm):
 
 class KeyWordFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(KeyWordFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -256,7 +256,7 @@ class KeyWordForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(KeyWordForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -269,7 +269,7 @@ class KeyWordForm(forms.ModelForm):
 
 class PartialLegalSystemFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(PartialLegalSystemFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -296,7 +296,7 @@ class PartialLegalSystemForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        super(PartialLegalSystemForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -309,7 +309,7 @@ class PartialLegalSystemForm(forms.ModelForm):
 
 class PersonFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(PersonFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -341,7 +341,7 @@ class PersonForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        super(PersonForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
@@ -354,7 +354,7 @@ class PersonForm(forms.ModelForm):
 
 class TagFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
-        super(TagFilterFormHelper, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
@@ -377,7 +377,7 @@ class TagForm(forms.ModelForm):
         exclude = ["legacy_id", "legacy_pk", "orig_data_csv"]
 
     def __init__(self, *args, **kwargs):
-        super(TagForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
