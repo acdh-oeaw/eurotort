@@ -140,6 +140,7 @@ class CourtDecissionFilterFormHelper(FormHelper):
                     "file_number",
                     "id",
                     "ecli",
+                    "location",
                     "year_book_title",
                     "year_book_chapter",
                     "author",
