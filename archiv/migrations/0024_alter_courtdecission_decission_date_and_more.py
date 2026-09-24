@@ -5,20 +5,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0023_alter_courtdecission_options_alter_yearbook_options_and_more'),
+        ("archiv", "0023_alter_courtdecission_options_alter_yearbook_options_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='courtdecission',
-            name='decission_date',
-            field=models.DateField(default=datetime.date(1800, 1, 1), help_text='Date of decision', verbose_name='Date'),
+            model_name="courtdecission",
+            name="decission_date",
+            field=models.DateField(
+                default=datetime.date(1800, 1, 1),
+                help_text="Date of decision",
+                verbose_name="Date",
+            ),
         ),
         migrations.AlterField(
-            model_name='keyword',
-            name='see_also',
-            field=models.ManyToManyField(blank=True, help_text='Related keyword(s)', related_name='references', to='archiv.keyword', verbose_name='Related to'),
+            model_name="keyword",
+            name="see_also",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Related keyword(s)",
+                related_name="references",
+                to="archiv.keyword",
+                verbose_name="Related to",
+            ),
         ),
     ]

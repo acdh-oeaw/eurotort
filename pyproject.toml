@@ -27,5 +27,9 @@ dev = [
     "ruff>=0.15.8",
 ]
 
+[tool.ruff]
+
+exclude = ["notebooks/"]
+
 [tool.ruff.lint]
 ignore = ["RUF012", "BLE001", "TRY002", "EXE001", "SIM102"]
