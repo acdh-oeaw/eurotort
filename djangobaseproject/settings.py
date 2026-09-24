@@ -55,8 +55,8 @@ INSTALLED_APPS = [
 
 DEV_APPS = [
     "django_extensions",
-    "fixture_magic",
 ]
+
 if DEBUG:
     INSTALLED_APPS = INSTALLED_APPS + DEV_APPS
 

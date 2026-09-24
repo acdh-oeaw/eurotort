@@ -436,12 +436,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-fixture-magic"
-version = "0.1.5"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9f/bb/13ef0015fd389ddc402661454fbb9afb16dd7c782ca7bbefdbe1afd3a92d/django-fixture-magic-0.1.5.tar.gz", hash = "sha256:d82a4d4f6ade078e942927b5157f0536d0cd0232adfeb943dced0858128dd734", size = 8867, upload-time = "2020-07-15T18:15:31.721Z" }
-
-[[package]]
 name = "django-next-prev"
 version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -508,7 +502,6 @@ dependencies = [
 dev = [
     { name = "coverage" },
     { name = "django-extensions" },
-    { name = "django-fixture-magic" },
     { name = "jupyterlab" },
     { name = "notebook" },
     { name = "ruff" },
@@ -533,7 +526,6 @@ requires-dist = [
 dev = [
     { name = "coverage", specifier = ">=7.13.4" },
     { name = "django-extensions", specifier = ">=4.1" },
-    { name = "django-fixture-magic", specifier = ">=0.1.5" },
     { name = "jupyterlab", specifier = ">=4.4.10" },
     { name = "notebook", specifier = ">=7.4.7" },
     { name = "ruff", specifier = ">=0.15.8" },

@@ -11,3 +11,6 @@ htmlcov/
 notebooks/
 .vscode/
 .github/
+.ruff_cache/
+eurotort_dump.sql
+.secret
