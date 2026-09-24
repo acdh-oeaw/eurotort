@@ -3,7 +3,7 @@ name = "eurotort"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "acdh-django-browsing>=4.1.1",
     "acdh-django-widgets>=0.1.0",
